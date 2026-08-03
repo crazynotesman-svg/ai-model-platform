@@ -1,0 +1,15 @@
+-- ============================================================================
+-- AI Model Intelligence Platform — Cloudflare D1 (SQLite) Schema
+-- 状态：Phase 1 占位。业务表 DDL 将在 Phase 5（Workers API + D1 落地）时按
+-- docs/database-design.md 的最终设计写入，并在此维护"最新全量 schema"。
+--
+-- 设计原则（详见 docs/database-design.md）：
+--   * 所有 ID 使用 TEXT + ULID（跨库/分布式友好，避免 SQLite 自增并发瓶颈）
+--   * 时间戳统一 TEXT ISO 8601 UTC（如 2026-08-01T00:00:00Z）
+--   * 可扩展字段（能力标签、多语言名称等）使用 JSON 文本
+--   * 金额统一以 USD 存储（NUMBER），展示层按语言/地区换算
+-- ============================================================================
+
+-- 说明：Phase 1 不落地业务表，避免在需求细化前固化结构。
+-- 规划中的核心表：providers / models / pricing_tiers / news / tags / user_feedback
+-- 详情见 ../docs/database-design.md

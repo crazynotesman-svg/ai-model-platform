@@ -1,0 +1,68 @@
+---
+/**
+ * 基础布局：html 骨架 + 站点级头部/页脚 + 语言切换器。
+ * 所有页面共用；语言从 URL 解析，文案通过 useTranslations 获取。
+ */
+import { getLangFromUrl, useTranslations } from '../i18n/ui';
+import type { UiKey } from '../i18n/ui';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 导航项：Phase 1 仅渲染占位链接（目标页面后续阶段实现）
+const navItems: { key: UiKey; href: string }[] = [
+  { key: 'nav.models', href: `/${lang}/models/` },
+  { key: 'nav.compare', href: `/${lang}/compare/` },
+  { key: 'nav.tokenCounter', href: `/${lang}/tools/token-counter/` },
+  { key: 'nav.costEstimator', href: `/${lang}/tools/cost-estimator/` },
+  { key: 'nav.news', href: `/${lang}/news/` },
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ?? t('site.title')}</title>
+    <meta name="description" content={description ?? t('site.tagline')} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="flex min-h-screen flex-col bg-slate-950 text-slate-100 antialiased">
+    <header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3">
+        <a href={`/${lang}/`} class="text-base font-semibold tracking-tight text-white">
+          {t('site.title')}
+        </a>
+        <nav aria-label="primary" class="hidden items-center gap-5 text-sm text-slate-300 md:flex">
+          {
+            navItems.map((item) => (
+              <a href={item.href} class="transition-colors hover:text-white">
+                {t(item.key)}
+              </a>
+            ))
+          }
+        </nav>
+        <LanguageSwitcher lang={lang} />
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
+      <slot />
+    </main>
+
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+      <p>{t('footer.builtFree')}</p>
+      <p class="mt-1">© {new Date().getFullYear()} {t('site.title')}. {t('footer.rights')}</p>
+    </footer>
+  </body>
+</html>

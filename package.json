@@ -1,0 +1,18 @@
+{
+  "name": "ai-model-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free, open, global AI Model Intelligence Platform (monorepo root).",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter frontend dev",
+    "build": "pnpm --filter frontend build",
+    "check": "pnpm --filter frontend check",
+    "typecheck": "pnpm -r typecheck",
+    "worker:dev": "pnpm --filter worker dev",
+    "worker:deploy": "pnpm --filter worker deploy"
+  }
+}

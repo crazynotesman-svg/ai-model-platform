@@ -1,0 +1,7 @@
+/* Tailwind CSS v4 入口：使用 @tailwindcss/vite 插件，配置以 CSS-first 方式编写 */
+@import "tailwindcss";
+
+/* 基础可访问性与排版 */
+html {
+  scroll-behavior: smooth;
+}

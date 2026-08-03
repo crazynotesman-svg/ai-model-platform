@@ -1,0 +1,39 @@
+---
+/**
+ * 语言切换器：基于当前页面路径，切换语言前缀而不丢失子路径。
+ * 例如 /en/models/gpt-4o → /zh-CN/models/gpt-4o
+ */
+import { LOCALES, LOCALE_LABELS, type Locale } from '../i18n/locales';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+
+// 去掉当前语言前缀，得到"相对路径"，再拼上目标语言前缀
+const currentPath = Astro.url.pathname.replace(new RegExp(`^/${lang}`), '') || '/';
+---
+
+<nav aria-label="language switcher" class="shrink-0">
+  <ul class="flex flex-wrap items-center gap-1 rounded-full border border-slate-700 bg-slate-800/60 px-1.5 py-1">
+    {
+      LOCALES.map((l) => (
+        <li>
+          <a
+            href={`/${l}${currentPath}`}
+            aria-current={l === lang ? 'page' : undefined}
+            class:list={[
+              'rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
+              l === lang
+                ? 'bg-sky-500 text-white'
+                : 'text-slate-300 hover:bg-slate-700 hover:text-white',
+            ]}
+          >
+            {LOCALE_LABELS[l]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

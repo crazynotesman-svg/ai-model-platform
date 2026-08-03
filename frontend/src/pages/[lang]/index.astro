@@ -1,0 +1,31 @@
+---
+/**
+ * 占位首页（[lang] 动态段）。
+ *
+ * 为每个配置的 locale 生成页面（/en/ /zh-CN/ /ja/ ...），
+ * 语言从 URL 解析，文案经 ui 字典渲染。后续阶段将在此挂载模型搜索等业务内容。
+ */
+import { LOCALES } from '../../i18n/locales';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+
+// Astro 7 要求动态段显式声明参数列表（不再由 i18n 配置自动生成）
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout>
+  <section class="mx-auto max-w-3xl text-center">
+    <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      {t('home.welcome')}
+    </h1>
+    <p class="mt-4 text-lg text-slate-300">{t('site.tagline')}</p>
+    <p class="mt-8 rounded-xl border border-dashed border-slate-700 bg-slate-900/60 p-6 text-sm text-slate-400">
+      {t('home.placeholder')}
+    </p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,16 @@
+# Cloudflare Worker 配置 —— ai-model-platform-api
+# 文档：https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "ai-model-platform-api"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+# ---- D1 数据库绑定（Phase 5 启用）----
+# 创建数据库：npx wrangler d1 create ai-model-platform-db
+# 创建后把返回的 database_id 填入下方，并执行迁移：
+#   npx wrangler d1 migrations apply ai-model-platform-db
+# 本地开发可先创建本地库：npx wrangler d1 create ai-model-platform-db --local
+[[d1_databases]]
+binding = "DB"
+database_name = "ai-model-platform-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

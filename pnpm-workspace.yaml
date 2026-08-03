@@ -1,0 +1,4 @@
+# pnpm workspace 配置：将 frontend 与 worker 纳入同一 monorepo
+packages:
+  - frontend
+  - worker
