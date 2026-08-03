@@ -79,5 +79,20 @@
   "compare.backToCompare": "비교 페이지로 돌아가기",
   "compare.seoDescription": "{a} vs {b}: 가격, 컨텍스트 창, 공급자, 출시일, 용도 비교.",
   "compare.notFoundTitle": "비교를 찾을 수 없음",
-  "compare.notFoundText": "이 모델 비교는 존재하지 않습니다. 두 모델을 선택하세요."
+  "compare.notFoundText": "이 모델 비교는 존재하지 않습니다. 두 모델을 선택하세요.",
+  "news.pageTitle": "AI 뉴스",
+  "news.subtitle": "OpenAI, Anthropic, Google AI, Meta AI, Hugging Face의 헤드라인을 집계합니다.",
+  "news.categoryLabel": "분류",
+  "news.allCategories": "전체",
+  "news.categoryModelRelease": "모델 출시",
+  "news.categoryProduct": "제품",
+  "news.categoryResearch": "연구",
+  "news.categoryOpenSource": "오픈소스",
+  "news.categoryBusiness": "비즈니스",
+  "news.categoryGeneral": "일반",
+  "news.readOriginal": "원문 보기",
+  "news.loading": "뉴스를 불러오는 중…",
+  "news.error": "뉴스를 불러오지 못했습니다. 다시 시도해 주세요.",
+  "news.retry": "다시 시도",
+  "news.empty": "이 분류에 뉴스가 없습니다."
 }

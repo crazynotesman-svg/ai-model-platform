@@ -79,5 +79,20 @@
   "compare.backToCompare": "Back to compare",
   "compare.seoDescription": "{a} vs {b}: compare price, context window, provider, release date and best use cases.",
   "compare.notFoundTitle": "Comparison not found",
-  "compare.notFoundText": "This model comparison does not exist. Choose two models to compare."
+  "compare.notFoundText": "This model comparison does not exist. Choose two models to compare.",
+  "news.pageTitle": "AI News",
+  "news.subtitle": "Aggregated headlines from OpenAI, Anthropic, Google AI, Meta AI and Hugging Face.",
+  "news.categoryLabel": "Category",
+  "news.allCategories": "All",
+  "news.categoryModelRelease": "Model Release",
+  "news.categoryProduct": "Product",
+  "news.categoryResearch": "Research",
+  "news.categoryOpenSource": "Open Source",
+  "news.categoryBusiness": "Business",
+  "news.categoryGeneral": "General",
+  "news.readOriginal": "Read original",
+  "news.loading": "Loading news…",
+  "news.error": "Failed to load news. Please try again.",
+  "news.retry": "Retry",
+  "news.empty": "No news found for this category."
 }

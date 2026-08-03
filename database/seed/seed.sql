@@ -133,22 +133,22 @@ INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, un
   ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'),    0.55,  2.19, 'USD', 'per_1M_tokens');
 
 -- ---------------------------------------------------------------------------
--- 5. 资讯（示例 4 条，en/zh-CN 各 2）
+-- 5. 资讯（示例 4 条，en/zh-CN 各 2；category/link 自 Phase 7 起）
 -- ---------------------------------------------------------------------------
-INSERT OR IGNORE INTO news (id, title, content, language, source, published_at) VALUES
+INSERT OR IGNORE INTO news (id, title, content, language, source, link, category, published_at) VALUES
   (1,
    'OpenAI announces GPT-4.1 with 1M-token context window',
    'GPT-4.1 expands context to 1M tokens and improves coding and agent performance, now available in preview.',
-   'en', 'OpenAI Blog', '2025-04-14'),
+   'en', 'OpenAI', 'https://openai.com/index/gpt-4-1/', 'model-release', '2025-04-14'),
   (2,
    'Anthropic launches Claude Opus 4 and Sonnet 4',
    'The new frontier models bring stronger reasoning and tool use, with Opus 4 as the flagship.',
-   'en', 'Anthropic News', '2025-05-21'),
+   'en', 'Anthropic', 'https://www.anthropic.com/news/claude-4', 'model-release', '2025-05-21'),
   (3,
    '深度求索发布 DeepSeek V3.1，推理成本大幅下降',
    'DeepSeek V3.1 在保持开源的同时进一步降低了 API 调用成本，推理场景性价比突出。',
-   'zh-CN', 'DeepSeek 官方', '2025-05-21'),
+   'zh-CN', 'DeepSeek 官方', 'https://api-docs.deepseek.com/', 'model-release', '2025-05-21'),
   (4,
    'Google 更新 Gemini 2.5 系列，Flash 版主打低成本高吞吐',
    'Gemini 2.5 Flash 提供百万上下文与多模态能力，价格仅为主流旗舰模型的零头。',
-   'zh-CN', 'Google AI 博客', '2025-06-17');
+   'zh-CN', 'Google AI', 'https://blog.google/technology/ai/google-gemini-update-june-2025/', 'product', '2025-06-17');

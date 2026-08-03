@@ -12,7 +12,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 4 | Model Database 页面（Worker API + 列表/搜索/排序 + 详情 + 三态） | ✅ 已完成 |
 | 5 | Token Calculator（tiktoken 精确 + estimate 回退 + 成本对比） | ✅ 已完成 |
 | 6 | 模型比较（选择页 + SSG 对比页 + JSON-LD，Google SEO） | ✅ 已完成 |
-| 7 | AI 行业资讯（内容集合 + 标签 + RSS 扩展） | ⬜ 待开发 |
+| 7 | AI 行业资讯（News Collector Service + Cron + 列表页） | ✅ 已完成 |
 | 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ⬜ 待开发 |
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
 
@@ -75,10 +75,15 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [ ] Worker 路由：/api/news（列表/详情，按语言）
 - [ ] 资讯页：列表 + 标签过滤，预留 RSS 聚合
 
-## Phase 7 — AI 行业资讯
+## Phase 7 — AI 行业资讯 ✅ 已完成（News Collector Service + Cron + 列表页）
 
-- [ ] 资讯内容集合（标题/摘要/标签/原文链接/语言）
-- [ ] 资讯列表页 + 标签过滤，预留 RSS 聚合
+- [x] News Collector Service（worker/src/collector/）：5 大来源 RSS 抓取 → 摘要（≤240 字符，不复制全文）→ 关键词分类 → 按 (source, link) 去重写入 D1
+- [x] 来源：OpenAI / Google AI 实测可用；Anthropic 无官方 RSS（enabled=false 待接入自建 RSSHub）；Meta AI / Hugging Face 生产（Cloudflare 边缘）可用，本机网络受限
+- [x] 定时任务：wrangler.toml `[triggers] crons = ["0 1 * * *"]`（每天 01:00 UTC）+ scheduled handler；手动触发 `GET /api/news/refresh`
+- [x] API：`GET /api/news?lang=&category=`（语言/分类筛选，倒序）
+- [x] 迁移 0002：news 表新增 category/link；seed 更新
+- [x] 前端 `/{lang}/news/`：NewsFeed 岛组件（分类 chips 筛选 + 语言 badge + 三态 + 移动端适配）
+- [x] 验证：collector 实测入库 20 条且幂等（重跑 added=0）；check 0 错误；build 497 页；preview + API 联调
 
 ## Phase 8 — SEO/性能打磨 + 自动部署
 

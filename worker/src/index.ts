@@ -5,10 +5,17 @@
  *   GET /api/health                 健康检查
  *   GET /api/models?lang=&search=&sort=   模型列表（search 模糊匹配；sort 白名单排序）
  *   GET /api/models/:slug?lang=     模型详情（按 slug）
+ *   GET /api/news?lang=&category=   新闻列表（按语言/分类筛选）
+ *   GET /api/news/refresh           手动触发新闻采集（本地调试；生产由 Cron）
+ *
+ * 定时任务：
+ *   scheduled（wrangler.toml [triggers] crons，默认每天 01:00 UTC）→ 新闻采集
  *
  * 约定：所有响应为 JSON + CORS 头（公开只读 API）。
  */
 import { getModelBySlug, listModels } from './routes/models';
+import { listNews } from './routes/news';
+import { collectNews } from './collector';
 
 export interface Env {
   /** Cloudflare D1 数据库绑定（wrangler.toml 声明） */
@@ -44,7 +51,27 @@ export default {
 
     // 健康检查
     if (url.pathname === '/' || url.pathname === '/api/health') {
-      return json({ status: 'ok', service: 'ai-model-platform-api', version: '0.2.0' });
+      return json({ status: 'ok', service: 'ai-model-platform-api', version: '0.3.0' });
+    }
+
+    // 新闻列表：/api/news?lang=&category=
+    if (url.pathname === '/api/news') {
+      try {
+        const news = await listNews(env.DB, {
+          lang: url.searchParams.get('lang') || null,
+          category: url.searchParams.get('category') || null,
+        });
+        return json({ news });
+      } catch (err) {
+        console.error('listNews failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
+    // 手动触发新闻采集：/api/news/refresh（本地调试/运维；生产由 Cron 调度）
+    if (url.pathname === '/api/news/refresh') {
+      const result = await collectNews(env);
+      return json({ ok: true, ...result });
     }
 
     // 模型列表：/api/models
@@ -78,5 +105,16 @@ export default {
 
     // 未匹配路由
     return json({ error: 'Not Found' }, 404);
+  },
+
+  /**
+   * 定时任务：每天 01:00 UTC 自动抓取新闻（wrangler.toml [triggers] crons）。
+   * 也可用 `wrangler dev --test-scheduled` 本地模拟触发。
+   */
+  async scheduled(controller: ScheduledController, env: Env): Promise<void> {
+    const result = await collectNews(env);
+    console.log(
+      `[cron ${controller.cron}] news collection: added=${result.added}, sourcesOk=${result.sourcesOk}, errors=${JSON.stringify(result.errors)}`,
+    );
   },
 } satisfies ExportedHandler<Env>;

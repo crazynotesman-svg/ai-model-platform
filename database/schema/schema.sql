@@ -65,14 +65,17 @@ CREATE TABLE IF NOT EXISTS pricing (
 );
 
 -- ---------------------------------------------------------------------------
--- news：AI 行业资讯
+-- news：AI 行业资讯（聚合 5 大来源：OpenAI/Anthropic/Google AI/Meta AI/HuggingFace）
+-- 原则：不复制全文，仅保存标题/摘要/来源链接/发布时间/分类
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS news (
   id           INTEGER PRIMARY KEY AUTOINCREMENT,
   title        TEXT NOT NULL,
-  content      TEXT,
+  content      TEXT,                             -- 摘要（collector 截断，非全文）
   language     TEXT NOT NULL DEFAULT 'en',       -- 资讯语言
   source       TEXT,                             -- 来源（媒体/机构名）
+  link         TEXT,                             -- 原文链接
+  category     TEXT NOT NULL DEFAULT 'general',  -- 分类：model-release/product/research/open-source/business/general
   published_at TEXT,                             -- 发布时间（YYYY-MM-DD 或 ISO）
   created_at   TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );

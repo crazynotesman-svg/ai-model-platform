@@ -79,5 +79,20 @@
   "compare.backToCompare": "Volver a comparar",
   "compare.seoDescription": "{a} vs {b}: compara precio, ventana de contexto, proveedor, fecha de lanzamiento y usos.",
   "compare.notFoundTitle": "Comparación no encontrada",
-  "compare.notFoundText": "Esta comparación no existe. Elige dos modelos para comparar."
+  "compare.notFoundText": "Esta comparación no existe. Elige dos modelos para comparar.",
+  "news.pageTitle": "Noticias de IA",
+  "news.subtitle": "Titulares agregados de OpenAI, Anthropic, Google AI, Meta AI y Hugging Face.",
+  "news.categoryLabel": "Categoría",
+  "news.allCategories": "Todas",
+  "news.categoryModelRelease": "Lanzamiento de modelo",
+  "news.categoryProduct": "Producto",
+  "news.categoryResearch": "Investigación",
+  "news.categoryOpenSource": "Código abierto",
+  "news.categoryBusiness": "Negocio",
+  "news.categoryGeneral": "General",
+  "news.readOriginal": "Leer original",
+  "news.loading": "Cargando noticias…",
+  "news.error": "No se pudieron cargar las noticias. Inténtalo de nuevo.",
+  "news.retry": "Reintentar",
+  "news.empty": "No hay noticias en esta categoría."
 }

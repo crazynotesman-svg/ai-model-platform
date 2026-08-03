@@ -19,3 +19,8 @@ database_name = "ai-model-platform-db"
 database_id = "REPLACE_WITH_D1_DATABASE_ID"
 # 迁移目录：相对运行 wrangler 命令的目录（worker/ → 项目根 database/migrations）
 migrations_dir = "../database/migrations"
+
+# ---- 定时任务：新闻采集（每天 01:00 UTC）----
+# 本地测试：npx wrangler dev --test-scheduled（发送 POST /__scheduled 触发）
+[triggers]
+crons = ["0 1 * * *"]

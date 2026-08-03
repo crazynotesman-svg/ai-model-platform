@@ -1,0 +1,48 @@
+---
+/**
+ * AI 资讯页：/{lang}/news/
+ *
+ * 静态壳 + NewsFeed 岛组件（运行时从 Worker /api/news 获取 D1 数据，
+ * 支持分类筛选与语言显示；不复制全文，仅标题/摘要/链接/时间）。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NewsFeed from '../../../components/news/NewsFeed';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+// 提取岛组件所需文案（全部来自 i18n 字典）
+const ui = {
+  categoryLabel: t('news.categoryLabel'),
+  allCategories: t('news.allCategories'),
+  categoryModelRelease: t('news.categoryModelRelease'),
+  categoryProduct: t('news.categoryProduct'),
+  categoryResearch: t('news.categoryResearch'),
+  categoryOpenSource: t('news.categoryOpenSource'),
+  categoryBusiness: t('news.categoryBusiness'),
+  categoryGeneral: t('news.categoryGeneral'),
+  readOriginal: t('news.readOriginal'),
+  loading: t('news.loading'),
+  error: t('news.error'),
+  retry: t('news.retry'),
+  empty: t('news.empty'),
+};
+---
+
+<BaseLayout title={t('news.pageTitle')} description={t('news.subtitle')}>
+  <div class="mx-auto max-w-3xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('news.pageTitle')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('news.subtitle')}</p>
+
+    <div class="mt-6">
+      <NewsFeed client:load lang={lang} ui={ui} />
+    </div>
+  </div>
+</BaseLayout>

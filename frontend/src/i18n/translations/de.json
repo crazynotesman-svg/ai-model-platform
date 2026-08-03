@@ -79,5 +79,20 @@
   "compare.backToCompare": "Zurück zum Vergleich",
   "compare.seoDescription": "{a} vs {b}: Preis, Kontextfenster, Anbieter, Erscheinungsdatum und Einsatzmöglichkeiten im Vergleich.",
   "compare.notFoundTitle": "Vergleich nicht gefunden",
-  "compare.notFoundText": "Dieser Modellvergleich existiert nicht. Wähle zwei Modelle."
+  "compare.notFoundText": "Dieser Modellvergleich existiert nicht. Wähle zwei Modelle.",
+  "news.pageTitle": "KI-Nachrichten",
+  "news.subtitle": "Aggregierte Schlagzeilen von OpenAI, Anthropic, Google AI, Meta AI und Hugging Face.",
+  "news.categoryLabel": "Kategorie",
+  "news.allCategories": "Alle",
+  "news.categoryModelRelease": "Modellveröffentlichung",
+  "news.categoryProduct": "Produkt",
+  "news.categoryResearch": "Forschung",
+  "news.categoryOpenSource": "Open Source",
+  "news.categoryBusiness": "Geschäft",
+  "news.categoryGeneral": "Allgemein",
+  "news.readOriginal": "Original lesen",
+  "news.loading": "Nachrichten werden geladen…",
+  "news.error": "Nachrichten konnten nicht geladen werden. Bitte erneut versuchen.",
+  "news.retry": "Erneut versuchen",
+  "news.empty": "Keine Nachrichten in dieser Kategorie."
 }

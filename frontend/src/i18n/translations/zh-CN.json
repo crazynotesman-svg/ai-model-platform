@@ -79,5 +79,20 @@
   "compare.backToCompare": "返回对比页",
   "compare.seoDescription": "{a} 与 {b} 对比：价格、上下文窗口、供应商、发布日期与适合场景。",
   "compare.notFoundTitle": "未找到该对比",
-  "compare.notFoundText": "该模型对比不存在，请选择两个模型进行对比。"
+  "compare.notFoundText": "该模型对比不存在，请选择两个模型进行对比。",
+  "news.pageTitle": "AI 资讯",
+  "news.subtitle": "聚合 OpenAI、Anthropic、Google AI、Meta AI 与 Hugging Face 的行业头条。",
+  "news.categoryLabel": "分类",
+  "news.allCategories": "全部",
+  "news.categoryModelRelease": "模型发布",
+  "news.categoryProduct": "产品",
+  "news.categoryResearch": "研究",
+  "news.categoryOpenSource": "开源",
+  "news.categoryBusiness": "商业",
+  "news.categoryGeneral": "综合",
+  "news.readOriginal": "阅读原文",
+  "news.loading": "正在加载资讯…",
+  "news.error": "资讯加载失败，请重试。",
+  "news.retry": "重试",
+  "news.empty": "该分类下暂无资讯。"
 }

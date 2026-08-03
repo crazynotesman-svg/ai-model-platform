@@ -79,5 +79,20 @@
   "compare.backToCompare": "比較ページへ戻る",
   "compare.seoDescription": "{a} と {b} の比較：価格、コンテキスト窓、プロバイダー、公開日、用途。",
   "compare.notFoundTitle": "比較が見つかりません",
-  "compare.notFoundText": "このモデル比較は存在しません。2つのモデルを選択してください。"
+  "compare.notFoundText": "このモデル比較は存在しません。2つのモデルを選択してください。",
+  "news.pageTitle": "AIニュース",
+  "news.subtitle": "OpenAI・Anthropic・Google AI・Meta AI・Hugging Face の見出しを集約。",
+  "news.categoryLabel": "カテゴリ",
+  "news.allCategories": "すべて",
+  "news.categoryModelRelease": "モデル発表",
+  "news.categoryProduct": "プロダクト",
+  "news.categoryResearch": "研究",
+  "news.categoryOpenSource": "オープンソース",
+  "news.categoryBusiness": "ビジネス",
+  "news.categoryGeneral": "一般",
+  "news.readOriginal": "原文を読む",
+  "news.loading": "ニュースを読み込み中…",
+  "news.error": "ニュースの読み込みに失敗しました。もう一度お試しください。",
+  "news.retry": "再試行",
+  "news.empty": "このカテゴリにはニュースがありません。"
 }
