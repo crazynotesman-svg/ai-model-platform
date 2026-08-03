@@ -1,0 +1,179 @@
+---
+/**
+ * 模型比较页：/{lang}/compare/{a}-vs-{b}/
+ *
+ * SSG：构建期从 D1 导出数据（src/generated/）生成全部模型两两比较页（7 语言 × C(11,2)=55 对）。
+ * 对比项：价格（Input/Output）、Context Window、Provider、发布日期、适合场景。
+ * SEO：本地化 title/description、hreflang/canonical（BaseLayout→SEO 组件）、JSON-LD @graph（两个 Product）。
+ */
+import { LOCALES, type Locale } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { allComparePairs, parseComparePair } from '../../../lib/compare';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// ---- 生成数据类型（与 scripts/export-models.mjs 输出一致）----
+interface CatalogEntry {
+  slug: string;
+  modelType: string;
+  contextWindow: number | null;
+  releaseDate: string | null;
+  providerName: string;
+  inputPrice: number | null;
+  outputPrice: number | null;
+  currency: string;
+  unit: string;
+  translations: Partial<
+    Record<string, { name?: string; description?: string | null; useCases?: string[] | null } | undefined>
+  >;
+}
+const catalog = catalogJson as Record<string, CatalogEntry>;
+
+// 组合 lang × 全部比较对
+export function getStaticPaths() {
+  const pairs = allComparePairs(MODEL_SLUGS);
+  const paths: { params: { lang: string; pair: string } }[] = [];
+  for (const lang of LOCALES) {
+    for (const pair of pairs) {
+      paths.push({ params: { lang, pair } });
+    }
+  }
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+const parsed = parseComparePair(Astro.params.pair ?? '');
+
+// 非法 pair 或模型不存在 → 404
+const modelA = parsed ? catalog[parsed.a] : undefined;
+const modelB = parsed ? catalog[parsed.b] : undefined;
+if (!parsed || !modelA || !modelB || parsed.a === parsed.b) {
+  return Astro.redirect('/404');
+}
+
+// 本地化展示数据
+const entryOf = (m: CatalogEntry) => {
+  const tr = m.translations[lang] ?? m.translations.en ?? {};
+  return {
+    slug: m.slug,
+    name: tr.name ?? m.slug,
+    description: tr.description ?? '',
+    useCases: tr.useCases ?? [],
+    providerName: m.providerName,
+    contextWindow: m.contextWindow,
+    releaseDate: m.releaseDate,
+    inputPrice: m.inputPrice,
+    outputPrice: m.outputPrice,
+    currency: m.currency,
+    unit: m.unit,
+  };
+};
+const A = entryOf(modelA);
+const B = entryOf(modelB);
+
+const fmtNumber = (n: number | null): string =>
+  n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang);
+const fmtPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
+const fmtUnit = (p: number | null): string => (p == null ? '' : t('compare.tableUnit'));
+
+const pageTitle = t('compare.title', { a: A.name, b: B.name });
+const pageDescription = t('compare.seoDescription', { a: A.name, b: B.name });
+
+// JSON-LD：两个 Product（含价格），供 Google 结构化结果
+const productLd = (m: typeof A) => ({
+  '@type': 'Product',
+  name: m.name,
+  description: m.description || undefined,
+  brand: { '@type': 'Organization', name: m.providerName },
+  offers: m.inputPrice != null
+    ? {
+        '@type': 'Offer',
+        price: m.inputPrice,
+        priceCurrency: m.currency,
+        description: 'Input price per 1M tokens',
+      }
+    : undefined,
+});
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [productLd(A), productLd(B)],
+};
+
+// 对比行（标签 → [A 值, B 值]）
+const rows: { label: string; a: string; b: string }[] = [
+  { label: t('compare.tableProvider'), a: A.providerName, b: B.providerName },
+  { label: t('compare.tableContext'), a: fmtNumber(A.contextWindow), b: fmtNumber(B.contextWindow) },
+  { label: t('compare.tableRelease'), a: A.releaseDate ?? '—', b: B.releaseDate ?? '—' },
+  {
+    label: t('compare.tableInput'),
+    a: `${fmtPrice(A.inputPrice)}${fmtUnit(A.inputPrice)}`,
+    b: `${fmtPrice(B.inputPrice)}${fmtUnit(B.inputPrice)}`,
+  },
+  {
+    label: t('compare.tableOutput'),
+    a: `${fmtPrice(A.outputPrice)}${fmtUnit(A.outputPrice)}`,
+    b: `${fmtPrice(B.outputPrice)}${fmtUnit(B.outputPrice)}`,
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
+  <article class="mx-auto max-w-4xl">
+    <a href={`/${lang}/compare/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
+      ← {t('compare.backToCompare')}
+    </a>
+
+    <h1 class="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">{pageTitle}</h1>
+
+    {/* 对比表：移动端横向滚动 */}
+    <div class="mt-6 overflow-x-auto rounded-xl border border-slate-800">
+      <table class="w-full min-w-[520px] text-left text-sm">
+        <thead>
+          <tr class="border-b border-slate-800 bg-slate-900/80 text-slate-300">
+            <th scope="col" class="w-40 px-4 py-3 font-medium text-slate-500"></th>
+            <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{A.name}</th>
+            <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{B.name}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr class="border-b border-slate-800/60 last:border-b-0">
+              <th scope="row" class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                {row.label}
+              </th>
+              <td class="px-4 py-3 text-slate-200">{row.a}</td>
+              <td class="px-4 py-3 text-slate-200">{row.b}</td>
+            </tr>
+          ))}
+          <tr class="last:border-b-0">
+            <th scope="row" class="px-4 py-3 align-top text-xs font-medium uppercase tracking-wide text-slate-500">
+              {t('compare.tableUseCases')}
+            </th>
+            <td class="px-4 py-3 text-slate-300">{A.useCases.length ? A.useCases.join(' · ') : '—'}</td>
+            <td class="px-4 py-3 text-slate-300">{B.useCases.length ? B.useCases.join(' · ') : '—'}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    {/* 描述对比（可选展示） */}
+    {(A.description || B.description) && (
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        {A.description && (
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <h2 class="text-sm font-semibold text-sky-300">{A.name}</h2>
+            <p class="mt-1.5 text-sm leading-relaxed text-slate-400">{A.description}</p>
+          </div>
+        )}
+        {B.description && (
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <h2 class="text-sm font-semibold text-sky-300">{B.name}</h2>
+            <p class="mt-1.5 text-sm leading-relaxed text-slate-400">{B.description}</p>
+          </div>
+        )}
+      </div>
+    )}
+  </article>
+</BaseLayout>

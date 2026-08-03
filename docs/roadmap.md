@@ -11,7 +11,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 3 | 模型数据系统（D1：schema + migration + seed，4 供应商 11 模型） | ✅ 已完成 |
 | 4 | Model Database 页面（Worker API + 列表/搜索/排序 + 详情 + 三态） | ✅ 已完成 |
 | 5 | Token Calculator（tiktoken 精确 + estimate 回退 + 成本对比） | ✅ 已完成 |
-| 6 | Workers API 完善（token-count 等接口）+ AI 行业资讯 | ⬜ 待开发 |
+| 6 | 模型比较（选择页 + SSG 对比页 + JSON-LD，Google SEO） | ✅ 已完成 |
 | 7 | AI 行业资讯（内容集合 + 标签 + RSS 扩展） | ⬜ 待开发 |
 | 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ⬜ 待开发 |
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
@@ -61,9 +61,18 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] 7 语言文案扩展（token.* 24 键）
 - [x] 验证：纯函数 node 实测（估算与 tiktoken 偏差 ≤1）；check 0 错误；build 98 页；preview + API 联调 200
 
-## Phase 6 — Workers API 完善 + AI 行业资讯
+## Phase 6 — 模型比较 ✅ 已完成（选择页 + SSG 对比页 + JSON-LD）
 
-- [ ] Worker 路由补全：/api/token-count、/api/news（列表/详情）
+- [x] 选择页 `/{lang}/compare/`：Model A/B 双下拉（选项来自 D1 导出的 catalog，静态渲染），选择后跳转规范比较 URL
+- [x] 比较页 `/{lang}/compare/{a}-vs-{b}/`：SSG 385 页（7 语言 × 55 对），对比价格/Context/Provider/发布日期/适合场景
+- [x] URL 规范：slug 中 `/`→`_` 编码，模型按字典序排序（同对唯一 URL，避免 SEO 重复内容）
+- [x] JSON-LD：`@graph` 两个 schema.org Product（含价格），Google 结构化数据友好
+- [x] 7 语言文案扩展（compare.* 18 键）
+- [x] 验证：check 0 错误；build 490 页；preview 冒烟（选择页/对比页 200、非法 pair 404、8×hreflang）
+
+## Phase 7 — AI 行业资讯
+
+- [ ] Worker 路由：/api/news（列表/详情，按语言）
 - [ ] 资讯页：列表 + 标签过滤，预留 RSS 聚合
 
 ## Phase 7 — AI 行业资讯
