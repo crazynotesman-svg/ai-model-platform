@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "export:models": "node scripts/export-models.mjs",
+    "build": "node scripts/export-models.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",

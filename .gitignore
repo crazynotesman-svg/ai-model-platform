@@ -6,6 +6,9 @@ dist/
 .astro/
 .output/
 
+# 构建期生成（scripts/export-models.mjs 从本地 D1 导出，不提交）
+frontend/src/generated/
+
 # ---- environment ----
 .env
 .env.*

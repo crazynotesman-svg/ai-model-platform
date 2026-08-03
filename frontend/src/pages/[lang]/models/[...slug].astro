@@ -1,0 +1,145 @@
+---
+/**
+ * 模型详情页：/{lang}/models/[...slug]/
+ *
+ * SSG：构建期由 scripts/export-models.mjs 从本地 D1 导出数据（src/generated/），
+ * 生成每个模型的静态详情页（SEO 最优）。数据与 Worker API 同源（D1）。
+ *
+ * 展示：名称 / Provider / Context Window / 输入输出价格 / 支持语言 / 描述 / 用途。
+ */
+import { LOCALES, LOCALE_LABELS, type Locale } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// ---- 生成数据类型（与 scripts/export-models.mjs 输出一致）----
+interface ModelCatalogEntry {
+  slug: string;
+  modelType: string;
+  contextWindow: number | null;
+  releaseDate: string | null;
+  providerName: string;
+  inputPrice: number | null;
+  outputPrice: number | null;
+  currency: string;
+  unit: string;
+  languages: string[];
+  translations: Partial<
+    Record<string, { name?: string; description?: string | null; useCases?: string[] | null }>
+  >;
+}
+const catalog = catalogJson as Record<string, ModelCatalogEntry>;
+
+// 组合 lang × slug 的全部静态路径
+export function getStaticPaths() {
+  const paths: { params: { lang: string; slug: string } }[] = [];
+  for (const lang of LOCALES) {
+    for (const slug of MODEL_SLUGS) {
+      paths.push({ params: { lang, slug } });
+    }
+  }
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+const slug = Astro.params.slug as string;
+const data = catalog[slug];
+
+// 数据缺失（构建时不应发生）→ 重定向 404
+if (!data) {
+  return Astro.redirect('/404');
+}
+
+const tr = data.translations[lang] ?? data.translations.en ?? {};
+const name = tr.name ?? data.slug;
+const description = tr.description ?? '';
+const useCases = tr.useCases ?? [];
+const languageNames = data.languages.map((code) => LOCALE_LABELS[code as Locale] ?? code);
+
+const fmtNumber = (n: number | null): string =>
+  n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang);
+const fmtPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
+
+// 结构化数据（JSON-LD）：模型作为 Product，价格来自 D1
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name,
+  description,
+  brand: { '@type': 'Organization', name: data.providerName },
+  offers: {
+    '@type': 'Offer',
+    price: data.inputPrice ?? undefined,
+    priceCurrency: data.currency,
+    description: 'Input price per 1M tokens',
+  },
+};
+
+const detailRows: { label: string; value: string }[] = [
+  { label: t('models.detailProvider'), value: data.providerName },
+  { label: t('models.detailModelType'), value: data.modelType },
+  { label: t('models.detailContextWindow'), value: fmtNumber(data.contextWindow) },
+  {
+    label: t('models.detailInputPrice'),
+    value: `${fmtPrice(data.inputPrice)}${data.inputPrice != null ? t('models.unitLabel') : ''}`,
+  },
+  {
+    label: t('models.detailOutputPrice'),
+    value: `${fmtPrice(data.outputPrice)}${data.outputPrice != null ? t('models.unitLabel') : ''}`,
+  },
+  { label: t('models.detailReleaseDate'), value: data.releaseDate ?? '—' },
+  { label: t('models.detailLanguages'), value: languageNames.join(', ') },
+];
+---
+
+<BaseLayout title={`${name} | ${t('site.title')}`} description={description} jsonLd={jsonLd}>
+  <article class="mx-auto max-w-3xl">
+    <a href={`/${lang}/models/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
+      ← {t('models.backToList')}
+    </a>
+
+    <header class="mt-4">
+      <h1 class="text-3xl font-bold tracking-tight text-white">{name}</h1>
+      <p class="mt-1 text-sm font-medium uppercase tracking-wide text-sky-400">
+        {data.providerName}
+      </p>
+    </header>
+
+    <dl class="mt-6 grid gap-px overflow-hidden rounded-xl border border-slate-800 bg-slate-800 sm:grid-cols-2">
+      {detailRows.map((row) => (
+        <div class="flex items-center justify-between gap-4 bg-slate-950 px-4 py-3">
+          <dt class="text-sm text-slate-500">{row.label}</dt>
+          <dd class="text-sm font-medium text-slate-100">{row.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    {description && (
+      <section class="mt-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          {t('models.detailDescription')}
+        </h2>
+        <p class="mt-2 text-sm leading-relaxed text-slate-300">{description}</p>
+      </section>
+    )}
+
+    {useCases.length > 0 && (
+      <section class="mt-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          {t('models.detailUseCases')}
+        </h2>
+        <ul class="mt-2 flex flex-wrap gap-2">
+          {useCases.map((c) => (
+            <li
+              class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs text-slate-300"
+            >
+              {c}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</BaseLayout>

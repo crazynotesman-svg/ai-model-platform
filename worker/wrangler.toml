@@ -5,14 +5,17 @@ name = "ai-model-platform-api"
 main = "src/index.ts"
 compatibility_date = "2026-08-01"
 
-# ---- D1 数据库绑定（Phase 5 启用）----
-# 创建数据库：npx wrangler d1 create ai-model-platform-db
-# 创建后把返回的 database_id 填入下方，并执行迁移：
-#   npx wrangler d1 migrations apply ai-model-platform-db --local   # 本地
-#   npx wrangler d1 migrations apply ai-model-platform-db --remote  # 远程
-# 迁移目录指向仓库根的 database/migrations（相对本文件位置）
+# ---- D1 数据库绑定 ----
+# 远程数据库：npx wrangler d1 create ai-model-platform-db → 将返回的 database_id 填入下方
+# 本地开发：无需 create，migrations apply --local 会自动创建本地库
+# 命令（均在 worker/ 目录下运行）：
+#   npx wrangler d1 migrations apply ai-model-platform-db --local   # 本地建表
+#   npx wrangler d1 migrations apply ai-model-platform-db --remote  # 远程建表
+#   npx wrangler d1 execute ai-model-platform-db --local --file=../database/seed/seed.sql
+
 [[d1_databases]]
 binding = "DB"
 database_name = "ai-model-platform-db"
 database_id = "REPLACE_WITH_D1_DATABASE_ID"
-migrations_dir = "../../database/migrations"
+# 迁移目录：相对运行 wrangler 命令的目录（worker/ → 项目根 database/migrations）
+migrations_dir = "../database/migrations"

@@ -1,0 +1,52 @@
+---
+/**
+ * 模型数据库列表页：/{lang}/models/
+ *
+ * 首屏为静态壳（SEO 友好），列表数据由 ModelDatabase 岛组件
+ * 从 Worker /api/models 实时获取（数据源：D1）。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ModelDatabase from '../../../components/models/ModelDatabase';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+// 提取岛组件所需的文案（Astro → React props，全部来自 i18n 字典）
+const ui = {
+  searchPlaceholder: t('models.searchPlaceholder'),
+  sortLabel: t('models.sortLabel'),
+  sortNewest: t('models.sortNewest'),
+  sortPriceAsc: t('models.sortPriceAsc'),
+  sortPriceDesc: t('models.sortPriceDesc'),
+  sortName: t('models.sortName'),
+  sortContext: t('models.sortContext'),
+  loading: t('models.loading'),
+  error: t('models.error'),
+  retry: t('models.retry'),
+  empty: t('models.empty'),
+  resultCount: t('models.resultCount'),
+  unitLabel: t('models.unitLabel'),
+  detailContextWindow: t('models.detailContextWindow'),
+  detailInputPrice: t('models.detailInputPrice'),
+  detailOutputPrice: t('models.detailOutputPrice'),
+  detailLanguages: t('models.detailLanguages'),
+};
+---
+
+<BaseLayout title={t('models.pageTitle')} description={t('site.tagline')}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('models.pageTitle')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('site.tagline')}</p>
+
+    <div class="mt-6">
+      <ModelDatabase client:load lang={lang} ui={ui} />
+    </div>
+  </div>
+</BaseLayout>

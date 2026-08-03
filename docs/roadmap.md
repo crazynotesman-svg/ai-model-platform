@@ -8,8 +8,9 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | --- | --- | --- |
 | 1 | 项目基础架构（monorepo / frontend / worker / database / docs） | ✅ 已完成 |
 | 2 | 完整国际化系统（JSON 文案 / 自动识别 / 切换体验 / SEO 组件 / hreflang） | ✅ 已完成 |
-| 3 | 模型数据系统（D1：schema + migration + seed）→ 模型目录页面（content collections + 列表/详情） | 🟡 3a 完成 |
-| 4 | Token 计数工具（可插拔 tokenizer + UI + 测试） | ⬜ 待开发 |
+| 3 | 模型数据系统（D1：schema + migration + seed，4 供应商 11 模型） | ✅ 已完成 |
+| 4 | Model Database 页面（Worker API + 列表/搜索/排序 + 详情 + 三态） | ✅ 已完成 |
+| 5 | Token 计数工具（可插拔 tokenizer + UI + 测试） | ⬜ 待开发 |
 | 5 | 成本估算 + 价格对比 | ⬜ 待开发 |
 | 6 | Workers API + D1 落地（模型/价格接口 + seed/迁移） | ⬜ 待开发 |
 | 7 | AI 行业资讯（内容集合 + 标签 + RSS 扩展） | ⬜ 待开发 |
@@ -43,13 +44,16 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] wrangler.toml 配置 `migrations_dir`；docs/database-design.md 与落地对齐
 - [x] SQLite 实测：语法/外键/翻译覆盖/幂等性全部通过
 
-## Phase 3b — 模型目录页面（下一个）
+## Phase 4 — Model Database 页面 ✅ 已完成（数据 100% 来自 D1，无 mock）
 
-- [ ] content collection schema（zod）：模型元信息、能力、上下文窗口等
-- [ ] 种子数据（首批 30+ 主流模型，多供应商）
-- [ ] 模型列表页 + 详情页（全语言），JSON-LD 结构化数据
+- [x] Worker API：`GET /api/models`（search 模糊匹配 / sort 白名单排序）+ `GET /api/models/:slug`（详情），实时查询 D1，CORS
+- [x] 本地 D1 链路：`wrangler d1 migrations apply --local` + seed（4 供应商 / 11 模型 / 22 翻译 / 11 定价）
+- [x] 列表页 `/{lang}/models/`：React Island（搜索防抖、价格/名称/上下文排序、loading/error/empty 三态）
+- [x] 详情页 `/{lang}/models/[...slug]/`：SSG 91 页（构建期 `scripts/export-models.mjs` 从本地 D1 导出，非 mock），展示名称/Provider/Context/价格/支持语言/描述/用途 + JSON-LD(Product)
+- [x] 7 语言文案扩展（models.* 26 键，键集编译期一致校验）
+- [x] 验证：astro check 0 错误；build 91 页；API 联调（搜索/排序/详情/404）；preview 页面渲染 200
 
-## Phase 4 — Token 计数
+## Phase 5 — Token 计数
 
 - [ ] 可插拔 tokenizer 注册表（js-tiktoken 等 + 启发式回退）
 - [ ] Token 计数 UI（React Island）
