@@ -17,6 +17,7 @@
     "typecheck": "astro check"
   },
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.22",
     "astro": "^7.1.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"

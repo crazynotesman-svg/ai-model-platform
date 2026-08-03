@@ -10,9 +10,8 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 2 | 完整国际化系统（JSON 文案 / 自动识别 / 切换体验 / SEO 组件 / hreflang） | ✅ 已完成 |
 | 3 | 模型数据系统（D1：schema + migration + seed，4 供应商 11 模型） | ✅ 已完成 |
 | 4 | Model Database 页面（Worker API + 列表/搜索/排序 + 详情 + 三态） | ✅ 已完成 |
-| 5 | Token 计数工具（可插拔 tokenizer + UI + 测试） | ⬜ 待开发 |
-| 5 | 成本估算 + 价格对比 | ⬜ 待开发 |
-| 6 | Workers API + D1 落地（模型/价格接口 + seed/迁移） | ⬜ 待开发 |
+| 5 | Token Calculator（tiktoken 精确 + estimate 回退 + 成本对比） | ✅ 已完成 |
+| 6 | Workers API 完善（token-count 等接口）+ AI 行业资讯 | ⬜ 待开发 |
 | 7 | AI 行业资讯（内容集合 + 标签 + RSS 扩展） | ⬜ 待开发 |
 | 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ⬜ 待开发 |
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
@@ -53,21 +52,19 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] 7 语言文案扩展（models.* 26 键，键集编译期一致校验）
 - [x] 验证：astro check 0 错误；build 91 页；API 联调（搜索/排序/详情/404）；preview 页面渲染 200
 
-## Phase 5 — Token 计数
+## Phase 5 — Token Calculator ✅ 已完成（token 计数 + 成本估算合并交付）
 
-- [ ] 可插拔 tokenizer 注册表（js-tiktoken 等 + 启发式回退）
-- [ ] Token 计数 UI（React Island）
-- [ ] 单元测试
+- [x] 可插拔 tokenizer 注册表（`src/lib/tokenizer/registry.ts`）：GPT 系列 → OpenAI tiktoken 真实 tokenizer（o200k_base，动态懒加载）；Claude/Gemini/DeepSeek → 启发式估算（CJK 1.6 字符/token、其他 4 字符/token）
+- [x] 页面 `/{lang}/calculator/token/`：TokenInput（文本 + 4 系列选择）/ TokenResult（Token 数 + 字符数）/ CostComparison（4 模型成本对比，按成本排序）
+- [x] 成本数据来自 D1（Worker /api/models 价格），成本 = tokens × 价格 / 1M
+- [x] 移动端适配（textarea 全宽、系列选择 2 列→4 列、对比表横向滚动）
+- [x] 7 语言文案扩展（token.* 24 键）
+- [x] 验证：纯函数 node 实测（估算与 tiktoken 偏差 ≤1）；check 0 错误；build 98 页；preview + API 联调 200
 
-## Phase 5 — 成本估算 + 价格对比
+## Phase 6 — Workers API 完善 + AI 行业资讯
 
-- [ ] 统一价格模型（每 1M tokens input/output + 多级定价）
-- [ ] ���本估算器 UI + 多模型对比
-
-## Phase 6 — Workers API + D1 落地
-
-- [ ] Worker 路由：/api/models、/api/pricing、/api/token-count、/api/cost-estimate
-- [ ] D1 migrations + seed 脚本（与 content collections 口径一致）
+- [ ] Worker 路由补全：/api/token-count、/api/news（列表/详情）
+- [ ] 资讯页：列表 + 标签过滤，预留 RSS 聚合
 
 ## Phase 7 — AI 行业资讯
 
