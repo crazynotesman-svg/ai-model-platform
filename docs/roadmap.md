@@ -7,7 +7,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | Phase | 名称 | 状态 |
 | --- | --- | --- |
 | 1 | 项目基础架构（monorepo / frontend / worker / database / docs） | ✅ 已完成 |
-| 2 | i18n 壳 + UI 基础（布局、导航、语言切换、SEO 基础） | ⬜ 待开发 |
+| 2 | 完整国际化系统（JSON 文案 / 自动识别 / 切换体验 / SEO 组件 / hreflang） | ✅ 已完成 |
 | 3 | 模型目录（content schema + 种子数据 + 列表/详情页） | ⬜ 待开发 |
 | 4 | Token 计数工具（可插拔 tokenizer + UI + 测试） | ⬜ 待开发 |
 | 5 | 成本估算 + 价格对比 | ⬜ 待开发 |
@@ -25,12 +25,15 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] Database：D1 schema 目录与说明
 - [x] Docs：architecture / roadmap / database-design
 
-## Phase 2 — i18n 壳 + UI 基础（下一个）
+## Phase 2 — 完整国际化系统（i18n + SEO 基础）✅ 已完成
 
-- [ ] 全局布局完善（Header/Footer/导航）
-- [ ] 7 语言 UI 文案字典补齐（按模块拆分）
-- [ ] SEO 基础：hreflang / sitemap / robots.txt / OG / canonical
-- [ ] 设计令牌（design tokens）与组件库基础
+- [x] UI 文案全部迁移至 7 个 JSON 语言文件（`frontend/src/i18n/translations/`），编译期键一致性约束
+- [x] 自动语言识别（`auto-locale.ts`）：navigator.language 匹配 + 手动偏好(localStorage)优先，内联脚本无 FOUC
+- [x] 语言切换体验完善：路径翻译切换、当前语言高亮、无障碍（aria-label/当前语言提示）、偏好记忆
+- [x] SEO 组件结构（`src/components/seo/SEO.astro`）：canonical / 全语言 hreflang + x-default / OG / JSON-LD 插槽
+- [x] metadata 多语言（title/description/og:locale 等随语言切换）
+- [x] 页面 layout 规范化（BaseLayout 统一 head + 导航 + 页脚）
+- [ ] 后续：sitemap / robots.txt（随 Phase 8 SEO 打磨落地）
 
 ## Phase 3 — 模型目录
 

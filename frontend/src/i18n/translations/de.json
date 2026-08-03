@@ -1,0 +1,15 @@
+{
+  "site.title": "AI-Modell-Intelligence-Plattform",
+  "site.tagline": "Kostenlos, offen, global: KI-Modellinformationen zu Modellen, Preisen, Tokens, Kosten und News.",
+  "nav.models": "Modelle",
+  "nav.compare": "Vergleichen",
+  "nav.tokenCounter": "Token-Zähler",
+  "nav.costEstimator": "Kostenrechner",
+  "nav.news": "News",
+  "home.welcome": "Willkommen auf der AI-Modell-Intelligence-Plattform",
+  "home.placeholder": "Die Plattform-Grundlage ist bereit. Modellsuche, Preisvergleich, Token-Zählung, Kostenberechnung und News folgen in kommenden Phasen.",
+  "footer.builtFree": "Kostenlos · Offen · Global · Transparente Daten",
+  "footer.rights": "Alle Rechte vorbehalten.",
+  "lang.switcherLabel": "Sprache wechseln",
+  "lang.current": "Aktuelle Sprache: {lang}"
+}

@@ -1,0 +1,93 @@
+---
+/**
+ * SEO 基础组件 —— 多语言 metadata 一站式输出。
+ *
+ * 能力：
+ * - canonical：指向当前页面（语言前缀 URL）；
+ * - hreflang：全语言 alternate 链接 + x-default（指向默认语言版本）；
+ * - title / description（默认回退站点级文案）；
+ * - Open Graph 基础：og:title / og:description / og:type / og:locale / og:url / og:site_name / og:image；
+ * - JSON-LD 结构化数据（Phase 3+：模型详情页 SoftwareApplication、Article 等在此注入）。
+ *
+ * 使用：页面 frontmatter 中 <SEO title="..." description="..." />（置于 <head> 内）。
+ */
+import { LOCALES, DEFAULT_LOCALE, type Locale } from '../../i18n/locales';
+import { translateUrl, useTranslations } from '../../i18n/ui';
+
+interface Props {
+  /** 当前页面语言（由 Layout 从 URL 解析后传入） */
+  lang: Locale;
+  /** 页面标题；缺省用站点标题 */
+  title?: string;
+  /** 页面描述；缺省用站点副标题 */
+  description?: string;
+  /** OG 图片（绝对路径或相对路径，如 /og-cover.png） */
+  image?: string;
+  /** OG 类型，默认 website */
+  type?: string;
+  /** 当前页面相对路径（默认取请求路径，一般无需传） */
+  canonicalPath?: string;
+  /** JSON-LD 结构化数据对象（可选，渲染为 <script type="application/ld+json">） */
+  jsonLd?: object;
+  /** 禁止索引（如 404 页） */
+  noindex?: boolean;
+}
+
+const {
+  lang,
+  title,
+  description,
+  image,
+  type = 'website',
+  canonicalPath,
+  jsonLd,
+  noindex,
+} = Astro.props;
+const t = useTranslations(lang);
+
+// 站点绝对基址（site 已在 astro.config 配置；缺省回退 localhost 保证构建不崩）
+const site = Astro.site ?? new URL('http://localhost:4321');
+
+// canonical 与各语言版本的绝对 URL
+const currentPath = canonicalPath ?? Astro.url.pathname;
+const canonicalUrl = new URL(currentPath, site).href;
+const xDefaultUrl = new URL(translateUrl(Astro.url, DEFAULT_LOCALE), site).href;
+
+// Locale → Open Graph locale（如 zh-CN → zh_CN）
+const OG_LOCALES: Record<Locale, string> = {
+  en: 'en_US',
+  'zh-CN': 'zh_CN',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+  es: 'es_ES',
+  de: 'de_DE',
+  fr: 'fr_FR',
+};
+---
+
+<title>{title ?? t('site.title')}</title>
+<meta name="description" content={description ?? t('site.tagline')} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{/* Canonical：当前语言版本 */}
+<link rel="canonical" href={canonicalUrl} />
+
+{/* hreflang：全语言 alternate + x-default（x-default 指向默认语言 en） */}
+{LOCALES.map((l) => (
+  <link rel="alternate" hreflang={l} href={new URL(translateUrl(Astro.url, l), site).href} />
+))}
+<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+
+{/* Open Graph 基础 */}
+<meta property="og:type" content={type} />
+<meta property="og:locale" content={OG_LOCALES[lang]} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:site_name" content={t('site.title')} />
+<meta property="og:title" content={title ?? t('site.title')} />
+<meta property="og:description" content={description ?? t('site.tagline')} />
+{image && <meta property="og:image" content={new URL(image, site).href} />}
+
+{/* 结构化数据（可选）：模型详情、Article 等类型在此扩展 */}
+{jsonLd && (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}

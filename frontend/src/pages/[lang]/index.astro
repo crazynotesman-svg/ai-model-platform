@@ -7,7 +7,7 @@
  */
 import { LOCALES } from '../../i18n/locales';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+import { getLangFromUrl, useI18n } from '../../i18n/ui';
 
 // Astro 7 要求动态段显式声明参数列表（不再由 i18n 配置自动生成）
 export function getStaticPaths() {
@@ -15,10 +15,11 @@ export function getStaticPaths() {
 }
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const t = useI18n(lang);
 ---
 
-<BaseLayout>
+{/* title/description 走 BaseLayout → SEO 组件；缺省自动回退站点级文案 */}
+<BaseLayout description={t('site.tagline')}>
   <section class="mx-auto max-w-3xl text-center">
     <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
       {t('home.welcome')}

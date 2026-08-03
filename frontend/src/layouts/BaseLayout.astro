@@ -1,23 +1,35 @@
 ---
 /**
- * 基础布局：html 骨架 + 站点级头部/页脚 + 语言切换器。
- * 所有页面共用；语言从 URL 解析，文案通过 useTranslations 获取。
+ * 基础布局（规范化）：
+ * - 统一 head 结构：charset / viewport / favicon + SEO 组件（canonical/hreflang/OG/JSON-LD）；
+ * - 内联自动语言识别脚本（构建期生成，无 FOUC）；
+ * - 站点级 Header（导航 + 语言切换器）与 Footer；所有文案来自 i18n 字典。
+ *
+ * 页面使用示例：
+ *   <BaseLayout title="..." description="...">
+ *     ...内容...
+ *   </BaseLayout>
  */
-import { getLangFromUrl, useTranslations } from '../i18n/ui';
+import { getLangFromUrl, useI18n } from '../i18n/ui';
 import type { UiKey } from '../i18n/ui';
+import { buildAutoLocaleScript } from '../i18n/auto-locale';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import SEO from '../components/seo/SEO.astro';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  jsonLd?: object;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image, jsonLd, noindex } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const t = useI18n(lang);
 
-// 导航项：Phase 1 仅渲染占位链接（目标页面后续阶段实现）
+// 导航项：目标页面在后续阶段实现（Phase 3 模型目录等）
 const navItems: { key: UiKey; href: string }[] = [
   { key: 'nav.models', href: `/${lang}/models/` },
   { key: 'nav.compare', href: `/${lang}/compare/` },
@@ -33,13 +45,24 @@ const navItems: { key: UiKey; href: string }[] = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title ?? t('site.title')}</title>
-    <meta name="description" content={description ?? t('site.tagline')} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* 多语言 metadata / canonical / hreflang / OG */}
+    <SEO
+      lang={lang}
+      title={title}
+      description={description}
+      image={image}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
+
+    {/* 自动语言识别（内联，构建期生成，避免 FOUC） */}
+    <script is:inline set:html={buildAutoLocaleScript()} />
   </head>
   <body class="flex min-h-screen flex-col bg-slate-950 text-slate-100 antialiased">
     <header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
-      <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
         <a href={`/${lang}/`} class="text-base font-semibold tracking-tight text-white">
           {t('site.title')}
         </a>

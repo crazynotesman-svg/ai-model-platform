@@ -1,0 +1,15 @@
+{
+  "site.title": "AI 모델 인텔리전스 플랫폼",
+  "site.tagline": "무료·개방·글로벌 AI 모델 인텔리전스 — 모델, 가격, 토큰, 비용, 뉴스.",
+  "nav.models": "모델",
+  "nav.compare": "비교",
+  "nav.tokenCounter": "토큰 계산기",
+  "nav.costEstimator": "비용 추정",
+  "nav.news": "뉴스",
+  "home.welcome": "AI 모델 인텔리전스 플랫폼에 오신 것을 환영합니다",
+  "home.placeholder": "플랫폼 기반이 준비되었습니다. 모델 조회, 가격 비교, 토큰 계산, 비용 추정, 뉴스는 이후 단계에서 제공됩니다.",
+  "footer.builtFree": "무료 · 개방 · 글로벌 · 투명한 데이터",
+  "footer.rights": "All rights reserved.",
+  "lang.switcherLabel": "언어 전환",
+  "lang.current": "현재 언어: {lang}"
+}

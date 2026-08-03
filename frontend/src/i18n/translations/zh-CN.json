@@ -1,0 +1,15 @@
+{
+  "site.title": "AI 模型情报平台",
+  "site.tagline": "免费、开放、全球化的 AI 模型情报 — 模型、价格、Token、成本与资讯。",
+  "nav.models": "模型",
+  "nav.compare": "对比",
+  "nav.tokenCounter": "Token 计数",
+  "nav.costEstimator": "成本估算",
+  "nav.news": "资讯",
+  "home.welcome": "欢迎来到 AI 模型情报平台",
+  "home.placeholder": "平台基础架构已就绪。模型查询、价格对比、Token 计数、成本估算与行业资讯将在后续阶段陆续开放。",
+  "footer.builtFree": "免费 · 开放 · 全球化 · 数据透明",
+  "footer.rights": "保留所有权利。",
+  "lang.switcherLabel": "切换语言",
+  "lang.current": "当前语言：{lang}"
+}

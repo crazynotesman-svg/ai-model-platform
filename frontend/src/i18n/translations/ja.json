@@ -1,0 +1,15 @@
+{
+  "site.title": "AIモデル情報プラットフォーム",
+  "site.tagline": "無料・オープン・グローバルなAIモデル情報 — モデル、価格、トークン、コスト、ニュース。",
+  "nav.models": "モデル",
+  "nav.compare": "比較",
+  "nav.tokenCounter": "トークン計算",
+  "nav.costEstimator": "コスト見積り",
+  "nav.news": "ニュース",
+  "home.welcome": "AIモデル情報プラットフォームへようこそ",
+  "home.placeholder": "プラットフォーム基盤は準備完了です。モデル検索、価格比較、トークン計算、コスト見積り、ニュースは今後のフェーズで有効化されます。",
+  "footer.builtFree": "無料・オープン・グローバル・透明なデータ",
+  "footer.rights": "All rights reserved.",
+  "lang.switcherLabel": "言語を切り替え",
+  "lang.current": "現在の言語：{lang}"
+}

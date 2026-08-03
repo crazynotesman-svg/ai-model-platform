@@ -1,0 +1,15 @@
+{
+  "site.title": "Plataforma de Inteligencia de Modelos de IA",
+  "site.tagline": "Inteligencia de modelos de IA gratuita, abierta y global: modelos, precios, tokens, costos y noticias.",
+  "nav.models": "Modelos",
+  "nav.compare": "Comparar",
+  "nav.tokenCounter": "Contador de tokens",
+  "nav.costEstimator": "Estimador de costos",
+  "nav.news": "Noticias",
+  "home.welcome": "Bienvenido a la Plataforma de Inteligencia de Modelos de IA",
+  "home.placeholder": "La base de la plataforma está lista. La consulta de modelos, comparación de precios, conteo de tokens, estimación de costos y noticias se habilitarán en próximas fases.",
+  "footer.builtFree": "Gratis · Abierto · Global · Datos transparentes",
+  "footer.rights": "Todos los derechos reservados.",
+  "lang.switcherLabel": "Cambiar idioma",
+  "lang.current": "Idioma actual: {lang}"
+}

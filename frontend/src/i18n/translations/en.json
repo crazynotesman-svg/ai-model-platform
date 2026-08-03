@@ -1,0 +1,15 @@
+{
+  "site.title": "AI Model Intelligence Platform",
+  "site.tagline": "Free, open, global AI model intelligence — models, pricing, tokens, costs, and news.",
+  "nav.models": "Models",
+  "nav.compare": "Compare",
+  "nav.tokenCounter": "Token Counter",
+  "nav.costEstimator": "Cost Estimator",
+  "nav.news": "News",
+  "home.welcome": "Welcome to the AI Model Intelligence Platform",
+  "home.placeholder": "Platform foundation is ready. Model lookup, pricing comparison, token counting, cost estimation, and news will be enabled in upcoming phases.",
+  "footer.builtFree": "Free · Open · Global · Transparent data",
+  "footer.rights": "All rights reserved.",
+  "lang.switcherLabel": "Switch language",
+  "lang.current": "Current language: {lang}"
+}
