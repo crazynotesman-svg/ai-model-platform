@@ -1,15 +1,86 @@
 -- ============================================================================
--- AI Model Intelligence Platform — Cloudflare D1 (SQLite) Schema
--- 状态：Phase 1 占位。业务表 DDL 将在 Phase 5（Workers API + D1 落地）时按
--- docs/database-design.md 的最终设计写入，并在此维护"最新全量 schema"。
+-- AI Model Intelligence Platform — Cloudflare D1 (SQLite) 最新全量 Schema
+-- 状态：Phase 3 落地。本文件为"当前最新 schema"（幂等，可重复执行）。
+-- 历史变更请通过 database/migrations/ 迁移文件演进。
 --
--- 设计原则（详见 docs/database-design.md）：
---   * 所有 ID 使用 TEXT + ULID（跨库/分布式友好，避免 SQLite 自增并发瓶颈）
---   * 时间戳统一 TEXT ISO 8601 UTC（如 2026-08-01T00:00:00Z）
---   * 可扩展字段（能力标签、多语言名称等）使用 JSON 文本
---   * 金额统一以 USD 存储（NUMBER），展示层按语言/地区换算
+-- 设计说明：
+--   * 主键：INTEGER AUTOINCREMENT（v1 简单可靠，便于 seed 与演示；后续如需
+--     分布式安全 ID 可迁移至 ULID，见 docs/database-design.md）
+--   * 时间戳：ISO 8601 UTC（默认 strftime('%Y-%m-%dT%H:%M:%fZ','now')）
+--   * 外键：启用 PRAGMA foreign_keys；models.provider → providers.id
+--   * 灵活字段（use_cases）以 JSON 数组字符串存储，便于扩展
 -- ============================================================================
 
--- 说明：Phase 1 不落地业务表，避免在需求细化前固化结构。
--- 规划中的核心表：providers / models / pricing_tiers / news / tags / user_feedback
--- 详情见 ../docs/database-design.md
+-- 启用外键约束（wrangler d1 execute / migrations apply 均生效）
+PRAGMA foreign_keys = ON;
+
+-- ---------------------------------------------------------------------------
+-- providers：AI 模型供应商
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS providers (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  name       TEXT NOT NULL UNIQUE,               -- 供应商名（如 OpenAI）
+  website    TEXT,                               -- 官网地址
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+-- ---------------------------------------------------------------------------
+-- models：模型目录
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS models (
+  id             INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug           TEXT NOT NULL UNIQUE,           -- 全局唯一标识，如 openai/gpt-4o
+  provider       INTEGER NOT NULL REFERENCES providers(id), -- 所属供应商
+  model_type     TEXT NOT NULL,                  -- chat / reasoning / embedding ...
+  context_window INTEGER,                        -- 上下文窗口（tokens）
+  release_date   TEXT,                           -- 发布日期（YYYY-MM-DD）
+  created_at     TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+-- ---------------------------------------------------------------------------
+-- model_translations：模型多语言本地化（name/description/use_cases 随语言变化）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS model_translations (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  model_id    INTEGER NOT NULL REFERENCES models(id) ON DELETE CASCADE,
+  language    TEXT NOT NULL,                     -- en / zh-CN / ja / ko / es / de / fr
+  name        TEXT NOT NULL,                     -- 展示名（本地化）
+  description TEXT,                              -- 本地化描述
+  use_cases   TEXT,                              -- JSON 数组字符串，如 ["翻译","客服"]
+  UNIQUE (model_id, language)                    -- 每个模型每语言仅一条
+);
+
+-- ---------------------------------------------------------------------------
+-- pricing：模型定价（每 unit 的输入/输出价格）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS pricing (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  model_id     INTEGER NOT NULL REFERENCES models(id) ON DELETE CASCADE,
+  input_price  REAL NOT NULL,                    -- 输入单价（每 unit）
+  output_price REAL NOT NULL,                    -- 输出单价（每 unit）
+  currency     TEXT NOT NULL DEFAULT 'USD',      -- 货币
+  unit         TEXT NOT NULL DEFAULT 'per_1M_tokens', -- 计费单位
+  updated_at   TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  UNIQUE (model_id, currency, unit)              -- 同模型同币种同单位仅一条
+);
+
+-- ---------------------------------------------------------------------------
+-- news：AI 行业资讯
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS news (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  title        TEXT NOT NULL,
+  content      TEXT,
+  language     TEXT NOT NULL DEFAULT 'en',       -- 资讯语言
+  source       TEXT,                             -- 来源（媒体/机构名）
+  published_at TEXT,                             -- 发布时间（YYYY-MM-DD 或 ISO）
+  created_at   TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+-- ---------------------------------------------------------------------------
+-- 索引（查询热路径）
+-- ---------------------------------------------------------------------------
+CREATE INDEX IF NOT EXISTS idx_models_provider ON models(provider);
+CREATE INDEX IF NOT EXISTS idx_model_translations_model ON model_translations(model_id);
+CREATE INDEX IF NOT EXISTS idx_pricing_model ON pricing(model_id);
+CREATE INDEX IF NOT EXISTS idx_news_language_published ON news(language, published_at DESC);

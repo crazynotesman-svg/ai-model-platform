@@ -8,7 +8,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | --- | --- | --- |
 | 1 | 项目基础架构（monorepo / frontend / worker / database / docs） | ✅ 已完成 |
 | 2 | 完整国际化系统（JSON 文案 / 自动识别 / 切换体验 / SEO 组件 / hreflang） | ✅ 已完成 |
-| 3 | 模型目录（content schema + 种子数据 + 列表/详情页） | ⬜ 待开发 |
+| 3 | 模型数据系统（D1：schema + migration + seed）→ 模型目录页面（content collections + 列表/详情） | 🟡 3a 完成 |
 | 4 | Token 计数工具（可插拔 tokenizer + UI + 测试） | ⬜ 待开发 |
 | 5 | 成本估算 + 价格对比 | ⬜ 待开发 |
 | 6 | Workers API + D1 落地（模型/价格接口 + seed/迁移） | ⬜ 待开发 |
@@ -35,7 +35,15 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] 页面 layout 规范化（BaseLayout 统一 head + 导航 + 页脚）
 - [ ] 后续：sitemap / robots.txt（随 Phase 8 SEO 打磨落地）
 
-## Phase 3 — 模型目录
+## Phase 3a — 模型数据系统（D1）✅ 已完成
+
+- [x] `database/schema/schema.sql`：最新全量 schema（providers / models / model_translations / pricing / news + 索引 + 外键）
+- [x] `database/migrations/0001_init.sql`：初始迁移（wrangler d1 migrations 标准格式）
+- [x] `database/seed/seed.sql`：种子数据（OpenAI / Anthropic / Google / DeepSeek，11 个模型 + 22 条多语言翻译 + 11 条定价 + 4 条资讯；幂等可重复执行）
+- [x] wrangler.toml 配置 `migrations_dir`；docs/database-design.md 与落地对齐
+- [x] SQLite 实测：语法/外键/翻译覆盖/幂等性全部通过
+
+## Phase 3b — 模型目录页面（下一个）
 
 - [ ] content collection schema（zod）：模型元信息、能力、上下文窗口等
 - [ ] 种子数据（首批 30+ 主流模型，多供应商）

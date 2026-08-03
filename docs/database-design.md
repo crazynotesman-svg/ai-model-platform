@@ -1,203 +1,154 @@
 # Database Design — Cloudflare D1 (SQLite)
 
-AI Model Intelligence Platform 的数据模型设计。Phase 1 为设计基线，Phase 5 落地 DDL 与迁移。
+AI Model Intelligence Platform 的数据模型设计。**v1 落地版**已随 Phase 3 在 `database/schema/schema.sql` 与 `database/migrations/0001_init.sql` 落地；本文件为设计基线文档。
 
-## 1. 设计原则
-
-| 原则 | 约定 |
-| --- | --- |
-| 主键 | `TEXT` + ULID（跨实例安全、避免自增瓶颈、可排序） |
-| 时间戳 | `TEXT` ISO 8601 UTC（`2026-08-01T00:00:00Z`） |
-| 金额 | 统一以 **USD** 存储（`NUMBER`）；展示层按语言/地区换算 |
-| 灵活字段 | 能力标签、多语言名称等使用 JSON 文本（`TEXT`） |
-| 软状态 | 数据行用 `status` 字段（active/deprecated/draft），不物理删除业务数据 |
-| 命名 | 表名复数 snake_case；字段 snake_case |
-
-## 2. ER 总览
+## 1. v1 表结构（Phase 3 落地）
 
 ```mermaid
 erDiagram
     PROVIDERS ||--o{ MODELS : "提供"
-    MODELS ||--o{ PRICING_TIERS : "定价"
-    MODELS ||--o{ MODEL_TAGS : "标签"
-    TAGS ||--o{ MODEL_TAGS : "被引用"
-    NEWS ||--o{ NEWS_TAGS : "标签"
-    TAGS ||--o{ NEWS_TAGS : "被引用"
+    MODELS ||--o{ MODEL_TRANSLATIONS : "多语言"
+    MODELS ||--o{ PRICING : "定价"
 
     PROVIDERS {
-        text id PK
-        text slug UK
-        text name
+        integer id PK
+        text name UK
         text website
-        text logo_url
-        text status
         text created_at
-        text updated_at
     }
     MODELS {
-        text id PK
-        text provider_id FK
+        integer id PK
         text slug UK
-        text name
-        text modality
-        int context_window
-        int max_output_tokens
-        text knowledge_cutoff
+        integer provider FK
+        text model_type
+        integer context_window
         text release_date
-        text status
-        boolean is_open_source
-        text capabilities
-        text metadata
         text created_at
-        text updated_at
     }
-    PRICING_TIERS {
-        text id PK
-        text model_id FK
-        text pricing_type
+    MODEL_TRANSLATIONS {
+        integer id PK
+        integer model_id FK
+        text language
+        text name
+        text description
+        text use_cases
+    }
+    PRICING {
+        integer id PK
+        integer model_id FK
+        real input_price
+        real output_price
         text currency
-        number input_per_million
-        number output_per_million
-        text effective_date
-        text source_url
-        text created_at
+        text unit
         text updated_at
-    }
-    TAGS {
-        text id PK
-        text slug UK
-        text name_i18n
-        text created_at
-    }
-    MODEL_TAGS {
-        text model_id FK
-        text tag_id FK
     }
     NEWS {
-        text id PK
-        text slug UK
+        integer id PK
         text title
-        text summary
         text content
-        text source_url
-        text source_name
-        text lang
+        text language
+        text source
         text published_at
-        text status
-        text created_at
-        text updated_at
-    }
-    NEWS_TAGS {
-        text news_id FK
-        text tag_id FK
-    }
-    USER_FEEDBACK {
-        text id PK
-        text feedback_type
-        text message
-        text lang
         text created_at
     }
 ```
 
-## 3. 表设计
+## 2. 字段说明
 
-### 3.1 providers — AI 供应商
+### providers — 供应商
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
-| id | TEXT PK | ULID |
-| slug | TEXT UK | 唯一标识，如 `openai` |
-| name | TEXT | 供应商名（默认英文） |
+| id | INTEGER PK | 自增主键 |
+| name | TEXT UK | 供应商名（如 OpenAI） |
 | website | TEXT | 官网 |
-| logo_url | TEXT | Logo 地址 |
-| status | TEXT | active / deprecated |
-| created_at / updated_at | TEXT | 时间戳 |
+| created_at | TEXT | ISO 8601 UTC 时间戳 |
 
-### 3.2 models — 模型目录
+### models — 模型目录
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
-| id | TEXT PK | ULID |
-| provider_id | TEXT FK | 所属供应商 |
-| slug | TEXT UK | 唯一标识，如 `gpt-4o`（供应商内唯一：`{provider_slug}/{model_slug}` 全局唯一） |
-| name | TEXT | 展示名 |
-| modality | TEXT | chat / embedding / image / audio / vision… |
+| id | INTEGER PK | 自增主键 |
+| slug | TEXT UK | 全局唯一标识，格式 `{provider_lower}/{model}`（如 `openai/gpt-4o`） |
+| provider | INTEGER FK | → providers.id |
+| model_type | TEXT | `chat` / `reasoning` / `embedding` … |
 | context_window | INTEGER | 上下文窗口（tokens） |
-| max_output_tokens | INTEGER | 最大输出 tokens |
-| knowledge_cutoff | TEXT | 知识截止日期 |
-| release_date | TEXT | 发布日期 |
-| status | TEXT | active / deprecated |
-| is_open_source | INTEGER | 是否开源 |
-| capabilities | TEXT(JSON) | 能力列表，如 `["vision","function_calling","json_mode"]` |
-| metadata | TEXT(JSON) | 预留扩展（供应商特有字段） |
-
-### 3.3 pricing_tiers — 模型价格
-
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| id | TEXT PK | ULID |
-| model_id | TEXT FK | 模型 |
-| pricing_type | TEXT | `standard` / `batch` / `cache_read` / `cache_write`（预留多级定价） |
-| currency | TEXT | 默认 `USD` |
-| input_per_million | NUMBER | 每 1M input tokens 单价 |
-| output_per_million | NUMBER | 每 1M output tokens 单价 |
-| effective_date | TEXT | 生效日期（支持价格历史） |
-| source_url | TEXT | 数据来源链接（**数据透明**） |
-| created_at / updated_at | TEXT | 时间戳 |
-
-> 唯一约束：`(model_id, pricing_type, effective_date)`。
-
-### 3.4 tags / model_tags / news_tags — 标签体系
-
-| 表 | 字段 | 说明 |
-| --- | --- | --- |
-| tags | slug UK, name_i18n(JSON) | 标签名支持多语言（`{"en":"Reasoning","zh-CN":"推理"}`） |
-| model_tags | model_id + tag_id | 模型-标签关联（复合主键） |
-| news_tags | news_id + tag_id | 资讯-标签关联 |
-
-### 3.5 news — AI 行业资讯
-
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| id | TEXT PK | ULID |
-| slug | TEXT UK | 唯一标识 |
-| title / summary / content | TEXT | 内容 |
-| source_url / source_name | TEXT | 原文链接与来源（透明归因） |
-| lang | TEXT | 语言（`en`/`zh-CN`/…） |
-| published_at | TEXT | 发布时间 |
-| status | TEXT | draft / published |
-| created_at / updated_at | TEXT | 时间戳 |
-
-### 3.6 user_feedback — 匿名反馈
-
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| id | TEXT PK | ULID |
-| feedback_type | TEXT | model_missing / price_incorrect / other |
-| message | TEXT | 反馈内容 |
-| lang | TEXT | 用户语言 |
+| release_date | TEXT | 发布日期（YYYY-MM-DD） |
 | created_at | TEXT | 时间戳 |
 
-> 不收集任何个人信息（产品理念：开放、透明、隐私友好）。
+### model_translations — 模型多语言
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | INTEGER PK | 自增主键 |
+| model_id | INTEGER FK | → models.id（ON DELETE CASCADE） |
+| language | TEXT | `en` / `zh-CN` / `ja` … |
+| name | TEXT | 本地化展示名 |
+| description | TEXT | 本地化描述 |
+| use_cases | TEXT | JSON 数组字符串（如 `["翻译","客服"]`） |
+| UNIQUE | (model_id, language) | 每模型每语言一条 |
+
+### pricing — 定价
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | INTEGER PK | 自增主键 |
+| model_id | INTEGER FK | → models.id（ON DELETE CASCADE） |
+| input_price | REAL | 每 unit 输入价格 |
+| output_price | REAL | 每 unit 输出价格 |
+| currency | TEXT | 默认 `USD` |
+| unit | TEXT | 计费单位，默认 `per_1M_tokens` |
+| updated_at | TEXT | 价格更新时间 |
+| UNIQUE | (model_id, currency, unit) | 同模型同币种同单位一条 |
+
+### news — AI 行业资讯
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | INTEGER PK | 自增主键 |
+| title | TEXT | 标题 |
+| content | TEXT | 正文/摘要 |
+| language | TEXT | 资讯语言 |
+| source | TEXT | 来源（媒体/机构名） |
+| published_at | TEXT | 发布时间 |
+| created_at | TEXT | 入库时间 |
+
+## 3. 设计原则
+
+| 原则 | 约定 |
+| --- | --- |
+| 主键 | v1 使用 INTEGER 自增（简单、seed 友好）；如未来需要分布式安全 ID，可迁移至 ULID（`TEXT`） |
+| 时间戳 | ISO 8601 UTC（默认 `strftime('%Y-%m-%dT%H:%M:%fZ','now')`） |
+| 金额 | 统一 USD 存储（`REAL`），展示层按语言/地区换算 |
+| 灵活字段 | `use_cases` 等使用 JSON 文本（TEXT）存储，便于扩展 |
+| 外键 | `PRAGMA foreign_keys = ON`；models→providers、translations/pricing→models（级联删除） |
+| 幂等 | seed 全部 `INSERT OR IGNORE`，依赖唯一约束可重复执行 |
 
 ## 4. 索引规划
 
 | 表 | 索引 | 目的 |
 | --- | --- | --- |
-| models | (provider_id, slug) | 供应商模型列表 |
-| models | (status, modality) | 目录筛选 |
-| pricing_tiers | (model_id, effective_date DESC) | 当前价格查询 |
-| news | (lang, published_at DESC) | 资讯流 |
-| news | (status) | 发布过滤 |
+| models | (provider) | 按供应商查询模型 |
+| models | slug UK | 唯一性 + URL 路由（`/models/{slug}`） |
+| model_translations | (model_id) | 模型详情多语言查询 |
+| pricing | (model_id) | 模型定价查询 |
+| news | (language, published_at DESC) | 资讯流按语言倒序 |
 
 ## 5. 数据同步策略（与内容层一致性）
 
-- **静态源**：模型/价格/资讯的"事实源"在 git 内 content collections（可审查、透明、免费托管）。
-- **同步**：构建/部署流程通过 seed 脚本将 collections 写入 D1（幂等 upsert），Worker API 读 D1 返回同一口径数据。
-- **价格历史**：pricing_tiers 保留多版本（effective_date），前端默认展示最新，未来支持趋势。
+- **静态源**：模型/价格/资讯的"事实源"计划在 git 内 content collections（可审查、透明、免费托管，Phase 4/5 落地）。
+- **同步**：构建/部署通过 seed 脚本将 collections 写入 D1（幂等 upsert），Worker API 读 D1 返回同一口径数据。
+- **价格更新**：pricing 按 (model_id, currency, unit) 唯一约束做 upsert 更新 `updated_at`；如需价格历史，未来增加 `effective_date` 版本化。
 
 ## 6. 迁移策略
 
-- Phase 5 起使用 `wrangler d1 migrations`：`database/migrations/` 按序编号 `0001_xxx.sql`。
-- `database/schema/schema.sql` 维护"最新全量 schema"，与迁移序列保持最终一致。
+- `database/migrations/` 按序编号 `0001_xxx.sql`（`wrangler d1 migrations apply`）。
+- `database/schema/schema.sql` 维护"最新全量 schema"（幂等），与迁移序列保持最终一致。
+- wrangler.toml 已配置 `migrations_dir = "../../database/migrations"`。
+
+## 7. 未来演进（非 v1）
+
+- 标签体系（tags / model_tags / news_tags）：多语言标签筛选。
+- 价格历史（pricing_tiers.effective_date 版本化）。
+- 用户匿名反馈（user_feedback，隐私友好）。
+- 供应商特有 metadata（JSON 字段扩展）。
