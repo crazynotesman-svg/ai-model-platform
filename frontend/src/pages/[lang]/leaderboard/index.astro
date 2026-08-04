@@ -1,0 +1,102 @@
+---
+/**
+ * AI 模型排行榜：/{lang}/leaderboard/
+ *
+ * SSG 静态壳 + Leaderboard 岛组件（数据来自构建期 D1 导出 model-catalog.json）：
+ * - 默认 Overall Ranking（平均分降序）；支持 ?benchmark=coding 等分类筛选（客户端排序）
+ * - 表格：Rank / Model / Provider / Coding / Reasoning / Math / Vision
+ * - JSON-LD：ItemList（静态渲染，overall 顺序）
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Leaderboard from '../../../components/benchmark/Leaderboard';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { overallScore } from '../../../lib/benchmark';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+interface CatalogEntry {
+  slug: string;
+  providerName: string;
+  translations: Partial<Record<string, { name?: string } | undefined>>;
+  benchmarks?: { category: string; score: number }[];
+}
+const catalog = catalogJson as Record<string, CatalogEntry>;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+// 模型行（Leaderboard 数据源）
+const models = MODEL_SLUGS.map((slug) => {
+  const m = catalog[slug];
+  if (!m) return null;
+  const tr = m.translations[lang] ?? m.translations.en ?? {};
+  return {
+    slug: m.slug,
+    name: tr.name ?? m.slug,
+    providerName: m.providerName,
+    benchmarks: (m.benchmarks ?? []).map((b) => ({
+      category: b.category,
+      categoryName: b.category,
+      score: b.score,
+      rank: null,
+      dataset: '',
+      version: '',
+      source: '',
+      testedAt: null,
+    })),
+  };
+}).filter((m): m is NonNullable<typeof m> => m !== null);
+
+const ui = {
+  overall: t('leaderboard.overall'),
+  rank: t('leaderboard.rank'),
+  model: t('leaderboard.model'),
+  provider: t('leaderboard.provider'),
+  noData: t('leaderboard.noData'),
+  empty: t('leaderboard.empty'),
+  coding: t('benchmark.coding'),
+  reasoning: t('benchmark.reasoning'),
+  math: t('benchmark.math'),
+  vision: t('benchmark.vision'),
+};
+
+// 静态 JSON-LD：ItemList（overall 排序，SEO）
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const items = [...models]
+  .sort((a, b) => (overallScore(a.benchmarks) ?? -1) - (overallScore(b.benchmarks) ?? -1))
+  .reverse()
+  .map((m, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: m.name,
+    url: new URL(`/${lang}/models/${m.slug}/`, siteUrl).href,
+  }));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: t('leaderboard.pageTitle'),
+  description: t('leaderboard.subtitle'),
+  itemListElement: items,
+};
+---
+
+<BaseLayout
+  title={t('leaderboard.pageTitle')}
+  description={t('leaderboard.subtitle')}
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-5xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('leaderboard.pageTitle')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('leaderboard.subtitle')}</p>
+
+    <div class="mt-6">
+      <Leaderboard client:load lang={lang} ui={ui} models={models} />
+    </div>
+  </div>
+</BaseLayout>

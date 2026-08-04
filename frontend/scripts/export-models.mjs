@@ -69,6 +69,16 @@ const pricingHistory = db
      ORDER BY effective_date ASC`,
   )
   .all();
+// Phase 9.4a/9.4b：基准结果（join 类别名，按 category 排序）
+const benchmarks = db
+  .prepare(
+    `SELECT br.model_id, br.score, br.rank, br.dataset, br.version, br.source, br.tested_at,
+            bc.slug AS category, bc.name AS category_name
+     FROM benchmark_results br
+     JOIN benchmark_categories bc ON br.category_id = bc.id
+     ORDER BY br.model_id, bc.slug ASC`,
+  )
+  .all();
 
 const slugById = Object.fromEntries(models.map((m) => [m.id, m.slug]));
 const safeParse = (raw) => {
@@ -96,6 +106,7 @@ for (const m of models) {
     translations: {},
     capabilities: [], // [{ capability, supported }]
     pricingHistory: [], // [{ effectiveDate, inputPrice, outputPrice }]
+    benchmarks: [], // [{ category, categoryName, score, rank, dataset, version, source, testedAt }]
   };
 }
 for (const t of translations) {
@@ -131,6 +142,20 @@ for (const ph of pricingHistory) {
     effectiveDate: ph.effective_date,
     inputPrice: ph.input_price,
     outputPrice: ph.output_price,
+  });
+}
+for (const bm of benchmarks) {
+  const entry = catalog[slugById[bm.model_id]];
+  if (!entry) continue;
+  entry.benchmarks.push({
+    category: bm.category,
+    categoryName: bm.category_name,
+    score: bm.score,
+    rank: bm.rank,
+    dataset: bm.dataset,
+    version: bm.version,
+    source: bm.source,
+    testedAt: bm.tested_at,
   });
 }
 for (const entry of Object.values(catalog)) {

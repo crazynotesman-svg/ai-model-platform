@@ -19,6 +19,8 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.2 | 价格历史系统（pricing_history + 初始导入 + history API） | ✅ 已完成 |
 | 9.3 | 比较页增强（能力矩阵 + 价格趋势 + JSON-LD SoftwareApplication/BreadcrumbList） | ✅ 已完成 |
 | 9.4a | Benchmark 数据系统（categories + results + benchmarks API） | ✅ 已完成 |
+| 9.4b | Benchmark 展示系统（Leaderboard + Benchmark SEO 页面） | ✅ 已完成 |
+| 9.5 | AI Model Ranking 算法体系（综合评分/趋势/推荐） | ⬜ 待开发 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -52,6 +54,16 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] Worker API：`GET /api/models/:slug/benchmarks`（按 category 排序，返回 model + benchmarks[]；路由置于详情贪婪匹配之前，旧 API 兼容）
 - [x] 文档：database-design.md（ER：models → benchmark_results → benchmark_categories）+ roadmap 标记完成
 - [x] 验证：空库 0001-0005（9 表）/seed 4+28/重复 seed 幂等/外键 0/查询正常/UNIQUE 生效；worker typecheck、frontend check（0 错误）、build（497 页）、API 冒烟全通过
+
+## Phase 9.4b — Benchmark 展示系统 ✅ 已完成（git: feat: add benchmark leaderboard and seo pages）
+
+- [x] 导出扩展：export-models.mjs 新增 benchmarks[]（join benchmark_categories，按 category 排序，含 score/rank/dataset/version/source/testedAt）
+- [x] Benchmark 库：src/lib/benchmark.ts（BENCHMARK_CATEGORIES + getBenchmarkLabel/getHighestScore/sortByBenchmarkScore/groupBenchmarks/overallScore，TS strict 无 any）
+- [x] Leaderboard `/{lang}/leaderboard/`：Overall（平均分）表格 + `?benchmark=` 分类筛选（客户端排序）；Rank/Model/Provider/4 分类列；移动端横向滚动 + sticky header + 卡片模式；ItemList JSON-LD
+- [x] Benchmark SEO 页 `/{lang}/benchmarks/` + `/{lang}/benchmarks/[category]/`（7×4=28 页）：Best AI Models for X Benchmark 排名表（Rank/Model/Provider/Score/Dataset/Version/Date）；CollectionPage JSON-LD
+- [x] 详情页 Benchmark Results 区块（Benchmark/Score/Dataset/Version）；比较页 Benchmark Comparison（同 dataset+version 才比较，缺失 '—'）
+- [x] i18n：leaderboard.* + benchmark.* 26 键 × 7 语言（键集一致）
+- [x] 验证：check 0 errors；build 539 页（497+7+7+28）；SEO 产物全命中（leaderboard ItemList/benchmarks CollectionPage en+zh/compare/详情页）
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

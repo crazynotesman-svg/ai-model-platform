@@ -12,6 +12,7 @@ import { LOCALES, type Locale } from '../../../i18n/locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { allComparePairs, capabilityMap, CAPABILITY_ROWS, parseComparePair } from '../../../lib/compare';
+import { BENCHMARK_CATEGORIES } from '../../../lib/benchmark';
 import { MODEL_SLUGS } from '../../../generated/model-slugs';
 import catalogJson from '../../../generated/model-catalog.json';
 
@@ -31,6 +32,15 @@ interface CatalogEntry {
   >;
   capabilities?: { capability: string; supported: boolean }[];
   pricingHistory?: { effectiveDate: string; inputPrice: number; outputPrice: number }[];
+  benchmarks?: {
+    category: string;
+    categoryName: string;
+    score: number;
+    rank: number | null;
+    dataset: string;
+    version: string;
+    testedAt: string | null;
+  }[];
 }
 const catalog = catalogJson as Record<string, CatalogEntry>;
 
@@ -74,10 +84,31 @@ const entryOf = (m: CatalogEntry) => {
     unit: m.unit,
     capabilities: m.capabilities ?? [],
     pricingHistory: m.pricingHistory ?? [],
+    benchmarks: m.benchmarks ?? [],
   };
 };
 const A = entryOf(modelA);
 const B = entryOf(modelB);
+
+// ---- Benchmark Comparison（Phase 9.4b）----
+// 规则：仅比较同 dataset + 同 version 的结果；缺失显示 '—'
+interface BenchmarkCompareRow {
+  category: string;
+  labelKey: string;
+  a: string;
+  b: string;
+}
+const benchmarkCompareRows: BenchmarkCompareRow[] = BENCHMARK_CATEGORIES.map((cat) => {
+  const ba = A.benchmarks.find((b) => b.category === cat.slug);
+  const bb = B.benchmarks.find((b) => b.category === cat.slug);
+  const comparable = Boolean(ba && bb && ba.dataset === bb.dataset && ba.version === bb.version);
+  return {
+    category: cat.slug,
+    labelKey: cat.labelKey,
+    a: ba && comparable ? String(ba.score) : '—',
+    b: bb && comparable ? String(bb.score) : '—',
+  };
+});
 
 const fmtNumber = (n: number | null): string =>
   n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang);
@@ -231,6 +262,35 @@ const rows: { label: string; a: string; b: string }[] = [
                     <span class="text-slate-600" title="✗">✗</span>
                   )}
                 </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* Benchmark Comparison（Phase 9.4b）：同 dataset/version 才比较，缺失 '—' */}
+    <section class="mt-8">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+        {t('benchmark.compareTitle')}
+      </h2>
+      <div class="mt-3 overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full min-w-[420px] text-left text-sm">
+          <thead>
+            <tr class="border-b border-slate-800 bg-slate-900/80 text-slate-300">
+              <th scope="col" class="w-40 px-4 py-3 font-medium text-slate-500"></th>
+              <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{A.name}</th>
+              <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{B.name}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {benchmarkCompareRows.map((row) => (
+              <tr class="border-b border-slate-800/60 last:border-b-0">
+                <th scope="row" class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t(row.labelKey as keyof typeof t)}
+                </th>
+                <td class="px-4 py-3 text-right tabular-nums text-slate-200">{row.a}</td>
+                <td class="px-4 py-3 text-right tabular-nums text-slate-200">{row.b}</td>
               </tr>
             ))}
           </tbody>
