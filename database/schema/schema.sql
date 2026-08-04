@@ -93,6 +93,22 @@ CREATE TABLE IF NOT EXISTS model_capabilities (
 );
 
 -- ---------------------------------------------------------------------------
+-- pricing_history：模型价格历史（每次价格变更追加一条，不修改历史）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS pricing_history (
+  id             INTEGER PRIMARY KEY AUTOINCREMENT,
+  model_id       INTEGER NOT NULL REFERENCES models(id) ON DELETE CASCADE,
+  input_price    REAL NOT NULL,
+  output_price   REAL NOT NULL,
+  currency       TEXT NOT NULL DEFAULT 'USD',
+  unit           TEXT NOT NULL DEFAULT 'per_1M_tokens',
+  effective_date TEXT NOT NULL,                  -- 生效日期（YYYY-MM-DD）
+  source         TEXT NOT NULL DEFAULT 'manual', -- initial_import / manual / api ...
+  created_at     TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  UNIQUE (model_id, effective_date, currency, unit)
+);
+
+-- ---------------------------------------------------------------------------
 -- 索引（查询热路径）
 -- ---------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_models_provider ON models(provider);
@@ -101,3 +117,5 @@ CREATE INDEX IF NOT EXISTS idx_pricing_model ON pricing(model_id);
 CREATE INDEX IF NOT EXISTS idx_news_language_published ON news(language, published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_model_capabilities_model ON model_capabilities(model_id);
 CREATE INDEX IF NOT EXISTS idx_model_capabilities_capability ON model_capabilities(capability);
+CREATE INDEX IF NOT EXISTS idx_pricing_history_model ON pricing_history(model_id);
+CREATE INDEX IF NOT EXISTS idx_pricing_history_effective ON pricing_history(effective_date);

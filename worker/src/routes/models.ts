@@ -149,8 +149,7 @@ function normalizeModel(row: ModelRow): ModelRecord {
     useCases = row.use_cases ? (JSON.parse(row.use_cases) as string[]) : null;
   } catch {
     useCases = null; // 非法 JSON 时安全降级
-  }
-  return {
+  }  return {
     slug: row.slug,
     modelType: row.model_type,
     contextWindow: row.context_window,
@@ -165,4 +164,55 @@ function normalizeModel(row: ModelRow): ModelRecord {
     unit: row.unit,
     languages: row.languages ? row.languages.split(',') : [],
   };
+}
+
+/** 价格历史记录（camelCase，供 /api/models/:slug/pricing-history） */
+export interface PricingHistoryRecord {
+  id: number;
+  modelId: number;
+  inputPrice: number;
+  outputPrice: number;
+  currency: string;
+  unit: string;
+  effectiveDate: string;
+  source: string;
+  createdAt: string | null;
+}
+
+/**
+ * 模型价格历史（时间升序：价格随时间的变化序列）。
+ * 模型不存在返回 null（由路由层映射 404）。
+ */
+export async function getPricingHistory(
+  db: D1Database,
+  slug: string,
+  opts: { currency?: string | null; unit?: string | null } = {},
+): Promise<PricingHistoryRecord[] | null> {
+  const model = await db.prepare('SELECT id FROM models WHERE slug = ? LIMIT 1').bind(slug).first<{ id: number }>();
+  if (!model) return null;
+
+  const sql = `
+    SELECT ph.id, ph.model_id, ph.input_price, ph.output_price, ph.currency, ph.unit,
+           ph.effective_date, ph.source, ph.created_at
+    FROM pricing_history ph
+    WHERE ph.model_id = ?
+      AND (? IS NULL OR ph.currency = ?)
+      AND (? IS NULL OR ph.unit = ?)
+    ORDER BY ph.effective_date ASC, ph.id ASC
+  `;
+  const { results } = await db
+    .prepare(sql)
+    .bind(model.id, opts.currency ?? null, opts.currency ?? null, opts.unit ?? null, opts.unit ?? null)
+    .all();
+  return (results ?? []).map((row) => ({
+    id: row.id as number,
+    modelId: row.model_id as number,
+    inputPrice: row.input_price as number,
+    outputPrice: row.output_price as number,
+    currency: row.currency as string,
+    unit: row.unit as string,
+    effectiveDate: row.effective_date as string,
+    source: row.source as string,
+    createdAt: (row.created_at as string | null) ?? null,
+  }));
 }

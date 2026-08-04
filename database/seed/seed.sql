@@ -237,3 +237,22 @@ INSERT OR IGNORE INTO model_capabilities (model_id, capability, supported) VALUE
   ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'function_calling', 1),
   ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'multimodal', 0),
   ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'long_context', 0);
+
+-- ---------------------------------------------------------------------------
+-- 7. 价格历史初始导入（Phase 9.2）：pricing → pricing_history
+-- 规则：每个模型一条首条历史；effective_date 取 pricing.updated_at 的日期部分
+--       （pricing 无 created_at，updated_at 为入库时固定时间戳，视为创建时间），
+--       为空则回退当前 UTC 日期；source = 'initial_import'。
+-- 幂等：INSERT OR IGNORE + UNIQUE(model_id, effective_date, currency, unit)。
+-- ---------------------------------------------------------------------------
+INSERT OR IGNORE INTO pricing_history
+  (model_id, input_price, output_price, currency, unit, effective_date, source)
+SELECT
+  pr.model_id,
+  pr.input_price,
+  pr.output_price,
+  pr.currency,
+  pr.unit,
+  COALESCE(date(pr.updated_at), date('now')),
+  'initial_import'
+FROM pricing pr;

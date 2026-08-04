@@ -16,6 +16,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ✅ 已完成 |
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
 | 9.1 | 模型能力数据库（model_capabilities + 详情 API 扩展） | ✅ 已完成 |
+| 9.2 | 价格历史系统（pricing_history + 初始导入 + history API） | ✅ 已完成 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -24,6 +25,14 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] Worker 详情 API：`GET /api/models/:slug` 返回 `capabilities[]`（旧字段完全兼容，列表接口不变）
 - [x] 文档：database-design.md ER 图 + 表说明；roadmap 标记完成
 - [x] 验证：空库迁移/seed/幂等/外键/查询全通过；worker typecheck、frontend check（0 错误）、build（497 页）全通过
+
+## Phase 9.2 — 价格历史系统 ✅ 已完成（git: feat: add pricing history database）
+
+- [x] 迁移 0004：`pricing_history` 表（id / model_id FK CASCADE / input_price / output_price / currency / unit / effective_date / source / created_at，UNIQUE(model_id, effective_date, currency, unit) + 双索引）
+- [x] Seed：`pricing → pricing_history` 初始导入（11 模型各 1 条，effective_date = date(updated_at) 回退 date('now')，source = 'initial_import'，INSERT OR IGNORE 幂等）
+- [x] Worker API：`GET /api/models/:slug/pricing-history`（时间升序返回价格变化，支持 currency/unit 筛选，模型不存在 404；路由置于详情贪婪匹配之前，旧 API 完全兼容）
+- [x] 文档：database-design.md ER 图 + 表说明；roadmap 标记完成
+- [x] 验证：空库迁移 0001-0004/seed 11 条/重复 seed 幂等/外键 0 悬空/UNIQUE 约束生效；worker typecheck、frontend check（0 错误）、build（497 页）全通过
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

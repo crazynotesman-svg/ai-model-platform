@@ -14,7 +14,7 @@
  *
  * 约定：所有响应为 JSON + CORS 头（公开只读 API）+ 安全头；GET 缓存 60s。
  */
-import { getModelBySlug, listModels } from './routes/models';
+import { getModelBySlug, getPricingHistory, listModels } from './routes/models';
 import { listNews } from './routes/news';
 import { buildNewsRss } from './routes/rss';
 import { collectNews } from './collector';
@@ -117,6 +117,24 @@ export default {
         return json({ models });
       } catch (err) {
         console.error('listModels failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
+    // 模型价格历史：/api/models/:slug/pricing-history（Phase 9.2）
+    // 注意：必须放在详情路由之前（详情用贪婪捕获 (.+)，否则会吞掉后缀）
+    const historyMatch = url.pathname.match(/^\/api\/models\/(.+)\/pricing-history$/);
+    if (historyMatch) {
+      try {
+        const slug = decodeURIComponent(historyMatch[1]);
+        const history = await getPricingHistory(env.DB, slug, {
+          currency: url.searchParams.get('currency') || null,
+          unit: url.searchParams.get('unit') || null,
+        });
+        if (!history) return json({ error: 'Model not found' }, 404);
+        return json({ pricingHistory: history });
+      } catch (err) {
+        console.error('getPricingHistory failed:', err);
         return json({ error: 'Internal Server Error' }, 500);
       }
     }

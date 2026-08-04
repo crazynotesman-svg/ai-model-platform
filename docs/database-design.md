@@ -10,6 +10,7 @@ erDiagram
     MODELS ||--o{ MODEL_TRANSLATIONS : "多语言"
     MODELS ||--o{ PRICING : "定价"
     MODELS ||--o{ MODEL_CAPABILITIES : "能力"
+    MODELS ||--o{ PRICING_HISTORY : "价格历史"
 
     PROVIDERS {
         integer id PK
@@ -48,6 +49,17 @@ erDiagram
         integer model_id FK
         text capability
         integer supported
+        text created_at
+    }
+    PRICING_HISTORY {
+        integer id PK
+        integer model_id FK
+        real input_price
+        real output_price
+        text currency
+        text unit
+        text effective_date
+        text source
         text created_at
     }
     NEWS {
@@ -107,6 +119,23 @@ erDiagram
 | UNIQUE | (model_id, capability) | 每模型每能力仅一条（配合 INSERT OR IGNORE 幂等 seed） |
 
 索引：`(model_id)` 按模型查能力；`(capability)` 按能力筛模型。能力判定口径（seed 注释）：`long_context` = context_window ≥ 200K tokens；`audio` = 音频输入能力（o3/deepseek 为纯文本模型）。
+
+### pricing_history — 价格历史（Phase 9.2）
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | INTEGER PK | 自增主键 |
+| model_id | INTEGER FK | → models.id（ON DELETE CASCADE） |
+| input_price | REAL | 每 unit 输入价格 |
+| output_price | REAL | 每 unit 输出价格 |
+| currency | TEXT | 默认 `USD` |
+| unit | TEXT | 计费单位，默认 `per_1M_tokens` |
+| effective_date | TEXT | 生效日期（YYYY-MM-DD） |
+| source | TEXT | 记录来源：`initial_import`（首次从 pricing 导入）/ `manual` / `api` … |
+| created_at | TEXT | 记录时间戳 |
+| UNIQUE | (model_id, effective_date, currency, unit) | 同模型同币种同单位同一天仅一条（幂等导入） |
+
+索引：`(model_id)` 按模型查价格历史；`(effective_date)` 按日期筛选。每次价格变更**追加一条记录**（不修改历史），`GET /api/models/:slug/pricing-history` 按生效日期升序返回变化序列。
 | UNIQUE | (model_id, language) | 每模型每语言一条 |
 
 ### pricing — 定价
