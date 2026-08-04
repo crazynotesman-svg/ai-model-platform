@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { LOCALES, DEFAULT_LOCALE, FALLBACK_LOCALE } from './src/i18n/locales';
 
@@ -16,6 +17,16 @@ export default defineConfig({
   integrations: [
     // React islands：交互组件（Token 计数、成本估算等）按需客户端渲染
     react(),
+    // Sitemap：多语言页面自动生成 sitemap-index + hreflang alternates
+    sitemap({
+      // 默认语言用 x-default（与页面 hreflang 一致）
+      i18n: {
+        defaultLocale: DEFAULT_LOCALE,
+        locales: Object.fromEntries(LOCALES.map((l) => [l, l])),
+      },
+      // 排除不参与 SEO 的路径（如有）
+      filter: (page) => !page.includes('/404'),
+    }),
   ],
 
   i18n: {

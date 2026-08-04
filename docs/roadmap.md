@@ -13,8 +13,18 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 5 | Token Calculator（tiktoken 精确 + estimate 回退 + 成本对比） | ✅ 已完成 |
 | 6 | 模型比较（选择页 + SSG 对比页 + JSON-LD，Google SEO） | ✅ 已完成 |
 | 7 | AI 行业资讯（News Collector Service + Cron + 列表页） | ✅ 已完成 |
-| 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ⬜ 待开发 |
+| 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ✅ 已完成 |
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
+
+## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
+
+- [x] Sitemap：`@astrojs/sitemap`（sitemap-index + sitemap-0，497 URL 全量 + hreflang alternates）
+- [x] robots.txt（Allow 全部 + Sitemap 声明）；`_headers`（静态站安全头 + 缓存策略：_astro 1 年 immutable、HTML CDN 1h）
+- [x] RSS：Worker `GET /rss.xml`（新闻 RSS 2.0 动态生成，来自 D1，安全头 + 缓存 300s）
+- [x] 安全：Worker 响应统一安全头（nosniff/Referrer-Policy/X-Frame-Options）+ API 缓存 60s；外链 nofollow noopener；SQL 全 prepared statement
+- [x] Open Graph / Schema.org 审查通过；新增 Twitter Card
+- [x] GitHub Actions `.github/workflows/deploy.yml`：push main → CI → 构建（D1 seed+export）→ Pages + Worker 部署 → 远程 D1 迁移/seed；Secrets 文档化
+- [x] 验证：check 0 错误；build 497 页；RSS/安全头实测生效
 
 ## Phase 1（已完成）— 项目基础架构
 
@@ -85,12 +95,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] 前端 `/{lang}/news/`：NewsFeed 岛组件（分类 chips 筛选 + 语言 badge + 三态 + 移动端适配）
 - [x] 验证：collector 实测入库 20 条且幂等（重跑 added=0）；check 0 错误；build 497 页；preview + API 联调
 
-## Phase 8 — SEO/性能打磨 + 自动部署
-
-- [ ] Lighthouse 优化、sitemap 全量、结构化数据审查
-- [ ] GitHub Actions：CI（check + lint + test）→ Pages 发布 + Workers 部署
-
-## Phase 9 — 全球化收尾
+## Phase 9 — 全球化收尾（下一个）
 
 - [ ] 本地化 QA（文案、日期/数字格式）
 - [ ] 隐私友好统计、反馈通道

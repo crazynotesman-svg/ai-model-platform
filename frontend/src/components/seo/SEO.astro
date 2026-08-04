@@ -87,6 +87,12 @@ const OG_LOCALES: Record<Locale, string> = {
 <meta property="og:description" content={description ?? t('site.tagline')} />
 {image && <meta property="og:image" content={new URL(image, site).href} />}
 
+{/* Twitter Card 基础 */}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title ?? t('site.title')} />
+<meta name="twitter:description" content={description ?? t('site.tagline')} />
+{image && <meta name="twitter:image" content={new URL(image, site).href} />}
+
 {/* 结构化数据（可选）：模型详情、Article 等类型在此扩展 */}
 {jsonLd && (
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

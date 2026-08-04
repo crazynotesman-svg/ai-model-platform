@@ -7,14 +7,16 @@
  *   GET /api/models/:slug?lang=     模型详情（按 slug）
  *   GET /api/news?lang=&category=   新闻列表（按语言/分类筛选）
  *   GET /api/news/refresh           手动触发新闻采集（本地调试；生产由 Cron）
+ *   GET /rss.xml                    新闻 RSS 2.0 feed（聚合，动态生成）
  *
  * 定时任务：
  *   scheduled（wrangler.toml [triggers] crons，默认每天 01:00 UTC）→ 新闻采集
  *
- * 约定：所有响应为 JSON + CORS 头（公开只读 API）。
+ * 约定：所有响应为 JSON + CORS 头（公开只读 API）+ 安全头；GET 缓存 60s。
  */
 import { getModelBySlug, listModels } from './routes/models';
 import { listNews } from './routes/news';
+import { buildNewsRss } from './routes/rss';
 import { collectNews } from './collector';
 
 export interface Env {
@@ -29,11 +31,24 @@ const CORS_HEADERS: Record<string, string> = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-/** JSON 响应助手 */
-function json(data: unknown, status = 200): Response {
+/** 基础安全响应头 */
+const SECURITY_HEADERS: Record<string, string> = {
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Frame-Options': 'DENY',
+};
+
+/** JSON 响应助手（安全头 + 60s 公共缓存） */
+function json(data: unknown, status = 200, extra: Record<string, string> = {}): Response {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', ...CORS_HEADERS },
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      ...CORS_HEADERS,
+      ...SECURITY_HEADERS,
+      'Cache-Control': 'public, max-age=60',
+      ...extra,
+    },
   });
 }
 
@@ -71,7 +86,24 @@ export default {
     // 手动触发新闻采集：/api/news/refresh（本地调试/运维；生产由 Cron 调度）
     if (url.pathname === '/api/news/refresh') {
       const result = await collectNews(env);
-      return json({ ok: true, ...result });
+      return json({ ok: true, ...result }, 200, { 'Cache-Control': 'no-store' });
+    }
+
+    // 新闻 RSS feed：/rss.xml（动态生成，来自 D1）
+    if (url.pathname === '/rss.xml') {
+      try {
+        const xml = await buildNewsRss(env.DB, url.origin);
+        return new Response(xml, {
+          headers: {
+            'Content-Type': 'application/rss+xml; charset=utf-8',
+            ...SECURITY_HEADERS,
+            'Cache-Control': 'public, max-age=300',
+          },
+        });
+      } catch (err) {
+        console.error('buildNewsRss failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
     }
 
     // 模型列表：/api/models
