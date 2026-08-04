@@ -94,5 +94,18 @@
   "news.loading": "뉴스를 불러오는 중…",
   "news.error": "뉴스를 불러오지 못했습니다. 다시 시도해 주세요.",
   "news.retry": "다시 시도",
-  "news.empty": "이 분류에 뉴스가 없습니다."
+  "news.empty": "이 분류에 뉴스가 없습니다.",
+  "compare.priceDate": "날짜",
+  "compare.priceInput": "입력",
+  "compare.priceOutput": "출력",
+  "compare.noHistory": "가격 이력이 아직 없습니다.",
+  "compare.priceUnit": "/ 1M 토큰",
+  "compare.capabilities": "기능 매트릭스",
+  "compare.vision": "비전",
+  "compare.reasoning": "추론",
+  "compare.coding": "코딩",
+  "compare.audio": "오디오",
+  "compare.tools": "도구 호출",
+  "compare.priceHistory": "가격 이력",
+  "compare.longContext": "긴 컨텍스트"
 }

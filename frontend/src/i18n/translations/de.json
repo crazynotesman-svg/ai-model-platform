@@ -94,5 +94,18 @@
   "news.loading": "Nachrichten werden geladen…",
   "news.error": "Nachrichten konnten nicht geladen werden. Bitte erneut versuchen.",
   "news.retry": "Erneut versuchen",
-  "news.empty": "Keine Nachrichten in dieser Kategorie."
+  "news.empty": "Keine Nachrichten in dieser Kategorie.",
+  "compare.priceDate": "Datum",
+  "compare.priceInput": "Eingabe",
+  "compare.priceOutput": "Ausgabe",
+  "compare.noHistory": "Noch kein Preisverlauf vorhanden.",
+  "compare.priceUnit": "/ 1M Tokens",
+  "compare.capabilities": "Funktionen",
+  "compare.vision": "Vision",
+  "compare.reasoning": "Schlussfolgerung",
+  "compare.coding": "Programmierung",
+  "compare.audio": "Audio",
+  "compare.tools": "Tool-Aufruf",
+  "compare.priceHistory": "Preisverlauf",
+  "compare.longContext": "Langer Kontext"
 }

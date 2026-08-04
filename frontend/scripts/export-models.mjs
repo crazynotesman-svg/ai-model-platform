@@ -56,6 +56,19 @@ const pricing = db
      FROM pricing WHERE currency = 'USD' AND unit = 'per_1M_tokens'`,
   )
   .all();
+// Phase 9.1：模型能力（vision/reasoning/...）
+const capabilities = db
+  .prepare(`SELECT model_id, capability, supported FROM model_capabilities`)
+  .all();
+// Phase 9.2：价格历史（按生效日期升序）
+const pricingHistory = db
+  .prepare(
+    `SELECT model_id, input_price, output_price, effective_date
+     FROM pricing_history
+     WHERE currency = 'USD' AND unit = 'per_1M_tokens'
+     ORDER BY effective_date ASC`,
+  )
+  .all();
 
 const slugById = Object.fromEntries(models.map((m) => [m.id, m.slug]));
 const safeParse = (raw) => {
@@ -81,6 +94,8 @@ for (const m of models) {
     unit: 'per_1M_tokens',
     languages: [],
     translations: {},
+    capabilities: [], // [{ capability, supported }]
+    pricingHistory: [], // [{ effectiveDate, inputPrice, outputPrice }]
   };
 }
 for (const t of translations) {
@@ -101,7 +116,27 @@ for (const pr of pricing) {
   entry.currency = pr.currency;
   entry.unit = pr.unit;
 }
-for (const entry of Object.values(catalog)) entry.languages.sort();
+for (const cap of capabilities) {
+  const entry = catalog[slugById[cap.model_id]];
+  if (!entry) continue;
+  entry.capabilities.push({
+    capability: cap.capability,
+    supported: cap.supported === 1,
+  });
+}
+for (const ph of pricingHistory) {
+  const entry = catalog[slugById[ph.model_id]];
+  if (!entry) continue;
+  entry.pricingHistory.push({
+    effectiveDate: ph.effective_date,
+    inputPrice: ph.input_price,
+    outputPrice: ph.output_price,
+  });
+}
+for (const entry of Object.values(catalog)) {
+  entry.languages.sort();
+  entry.capabilities.sort((a, b) => a.capability.localeCompare(b.capability));
+}
 
 // ---- 4. 写出生成文件 ----
 mkdirSync(GENERATED_DIR, { recursive: true });

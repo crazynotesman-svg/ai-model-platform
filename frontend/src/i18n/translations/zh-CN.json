@@ -94,5 +94,18 @@
   "news.loading": "正在加载资讯…",
   "news.error": "资讯加载失败，请重试。",
   "news.retry": "重试",
-  "news.empty": "该分类下暂无资讯。"
+  "news.empty": "该分类下暂无资讯。",
+  "compare.priceDate": "日期",
+  "compare.priceInput": "输入",
+  "compare.priceOutput": "输出",
+  "compare.noHistory": "暂无价格历史。",
+  "compare.priceUnit": "/ 1M tokens",
+  "compare.capabilities": "能力矩阵",
+  "compare.vision": "视觉",
+  "compare.reasoning": "推理",
+  "compare.coding": "编程",
+  "compare.audio": "音频",
+  "compare.tools": "工具调用",
+  "compare.priceHistory": "价格趋势",
+  "compare.longContext": "长上下文"
 }

@@ -94,5 +94,18 @@
   "news.loading": "Chargement des actualités…",
   "news.error": "Impossible de charger les actualités. Veuillez réessayer.",
   "news.retry": "Réessayer",
-  "news.empty": "Aucune actualité dans cette catégorie."
+  "news.empty": "Aucune actualité dans cette catégorie.",
+  "compare.priceDate": "Date",
+  "compare.priceInput": "Entrée",
+  "compare.priceOutput": "Sortie",
+  "compare.noHistory": "Aucun historique de prix pour l'instant.",
+  "compare.priceUnit": "/ 1M tokens",
+  "compare.capabilities": "Capacités",
+  "compare.vision": "Vision",
+  "compare.reasoning": "Raisonnement",
+  "compare.coding": "Codage",
+  "compare.audio": "Audio",
+  "compare.tools": "Appel d'outils",
+  "compare.priceHistory": "Historique des prix",
+  "compare.longContext": "Contexte long"
 }

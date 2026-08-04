@@ -17,6 +17,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
 | 9.1 | 模型能力数据库（model_capabilities + 详情 API 扩展） | ✅ 已完成 |
 | 9.2 | 价格历史系统（pricing_history + 初始导入 + history API） | ✅ 已完成 |
+| 9.3 | 比较页增强（能力矩阵 + 价格趋势 + JSON-LD SoftwareApplication/BreadcrumbList） | ✅ 已完成 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -33,6 +34,15 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] Worker API：`GET /api/models/:slug/pricing-history`（时间升序返回价格变化，支持 currency/unit 筛选，模型不存在 404；路由置于详情贪婪匹配之前，旧 API 完全兼容）
 - [x] 文档：database-design.md ER 图 + 表说明；roadmap 标记完成
 - [x] 验证：空库迁移 0001-0004/seed 11 条/重复 seed 幂等/外键 0 悬空/UNIQUE 约束生效；worker typecheck、frontend check（0 错误）、build（497 页）全通过
+
+## Phase 9.3 — 比较页增强 ✅ 已完成（git: feat: enhance model comparison pages）
+
+- [x] 数据模型：`src/lib/compare.ts` 新增 CAPABILITY_ROWS（vision/reasoning/coding/audio/tools/long_context，function_calling → Tools 映射）与 capabilityMap
+- [x] 导出扩展：`scripts/export-models.mjs` 同时导出 capabilities（model_capabilities）与 pricingHistory（pricing_history），写入 model-catalog.json（仍 100% 来自 D1，无运行时 mock）
+- [x] UI 模块：能力矩阵表格（✓/✗ 状态）+ 价格历史响应式表格（日期/Input/Output，无历史显示 i18n 提示），移动端友好
+- [x] JSON-LD：Product → SoftwareApplication（applicationCategory "AI Model"、operatingSystem "Cloud API"、offers 价格）+ 新增 BreadcrumbList（Home > Compare > A vs B）；旧 Product schema 已删除
+- [x] i18n：7 语言新增 compare.capabilities / priceHistory / vision / reasoning / coding / audio / tools / longContext / noHistory 等键，键集一致
+- [x] 验证：check 0 错误；build 497 页（SSG 不减少）；en/zh-CN 随机页验证能力矩阵/价格历史/canonical/8×hreflang/SoftwareApplication×2/BreadcrumbList×1/Product×0 全通过
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

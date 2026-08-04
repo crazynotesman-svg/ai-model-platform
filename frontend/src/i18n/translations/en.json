@@ -94,5 +94,18 @@
   "news.loading": "Loading news…",
   "news.error": "Failed to load news. Please try again.",
   "news.retry": "Retry",
-  "news.empty": "No news found for this category."
+  "news.empty": "No news found for this category.",
+  "compare.priceDate": "Date",
+  "compare.priceInput": "Input",
+  "compare.priceOutput": "Output",
+  "compare.noHistory": "No price history yet.",
+  "compare.priceUnit": "/ 1M tokens",
+  "compare.capabilities": "Capabilities",
+  "compare.vision": "Vision",
+  "compare.reasoning": "Reasoning",
+  "compare.coding": "Coding",
+  "compare.audio": "Audio",
+  "compare.tools": "Tools",
+  "compare.priceHistory": "Price History",
+  "compare.longContext": "Long Context"
 }

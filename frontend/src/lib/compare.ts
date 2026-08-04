@@ -43,3 +43,26 @@ export function allComparePairs(slugs: readonly string[]): string[] {
   }
   return pairs;
 }
+
+// ---- 能力矩阵定义（Phase 9.3）----
+// 数据能力名（model_capabilities.capability）→ 展示标签字典键
+// 注意：数据库为 function_calling，展示名映射为 "Tools"。
+export interface CapabilityRow {
+  capability: string; // D1 能力名
+  labelKey: 'vision' | 'reasoning' | 'coding' | 'audio' | 'tools' | 'longContext';
+}
+
+/** 能力矩阵行（UI 展示顺序）：vision / reasoning / coding / audio / tools(function_calling) / long_context */
+export const CAPABILITY_ROWS: CapabilityRow[] = [
+  { capability: 'vision', labelKey: 'vision' },
+  { capability: 'reasoning', labelKey: 'reasoning' },
+  { capability: 'coding', labelKey: 'coding' },
+  { capability: 'audio', labelKey: 'audio' },
+  { capability: 'function_calling', labelKey: 'tools' }, // function_calling → Tools
+  { capability: 'long_context', labelKey: 'longContext' },
+];
+
+/** 能力支持状态：capabilities[] → Map(capability → supported) */
+export function capabilityMap(caps: { capability: string; supported: boolean }[]): Map<string, boolean> {
+  return new Map(caps.map((c) => [c.capability, c.supported]));
+}

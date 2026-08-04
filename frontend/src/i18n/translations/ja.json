@@ -94,5 +94,18 @@
   "news.loading": "ニュースを読み込み中…",
   "news.error": "ニュースの読み込みに失敗しました。もう一度お試しください。",
   "news.retry": "再試行",
-  "news.empty": "このカテゴリにはニュースがありません。"
+  "news.empty": "このカテゴリにはニュースがありません。",
+  "compare.priceDate": "日付",
+  "compare.priceInput": "入力",
+  "compare.priceOutput": "出力",
+  "compare.noHistory": "価格履歴はまだありません。",
+  "compare.priceUnit": "/ 1Mトークン",
+  "compare.capabilities": "機能マトリクス",
+  "compare.vision": "ビジョン",
+  "compare.reasoning": "推論",
+  "compare.coding": "コーディング",
+  "compare.audio": "オーディオ",
+  "compare.tools": "ツール呼び出し",
+  "compare.priceHistory": "価格履歴",
+  "compare.longContext": "ロングコンテキスト"
 }

@@ -94,5 +94,18 @@
   "news.loading": "Cargando noticias…",
   "news.error": "No se pudieron cargar las noticias. Inténtalo de nuevo.",
   "news.retry": "Reintentar",
-  "news.empty": "No hay noticias en esta categoría."
+  "news.empty": "No hay noticias en esta categoría.",
+  "compare.priceDate": "Fecha",
+  "compare.priceInput": "Entrada",
+  "compare.priceOutput": "Salida",
+  "compare.noHistory": "Aún no hay historial de precios.",
+  "compare.priceUnit": "/ 1M tokens",
+  "compare.capabilities": "Capacidades",
+  "compare.vision": "Visión",
+  "compare.reasoning": "Razonamiento",
+  "compare.coding": "Codificación",
+  "compare.audio": "Audio",
+  "compare.tools": "Llamada a herramientas",
+  "compare.priceHistory": "Historial de precios",
+  "compare.longContext": "Contexto largo"
 }
