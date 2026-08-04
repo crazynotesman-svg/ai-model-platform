@@ -42,6 +42,7 @@ interface CatalogEntry {
     testedAt: string | null;
   }[];
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
+  rankingHistory?: { date: string; rank: number; score: number }[];
 }
 const catalog = catalogJson as Record<string, CatalogEntry>;
 
@@ -87,6 +88,7 @@ const entryOf = (m: CatalogEntry) => {
     pricingHistory: m.pricingHistory ?? [],
     benchmarks: m.benchmarks ?? [],
     ranking: m.ranking,
+    rankingHistory: m.rankingHistory ?? [],
   };
 };
 const A = entryOf(modelA);
@@ -306,6 +308,47 @@ const rows: { label: string; a: string; b: string }[] = [
           </table>
         </div>
         <p class="mt-2 text-[11px] text-slate-600">{t('ranking.methodologyText')}</p>
+      </section>
+    )}
+
+    {/* Ranking Trend Comparison（Phase 9.6）：双方排名历史并排 */}
+    {(A.rankingHistory.length > 0 || B.rankingHistory.length > 0) && (
+      <section class="mt-8">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          {t('trend.compareTitle')}
+        </h2>
+        <div class="mt-3 overflow-x-auto rounded-xl border border-slate-800">
+          <table class="w-full min-w-[420px] text-left text-sm">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-900/80 text-slate-300">
+                <th scope="col" class="w-40 px-4 py-3 font-medium text-slate-500">{t('snapshot.date')}</th>
+                <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{A.name}</th>
+                <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{B.name}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from(
+                new Set([...A.rankingHistory.map((h) => h.date), ...B.rankingHistory.map((h) => h.date)]),
+              )
+                .sort()
+                .map((date) => {
+                  const a = A.rankingHistory.find((h) => h.date === date);
+                  const b = B.rankingHistory.find((h) => h.date === date);
+                  return (
+                    <tr class="border-b border-slate-800/60 last:border-b-0">
+                      <th scope="row" class="px-4 py-2.5 text-xs text-slate-500">{date}</th>
+                      <td class="px-4 py-2.5 text-right tabular-nums text-slate-200">
+                        {a ? `#${a.rank}` : '—'}
+                      </td>
+                      <td class="px-4 py-2.5 text-right tabular-nums text-slate-200">
+                        {b ? `#${b.rank}` : '—'}
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
       </section>
     )}
 

@@ -38,6 +38,8 @@ interface ModelCatalogEntry {
     testedAt: string | null;
   }[];
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
+  trend?: { rankChange: number | null; scoreChange: number | null } | null;
+  rankingHistory?: { date: string; rank: number; score: number }[];
 }
 const catalog = catalogJson as Record<string, ModelCatalogEntry>;
 
@@ -67,6 +69,22 @@ const name = tr.name ?? data.slug;
 const description = tr.description ?? '';
 const useCases = tr.useCases ?? [];
 const languageNames = data.languages.map((code) => LOCALE_LABELS[code as Locale] ?? code);
+
+// SVG 折线数据（Ranking History，Phase 9.6）
+const history = data.rankingHistory ?? [];
+const rankLine = (() => {
+  const scores = history.map((h) => h.score);
+  const min = Math.min(...scores);
+  const max = Math.max(...scores);
+  const range = max - min || 1;
+  const W = 600;
+  const H = 140;
+  const PAD = 12;
+  const xOf = (i: number) => (history.length <= 1 ? W / 2 : (i / (history.length - 1)) * (W - PAD * 2) + PAD);
+  const yOf = (s: number) => H - PAD - ((s - min) / range) * (H - PAD * 2);
+  const pointsAttr = history.map((h, i) => `${xOf(i).toFixed(1)},${yOf(h.score).toFixed(1)}`).join(' ');
+  return { pointsAttr, min, max, yOf, first: history[0], last: history[history.length - 1] };
+})();
 
 const fmtNumber = (n: number | null): string =>
   n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang);
@@ -176,6 +194,29 @@ const detailRows: { label: string; value: string }[] = [
           ))}
         </div>
         <p class="mt-2 text-[11px] text-slate-600">{t('ranking.methodologyText')}</p>
+      </section>
+    )}
+
+    {/* Ranking History 折线图（Phase 9.6）：轻量 SVG，最近 30 天 overall 分数 */}
+    {(data.rankingHistory ?? []).length >= 2 && (
+      <section class="mt-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          {t('snapshot.title')}
+          <span class="ml-2 text-[10px] normal-case tracking-normal text-slate-600">
+            {t('snapshot.last30')}
+          </span>
+        </h2>
+        <div class="mt-2 overflow-x-auto rounded-xl border border-slate-800 bg-slate-950 p-3">
+          <svg viewBox="0 0 600 160" role="img" class="h-auto w-full min-w-[420px]" aria-label={t('snapshot.title')}>
+            <line x1="0" y1={rankLine.yOf(rankLine.max)} x2="600" y2={rankLine.yOf(rankLine.max)} class="stroke-slate-800" stroke-width="1" stroke-dasharray="4 4" />
+            <line x1="0" y1={rankLine.yOf(rankLine.min)} x2="600" y2={rankLine.yOf(rankLine.min)} class="stroke-slate-800" stroke-width="1" stroke-dasharray="4 4" />
+            <polyline points={rankLine.pointsAttr} fill="none" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+            <text x="4" y={rankLine.yOf(rankLine.max) - 4} class="fill-slate-500" font-size="10">{rankLine.max}</text>
+            <text x="4" y={rankLine.yOf(rankLine.min) + 12} class="fill-slate-500" font-size="10">{rankLine.min}</text>
+            <text x="4" y="152" class="fill-slate-600" font-size="9">{rankLine.first.date}</text>
+            <text x="596" y="152" text-anchor="end" class="fill-slate-600" font-size="9">{rankLine.last.date}</text>
+          </svg>
+        </div>
       </section>
     )}
 

@@ -21,7 +21,8 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.4a | Benchmark 数据系统（categories + results + benchmarks API） | ✅ 已完成 |
 | 9.4b | Benchmark 展示系统（Leaderboard + Benchmark SEO 页面） | ✅ 已完成 |
 | 9.5 | AI Model Ranking 算法体系（评分引擎 + 排名 API + SEO 页面） | ✅ 已完成 |
-| 9.6 | AI Model Ranking 增强（趋势/推荐/快照） | ⬜ 待开发 |
+| 9.6 | AI Model Ranking 增强（趋势/推荐/快照） | ✅ 已完成 |
+| 9.7 | 评测平台收尾（数据源接入、合规、v1.0） | ⬜ 待开发 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -77,6 +78,18 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] i18n：ranking.* 17 键 × 7 语言（键集一致）
 - [x] 验证：worker typecheck / check 0 errors / build 581 页 / API 冒烟（rankings 11 条降序、category=coding 模式）/ SEO 6/6（ranking 索引+分类+best-value en/zh、详情页、比较页）
 - [x] 踩坑：Astro 中 getStaticPaths 引用的模块级 const 需 `export`（否则被编译闭包化报 ReferenceError）
+
+## Phase 9.6 — Ranking 增强（趋势/快照/推荐） ✅ 已完成（git: feat: add ranking trend and recommendation system）
+
+- [x] 迁移 0006：`ranking_snapshots`（model_id/mode/score/rank/snapshot_date，UNIQUE(model_id,mode,date) + 3 索引，FK CASCADE）
+- [x] 快照服务：`worker/src/services/rankingSnapshot.ts`（createDailySnapshot：4 模式 × 11 模型 = 44 行/天，INSERT OR IGNORE 幂等）；Cron `0 2 * * *`（scheduled() 保留 01:00 新闻 + 02:00 快照）
+- [x] Trend API：`GET /api/ranking/trend/:slug?mode=`（history 升序 + change{rank,score}，404 兜底）
+- [x] 推荐引擎：`worker/src/services/recommendation.ts`（best-overall/value/coding/reasoning，全实时计算）+ `GET /api/recommendations`
+- [x] SSG 导出：export-models.mjs 只读快照历史 → catalog.trend + rankingHistory（30 天）
+- [x] 前端：Ranking 页趋势列（↑/↓/→ + Rank Change）；详情页 SVG 折线（30 天，无图表库）；Compare 页 Ranking Trend Comparison；`/{lang}/ranking/recommendations/` SEO 页（7 语言，CollectionPage+ItemList）
+- [x] i18n：trend.* / snapshot.* / recommendation.* 24 键 × 7 语言（键集一致）
+- [x] 文档：docs/ranking-trend-design.md；roadmap 标记完成
+- [x] 验证：空库 0001-0006（10 表）/UNIQUE/FK/CASCADE；worker typecheck / check 0 errors / build 588 页；API 冒烟（trend 3 条 history+change、404、recommendations 4 项）；SEO 全命中（Rank Change/趋势符号/recommendations 页/详情页 polyline/compare 趋势）
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

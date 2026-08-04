@@ -189,6 +189,35 @@ for (const entry of Object.values(catalog)) {
   };
 }
 
+// ---- Phase 9.6：读取排名快照历史（只读；快照由 Worker Cron 02:00 UTC 生成）----
+// 快照 score = 当日 overall 分数，rank = 该模式当日排名（与 worker/services/rankingSnapshot.ts 一致）
+const snapshotRows = db
+  .prepare(
+    `SELECT rs.model_id, rs.snapshot_date, rs.rank, rs.score, m.slug AS slug
+     FROM ranking_snapshots rs
+     JOIN models m ON rs.model_id = m.id
+     WHERE rs.ranking_mode = 'overall'
+     ORDER BY rs.snapshot_date ASC, rs.model_id`,
+  )
+  .all();
+const trendCutoff = new Date(Date.now() - 30 * 86_400_000).toISOString().slice(0, 10);
+for (const entry of Object.values(catalog)) {
+  const history = snapshotRows
+    .filter((s) => s.slug === entry.slug && s.snapshot_date >= trendCutoff)
+    .map((s) => ({ date: s.snapshot_date, rank: s.rank, score: s.score }));
+  let trend = null;
+  if (history.length >= 2) {
+    const first = history[0];
+    const last = history[history.length - 1];
+    trend = {
+      rankChange: first.rank - last.rank, // 正 = 排名上升
+      scoreChange: Math.round((last.score - first.score) * 10) / 10,
+    };
+  }
+  entry.trend = trend; // { rankChange, scoreChange } | null
+  entry.rankingHistory = history.slice(-30); // [{ date, rank, score }]
+}
+
 // ---- 4. 写出生成文件 ----
 mkdirSync(GENERATED_DIR, { recursive: true });
 writeFileSync(join(GENERATED_DIR, 'model-catalog.json'), JSON.stringify(catalog, null, 2) + '\n', 'utf-8');

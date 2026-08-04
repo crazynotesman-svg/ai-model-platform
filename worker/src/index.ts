@@ -19,6 +19,9 @@ import { listNews } from './routes/news';
 import { buildNewsRss } from './routes/rss';
 import { collectNews } from './collector';
 import { rankModels } from './services/ranking';
+import { createDailySnapshot } from './services/rankingSnapshot';
+import { getRecommendations } from './services/recommendation';
+import { getRankingTrend } from './routes/ranking';
 
 export interface Env {
   /** Cloudflare D1 数据库绑定（wrangler.toml 声明） */
@@ -107,6 +110,31 @@ export default {
       }
     }
 
+    // 模型推荐：/api/recommendations?lang=（Phase 9.6）
+    if (url.pathname === '/api/recommendations') {
+      try {
+        const recommendations = await getRecommendations(env.DB, url.searchParams.get('lang') ?? 'en');
+        return json({ recommendations });
+      } catch (err) {
+        console.error('getRecommendations failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
+    // 排名趋势：/api/ranking/trend/:slug?mode=（Phase 9.6，默认 overall）
+    const trendMatch = url.pathname.match(/^\/api\/ranking\/trend\/(.+)$/);
+    if (trendMatch) {
+      try {
+        const slug = decodeURIComponent(trendMatch[1]);
+        const trend = await getRankingTrend(env.DB, slug, url.searchParams.get('mode') ?? 'overall');
+        if (!trend) return json({ error: 'Model not found' }, 404);
+        return json(trend);
+      } catch (err) {
+        console.error('getRankingTrend failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
     // 模型排名：/api/ranking?lang=&category=（Phase 9.5；category 可空，best-value 为特殊模式）
     if (url.pathname === '/api/ranking') {
       try {
@@ -190,13 +218,28 @@ export default {
   },
 
   /**
-   * 定时任务：每天 01:00 UTC 自动抓取新闻（wrangler.toml [triggers] crons）。
+   * 定时任务：
+   *   - 每天 01:00 UTC 自动抓取新闻（wrangler.toml [triggers] crons）
+   *   - 每天 02:00 UTC 生成排名快照（Phase 9.6，幂等）
    * 也可用 `wrangler dev --test-scheduled` 本地模拟触发。
    */
   async scheduled(controller: ScheduledController, env: Env): Promise<void> {
+    // 01:00 新闻采集
     const result = await collectNews(env);
     console.log(
       `[cron ${controller.cron}] news collection: added=${result.added}, sourcesOk=${result.sourcesOk}, errors=${JSON.stringify(result.errors)}`,
     );
+
+    // 02:00 排名快照
+    if (controller.cron === '0 2 * * *') {
+      try {
+        const snap = await createDailySnapshot(env.DB);
+        console.log(
+          `[cron ${controller.cron}] ranking snapshot: date=${snap.date}, inserted=${snap.inserted}, skipped=${snap.skipped}`,
+        );
+      } catch (err) {
+        console.error('[cron] ranking snapshot failed:', err);
+      }
+    }
   },
 } satisfies ExportedHandler<Env>;

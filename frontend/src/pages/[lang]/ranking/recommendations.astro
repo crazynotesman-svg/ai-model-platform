@@ -1,0 +1,133 @@
+---
+/**
+ * 模型推荐页：/{lang}/ranking/recommendations/
+ *
+ * SSG（7 语言）：基于 D1 导出的 model-catalog.json（ranking 字段）实时计算四类推荐：
+ *   Best Overall（overall 最高）/ Best Value（price 最高）/ Best Coding / Best Reasoning。
+ * 数据全部来自 D1 导出，无 mock。
+ * SEO：CollectionPage + ItemList JSON-LD。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+interface CatalogEntry {
+  slug: string;
+  providerName: string;
+  translations: Partial<Record<string, { name?: string } | undefined>>;
+  ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
+  benchmarks?: { category: string; score: number }[];
+}
+const catalog = catalogJson as Record<string, CatalogEntry>;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+interface RecEntry {
+  slug: string;
+  name: string;
+  providerName: string;
+  score: number;
+}
+
+// 四类推荐（数据来自 catalog：真实 D1 计算值）
+const bestBy = (key: (m: NonNullable<CatalogEntry['ranking']>) => number): RecEntry | null => {
+  let best: RecEntry | null = null;
+  for (const slug of MODEL_SLUGS) {
+    const m = catalog[slug];
+    if (!m?.ranking) continue;
+    const score = key(m.ranking);
+    const tr = m.translations[lang] ?? m.translations.en ?? {};
+    if (!best || score > best.score) {
+      best = { slug: m.slug, name: tr.name ?? m.slug, providerName: m.providerName, score };
+    }
+  }
+  return best;
+};
+const bestByBenchmark = (category: string): RecEntry | null => {
+  let best: RecEntry | null = null;
+  for (const slug of MODEL_SLUGS) {
+    const m = catalog[slug];
+    if (!m) continue;
+    const score = (m.benchmarks ?? []).find((b) => b.category === category)?.score;
+    if (score == null) continue;
+    const tr = m.translations[lang] ?? m.translations.en ?? {};
+    if (!best || score > best.score) {
+      best = { slug: m.slug, name: tr.name ?? m.slug, providerName: m.providerName, score };
+    }
+  }
+  return best;
+};
+
+const recommendations = [
+  { type: 'bestOverall', titleKey: 'recommendation.bestOverall', model: bestBy((r) => r.overall) },
+  { type: 'bestValue', titleKey: 'recommendation.bestValue', model: bestBy((r) => r.price) },
+  { type: 'bestCoding', titleKey: 'recommendation.bestCoding', model: bestByBenchmark('coding') },
+  { type: 'bestReasoning', titleKey: 'recommendation.bestReasoning', model: bestByBenchmark('reasoning') },
+].filter((r) => r.model !== null);
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: t('recommendation.pageTitle'),
+      description: t('recommendation.subtitle'),
+      url: pageUrl,
+    },
+    {
+      '@type': 'ItemList',
+      name: t('recommendation.pageTitle'),
+      itemListElement: recommendations.map((r, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: `${t(r.titleKey as keyof typeof t)}: ${r.model?.name}`,
+        item: r.model ? new URL(`/${lang}/models/${r.model.slug}/`, siteUrl).href : undefined,
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={t('recommendation.pageTitle')} description={t('recommendation.subtitle')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <a href={`/${lang}/ranking/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
+      ← {t('ranking.pageTitle')}
+    </a>
+
+    <h1 class="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+      {t('recommendation.pageTitle')}
+    </h1>
+    <p class="mt-2 text-sm text-slate-400">{t('recommendation.subtitle')}</p>
+
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+      {recommendations.map((r) => (
+        <li class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+          <p class="text-[11px] uppercase tracking-wide text-sky-400">{t(r.titleKey as keyof typeof t)}</p>
+          {r.model ? (
+            <>
+              <p class="mt-2 text-lg font-semibold text-white">
+                <a href={`/${lang}/models/${r.model.slug}/`} class="hover:text-sky-300">
+                  {r.model.name}
+                </a>
+              </p>
+              <p class="text-xs text-slate-500">{r.model.providerName}</p>
+              <p class="mt-3 text-2xl font-bold tabular-nums text-sky-300">{r.model.score}</p>
+            </>
+          ) : (
+            <p class="mt-2 text-sm text-slate-500">{t('leaderboard.noData')}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

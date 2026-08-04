@@ -137,6 +137,20 @@ CREATE TABLE IF NOT EXISTS benchmark_results (
 );
 
 -- ---------------------------------------------------------------------------
+-- ranking_snapshots：每日排名快照（Cron 生成，支持趋势分析）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS ranking_snapshots (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  model_id      INTEGER NOT NULL REFERENCES models(id) ON DELETE CASCADE,
+  ranking_mode  TEXT NOT NULL,
+  score         REAL NOT NULL,
+  rank          INTEGER NOT NULL,
+  snapshot_date TEXT NOT NULL,
+  created_at    TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  UNIQUE (model_id, ranking_mode, snapshot_date)
+);
+
+-- ---------------------------------------------------------------------------
 -- 索引（查询热路径）
 -- ---------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_models_provider ON models(provider);
@@ -150,3 +164,6 @@ CREATE INDEX IF NOT EXISTS idx_pricing_history_effective ON pricing_history(effe
 CREATE INDEX IF NOT EXISTS idx_benchmark_results_model ON benchmark_results(model_id);
 CREATE INDEX IF NOT EXISTS idx_benchmark_results_category ON benchmark_results(category_id);
 CREATE INDEX IF NOT EXISTS idx_benchmark_results_score ON benchmark_results(score);
+CREATE INDEX IF NOT EXISTS idx_ranking_snapshots_model ON ranking_snapshots(model_id);
+CREATE INDEX IF NOT EXISTS idx_ranking_snapshots_date ON ranking_snapshots(snapshot_date);
+CREATE INDEX IF NOT EXISTS idx_ranking_snapshots_mode ON ranking_snapshots(ranking_mode);

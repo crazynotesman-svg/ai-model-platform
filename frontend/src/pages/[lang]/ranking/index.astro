@@ -23,6 +23,7 @@ interface CatalogEntry {
   providerName: string;
   translations: Partial<Record<string, { name?: string } | undefined>>;
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
+  trend?: { rankChange: number | null; scoreChange: number | null } | null;
 }
 const catalog = catalogJson as Record<string, CatalogEntry>;
 
@@ -35,6 +36,7 @@ interface RankRow {
   name: string;
   providerName: string;
   ranking: NonNullable<CatalogEntry['ranking']>;
+  trend: CatalogEntry['trend'];
 }
 const rows: RankRow[] = [];
 for (const slug of MODEL_SLUGS) {
@@ -47,10 +49,23 @@ for (const slug of MODEL_SLUGS) {
     name: tr.name ?? m.slug,
     providerName: m.providerName,
     ranking: m.ranking,
+    trend: m.trend ?? null,
   });
 }
 rows.sort((a, b) => b.ranking.overall - a.ranking.overall);
 rows.forEach((r, i) => (r.rank = i + 1));
+
+// 趋势符号：正 = 上升 ↑（emerald）；负 = 下降 ↓（amber）；无/不变 = 稳定 →（slate）
+const trendSymbol = (change: number | null | undefined): string => {
+  if (change == null) return '→';
+  if (change > 0) return '↑';
+  if (change < 0) return '↓';
+  return '→';
+};
+const trendClass = (change: number | null | undefined): string => {
+  if (change == null || change === 0) return 'text-slate-500';
+  return change > 0 ? 'text-emerald-400' : 'text-amber-400';
+};
 
 const siteUrl = Astro.site ?? new URL('http://localhost:4321');
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -91,6 +106,7 @@ const jsonLd = {
             <th scope="col" class="px-4 py-3 font-medium">{t('ranking.rank')}</th>
             <th scope="col" class="px-4 py-3 font-medium">{t('ranking.model')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.score')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('trend.rankChange')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.benchmark')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.efficiency')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.capability')}</th>
@@ -106,6 +122,10 @@ const jsonLd = {
                 </a>
               </td>
               <td class="px-4 py-3 text-right font-semibold tabular-nums text-sky-300">{r.ranking.overall}</td>
+              <td class={'px-4 py-3 text-right font-semibold tabular-nums ' + trendClass(r.trend?.rankChange)}>
+                <span title={t('trend.rankChange')}>{trendSymbol(r.trend?.rankChange)}</span>
+                {r.trend?.rankChange != null && r.trend.rankChange !== 0 ? Math.abs(r.trend.rankChange) : ''}
+              </td>
               <td class="px-4 py-3 text-right tabular-nums text-slate-200">{r.ranking.benchmark}</td>
               <td class="px-4 py-3 text-right tabular-nums text-slate-200">{r.ranking.price}</td>
               <td class="px-4 py-3 text-right tabular-nums text-slate-200">{r.ranking.capability}</td>
@@ -123,7 +143,12 @@ const jsonLd = {
             <a href={`/${lang}/models/${r.slug}/`} class="font-semibold text-white hover:text-sky-300">
               {r.name}
             </a>
-            <span class="text-lg font-bold tabular-nums text-sky-300">{r.ranking.overall}</span>
+            <span class="flex items-center gap-2">
+              <span class={'text-sm font-semibold tabular-nums ' + trendClass(r.trend?.rankChange)}>
+                {trendSymbol(r.trend?.rankChange)}{r.trend?.rankChange != null && r.trend.rankChange !== 0 ? Math.abs(r.trend.rankChange) : ''}
+              </span>
+              <span class="text-lg font-bold tabular-nums text-sky-300">{r.ranking.overall}</span>
+            </span>
           </div>
           <p class="text-xs text-sky-400">{r.providerName}</p>
           <dl class="mt-3 grid grid-cols-3 gap-2 text-center">
