@@ -109,6 +109,34 @@ CREATE TABLE IF NOT EXISTS pricing_history (
 );
 
 -- ---------------------------------------------------------------------------
+-- benchmark_categories：基准类别（coding / reasoning / math / vision ...）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS benchmark_categories (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug        TEXT NOT NULL UNIQUE,
+  name        TEXT NOT NULL,
+  description TEXT,
+  created_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+-- ---------------------------------------------------------------------------
+-- benchmark_results：模型基准结果（model → category，含分数/排名/数据口径）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS benchmark_results (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  model_id    INTEGER NOT NULL REFERENCES models(id) ON DELETE CASCADE,
+  category_id INTEGER NOT NULL REFERENCES benchmark_categories(id) ON DELETE CASCADE,
+  score       REAL NOT NULL,
+  rank        INTEGER,
+  dataset     TEXT NOT NULL,
+  version     TEXT NOT NULL,
+  source      TEXT NOT NULL DEFAULT 'manual',
+  tested_at   TEXT,
+  created_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  UNIQUE (model_id, category_id, dataset, version)
+);
+
+-- ---------------------------------------------------------------------------
 -- 索引（查询热路径）
 -- ---------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_models_provider ON models(provider);
@@ -119,3 +147,6 @@ CREATE INDEX IF NOT EXISTS idx_model_capabilities_model ON model_capabilities(mo
 CREATE INDEX IF NOT EXISTS idx_model_capabilities_capability ON model_capabilities(capability);
 CREATE INDEX IF NOT EXISTS idx_pricing_history_model ON pricing_history(model_id);
 CREATE INDEX IF NOT EXISTS idx_pricing_history_effective ON pricing_history(effective_date);
+CREATE INDEX IF NOT EXISTS idx_benchmark_results_model ON benchmark_results(model_id);
+CREATE INDEX IF NOT EXISTS idx_benchmark_results_category ON benchmark_results(category_id);
+CREATE INDEX IF NOT EXISTS idx_benchmark_results_score ON benchmark_results(score);

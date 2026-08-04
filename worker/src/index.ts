@@ -14,7 +14,7 @@
  *
  * 约定：所有响应为 JSON + CORS 头（公开只读 API）+ 安全头；GET 缓存 60s。
  */
-import { getModelBySlug, getPricingHistory, listModels } from './routes/models';
+import { getBenchmarks, getModelBySlug, getPricingHistory, listModels } from './routes/models';
 import { listNews } from './routes/news';
 import { buildNewsRss } from './routes/rss';
 import { collectNews } from './collector';
@@ -117,6 +117,21 @@ export default {
         return json({ models });
       } catch (err) {
         console.error('listModels failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
+    // 模型基准结果：/api/models/:slug/benchmarks（Phase 9.4a）
+    // 注意：必须放在详情路由之前（详情用贪婪捕获 (.+)，否则会吞掉后缀）
+    const benchMatch = url.pathname.match(/^\/api\/models\/(.+)\/benchmarks$/);
+    if (benchMatch) {
+      try {
+        const slug = decodeURIComponent(benchMatch[1]);
+        const result = await getBenchmarks(env.DB, slug, url.searchParams.get('lang') ?? 'en');
+        if (!result.model) return json({ error: 'Model not found' }, 404);
+        return json(result);
+      } catch (err) {
+        console.error('getBenchmarks failed:', err);
         return json({ error: 'Internal Server Error' }, 500);
       }
     }

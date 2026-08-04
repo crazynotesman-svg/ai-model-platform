@@ -11,6 +11,8 @@ erDiagram
     MODELS ||--o{ PRICING : "定价"
     MODELS ||--o{ MODEL_CAPABILITIES : "能力"
     MODELS ||--o{ PRICING_HISTORY : "价格历史"
+    MODELS ||--o{ BENCHMARK_RESULTS : "基准结果"
+    BENCHMARK_CATEGORIES ||--o{ BENCHMARK_RESULTS : "分类"
 
     PROVIDERS {
         integer id PK
@@ -60,6 +62,25 @@ erDiagram
         text unit
         text effective_date
         text source
+        text created_at
+    }
+    BENCHMARK_CATEGORIES {
+        integer id PK
+        text slug UK
+        text name
+        text description
+        text created_at
+    }
+    BENCHMARK_RESULTS {
+        integer id PK
+        integer model_id FK
+        integer category_id FK
+        real score
+        integer rank
+        text dataset
+        text version
+        text source
+        text tested_at
         text created_at
     }
     NEWS {
@@ -136,6 +157,28 @@ erDiagram
 | UNIQUE | (model_id, effective_date, currency, unit) | 同模型同币种同单位同一天仅一条（幂等导入） |
 
 索引：`(model_id)` 按模型查价格历史；`(effective_date)` 按日期筛选。每次价格变更**追加一条记录**（不修改历史），`GET /api/models/:slug/pricing-history` 按生效日期升序返回变化序列。
+
+### benchmark_categories / benchmark_results — 基准数据（Phase 9.4a）
+
+**benchmark_categories**：`id` / `slug`（UNIQUE，如 coding / reasoning / math / vision）/ `name` / `description` / `created_at` —— 基准类别，slug 为稳定标识，可自由扩展。
+
+**benchmark_results**：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | INTEGER PK | 自增主键 |
+| model_id | INTEGER FK | → models.id（ON DELETE CASCADE） |
+| category_id | INTEGER FK | → benchmark_categories.id（ON DELETE CASCADE） |
+| score | REAL | 基准分数（示例数据 0-100 口径） |
+| rank | INTEGER | 排名（可选，internal-demo 无公开排名时为空） |
+| dataset | TEXT | 数据口径（如 internal-demo） |
+| version | TEXT | 数据版本（如 v1） |
+| source | TEXT | manual / api / collector … |
+| tested_at | TEXT | 测试日期 |
+| created_at | TEXT | 时间戳 |
+| UNIQUE | (model_id, category_id, dataset, version) | 同模型同基准同口径不重复（幂等导入） |
+
+索引：`(model_id)` / `(category_id)` / `(score)`。关系：`models 1—N benchmark_results N—1 benchmark_categories`。⚠️ 当前 seed 为示例/人工录入数据（manual/internal-demo/v1），上线前须以官方基准实测数据替换。
 | UNIQUE | (model_id, language) | 每模型每语言一条 |
 
 ### pricing — 定价

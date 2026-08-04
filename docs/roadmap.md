@@ -18,6 +18,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.1 | 模型能力数据库（model_capabilities + 详情 API 扩展） | ✅ 已完成 |
 | 9.2 | 价格历史系统（pricing_history + 初始导入 + history API） | ✅ 已完成 |
 | 9.3 | 比较页增强（能力矩阵 + 价格趋势 + JSON-LD SoftwareApplication/BreadcrumbList） | ✅ 已完成 |
+| 9.4a | Benchmark 数据系统（categories + results + benchmarks API） | ✅ 已完成 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -43,6 +44,14 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] JSON-LD：Product → SoftwareApplication（applicationCategory "AI Model"、operatingSystem "Cloud API"、offers 价格）+ 新增 BreadcrumbList（Home > Compare > A vs B）；旧 Product schema 已删除
 - [x] i18n：7 语言新增 compare.capabilities / priceHistory / vision / reasoning / coding / audio / tools / longContext / noHistory 等键，键集一致
 - [x] 验证：check 0 错误；build 497 页（SSG 不减少）；en/zh-CN 随机页验证能力矩阵/价格历史/canonical/8×hreflang/SoftwareApplication×2/BreadcrumbList×1/Product×0 全通过
+
+## Phase 9.4a — Benchmark 数据系统 ✅ 已完成（git: feat: add benchmark data system）
+
+- [x] 迁移 0005：`benchmark_categories`（id/slug UNIQUE/name/description）+ `benchmark_results`（id/model_id FK/category_id FK/score/rank/dataset/version/source/tested_at，UNIQUE(model_id,category_id,dataset,version) + 索引 model/category/score）
+- [x] Seed：4 类别（coding/reasoning/math/vision）+ 9 模型 28 条结果（每模型 ≥2，source=manual/dataset=internal-demo/version=v1，INSERT OR IGNORE 幂等；注释明确为示例/人工录入数据）
+- [x] Worker API：`GET /api/models/:slug/benchmarks`（按 category 排序，返回 model + benchmarks[]；路由置于详情贪婪匹配之前，旧 API 兼容）
+- [x] 文档：database-design.md（ER：models → benchmark_results → benchmark_categories）+ roadmap 标记完成
+- [x] 验证：空库 0001-0005（9 表）/seed 4+28/重复 seed 幂等/外键 0/查询正常/UNIQUE 生效；worker typecheck、frontend check（0 错误）、build（497 页）、API 冒烟全通过
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

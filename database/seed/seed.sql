@@ -256,3 +256,87 @@ SELECT
   COALESCE(date(pr.updated_at), date('now')),
   'initial_import'
 FROM pricing pr;
+
+-- ---------------------------------------------------------------------------
+-- 8. Benchmark 数据（Phase 9.4a）
+-- ⚠️ 数据透明声明：以下 benchmark 分数为【示例/人工录入数据】（source='manual'、
+--    dataset='internal-demo'、version='v1'，0-100 口径），仅用于演示数据链路；
+--    正式上线前须以官方基准（如 HumanEval、MMLU、MMMU 等）实测数据替换。
+-- 幂等：INSERT OR IGNORE + UNIQUE(model_id, category_id, dataset, version)。
+-- ---------------------------------------------------------------------------
+INSERT OR IGNORE INTO benchmark_categories (slug, name, description) VALUES
+  ('coding', 'Coding', 'Code generation and programming tasks'),
+  ('reasoning', 'Reasoning', 'Logical and multi-step reasoning tasks'),
+  ('math', 'Math', 'Mathematical problem solving'),
+  ('vision', 'Vision', 'Multimodal image understanding tasks');
+
+INSERT OR IGNORE INTO benchmark_results
+  (model_id, category_id, score, rank, dataset, version, source, tested_at) VALUES
+  -- OpenAI
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 88, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 90, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'vision'), 92, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 92, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 91, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'math'), 89, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  ((SELECT id FROM models WHERE slug = 'openai/o3'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 89, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 96, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'math'), 94, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  -- Anthropic
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 90, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 92, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'vision'), 88, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 93, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 95, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'math'), 91, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  -- Google
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 90, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 93, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'math'), 92, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'vision'), 94, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 84, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 86, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'vision'), 90, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  -- DeepSeek
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 87, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 85, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'math'), 83, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'coding'), 85, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 93, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'),
+   (SELECT id FROM benchmark_categories WHERE slug = 'math'), 90, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01');

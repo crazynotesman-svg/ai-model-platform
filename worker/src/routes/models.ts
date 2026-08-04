@@ -216,3 +216,58 @@ export async function getPricingHistory(
     createdAt: (row.created_at as string | null) ?? null,
   }));
 }
+
+/** 基准结果记录（camelCase，供 /api/models/:slug/benchmarks） */
+export interface BenchmarkRecord {
+  category: string;
+  score: number;
+  rank: number | null;
+  dataset: string;
+  version: string;
+  source: string;
+  testedAt: string | null;
+}
+
+/**
+ * 模型基准结果（按 category 排序）。模型不存在返回 model=null（路由层映射 404）。
+ */
+export async function getBenchmarks(
+  db: D1Database,
+  slug: string,
+  lang: string,
+): Promise<{ model: { slug: string; name: string } | null; benchmarks: BenchmarkRecord[] }> {
+  const model = await db
+    .prepare(
+      `SELECT m.id, m.slug, COALESCE(mt.name, m.slug) AS name
+       FROM models m
+       LEFT JOIN model_translations mt ON mt.model_id = m.id AND mt.language = ?
+       WHERE m.slug = ?
+       LIMIT 1`,
+    )
+    .bind(lang, slug)
+    .first<{ id: number; slug: string; name: string }>();
+  if (!model) return { model: null, benchmarks: [] };
+
+  const { results } = await db
+    .prepare(
+      `SELECT bc.slug AS category, br.score, br.rank, br.dataset, br.version, br.source, br.tested_at
+       FROM benchmark_results br
+       JOIN benchmark_categories bc ON br.category_id = bc.id
+       WHERE br.model_id = ?
+       ORDER BY bc.slug ASC`,
+    )
+    .bind(model.id)
+    .all();
+  return {
+    model: { slug: model.slug, name: model.name },
+    benchmarks: (results ?? []).map((row) => ({
+      category: row.category as string,
+      score: row.score as number,
+      rank: (row.rank as number | null) ?? null,
+      dataset: row.dataset as string,
+      version: row.version as string,
+      source: row.source as string,
+      testedAt: (row.tested_at as string | null) ?? null,
+    })),
+  };
+}
