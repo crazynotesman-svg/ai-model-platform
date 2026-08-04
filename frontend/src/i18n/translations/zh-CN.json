@@ -130,5 +130,21 @@
   "benchmark.date": "日期",
   "benchmark.resultsTitle": "基准结果",
   "benchmark.compareTitle": "基准对比",
-  "benchmark.viewLeaderboard": "查看排行榜"
+  "benchmark.viewLeaderboard": "查看排行榜",
+  "ranking.pageTitle": "AI 模型排名",
+  "ranking.subtitle": "基于基准结果、能力、价格与上下文的透明可解释模型评分。",
+  "ranking.rank": "排名",
+  "ranking.model": "模型",
+  "ranking.score": "评分",
+  "ranking.benchmark": "基准",
+  "ranking.capability": "能力",
+  "ranking.efficiency": "价格效率",
+  "ranking.context": "上下文",
+  "ranking.overall": "综合",
+  "ranking.methodology": "评分方法",
+  "ranking.methodologyText": "综合 = 基准 50% + 能力 20% + 价格效率 20% + 上下文 10%。",
+  "ranking.bestValue": "最佳性价比",
+  "ranking.bestTitle": "最佳{category}AI 模型",
+  "ranking.resultsTitle": "综合排名",
+  "ranking.compareTitle": "排名对比"
 }

@@ -130,5 +130,21 @@
   "benchmark.date": "Fecha",
   "benchmark.resultsTitle": "Resultados de benchmark",
   "benchmark.compareTitle": "Comparación de benchmarks",
-  "benchmark.viewLeaderboard": "Ver clasificación"
+  "benchmark.viewLeaderboard": "Ver clasificación",
+  "ranking.pageTitle": "Clasificación de modelos de IA",
+  "ranking.subtitle": "Puntuaciones transparentes y explicables basadas en benchmarks, capacidades, precio y contexto.",
+  "ranking.rank": "Puesto",
+  "ranking.model": "Modelo",
+  "ranking.score": "Puntuación",
+  "ranking.benchmark": "Benchmark",
+  "ranking.capability": "Capacidad",
+  "ranking.efficiency": "Eficiencia de precio",
+  "ranking.context": "Contexto",
+  "ranking.overall": "General",
+  "ranking.methodology": "Metodología",
+  "ranking.methodologyText": "General = Benchmark 50% + Capacidad 20% + Eficiencia de precio 20% + Contexto 10%.",
+  "ranking.bestValue": "Mejor relación calidad-precio",
+  "ranking.bestTitle": "Mejores modelos de IA en {category}",
+  "ranking.resultsTitle": "Clasificación general",
+  "ranking.compareTitle": "Comparación de ranking"
 }

@@ -41,6 +41,7 @@ interface CatalogEntry {
     version: string;
     testedAt: string | null;
   }[];
+  ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
 }
 const catalog = catalogJson as Record<string, CatalogEntry>;
 
@@ -85,6 +86,7 @@ const entryOf = (m: CatalogEntry) => {
     capabilities: m.capabilities ?? [],
     pricingHistory: m.pricingHistory ?? [],
     benchmarks: m.benchmarks ?? [],
+    ranking: m.ranking,
   };
 };
 const A = entryOf(modelA);
@@ -268,6 +270,44 @@ const rows: { label: string; a: string; b: string }[] = [
         </table>
       </div>
     </section>
+
+    {/* Ranking Comparison（Phase 9.5）：评分公式见 docs/ranking-design.md */}
+    {A.ranking && B.ranking && (
+      <section class="mt-8">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          {t('ranking.compareTitle')}
+        </h2>
+        <div class="mt-3 overflow-x-auto rounded-xl border border-slate-800">
+          <table class="w-full min-w-[420px] text-left text-sm">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-900/80 text-slate-300">
+                <th scope="col" class="w-40 px-4 py-3 font-medium text-slate-500"></th>
+                <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{A.name}</th>
+                <th scope="col" class="px-4 py-3 font-semibold text-sky-300">{B.name}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { label: t('ranking.overall'), a: A.ranking.overall, b: B.ranking.overall },
+                { label: t('ranking.benchmark'), a: A.ranking.benchmark, b: B.ranking.benchmark },
+                { label: t('ranking.capability'), a: A.ranking.capability, b: B.ranking.capability },
+                { label: t('ranking.efficiency'), a: A.ranking.price, b: B.ranking.price },
+                { label: t('ranking.context'), a: A.ranking.context, b: B.ranking.context },
+              ].map((row) => (
+                <tr class="border-b border-slate-800/60 last:border-b-0">
+                  <th scope="row" class="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                    {row.label}
+                  </th>
+                  <td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-200">{row.a}</td>
+                  <td class="px-4 py-3 text-right font-semibold tabular-nums text-slate-200">{row.b}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-[11px] text-slate-600">{t('ranking.methodologyText')}</p>
+      </section>
+    )}
 
     {/* Benchmark Comparison（Phase 9.4b）：同 dataset/version 才比较，缺失 '—' */}
     <section class="mt-8">

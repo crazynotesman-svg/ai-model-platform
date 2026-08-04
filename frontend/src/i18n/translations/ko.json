@@ -130,5 +130,21 @@
   "benchmark.date": "날짜",
   "benchmark.resultsTitle": "벤치마크 결과",
   "benchmark.compareTitle": "벤치마크 비교",
-  "benchmark.viewLeaderboard": "리더보드 보기"
+  "benchmark.viewLeaderboard": "리더보드 보기",
+  "ranking.pageTitle": "AI 모델 랭킹",
+  "ranking.subtitle": "벤치마크 결과, 기능, 가격, 컨텍스트에 기반한 투명하고 설명 가능한 모델 점수.",
+  "ranking.rank": "순위",
+  "ranking.model": "모델",
+  "ranking.score": "점수",
+  "ranking.benchmark": "벤치마크",
+  "ranking.capability": "기능",
+  "ranking.efficiency": "가격 효율",
+  "ranking.context": "컨텍스트",
+  "ranking.overall": "종합",
+  "ranking.methodology": "평가 방법",
+  "ranking.methodologyText": "종합 = 벤치마크 50% + 기능 20% + 가격 효율 20% + 컨텍스트 10%.",
+  "ranking.bestValue": "최고 가성비",
+  "ranking.bestTitle": "최고의 {category} AI 모델",
+  "ranking.resultsTitle": "종합 랭킹",
+  "ranking.compareTitle": "랭킹 비교"
 }

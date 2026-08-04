@@ -1,0 +1,153 @@
+---
+/**
+ * AI 模型排名页：/{lang}/ranking/
+ *
+ * SSG：数据来自构建期 D1 导出 model-catalog.json（ranking 字段，公式见 docs/ranking-design.md）。
+ * 展示：Rank / Model / Score / Benchmark / Price / Capability（按 Overall Score 降序）。
+ * 移动端：横向滚动 + sticky 表头 + 卡片模式。
+ * SEO：CollectionPage + ItemList JSON-LD；行链接到比较页 /{lang}/compare/。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+interface CatalogEntry {
+  slug: string;
+  providerName: string;
+  translations: Partial<Record<string, { name?: string } | undefined>>;
+  ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
+}
+const catalog = catalogJson as Record<string, CatalogEntry>;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+interface RankRow {
+  rank: number;
+  slug: string;
+  name: string;
+  providerName: string;
+  ranking: NonNullable<CatalogEntry['ranking']>;
+}
+const rows: RankRow[] = [];
+for (const slug of MODEL_SLUGS) {
+  const m = catalog[slug];
+  if (!m?.ranking) continue;
+  const tr = m.translations[lang] ?? m.translations.en ?? {};
+  rows.push({
+    rank: 0,
+    slug: m.slug,
+    name: tr.name ?? m.slug,
+    providerName: m.providerName,
+    ranking: m.ranking,
+  });
+}
+rows.sort((a, b) => b.ranking.overall - a.ranking.overall);
+rows.forEach((r, i) => (r.rank = i + 1));
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: t('ranking.pageTitle'),
+      description: t('ranking.subtitle'),
+      url: pageUrl,
+    },
+    {
+      '@type': 'ItemList',
+      name: t('ranking.pageTitle'),
+      itemListElement: rows.map((r, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: r.name,
+        item: new URL(`/${lang}/models/${r.slug}/`, siteUrl).href,
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={t('ranking.pageTitle')} description={t('ranking.subtitle')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-5xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('ranking.pageTitle')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('ranking.subtitle')}</p>
+    <p class="mt-1 text-xs text-slate-600">{t('ranking.methodologyText')}</p>
+
+    {/* 表格模式（md 及以上） */}
+    <div class="mt-6 hidden overflow-x-auto rounded-xl border border-slate-800 md:block">
+      <table class="w-full min-w-[640px] text-left text-sm">
+        <thead class="sticky top-0 z-10">
+          <tr class="border-b border-slate-800 bg-slate-900 text-[11px] uppercase tracking-wide text-slate-500">
+            <th scope="col" class="px-4 py-3 font-medium">{t('ranking.rank')}</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('ranking.model')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.score')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.benchmark')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.efficiency')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.capability')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/50">
+              <td class="px-4 py-3 tabular-nums text-slate-400">{r.rank}</td>
+              <td class="px-4 py-3">
+                <a href={`/${lang}/models/${r.slug}/`} class="font-medium text-slate-100 hover:text-sky-300">
+                  {r.name}
+                </a>
+              </td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums text-sky-300">{r.ranking.overall}</td>
+              <td class="px-4 py-3 text-right tabular-nums text-slate-200">{r.ranking.benchmark}</td>
+              <td class="px-4 py-3 text-right tabular-nums text-slate-200">{r.ranking.price}</td>
+              <td class="px-4 py-3 text-right tabular-nums text-slate-200">{r.ranking.capability}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* 卡片模式（移动端） */}
+    <ul class="mt-6 space-y-3 md:hidden">
+      {rows.map((r) => (
+        <li class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+          <div class="flex items-baseline justify-between gap-3">
+            <a href={`/${lang}/models/${r.slug}/`} class="font-semibold text-white hover:text-sky-300">
+              {r.name}
+            </a>
+            <span class="text-lg font-bold tabular-nums text-sky-300">{r.ranking.overall}</span>
+          </div>
+          <p class="text-xs text-sky-400">{r.providerName}</p>
+          <dl class="mt-3 grid grid-cols-3 gap-2 text-center">
+            <div class="rounded-lg bg-slate-950 px-2 py-1.5">
+              <dt class="text-[10px] text-slate-500">{t('ranking.benchmark')}</dt>
+              <dd class="text-xs font-medium tabular-nums text-slate-200">{r.ranking.benchmark}</dd>
+            </div>
+            <div class="rounded-lg bg-slate-950 px-2 py-1.5">
+              <dt class="text-[10px] text-slate-500">{t('ranking.efficiency')}</dt>
+              <dd class="text-xs font-medium tabular-nums text-slate-200">{r.ranking.price}</dd>
+            </div>
+            <div class="rounded-lg bg-slate-950 px-2 py-1.5">
+              <dt class="text-[10px] text-slate-500">{t('ranking.capability')}</dt>
+              <dd class="text-xs font-medium tabular-nums text-slate-200">{r.ranking.capability}</dd>
+            </div>
+          </dl>
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-4 text-center">
+      <a href={`/${lang}/compare/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
+        {t('compare.pageTitle')} →
+      </a>
+    </p>
+  </div>
+</BaseLayout>

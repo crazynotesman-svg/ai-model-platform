@@ -1,0 +1,153 @@
+---
+/**
+ * Ranking SEO Landing 页：/{lang}/ranking/[mode]/
+ *
+ * SSG：7 语言 × 3 模式（coding / reasoning / best-value）= 21 页。
+ * 数据来自构建期 D1 导出 model-catalog.json（ranking 字段）。
+ * 排序键：coding/reasoning → 对应分类 Benchmark score；best-value → Price Efficiency。
+ * SEO：CollectionPage + ItemList JSON-LD。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { BENCHMARK_CATEGORIES } from '../../../lib/benchmark';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// 排序模式：coding / reasoning（benchmark 分类）| best-value（价格效率）
+// 注意：须 export（Astro 编译将非导出的模块级 const 移入组件闭包，getStaticPaths 无法引用）
+export const RANKING_MODES = [...BENCHMARK_CATEGORIES.map((c) => c.slug), 'best-value'];
+
+export function getStaticPaths() {
+  const paths: { params: { lang: string; mode: string } }[] = [];
+  for (const lang of LOCALES) {
+    for (const mode of RANKING_MODES) {
+      paths.push({ params: { lang, mode } });
+    }
+  }
+  return paths;
+}
+
+interface CatalogEntry {
+  slug: string;
+  providerName: string;
+  translations: Partial<Record<string, { name?: string } | undefined>>;
+  ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
+  benchmarks?: { category: string; score: number }[];
+}
+const catalog = catalogJson as Record<string, CatalogEntry>;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+const mode = Astro.params.mode as string;
+
+// 非法模式 → 404
+if (!RANKING_MODES.includes(mode)) {
+  return Astro.redirect('/404');
+}
+
+// 模式标签（标题插值用）
+const modeLabel =
+  mode === 'best-value'
+    ? t('ranking.bestValue')
+    : t(`benchmark.${mode}` as keyof typeof t);
+
+interface ModeRow {
+  rank: number;
+  slug: string;
+  name: string;
+  providerName: string;
+  score: number;
+}
+const rows: ModeRow[] = [];
+for (const slug of MODEL_SLUGS) {
+  const m = catalog[slug];
+  if (!m) continue;
+  let score: number | null = null;
+  if (mode === 'best-value') {
+    score = m.ranking?.price ?? null;
+  } else {
+    score = (m.benchmarks ?? []).find((b) => b.category === mode)?.score ?? null;
+  }
+  if (score == null) continue;
+  const tr = m.translations[lang] ?? m.translations.en ?? {};
+  rows.push({
+    rank: 0,
+    slug: m.slug,
+    name: tr.name ?? m.slug,
+    providerName: m.providerName,
+    score,
+  });
+}
+rows.sort((a, b) => b.score - a.score);
+rows.forEach((r, i) => (r.rank = i + 1));
+
+const pageTitle = t('ranking.bestTitle', { category: modeLabel });
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: pageTitle,
+      description: t('ranking.subtitle'),
+      url: pageUrl,
+    },
+    {
+      '@type': 'ItemList',
+      name: pageTitle,
+      itemListElement: rows.map((r, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: r.name,
+        item: new URL(`/${lang}/models/${r.slug}/`, siteUrl).href,
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout title={pageTitle} description={t('ranking.subtitle')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <a href={`/${lang}/ranking/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
+      ← {t('ranking.pageTitle')}
+    </a>
+
+    <h1 class="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">{pageTitle}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('ranking.subtitle')}</p>
+
+    <div class="mt-6 overflow-x-auto rounded-xl border border-slate-800">
+      <table class="w-full min-w-[480px] text-left text-sm">
+        <thead class="sticky top-0 z-10">
+          <tr class="border-b border-slate-800 bg-slate-900 text-[11px] uppercase tracking-wide text-slate-500">
+            <th scope="col" class="px-4 py-3 font-medium">{t('ranking.rank')}</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('ranking.model')}</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('leaderboard.provider')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.score')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr class="border-b border-slate-800/60 last:border-b-0 hover:bg-slate-900/50">
+              <td class="px-4 py-3 tabular-nums text-slate-400">{r.rank}</td>
+              <td class="px-4 py-3">
+                <a href={`/${lang}/models/${r.slug}/`} class="font-medium text-slate-100 hover:text-sky-300">
+                  {r.name}
+                </a>
+              </td>
+              <td class="px-4 py-3 text-slate-400">{r.providerName}</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums text-sky-300">{r.score}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-4 text-center">
+      <a href={`/${lang}/compare/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
+        {t('compare.pageTitle')} →
+      </a>
+    </p>
+  </div>
+</BaseLayout>

@@ -37,6 +37,7 @@ interface ModelCatalogEntry {
     version: string;
     testedAt: string | null;
   }[];
+  ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
 }
 const catalog = catalogJson as Record<string, ModelCatalogEntry>;
 
@@ -148,6 +149,33 @@ const detailRows: { label: string; value: string }[] = [
             </li>
           ))}
         </ul>
+      </section>
+    )}
+
+    {/* Overall Ranking Card（Phase 9.5）：评分公式见 docs/ranking-design.md */}
+    {data.ranking && (
+      <section class="mt-6">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+          {t('ranking.resultsTitle')}
+        </h2>
+        <div class="mt-2 grid gap-2 sm:grid-cols-5">
+          <div class="rounded-xl border border-sky-500/40 bg-sky-500/10 p-4 text-center">
+            <p class="text-[11px] uppercase tracking-wide text-sky-400">{t('ranking.overall')}</p>
+            <p class="mt-1 text-2xl font-bold tabular-nums text-white">{data.ranking.overall}</p>
+          </div>
+          {[
+            { label: t('ranking.benchmark'), value: data.ranking.benchmark },
+            { label: t('ranking.capability'), value: data.ranking.capability },
+            { label: t('ranking.efficiency'), value: data.ranking.price },
+            { label: t('ranking.context'), value: data.ranking.context },
+          ].map((item) => (
+            <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+              <p class="text-[11px] uppercase tracking-wide text-slate-500">{item.label}</p>
+              <p class="mt-1 text-xl font-semibold tabular-nums text-slate-100">{item.value}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-2 text-[11px] text-slate-600">{t('ranking.methodologyText')}</p>
       </section>
     )}
 

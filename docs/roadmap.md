@@ -20,7 +20,8 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.3 | 比较页增强（能力矩阵 + 价格趋势 + JSON-LD SoftwareApplication/BreadcrumbList） | ✅ 已完成 |
 | 9.4a | Benchmark 数据系统（categories + results + benchmarks API） | ✅ 已完成 |
 | 9.4b | Benchmark 展示系统（Leaderboard + Benchmark SEO 页面） | ✅ 已完成 |
-| 9.5 | AI Model Ranking 算法体系（综合评分/趋势/推荐） | ⬜ 待开发 |
+| 9.5 | AI Model Ranking 算法体系（评分引擎 + 排名 API + SEO 页面） | ✅ 已完成 |
+| 9.6 | AI Model Ranking 增强（趋势/推荐/快照） | ⬜ 待开发 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -64,6 +65,18 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] 详情页 Benchmark Results 区块（Benchmark/Score/Dataset/Version）；比较页 Benchmark Comparison（同 dataset+version 才比较，缺失 '—'）
 - [x] i18n：leaderboard.* + benchmark.* 26 键 × 7 语言（键集一致）
 - [x] 验证：check 0 errors；build 539 页（497+7+7+28）；SEO 产物全命中（leaderboard ItemList/benchmarks CollectionPage en+zh/compare/详情页）
+
+## Phase 9.5 — AI Model Ranking 算法体系 ✅ 已完成（git: feat: add ai model ranking system）
+
+- [x] 评分引擎：`worker/src/services/ranking.ts`（calculateFromData 纯函数 + calculateModelScore + rankModels，TS strict；公式权威定义 docs/ranking-design.md）
+- [x] 评分公式：Overall = Benchmark×50% + Capability×20% + Price Efficiency×20% + Context×10%（全百分制，透明可解释）
+- [x] Worker API：`GET /api/ranking?lang=&category=`（overall 默认 / best-value / 分类模式；rank 编号，camelCase breakdown）
+- [x] SSG 导出：export-models.mjs 内置同公式（互引注释），model-catalog.json 新增 `ranking` 字段
+- [x] 页面：`/{lang}/ranking/`（Rank/Model/Score/Benchmark/Price/Capability，移动端卡片+横向+sticky，CollectionPage+ItemList）+ `/{lang}/ranking/[mode]/`（coding/reasoning/best-value × 7 语言 = 21 页）
+- [x] 详情页 Overall Ranking Card（5 卡片）；比较页 Ranking Comparison（Overall/Benchmark/Capability/Price/Context 五行）
+- [x] i18n：ranking.* 17 键 × 7 语言（键集一致）
+- [x] 验证：worker typecheck / check 0 errors / build 581 页 / API 冒烟（rankings 11 条降序、category=coding 模式）/ SEO 6/6（ranking 索引+分类+best-value en/zh、详情页、比较页）
+- [x] 踩坑：Astro 中 getStaticPaths 引用的模块级 const 需 `export`（否则被编译闭包化报 ReferenceError）
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

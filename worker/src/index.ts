@@ -18,6 +18,7 @@ import { getBenchmarks, getModelBySlug, getPricingHistory, listModels } from './
 import { listNews } from './routes/news';
 import { buildNewsRss } from './routes/rss';
 import { collectNews } from './collector';
+import { rankModels } from './services/ranking';
 
 export interface Env {
   /** Cloudflare D1 数据库绑定（wrangler.toml 声明） */
@@ -102,6 +103,22 @@ export default {
         });
       } catch (err) {
         console.error('buildNewsRss failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
+    // 模型排名：/api/ranking?lang=&category=（Phase 9.5；category 可空，best-value 为特殊模式）
+    if (url.pathname === '/api/ranking') {
+      try {
+        const rankings = await rankModels(env.DB, {
+          lang: url.searchParams.get('lang') ?? 'en',
+          category: url.searchParams.get('category') || null,
+        });
+        // 附 rank 编号（服务端排序后）
+        const withRank = rankings.map((r, i) => ({ rank: i + 1, ...r }));
+        return json({ rankings: withRank });
+      } catch (err) {
+        console.error('rankModels failed:', err);
         return json({ error: 'Internal Server Error' }, 500);
       }
     }

@@ -130,5 +130,21 @@
   "benchmark.date": "Datum",
   "benchmark.resultsTitle": "Benchmark-Ergebnisse",
   "benchmark.compareTitle": "Benchmark-Vergleich",
-  "benchmark.viewLeaderboard": "Rangliste ansehen"
+  "benchmark.viewLeaderboard": "Rangliste ansehen",
+  "ranking.pageTitle": "KI-Modell-Ranking",
+  "ranking.subtitle": "Transparente, erklärbare Modell-Scores basierend auf Benchmarks, Fähigkeiten, Preis und Kontext.",
+  "ranking.rank": "Rang",
+  "ranking.model": "Modell",
+  "ranking.score": "Punktzahl",
+  "ranking.benchmark": "Benchmark",
+  "ranking.capability": "Fähigkeit",
+  "ranking.efficiency": "Preiseffizienz",
+  "ranking.context": "Kontext",
+  "ranking.overall": "Gesamt",
+  "ranking.methodology": "Methodik",
+  "ranking.methodologyText": "Gesamt = Benchmark 50% + Fähigkeit 20% + Preiseffizienz 20% + Kontext 10%.",
+  "ranking.bestValue": "Bestes Preis-Leistungs-Verhältnis",
+  "ranking.bestTitle": "Beste {category}-KI-Modelle",
+  "ranking.resultsTitle": "Gesamtwertung",
+  "ranking.compareTitle": "Ranking-Vergleich"
 }

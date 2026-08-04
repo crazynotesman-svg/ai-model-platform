@@ -163,6 +163,32 @@ for (const entry of Object.values(catalog)) {
   entry.capabilities.sort((a, b) => a.capability.localeCompare(b.capability));
 }
 
+// ---- Phase 9.5：Ranking 计算（公式与 worker/src/services/ranking.ts 保持一致，权威定义见 docs/ranking-design.md）----
+const TOTAL_CAPABILITIES = 7;
+const CONTEXT_FULL_SCORE = 200_000;
+const round1 = (n) => Math.round(n * 10) / 10;
+const maxInputPrice = Math.max(0, ...Object.values(catalog).map((e) => e.inputPrice ?? 0));
+for (const entry of Object.values(catalog)) {
+  const scores = entry.benchmarks.map((b) => b.score);
+  const benchmark = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : 0;
+  const capability =
+    (entry.capabilities.filter((c) => c.supported).length / TOTAL_CAPABILITIES) * 100;
+  const priceEfficiency =
+    entry.inputPrice != null && entry.inputPrice > 0
+      ? Math.min((maxInputPrice / entry.inputPrice) * 100, 100)
+      : 0;
+  const context =
+    entry.contextWindow != null ? Math.min(entry.contextWindow / CONTEXT_FULL_SCORE, 1) * 100 : 0;
+  const overall = benchmark * 0.5 + capability * 0.2 + priceEfficiency * 0.2 + context * 0.1;
+  entry.ranking = {
+    overall: round1(overall),
+    benchmark: round1(benchmark),
+    capability: round1(capability),
+    price: round1(priceEfficiency),
+    context: round1(context),
+  };
+}
+
 // ---- 4. 写出生成文件 ----
 mkdirSync(GENERATED_DIR, { recursive: true });
 writeFileSync(join(GENERATED_DIR, 'model-catalog.json'), JSON.stringify(catalog, null, 2) + '\n', 'utf-8');

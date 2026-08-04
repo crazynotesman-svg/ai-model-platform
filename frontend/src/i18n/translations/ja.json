@@ -130,5 +130,21 @@
   "benchmark.date": "日付",
   "benchmark.resultsTitle": "ベンチマーク結果",
   "benchmark.compareTitle": "ベンチマーク比較",
-  "benchmark.viewLeaderboard": "リーダーボードを見る"
+  "benchmark.viewLeaderboard": "リーダーボードを見る",
+  "ranking.pageTitle": "AIモデルランキング",
+  "ranking.subtitle": "ベンチマーク結果・機能・価格・コンテキストに基づく透明で説明可能なモデルスコア。",
+  "ranking.rank": "順位",
+  "ranking.model": "モデル",
+  "ranking.score": "スコア",
+  "ranking.benchmark": "ベンチマーク",
+  "ranking.capability": "機能",
+  "ranking.efficiency": "価格効率",
+  "ranking.context": "コンテキスト",
+  "ranking.overall": "総合",
+  "ranking.methodology": "評価方法",
+  "ranking.methodologyText": "総合 = ベンチマーク50% + 機能20% + 価格効率20% + コンテキスト10%。",
+  "ranking.bestValue": "最高のコスパ",
+  "ranking.bestTitle": "最高の{category}AIモデル",
+  "ranking.resultsTitle": "総合ランキング",
+  "ranking.compareTitle": "ランキング比較"
 }

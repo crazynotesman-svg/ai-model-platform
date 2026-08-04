@@ -130,5 +130,21 @@
   "benchmark.date": "Date",
   "benchmark.resultsTitle": "Benchmark Results",
   "benchmark.compareTitle": "Benchmark Comparison",
-  "benchmark.viewLeaderboard": "View Leaderboard"
+  "benchmark.viewLeaderboard": "View Leaderboard",
+  "ranking.pageTitle": "AI Model Ranking",
+  "ranking.subtitle": "Transparent, explainable model scores based on benchmark results, capabilities, price and context.",
+  "ranking.rank": "Rank",
+  "ranking.model": "Model",
+  "ranking.score": "Score",
+  "ranking.benchmark": "Benchmark",
+  "ranking.capability": "Capability",
+  "ranking.efficiency": "Price Efficiency",
+  "ranking.context": "Context",
+  "ranking.overall": "Overall",
+  "ranking.methodology": "Methodology",
+  "ranking.methodologyText": "Overall = Benchmark 50% + Capability 20% + Price Efficiency 20% + Context 10%.",
+  "ranking.bestValue": "Best Value",
+  "ranking.bestTitle": "Best {category} AI Models",
+  "ranking.resultsTitle": "Overall Ranking",
+  "ranking.compareTitle": "Ranking Comparison"
 }
