@@ -152,3 +152,88 @@ INSERT OR IGNORE INTO news (id, title, content, language, source, link, category
    'Google 更新 Gemini 2.5 系列，Flash 版主打低成本高吞吐',
    'Gemini 2.5 Flash 提供百万上下文与多模态能力，价格仅为主流旗舰模型的零头。',
    'zh-CN', 'Google AI', 'https://blog.google/technology/ai/google-gemini-update-june-2025/', 'product', '2025-06-17');
+
+-- ---------------------------------------------------------------------------
+-- 6. 模型能力（9 模型 × 7 能力 = 63 条，Phase 9.1）
+-- capability 取值：vision / reasoning / coding / audio / function_calling / multimodal / long_context
+-- 判定口径（演示数据，上线前须核对官方文档）：
+--   long_context  = context_window >= 200K tokens；
+--   audio         = 音频输入能力（语音）；o3/deepseek 系列为纯文本模型。
+-- INSERT OR IGNORE + UNIQUE(model_id, capability) 保证幂等。
+-- ---------------------------------------------------------------------------
+INSERT OR IGNORE INTO model_capabilities (model_id, capability, supported) VALUES
+  -- OpenAI
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'vision', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'audio', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'multimodal', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4o'), 'long_context', 0),
+
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'vision', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'audio', 0),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'multimodal', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/gpt-4.1'), 'long_context', 1),
+
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'vision', 0),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'audio', 0),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'multimodal', 0),
+  ((SELECT id FROM models WHERE slug = 'openai/o3'), 'long_context', 1),
+
+  -- Anthropic
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'vision', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'audio', 0),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'multimodal', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4'), 'long_context', 1),
+
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'vision', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'audio', 0),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'multimodal', 1),
+  ((SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4'), 'long_context', 1),
+
+  -- Google
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'vision', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'audio', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'multimodal', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro'), 'long_context', 1),
+
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'vision', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'audio', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'multimodal', 1),
+  ((SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash'), 'long_context', 1),
+
+  -- DeepSeek
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'vision', 0),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'audio', 0),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'multimodal', 0),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat'), 'long_context', 0),
+
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'vision', 0),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'reasoning', 1),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'coding', 1),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'audio', 0),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'function_calling', 1),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'multimodal', 0),
+  ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'), 'long_context', 0);

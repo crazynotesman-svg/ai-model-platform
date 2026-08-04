@@ -19,6 +19,7 @@ const SORT_ORDERS: Record<string, string> = {
 
 /** 列表/详情共用的查询字段（保持返回结构一致） */
 const MODEL_SELECT = `
+  m.id,
   m.slug,
   m.model_type,
   m.context_window,
@@ -69,7 +70,7 @@ export async function listModels(
   return (results ?? []).map(normalizeModel);
 }
 
-/** 模型详情（按 slug） */
+/** 模型详情（按 slug）；附带 capabilities（Phase 9.1） */
 export async function getModelBySlug(
   db: D1Database,
   slug: string,
@@ -81,11 +82,26 @@ export async function getModelBySlug(
     WHERE m.slug = ?
   `;
   const row = await db.prepare(sql).bind(lang, slug).first<ModelRow>();
-  return row ? normalizeModel(row) : null;
+  if (!row) return null;
+
+  const model = normalizeModel(row);
+  // 能力列表：按能力名排序（vision/reasoning/coding/audio/function_calling/multimodal/long_context）
+  const caps = await db
+    .prepare(
+      'SELECT capability, supported FROM model_capabilities WHERE model_id = ? ORDER BY capability',
+    )
+    .bind(row.id)
+    .all<{ capability: string; supported: number }>();
+  model.capabilities = (caps.results ?? []).map((c) => ({
+    capability: c.capability,
+    supported: c.supported === 1,
+  }));
+  return model;
 }
 
 /** D1 原始行（snake_case） */
 interface ModelRow {
+  id: number;
   slug: string;
   model_type: string;
   context_window: number | null;
@@ -99,6 +115,12 @@ interface ModelRow {
   currency: string | null;
   unit: string | null;
   languages: string | null;
+}
+
+/** 模型能力项（Phase 9.1，仅详情接口返回） */
+export interface ModelCapability {
+  capability: string;
+  supported: boolean;
 }
 
 /** API 返回的模型对象（camelCase） */
@@ -116,6 +138,8 @@ export interface ModelRecord {
   currency: string | null;
   unit: string | null;
   languages: string[];
+  /** 能力列表（详情接口附带；列表接口不返回，保持旧字段兼容） */
+  capabilities?: ModelCapability[];
 }
 
 /** 行 → API 对象：解析 JSON 字段与语言列表 */

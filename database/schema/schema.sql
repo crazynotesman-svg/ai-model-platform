@@ -81,9 +81,23 @@ CREATE TABLE IF NOT EXISTS news (
 );
 
 -- ---------------------------------------------------------------------------
+-- model_capabilities：模型能力（vision/reasoning/coding/audio/function_calling/multimodal/long_context ...）
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS model_capabilities (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  model_id    INTEGER NOT NULL REFERENCES models(id) ON DELETE CASCADE,
+  capability  TEXT NOT NULL,                     -- vision / reasoning / coding / audio / function_calling / multimodal / long_context ...
+  supported   INTEGER NOT NULL DEFAULT 1,        -- 1=支持 0=不支持
+  created_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  UNIQUE (model_id, capability)
+);
+
+-- ---------------------------------------------------------------------------
 -- 索引（查询热路径）
 -- ---------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_models_provider ON models(provider);
 CREATE INDEX IF NOT EXISTS idx_model_translations_model ON model_translations(model_id);
 CREATE INDEX IF NOT EXISTS idx_pricing_model ON pricing(model_id);
 CREATE INDEX IF NOT EXISTS idx_news_language_published ON news(language, published_at DESC);
+CREATE INDEX IF NOT EXISTS idx_model_capabilities_model ON model_capabilities(model_id);
+CREATE INDEX IF NOT EXISTS idx_model_capabilities_capability ON model_capabilities(capability);

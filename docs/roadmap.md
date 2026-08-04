@@ -15,6 +15,15 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 7 | AI 行业资讯（News Collector Service + Cron + 列表页） | ✅ 已完成 |
 | 8 | SEO/性能打磨 + GitHub Actions 自动部署 | ✅ 已完成 |
 | 9 | 全球化收尾（本地化 QA、隐私友好统计、反馈通道） | ⬜ 待开发 |
+| 9.1 | 模型能力数据库（model_capabilities + 详情 API 扩展） | ✅ 已完成 |
+
+## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
+
+- [x] 迁移 0003：`model_capabilities` 表（id / model_id FK CASCADE / capability / supported / created_at，UNIQUE(model_id, capability) + 双索引）
+- [x] Seed：9 模型 × 7 能力（vision/reasoning/coding/audio/function_calling/multimodal/long_context）= 63 条，INSERT OR IGNORE 幂等
+- [x] Worker 详情 API：`GET /api/models/:slug` 返回 `capabilities[]`（旧字段完全兼容，列表接口不变）
+- [x] 文档：database-design.md ER 图 + 表说明；roadmap 标记完成
+- [x] 验证：空库迁移/seed/幂等/外键/查询全通过；worker typecheck、frontend check（0 错误）、build（497 页）全通过
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

@@ -9,6 +9,7 @@ erDiagram
     PROVIDERS ||--o{ MODELS : "提供"
     MODELS ||--o{ MODEL_TRANSLATIONS : "多语言"
     MODELS ||--o{ PRICING : "定价"
+    MODELS ||--o{ MODEL_CAPABILITIES : "能力"
 
     PROVIDERS {
         integer id PK
@@ -41,6 +42,13 @@ erDiagram
         text currency
         text unit
         text updated_at
+    }
+    MODEL_CAPABILITIES {
+        integer id PK
+        integer model_id FK
+        text capability
+        integer supported
+        text created_at
     }
     NEWS {
         integer id PK
@@ -86,6 +94,19 @@ erDiagram
 | name | TEXT | 本地化展示名 |
 | description | TEXT | 本地化描述 |
 | use_cases | TEXT | JSON 数组字符串（如 `["翻译","客服"]`） |
+
+### model_capabilities — 模型能力（Phase 9.1）
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| id | INTEGER PK | 自增主键 |
+| model_id | INTEGER FK | → models.id（ON DELETE CASCADE，删除模型自动清理） |
+| capability | TEXT | 能力名（自由文本，可扩展）：`vision` / `reasoning` / `coding` / `audio` / `function_calling` / `multimodal` / `long_context` … |
+| supported | INTEGER | SQLite 布尔：1=支持 0=不支持（默认 1） |
+| created_at | TEXT | 时间戳 |
+| UNIQUE | (model_id, capability) | 每模型每能力仅一条（配合 INSERT OR IGNORE 幂等 seed） |
+
+索引：`(model_id)` 按模型查能力；`(capability)` 按能力筛模型。能力判定口径（seed 注释）：`long_context` = context_window ≥ 200K tokens；`audio` = 音频输入能力（o3/deepseek 为纯文本模型）。
 | UNIQUE | (model_id, language) | 每模型每语言一条 |
 
 ### pricing — 定价
