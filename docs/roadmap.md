@@ -22,7 +22,9 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.4b | Benchmark 展示系统（Leaderboard + Benchmark SEO 页面） | ✅ 已完成 |
 | 9.5 | AI Model Ranking 算法体系（评分引擎 + 排名 API + SEO 页面） | ✅ 已完成 |
 | 9.6 | AI Model Ranking 增强（趋势/推荐/快照） | ✅ 已完成 |
-| 9.7 | 评测平台收尾（数据源接入、合规、v1.0） | ⬜ 待开发 |
+| 9.7 | 评测平台收尾（数据源接入、合规、v1.0） | ✅ 已完成 |
+| v1.0 | **AI Model Platform v1.0 发布候选**（数据透明 + API v1 + 595 页） | 🎉 发布候选 |
+| v2 | 用户体系 / 社区 / 商业化 / 自动 benchmark pipeline | ⬜ 规划中 |
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
@@ -90,6 +92,19 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 - [x] i18n：trend.* / snapshot.* / recommendation.* 24 键 × 7 语言（键集一致）
 - [x] 文档：docs/ranking-trend-design.md；roadmap 标记完成
 - [x] 验证：空库 0001-0006（10 表）/UNIQUE/FK/CASCADE；worker typecheck / check 0 errors / build 588 页；API 冒烟（trend 3 条 history+change、404、recommendations 4 项）；SEO 全命中（Rank Change/趋势符号/recommendations 页/详情页 polyline/compare 趋势）
+
+## Phase 9.7 — v1.0 收尾（数据透明 + 合规 + 发布准备） ✅ 已完成（git: feat: prepare v1 launch with data transparency）
+
+- [x] 迁移 0007：benchmark_results 加 source_url / source_type / verified_at / verification_status（默认 unverified，internal-demo 标记 source_type=internal）
+- [x] 迁移 0008：pricing_history 加 source_url / verification_status（默认 unverified）
+- [x] 迁移 0009：models 加 last_verified_at / data_status（默认 active）
+- [x] Worker API：模型详情返回 lastVerifiedAt / dataStatus（旧字段完全兼容）
+- [x] 前端：详情页 Data Status Card（Status + Last verified，i18n）；`/{lang}/data-policy/` 透明页（7 语言：Data Sources / Verification Status / Update Frequency / Transparency Statement，WebPage JSON-LD）
+- [x] API 版本化：`/api/v1/*` 与 `/api/*` 等价（pathname 规范化复用同一 handler，旧 API 保留；3 组接口双版本 deepEqual 一致）
+- [x] SEO：sitemap 含 models/compare/benchmark/ranking/recommendations/data-policy 全量；data-policy WebPage schema
+- [x] 文档：docs/v1-launch-report.md（架构/数据库/API/SEO/性能/安全/数据透明/已知限制 + 上线前必做）
+- [x] 验证：空库 0001-0009（10 表）/seed/幂等/FK/UNIQUE；worker typecheck / check 0 errors（35 files）/ build 596 HTML（595 页 + 404）；API 双版本一致；SEO 产物全命中
+- [x] 踩坑：Astro 嵌套目录页（[lang]/data-policy/index.astro）import 需多一层 ../../../；API 版本剥离需 replace(/^\/api\/v1/, '/api') 保留 /api 前缀
 
 ## Phase 8 — 生产环境准备 ✅ 已完成（上线检查报告见 docs/launch-check-report.md）
 

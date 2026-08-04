@@ -24,6 +24,8 @@ const MODEL_SELECT = `
   m.model_type,
   m.context_window,
   m.release_date,
+  m.last_verified_at,
+  m.data_status,
   p.name AS provider_name,
   COALESCE(mt.name, m.slug) AS name,
   mt.description,
@@ -106,6 +108,8 @@ interface ModelRow {
   model_type: string;
   context_window: number | null;
   release_date: string | null;
+  last_verified_at: string | null;
+  data_status: string | null;
   provider_name: string;
   name: string;
   description: string | null;
@@ -138,6 +142,9 @@ export interface ModelRecord {
   currency: string | null;
   unit: string | null;
   languages: string[];
+  /** 数据验证（Phase 9.7）：最近核验时间与数据状态 */
+  lastVerifiedAt: string | null;
+  dataStatus: string;
   /** 能力列表（详情接口附带；列表接口不返回，保持旧字段兼容） */
   capabilities?: ModelCapability[];
 }
@@ -149,7 +156,8 @@ function normalizeModel(row: ModelRow): ModelRecord {
     useCases = row.use_cases ? (JSON.parse(row.use_cases) as string[]) : null;
   } catch {
     useCases = null; // 非法 JSON 时安全降级
-  }  return {
+  }
+  return {
     slug: row.slug,
     modelType: row.model_type,
     contextWindow: row.context_window,
@@ -163,6 +171,8 @@ function normalizeModel(row: ModelRow): ModelRecord {
     currency: row.currency,
     unit: row.unit,
     languages: row.languages ? row.languages.split(',') : [],
+    lastVerifiedAt: row.last_verified_at,
+    dataStatus: row.data_status ?? 'active',
   };
 }
 

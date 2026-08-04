@@ -40,6 +40,8 @@ interface ModelCatalogEntry {
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
   trend?: { rankChange: number | null; scoreChange: number | null } | null;
   rankingHistory?: { date: string; rank: number; score: number }[];
+  lastVerifiedAt: string | null;
+  dataStatus: string;
 }
 const catalog = catalogJson as Record<string, ModelCatalogEntry>;
 
@@ -169,6 +171,42 @@ const detailRows: { label: string; value: string }[] = [
         </ul>
       </section>
     )}
+
+    {/* Data Status Card（Phase 9.7）：数据核验状态透明展示 */}
+    <section class="mt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+        {t('model.dataStatusTitle')}
+      </h2>
+      <dl class="mt-2 grid gap-px overflow-hidden rounded-xl border border-slate-800 bg-slate-800 sm:grid-cols-2">
+        <div class="flex items-center justify-between gap-4 bg-slate-950 px-4 py-3">
+          <dt class="text-sm text-slate-500">{t('model.status')}</dt>
+          <dd
+            class={
+              'rounded-full px-2.5 py-0.5 text-xs font-medium ' +
+              (data.dataStatus === 'active'
+                ? 'bg-emerald-500/15 text-emerald-300'
+                : data.dataStatus === 'deprecated'
+                  ? 'bg-amber-500/15 text-amber-300'
+                  : 'bg-slate-500/15 text-slate-300')
+            }
+          >
+            {t(
+              (data.dataStatus === 'active'
+                ? 'model.statusActive'
+                : data.dataStatus === 'deprecated'
+                  ? 'model.statusDeprecated'
+                  : 'model.statusRetired') as keyof typeof t,
+            )}
+          </dd>
+        </div>
+        <div class="flex items-center justify-between gap-4 bg-slate-950 px-4 py-3">
+          <dt class="text-sm text-slate-500">{t('model.lastVerified')}</dt>
+          <dd class="text-sm font-medium text-slate-100">
+            {data.lastVerifiedAt ?? t('model.neverVerified')}
+          </dd>
+        </div>
+      </dl>
+    </section>
 
     {/* Overall Ranking Card（Phase 9.5）：评分公式见 docs/ranking-design.md */}
     {data.ranking && (

@@ -68,13 +68,18 @@ export default {
       return json({ error: 'Method Not Allowed' }, 405);
     }
 
+    // API 版本化（Phase 9.7）：/api/v1/* 与 /api/* 等价（复用同一套 handler，旧 API 保留）
+    const pathname = url.pathname.startsWith('/api/v1/')
+      ? url.pathname.replace(/^\/api\/v1/, '/api')
+      : url.pathname;
+
     // 健康检查
-    if (url.pathname === '/' || url.pathname === '/api/health') {
+    if (pathname === '/' || pathname === '/api/health') {
       return json({ status: 'ok', service: 'ai-model-platform-api', version: '0.3.0' });
     }
 
     // 新闻列表：/api/news?lang=&category=
-    if (url.pathname === '/api/news') {
+    if (pathname === '/api/news') {
       try {
         const news = await listNews(env.DB, {
           lang: url.searchParams.get('lang') || null,
@@ -88,13 +93,13 @@ export default {
     }
 
     // 手动触发新闻采集：/api/news/refresh（本地调试/运维；生产由 Cron 调度）
-    if (url.pathname === '/api/news/refresh') {
+    if (pathname === '/api/news/refresh') {
       const result = await collectNews(env);
       return json({ ok: true, ...result }, 200, { 'Cache-Control': 'no-store' });
     }
 
     // 新闻 RSS feed：/rss.xml（动态生成，来自 D1）
-    if (url.pathname === '/rss.xml') {
+    if (pathname === '/rss.xml') {
       try {
         const xml = await buildNewsRss(env.DB, url.origin);
         return new Response(xml, {
@@ -111,7 +116,7 @@ export default {
     }
 
     // 模型推荐：/api/recommendations?lang=（Phase 9.6）
-    if (url.pathname === '/api/recommendations') {
+    if (pathname === '/api/recommendations') {
       try {
         const recommendations = await getRecommendations(env.DB, url.searchParams.get('lang') ?? 'en');
         return json({ recommendations });
@@ -122,7 +127,7 @@ export default {
     }
 
     // 排名趋势：/api/ranking/trend/:slug?mode=（Phase 9.6，默认 overall）
-    const trendMatch = url.pathname.match(/^\/api\/ranking\/trend\/(.+)$/);
+    const trendMatch = pathname.match(/^\/api\/ranking\/trend\/(.+)$/);
     if (trendMatch) {
       try {
         const slug = decodeURIComponent(trendMatch[1]);
@@ -136,7 +141,7 @@ export default {
     }
 
     // 模型排名：/api/ranking?lang=&category=（Phase 9.5；category 可空，best-value 为特殊模式）
-    if (url.pathname === '/api/ranking') {
+    if (pathname === '/api/ranking') {
       try {
         const rankings = await rankModels(env.DB, {
           lang: url.searchParams.get('lang') ?? 'en',
@@ -152,7 +157,7 @@ export default {
     }
 
     // 模型列表：/api/models
-    if (url.pathname === '/api/models') {
+    if (pathname === '/api/models') {
       try {
         const models = await listModels(env.DB, {
           lang: url.searchParams.get('lang') ?? 'en',
@@ -168,7 +173,7 @@ export default {
 
     // 模型基准结果：/api/models/:slug/benchmarks（Phase 9.4a）
     // 注意：必须放在详情路由之前（详情用贪婪捕获 (.+)，否则会吞掉后缀）
-    const benchMatch = url.pathname.match(/^\/api\/models\/(.+)\/benchmarks$/);
+    const benchMatch = pathname.match(/^\/api\/models\/(.+)\/benchmarks$/);
     if (benchMatch) {
       try {
         const slug = decodeURIComponent(benchMatch[1]);
@@ -183,7 +188,7 @@ export default {
 
     // 模型价格历史：/api/models/:slug/pricing-history（Phase 9.2）
     // 注意：必须放在详情路由之前（详情用贪婪捕获 (.+)，否则会吞掉后缀）
-    const historyMatch = url.pathname.match(/^\/api\/models\/(.+)\/pricing-history$/);
+    const historyMatch = pathname.match(/^\/api\/models\/(.+)\/pricing-history$/);
     if (historyMatch) {
       try {
         const slug = decodeURIComponent(historyMatch[1]);
@@ -200,7 +205,7 @@ export default {
     }
 
     // 模型详情：/api/models/:slug（slug 含 /，如 openai/gpt-4o，用贪婪捕获）
-    const detailMatch = url.pathname.match(/^\/api\/models\/(.+)$/);
+    const detailMatch = pathname.match(/^\/api\/models\/(.+)$/);
     if (detailMatch) {
       try {
         const slug = decodeURIComponent(detailMatch[1]);

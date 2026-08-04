@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS models (
   model_type     TEXT NOT NULL,                  -- chat / reasoning / embedding ...
   context_window INTEGER,                        -- 上下文窗口（tokens）
   release_date   TEXT,                           -- 发布日期（YYYY-MM-DD）
+  last_verified_at TEXT,                         -- 最近人工核验时间（YYYY-MM-DD，未核验 NULL）
+  data_status    TEXT NOT NULL DEFAULT 'active', -- active / deprecated / retired
   created_at     TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );
 
@@ -104,6 +106,8 @@ CREATE TABLE IF NOT EXISTS pricing_history (
   unit           TEXT NOT NULL DEFAULT 'per_1M_tokens',
   effective_date TEXT NOT NULL,                  -- 生效日期（YYYY-MM-DD）
   source         TEXT NOT NULL DEFAULT 'manual', -- initial_import / manual / api ...
+  source_url     TEXT,                           -- 价格来源链接（Phase 9.7）
+  verification_status TEXT NOT NULL DEFAULT 'unverified', -- verified / unverified / deprecated（Phase 9.7）
   created_at     TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
   UNIQUE (model_id, effective_date, currency, unit)
 );
@@ -131,6 +135,10 @@ CREATE TABLE IF NOT EXISTS benchmark_results (
   dataset     TEXT NOT NULL,
   version     TEXT NOT NULL,
   source      TEXT NOT NULL DEFAULT 'manual',
+  source_url  TEXT,                              -- 数据来源链接（Phase 9.7）
+  source_type TEXT,                              -- official / community / internal（Phase 9.7）
+  verified_at TEXT,                              -- 人工核验时间（Phase 9.7）
+  verification_status TEXT NOT NULL DEFAULT 'unverified', -- verified / unverified / deprecated（Phase 9.7）
   tested_at   TEXT,
   created_at  TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
   UNIQUE (model_id, category_id, dataset, version)

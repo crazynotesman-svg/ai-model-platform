@@ -340,3 +340,7 @@ INSERT OR IGNORE INTO benchmark_results
    (SELECT id FROM benchmark_categories WHERE slug = 'reasoning'), 93, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01'),
   ((SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner'),
    (SELECT id FROM benchmark_categories WHERE slug = 'math'), 90, NULL, 'internal-demo', 'v1', 'manual', '2026-07-01');
+
+-- Phase 9.7：internal-demo 数据标记来源类型（幂等；source_url 保持 NULL，verification_status 默认 'unverified'）
+UPDATE benchmark_results SET source_type = 'internal'
+WHERE source = 'manual' AND source_type IS NULL;

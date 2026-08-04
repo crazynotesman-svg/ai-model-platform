@@ -1,0 +1,75 @@
+---
+/**
+ * 数据政策与透明声明：/{lang}/data-policy/
+ *
+ * SSG（7 语言）：Data Sources / Verification Status / Update Frequency / Transparency Statement。
+ * SEO：WebPage JSON-LD。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: t('dataPolicy.pageTitle'),
+  description: t('dataPolicy.subtitle'),
+  url: new URL(Astro.url.pathname, siteUrl).href,
+};
+
+const sections = [
+  {
+    title: t('dataPolicy.dataSources'),
+    items: [
+      t('dataPolicy.modelInfo'),
+      t('dataPolicy.pricing'),
+      t('dataPolicy.benchmark'),
+      t('dataPolicy.ranking'),
+    ],
+  },
+  {
+    title: t('dataPolicy.verificationStatus'),
+    items: [t('dataPolicy.verified'), t('dataPolicy.unverified'), t('dataPolicy.deprecated')],
+  },
+  {
+    title: t('dataPolicy.updateFrequency'),
+    items: [t('dataPolicy.updateNews'), t('dataPolicy.updateRanking'), t('dataPolicy.updatePricing')],
+  },
+];
+---
+
+<BaseLayout title={t('dataPolicy.pageTitle')} description={t('dataPolicy.subtitle')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-3xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('dataPolicy.pageTitle')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('dataPolicy.subtitle')}</p>
+
+    {sections.map((s) => (
+      <section class="mt-8">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{s.title}</h2>
+        <ul class="mt-3 space-y-2">
+          {s.items.map((item) => (
+            <li class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm leading-relaxed text-slate-300">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <section class="mt-8 rounded-xl border border-sky-500/30 bg-sky-500/10 p-5">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-sky-300">
+        {t('dataPolicy.transparency')}
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-slate-300">{t('dataPolicy.transparencyText')}</p>
+    </section>
+  </div>
+</BaseLayout>

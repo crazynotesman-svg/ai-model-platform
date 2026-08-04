@@ -43,7 +43,8 @@ const db = new DatabaseSync(join(D1_STATE_DIR, candidates[0].name), { readOnly: 
 // ---- 2. 查询（与 Worker API 同一套口径）----
 const models = db
   .prepare(
-    `SELECT m.id, m.slug, m.model_type, m.context_window, m.release_date, p.name AS provider_name
+    `SELECT m.id, m.slug, m.model_type, m.context_window, m.release_date,
+            m.last_verified_at, m.data_status, p.name AS provider_name
      FROM models m JOIN providers p ON p.id = m.provider ORDER BY m.slug`,
   )
   .all();
@@ -98,6 +99,8 @@ for (const m of models) {
     contextWindow: m.context_window,
     releaseDate: m.release_date,
     providerName: m.provider_name,
+    lastVerifiedAt: m.last_verified_at, // Phase 9.7
+    dataStatus: m.data_status ?? 'active', // Phase 9.7
     inputPrice: null,
     outputPrice: null,
     currency: 'USD',
