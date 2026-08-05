@@ -1,0 +1,1388 @@
+{
+  "anthropic/claude-haiku-3.5": {
+    "slug": "anthropic/claude-haiku-3.5",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2024-11-04",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 0.8,
+    "outputPrice": 4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude Haiku 3.5",
+        "description": "Fast, affordable model for high-throughput and latency-sensitive tasks.",
+        "useCases": [
+          "high-volume tasks",
+          "classification",
+          "moderation",
+          "fast responses"
+        ]
+      },
+      "zh-CN": {
+        "name": "Claude Haiku 3.5",
+        "description": "快速、低价的模型，适合高吞吐与低延迟场景。",
+        "useCases": [
+          "高并发任务",
+          "分类",
+          "内容审核",
+          "快速响应"
+        ]
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 0.8,
+        "outputPrice": 4
+      }
+    ],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 30,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 10,
+        "score": 30
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 10,
+        "score": 30
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 10,
+        "score": 30
+      }
+    ]
+  },
+  "anthropic/claude-opus-4": {
+    "slug": "anthropic/claude-opus-4",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2025-05-21",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 15,
+    "outputPrice": 75,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude Opus 4",
+        "description": "Anthropic's most powerful model for complex tasks requiring deep reasoning.",
+        "useCases": [
+          "complex reasoning",
+          "research",
+          "long documents",
+          "expert systems"
+        ]
+      },
+      "zh-CN": {
+        "name": "Claude Opus 4",
+        "description": "Anthropic 最强模型，面向需要深度推理的复杂任务。",
+        "useCases": [
+          "复杂推理",
+          "研究",
+          "长文档",
+          "专家系统"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": false
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": true
+      },
+      {
+        "capability": "multimodal",
+        "supported": true
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": true
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 15,
+        "outputPrice": 75
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 93,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 91,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 95,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 93.6,
+      "benchmark": 93,
+      "capability": 85.7,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 2,
+        "score": 93.6
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 2,
+        "score": 93.6
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 2,
+        "score": 93.6
+      }
+    ]
+  },
+  "anthropic/claude-sonnet-4": {
+    "slug": "anthropic/claude-sonnet-4",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2025-05-21",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 3,
+    "outputPrice": 15,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude Sonnet 4",
+        "description": "Anthropic's balanced frontier model: strong reasoning with great cost-efficiency.",
+        "useCases": [
+          "reasoning",
+          "coding",
+          "analysis",
+          "tool use"
+        ]
+      },
+      "zh-CN": {
+        "name": "Claude Sonnet 4",
+        "description": "Anthropic 均衡型旗舰模型：推理能力强且成本效益出色。",
+        "useCases": [
+          "推理",
+          "编程",
+          "分析",
+          "工具调用"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": false
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": true
+      },
+      {
+        "capability": "multimodal",
+        "supported": true
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": true
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 3,
+        "outputPrice": 15
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 90,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 92,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "vision",
+        "categoryName": "Vision",
+        "score": 88,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 92.1,
+      "benchmark": 90,
+      "capability": 85.7,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 5,
+        "score": 92.1
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 5,
+        "score": 92.1
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 5,
+        "score": 92.1
+      }
+    ]
+  },
+  "deepseek/deepseek-chat": {
+    "slug": "deepseek/deepseek-chat",
+    "modelType": "chat",
+    "contextWindow": 65536,
+    "releaseDate": "2025-05-21",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 0.27,
+    "outputPrice": 1.1,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek Chat",
+        "description": "DeepSeek's general chat model (V3 series), open-source friendly and cheap.",
+        "useCases": [
+          "general chat",
+          "coding",
+          "cost-sensitive apps",
+          "Chinese content"
+        ]
+      },
+      "zh-CN": {
+        "name": "DeepSeek Chat",
+        "description": "深度求索通用对话模型（V3 系列），开源友好、价格低廉。",
+        "useCases": [
+          "通用对话",
+          "编程",
+          "成本敏感应用",
+          "中文内容"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": false
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": false
+      },
+      {
+        "capability": "multimodal",
+        "supported": false
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": false
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 0.27,
+        "outputPrice": 1.1
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 87,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 83,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 85,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 74.3,
+      "benchmark": 85,
+      "capability": 42.9,
+      "price": 100,
+      "context": 32.8
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 9,
+        "score": 74.3
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 9,
+        "score": 74.3
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 9,
+        "score": 74.3
+      }
+    ]
+  },
+  "deepseek/deepseek-reasoner": {
+    "slug": "deepseek/deepseek-reasoner",
+    "modelType": "reasoning",
+    "contextWindow": 65536,
+    "releaseDate": "2025-03-24",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 0.55,
+    "outputPrice": 2.19,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek Reasoner",
+        "description": "DeepSeek's reasoning model (R1 series) with strong math and logic.",
+        "useCases": [
+          "mathematics",
+          "logic",
+          "coding",
+          "complex QA"
+        ]
+      },
+      "zh-CN": {
+        "name": "DeepSeek Reasoner",
+        "description": "深度求索推理模型（R1 系列），数学与逻辑推理能力强。",
+        "useCases": [
+          "数学",
+          "逻辑",
+          "编程",
+          "复杂问答"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": false
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": false
+      },
+      {
+        "capability": "multimodal",
+        "supported": false
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": false
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 0.55,
+        "outputPrice": 2.19
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 85,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 90,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 93,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 76.5,
+      "benchmark": 89.3,
+      "capability": 42.9,
+      "price": 100,
+      "context": 32.8
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 8,
+        "score": 76.5
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 8,
+        "score": 76.5
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 8,
+        "score": 76.5
+      }
+    ]
+  },
+  "google/gemini-2.5-flash": {
+    "slug": "google/gemini-2.5-flash",
+    "modelType": "chat",
+    "contextWindow": 1048576,
+    "releaseDate": "2025-06-17",
+    "providerName": "Google",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 0.3,
+    "outputPrice": 2.5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Gemini 2.5 Flash",
+        "description": "Fast, cost-effective Gemini model with strong multimodal capabilities.",
+        "useCases": [
+          "fast inference",
+          "multimodal",
+          "high volume",
+          "edge tasks"
+        ]
+      },
+      "zh-CN": {
+        "name": "Gemini 2.5 Flash",
+        "description": "快速低成本的 Gemini 模型，多模态能力出色。",
+        "useCases": [
+          "快速推理",
+          "多模态",
+          "高并发",
+          "边缘任务"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": true
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": true
+      },
+      {
+        "capability": "multimodal",
+        "supported": true
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": true
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 0.3,
+        "outputPrice": 2.5
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 84,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 86,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "vision",
+        "categoryName": "Vision",
+        "score": 90,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 93.3,
+      "benchmark": 86.7,
+      "capability": 100,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 3,
+        "score": 93.3
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 3,
+        "score": 93.3
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 3,
+        "score": 93.3
+      }
+    ]
+  },
+  "google/gemini-2.5-pro": {
+    "slug": "google/gemini-2.5-pro",
+    "modelType": "chat",
+    "contextWindow": 1048576,
+    "releaseDate": "2025-03-25",
+    "providerName": "Google",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 1.25,
+    "outputPrice": 10,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Gemini 2.5 Pro",
+        "description": "Google's advanced reasoning model with 1M context and multimodal input.",
+        "useCases": [
+          "multimodal",
+          "long context",
+          "research",
+          "reasoning"
+        ]
+      },
+      "zh-CN": {
+        "name": "Gemini 2.5 Pro",
+        "description": "Google 高级推理模型，百万级上下文，支持多模态输入。",
+        "useCases": [
+          "多模态",
+          "长上下文",
+          "研究",
+          "推理"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": true
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": true
+      },
+      {
+        "capability": "multimodal",
+        "supported": true
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": true
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 1.25,
+        "outputPrice": 10
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 90,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 92,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 93,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "vision",
+        "categoryName": "Vision",
+        "score": 94,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 96.1,
+      "benchmark": 92.3,
+      "capability": 100,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 1,
+        "score": 96.1
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 1,
+        "score": 96.1
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 1,
+        "score": 96.1
+      }
+    ]
+  },
+  "openai/gpt-4.1": {
+    "slug": "openai/gpt-4.1",
+    "modelType": "chat",
+    "contextWindow": 1047576,
+    "releaseDate": "2025-04-14",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 2,
+    "outputPrice": 8,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-4.1",
+        "description": "Latest GPT-4 generation with large context window and improved coding ability.",
+        "useCases": [
+          "coding",
+          "long-context analysis",
+          "agent workflows",
+          "complex reasoning"
+        ]
+      },
+      "zh-CN": {
+        "name": "GPT-4.1",
+        "description": "新一代 GPT-4 系列，超长上下文，编程与复杂推理能力显著提升。",
+        "useCases": [
+          "编程",
+          "长文档分析",
+          "智能体工作流",
+          "复杂推理"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": false
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": true
+      },
+      {
+        "capability": "multimodal",
+        "supported": true
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": true
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 2,
+        "outputPrice": 8
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 92,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 89,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 91,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 92.5,
+      "benchmark": 90.7,
+      "capability": 85.7,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 4,
+        "score": 92.5
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 4,
+        "score": 92.5
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 4,
+        "score": 92.5
+      }
+    ]
+  },
+  "openai/gpt-4o": {
+    "slug": "openai/gpt-4o",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-05-13",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 2.5,
+    "outputPrice": 10,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-4o",
+        "description": "OpenAI's flagship multimodal model, fast and capable across text, vision, and audio.",
+        "useCases": [
+          "chatbot",
+          "content creation",
+          "vision analysis",
+          "voice assistant"
+        ]
+      },
+      "zh-CN": {
+        "name": "GPT-4o",
+        "description": "OpenAI 旗舰多模态模型，支持文本、视觉与音频，响应快、能力强。",
+        "useCases": [
+          "对话机器人",
+          "内容创作",
+          "图像理解",
+          "语音助手"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": true
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": false
+      },
+      {
+        "capability": "multimodal",
+        "supported": true
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": true
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 2.5,
+        "outputPrice": 10
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 88,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 90,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "vision",
+        "categoryName": "Vision",
+        "score": 92,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 88.5,
+      "benchmark": 90,
+      "capability": 85.7,
+      "price": 100,
+      "context": 64
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 6,
+        "score": 88.5
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 6,
+        "score": 88.5
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 6,
+        "score": 88.5
+      }
+    ]
+  },
+  "openai/gpt-4o-mini": {
+    "slug": "openai/gpt-4o-mini",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-07-18",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 0.15,
+    "outputPrice": 0.6,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-4o mini",
+        "description": "Cost-efficient small model with strong performance for high-volume tasks.",
+        "useCases": [
+          "classification",
+          "extraction",
+          "lightweight chat",
+          "batch jobs"
+        ]
+      },
+      "zh-CN": {
+        "name": "GPT-4o mini",
+        "description": "高性价比小模型，性能强劲，适合高并发批量任务。",
+        "useCases": [
+          "分类",
+          "信息抽取",
+          "轻量对话",
+          "批量任务"
+        ]
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 0.15,
+        "outputPrice": 0.6
+      }
+    ],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 26.4,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 11,
+        "score": 26.4
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 11,
+        "score": 26.4
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 11,
+        "score": 26.4
+      }
+    ]
+  },
+  "openai/o3": {
+    "slug": "openai/o3",
+    "modelType": "reasoning",
+    "contextWindow": 200000,
+    "releaseDate": "2025-04-16",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "inputPrice": 2,
+    "outputPrice": 8,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "o3",
+        "description": "OpenAI reasoning model that thinks before answering, strongest on STEM and logic.",
+        "useCases": [
+          "mathematics",
+          "coding",
+          "scientific reasoning",
+          "complex planning"
+        ]
+      },
+      "zh-CN": {
+        "name": "o3",
+        "description": "OpenAI 推理模型，回答前先进行思考，数学与逻辑推理能力突出。",
+        "useCases": [
+          "数学",
+          "编程",
+          "科学推理",
+          "复杂规划"
+        ]
+      }
+    },
+    "capabilities": [
+      {
+        "capability": "audio",
+        "supported": false
+      },
+      {
+        "capability": "coding",
+        "supported": true
+      },
+      {
+        "capability": "function_calling",
+        "supported": true
+      },
+      {
+        "capability": "long_context",
+        "supported": true
+      },
+      {
+        "capability": "multimodal",
+        "supported": false
+      },
+      {
+        "capability": "reasoning",
+        "supported": true
+      },
+      {
+        "capability": "vision",
+        "supported": false
+      }
+    ],
+    "pricingHistory": [
+      {
+        "effectiveDate": "2026-08-03",
+        "inputPrice": 2,
+        "outputPrice": 8
+      }
+    ],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 89,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 94,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 96,
+        "rank": null,
+        "dataset": "internal-demo",
+        "version": "v1",
+        "source": "manual",
+        "testedAt": "2026-07-01"
+      }
+    ],
+    "ranking": {
+      "overall": 87.9,
+      "benchmark": 93,
+      "capability": 57.1,
+      "price": 100,
+      "context": 100
+    },
+    "trend": {
+      "rankChange": 0,
+      "scoreChange": 0
+    },
+    "rankingHistory": [
+      {
+        "date": "2026-08-02",
+        "rank": 7,
+        "score": 87.9
+      },
+      {
+        "date": "2026-08-03",
+        "rank": 7,
+        "score": 87.9
+      },
+      {
+        "date": "2026-08-04",
+        "rank": 7,
+        "score": 87.9
+      }
+    ]
+  }
+}

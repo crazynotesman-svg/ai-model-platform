@@ -24,8 +24,15 @@ const GENERATED_DIR = join(FRONTEND_DIR, 'src', 'generated');
 
 // ---- 1. 定位本地 D1 数据库文件 ----
 const D1_STATE_DIR = join(REPO_ROOT, 'worker', '.wrangler', 'state', 'v3', 'd1', 'miniflare-D1DatabaseObject');
+const COMMITTED_CATALOG = join(GENERATED_DIR, 'model-catalog.json');
 if (!existsSync(D1_STATE_DIR)) {
-  console.error('[export-models] 未找到本地 D1 数据库。请先在 worker/ 目录执行：');
+  // CI / 无本地 D1 环境（如 Cloudflare Pages 构建）：回退到已提交的生成数据
+  if (existsSync(COMMITTED_CATALOG)) {
+    console.log('[export-models] CI 模式：未找到本地 D1，使用已提交的 src/generated/model-catalog.json');
+    process.exit(0);
+  }
+  console.error('[export-models] 未找到本地 D1 数据库，且无已提交的生成数据。');
+  console.error('  本地开发请先在 worker/ 目录执行：');
   console.error('  npx wrangler d1 migrations apply ai-model-platform-db --local');
   console.error('  npx wrangler d1 execute ai-model-platform-db --local --file=../database/seed/seed.sql');
   process.exit(1);

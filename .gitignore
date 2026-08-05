@@ -6,8 +6,11 @@ dist/
 .astro/
 .output/
 
-# 构建期生成（scripts/export-models.mjs 从本地 D1 导出，不提交）
-frontend/src/generated/
+# 构建期生成（scripts/export-models.mjs 从本地 D1 导出）
+# 注意：model-catalog.json 与 model-slugs.ts 已提交（CI/Pages 构建无本地 D1，
+#       通过 export-models.mjs 的 CI 回退模式使用；数据更新后需重新导出并提交）
+frontend/src/generated/*.tmp
+frontend/src/generated/*.bak
 
 # ---- environment ----
 .env
