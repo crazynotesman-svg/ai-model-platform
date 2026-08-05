@@ -23,8 +23,20 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.5 | AI Model Ranking 算法体系（评分引擎 + 排名 API + SEO 页面） | ✅ 已完成 |
 | 9.6 | AI Model Ranking 增强（趋势/推荐/快照） | ✅ 已完成 |
 | 9.7 | 评测平台收尾（数据源接入、合规、v1.0） | ✅ 已完成 |
-| v1.0 | **AI Model Platform v1.0 发布候选**（数据透明 + API v1 + 595 页） | 🎉 发布候选 |
+| v1.0 | **AI Model Platform v1.0 已上线**（2026-08-05，tag v1.0.0） | 🎉 **已上线** |
 | v2 | 用户体系 / 社区 / 商业化 / 自动 benchmark pipeline | ⬜ 规划中 |
+
+## Phase 10 — Production Launch ✅ 已完成（git: release: v1.0.0，tag v1.0.0）
+
+- [x] 生产 D1：创建 ai-model-platform-db（94d5cd6c）→ 远程迁移 0001-0009 → seed-production.sql（11 模型/63 能力/11 价格历史；benchmark=0、news=0，demo 不导入）
+- [x] Worker 部署：https://ai-model-platform-api.crazynotesman.workers.dev（D1 绑定 + 2 Cron）
+- [x] 生产 API 冒烟：11/11 通过（v1 版本化接口 + 404 兜底）
+- [x] Frontend：Cloudflare Pages 原生集成（ai-model-platform-my5.pages.dev），PUBLIC_API_BASE=worker URL
+- [x] CI 修复：export-models.mjs 增加 CI 回退模式（无本地 D1 用已提交 catalog）；generated/ 提交进仓库
+- [x] SEO 最终检查：canonical 正式域名、hreflang 8、sitemap 无占位、安全头（DENY/nosniff/Referrer-Policy/Permissions-Policy）
+- [x] 文档：docs/performance-baseline.md、docs/production-data-policy.md、CHANGELOG.md
+- [x] GitHub Actions：deploy-worker.yml（migrations→seed-production→typecheck→deploy→smoke），需 secrets：CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+- [x] 已知限制：CSP 未启用；benchmark 为 demo（unverified）；定价为演示值待核验；未绑定自定义域名
 
 ## Phase 9.1 — 模型能力数据库 ✅ 已完成（git: feat: add model capabilities database）
 
