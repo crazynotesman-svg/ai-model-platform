@@ -60,7 +60,7 @@ jobs:
       # 部署后冒烟：生产 API 健康检查
       - name: Smoke test production API
         run: |
-          BASE="https://ai-model-platform-api.<你的账号>.workers.dev"
+          BASE="https://ai-model-platform-api.crazynotesman.workers.dev"
           curl -fsS "$BASE/api/v1/models?lang=en" | head -c 200
           echo
           curl -fsS "$BASE/api/v1/ranking?lang=en" | head -c 200

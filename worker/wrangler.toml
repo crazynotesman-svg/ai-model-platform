@@ -16,7 +16,7 @@ compatibility_date = "2026-08-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "ai-model-platform-db"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "94d5cd6c-4ed4-4d1f-b19a-26335b7df37a"
 # 迁移目录：相对运行 wrangler 命令的目录（worker/ → 项目根 database/migrations）
 migrations_dir = "../database/migrations"
 
