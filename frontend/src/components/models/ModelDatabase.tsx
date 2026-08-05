@@ -29,6 +29,8 @@ export interface ModelDatabaseUi {
   detailInputPrice: string;
   detailOutputPrice: string;
   detailLanguages: string;
+  filterAll: string;
+  filterLabel: string;
 }
 
 interface Props {
@@ -51,6 +53,7 @@ export default function ModelDatabase({ lang, ui }: Props) {
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [sort, setSort] = useState<ModelSort>('newest');
+  const [provider, setProvider] = useState<string>('all');
   const [reloadKey, setReloadKey] = useState(0);
 
   // 搜索防抖（300ms）
@@ -89,6 +92,13 @@ export default function ModelDatabase({ lang, ui }: Props) {
   const formatPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
   const languageName = (code: string): string => LOCALE_LABELS[code as Locale] ?? code;
 
+  // 供应商维度：从已加载模型提取去重供应商列表（按名称排序）
+  const providers = models
+    ? Array.from(new Set(models.map((m) => m.providerName))).sort((a, b) => a.localeCompare(b))
+    : [];
+  const visibleModels =
+    models && provider === 'all' ? models : models?.filter((m) => m.providerName === provider) ?? [];
+
   // ---- 状态渲染：loading / error / empty ----
   if (loading) {
     return (
@@ -116,6 +126,18 @@ export default function ModelDatabase({ lang, ui }: Props) {
       <p className="rounded-xl border border-dashed border-slate-700 bg-slate-900/60 p-6 text-sm text-slate-400">
         {ui.empty}
       </p>
+    );
+  }
+  if (visibleModels.length === 0) {
+    return (
+      <div>
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <p className="text-xs text-slate-500">{ui.filterLabel}</p>
+        </div>
+        <p className="rounded-xl border border-dashed border-slate-700 bg-slate-900/60 p-6 text-sm text-slate-400">
+          {ui.empty}
+        </p>
+      </div>
     );
   }
 
@@ -146,12 +168,46 @@ export default function ModelDatabase({ lang, ui }: Props) {
             ))}
           </select>
         </label>
-        <p className="text-xs text-slate-500 sm:ml-auto">{ui.resultCount.replace('{count}', String(models.length))}</p>
+        <p className="text-xs text-slate-500 sm:ml-auto">{ui.resultCount.replace('{count}', String(visibleModels.length))}</p>
+      </div>
+
+      {/* 供应商分类维度：chips 筛选（All + 各供应商及数量） */}
+      <div className="mb-5">
+        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">{ui.filterLabel}</p>
+        <div className="flex flex-wrap gap-2" role="group" aria-label={ui.filterLabel}>
+          <button
+            type="button"
+            onClick={() => setProvider('all')}
+            aria-pressed={provider === 'all'}
+            className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+              provider === 'all'
+                ? 'bg-sky-500 text-white'
+                : 'border border-slate-700 bg-slate-900 text-slate-300 hover:border-sky-500/60 hover:text-white'
+            }`}
+          >
+            {ui.filterAll} ({models?.length ?? 0})
+          </button>
+          {providers.map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setProvider(provider === p ? 'all' : p)}
+              aria-pressed={provider === p}
+              className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                provider === p
+                  ? 'bg-sky-500 text-white'
+                  : 'border border-slate-700 bg-slate-900 text-slate-300 hover:border-sky-500/60 hover:text-white'
+              }`}
+            >
+              {p} ({models?.filter((m) => m.providerName === p).length ?? 0})
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* 模型卡片网格 */}
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {models.map((m) => (
+        {visibleModels.map((m) => (
           <li key={m.slug}>
             <a
               href={`/${lang}/models/${m.slug}/`}

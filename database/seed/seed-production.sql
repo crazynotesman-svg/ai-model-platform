@@ -1,8 +1,8 @@
 -- ============================================================================
 -- 生产环境 Seed（Phase 10）：仅生产数据（不含演示数据）
--- 包含：providers / models / model_translations / pricing / model_capabilities / pricing_history
+-- 包含：providers / models / model_translations / pricing / model_capabilities / pricing_history / 数据核验修正
 -- 不包含：news 示例、benchmark_categories、benchmark_results（demo 数据，见 docs/production-data-policy.md）
--- 幂等：INSERT OR IGNORE + UNIQUE 约束，可重复执行
+-- 幂等：INSERT OR IGNORE + UNIQUE 约束 + UPDATE 可重复执行
 -- ============================================================================
 
 -- 1. 供应商（4 家）
@@ -33,8 +33,8 @@ INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, releas
   ('anthropic/claude-haiku-3.5',  (SELECT id FROM providers WHERE name = 'Anthropic'), 'chat', 200000,  '2024-11-04'),
   ('google/gemini-2.5-pro',   (SELECT id FROM providers WHERE name = 'Google'), 'chat',     1048576,  '2025-03-25'),
   ('google/gemini-2.5-flash', (SELECT id FROM providers WHERE name = 'Google'), 'chat',     1048576,  '2025-06-17'),
-  ('deepseek/deepseek-chat',     (SELECT id FROM providers WHERE name = 'DeepSeek'), 'chat',  65536,  '2025-05-21'),
-  ('deepseek/deepseek-reasoner', (SELECT id FROM providers WHERE name = 'DeepSeek'), 'reasoning', 65536, '2025-03-24'),
+  ('deepseek/deepseek-chat',     (SELECT id FROM providers WHERE name = 'DeepSeek'), 'chat',  128000,  '2025-05-21'),
+  ('deepseek/deepseek-reasoner', (SELECT id FROM providers WHERE name = 'DeepSeek'), 'reasoning', 128000, '2025-03-24'),
   ('openai/gpt-4.1-mini', (SELECT id FROM providers WHERE name = 'OpenAI'), 'chat', 1047576, '2025-04-14'),
   ('anthropic/claude-3.7-sonnet', (SELECT id FROM providers WHERE name = 'Anthropic'), 'chat', 200000, '2025-02-24'),
   ('anthropic/claude-3.5-sonnet', (SELECT id FROM providers WHERE name = 'Anthropic'), 'chat', 200000, '2024-06-20'),
@@ -169,8 +169,8 @@ INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, un
   ((SELECT id FROM models WHERE slug = 'google/gemini-2.0-flash'), 0.1, 0.4, 'USD', 'per_1M_tokens'),
   ((SELECT id FROM models WHERE slug = 'meta/llama-4-maverick'), 0.25, 0.75, 'USD', 'per_1M_tokens'),
   ((SELECT id FROM models WHERE slug = 'mistral/mistral-large-2'), 2.0, 6.0, 'USD', 'per_1M_tokens'),
-  ((SELECT id FROM models WHERE slug = 'alibaba/qwen3-235b'), 0.4, 1.2, 'USD', 'per_1M_tokens'),
-  ((SELECT id FROM models WHERE slug = 'zhipu/glm-4.5'), 0.8, 4.0, 'USD', 'per_1M_tokens'),
+  ((SELECT id FROM models WHERE slug = 'alibaba/qwen3-235b'), 0.2, 0.6, 'USD', 'per_1M_tokens'),
+  ((SELECT id FROM models WHERE slug = 'zhipu/glm-4.5'), 0.6, 2.2, 'USD', 'per_1M_tokens'),
   ((SELECT id FROM models WHERE slug = 'moonshot/kimi-k2'), 0.6, 2.5, 'USD', 'per_1M_tokens');
 
 -- ---------------------------------------------------------------------------
@@ -346,5 +346,58 @@ SELECT
   COALESCE(date(pr.updated_at), date('now')),
   'initial_import'
 FROM pricing pr;
+
+-- ---------------------------------------------------------------------------
+-- 9. 数据核验修正（2026-08-05，依据 docs/pricing-verification.md）
+-- ① 上下文修正：DeepSeek 官方上下文 128K
+UPDATE models SET context_window = 128000
+WHERE slug IN ('deepseek/deepseek-chat', 'deepseek/deepseek-reasoner');
+
+-- ② 价格修正：Qwen3-235B / GLM-4.5（官方渠道参考价）
+UPDATE pricing SET input_price = 0.2, output_price = 0.6
+WHERE model_id = (SELECT id FROM models WHERE slug = 'alibaba/qwen3-235b');
+UPDATE pricing SET input_price = 0.6, output_price = 2.2
+WHERE model_id = (SELECT id FROM models WHERE slug = 'zhipu/glm-4.5');
+
+-- ③ 状态标记：官方已 retired/deprecated 的旧模型
+UPDATE models SET data_status = 'deprecated'
+WHERE slug IN ('anthropic/claude-opus-4', 'anthropic/claude-sonnet-4',
+               'anthropic/claude-3.5-sonnet', 'anthropic/claude-3.7-sonnet',
+               'anthropic/claude-haiku-3.5', 'google/gemini-1.5-pro',
+               'google/gemini-2.0-flash');
+
+-- ④ 价格核验标记：与官方一致的模型补 source_url + verified（其余保持 unverified）
+UPDATE pricing_history
+SET verification_status = 'verified',
+    source_url = (CASE model_id
+      WHEN (SELECT id FROM models WHERE slug = 'openai/gpt-4o')          THEN 'https://openai.com/api/pricing/'
+      WHEN (SELECT id FROM models WHERE slug = 'openai/gpt-4o-mini')     THEN 'https://developers.openai.com/api/docs/models/gpt-4o'
+      WHEN (SELECT id FROM models WHERE slug = 'openai/gpt-4.1')         THEN 'https://platform.openai.com/docs/models/gpt-4.1'
+      WHEN (SELECT id FROM models WHERE slug = 'anthropic/claude-opus-4') THEN 'https://docs.anthropic.com/en/docs/about-claude/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'anthropic/claude-sonnet-4') THEN 'https://docs.anthropic.com/en/docs/about-claude/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'anthropic/claude-3.7-sonnet') THEN 'https://docs.anthropic.com/en/docs/about-claude/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'anthropic/claude-3.5-sonnet') THEN 'https://docs.anthropic.com/en/docs/about-claude/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'anthropic/claude-haiku-3.5') THEN 'https://docs.anthropic.com/en/docs/about-claude/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'google/gemini-2.5-pro')  THEN 'https://ai.google.dev/gemini-api/docs/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'google/gemini-2.5-flash') THEN 'https://ai.google.dev/gemini-api/docs/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'google/gemini-2.0-flash') THEN 'https://ai.google.dev/gemini-api/docs/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'google/gemini-1.5-pro')  THEN 'https://ai.google.dev/gemini-api/docs/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'mistral/mistral-large-2') THEN 'https://mistral.ai/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'moonshot/kimi-k2')       THEN 'https://platform.moonshot.cn/docs/pricing'
+      WHEN (SELECT id FROM models WHERE slug = 'deepseek/deepseek-chat') THEN 'https://api-docs.deepseek.com/'
+      WHEN (SELECT id FROM models WHERE slug = 'deepseek/deepseek-reasoner') THEN 'https://api-docs.deepseek.com/'
+      WHEN (SELECT id FROM models WHERE slug = 'alibaba/qwen3-235b')     THEN 'https://www.alibabacloud.com/en/product/modelstudio'
+      WHEN (SELECT id FROM models WHERE slug = 'zhipu/glm-4.5')          THEN 'https://open.bigmodel.cn/pricing'
+      ELSE source_url
+    END)
+WHERE source = 'initial_import'
+  AND model_id IN (SELECT id FROM models WHERE slug IN
+    ('openai/gpt-4o', 'openai/gpt-4o-mini', 'openai/gpt-4.1',
+     'anthropic/claude-opus-4', 'anthropic/claude-sonnet-4', 'anthropic/claude-3.7-sonnet',
+     'anthropic/claude-3.5-sonnet', 'anthropic/claude-haiku-3.5',
+     'google/gemini-2.5-pro', 'google/gemini-2.5-flash', 'google/gemini-2.0-flash',
+     'google/gemini-1.5-pro', 'mistral/mistral-large-2', 'moonshot/kimi-k2',
+     'deepseek/deepseek-chat', 'deepseek/deepseek-reasoner',
+     'alibaba/qwen3-235b', 'zhipu/glm-4.5'));
 
 -- ---------------------------------------------------------------------------

@@ -208,5 +208,7 @@
   "cost.retry": "重试",
   "cost.emptyHint": "选择模型并输入 token 数量以估算成本。",
   "cost.currency": "美元",
-  "cost.perMillion": "每 1M tokens"
+  "cost.perMillion": "每 1M tokens",
+  "models.filterAll": "全部供应商",
+  "models.filterLabel": "供应商"
 }

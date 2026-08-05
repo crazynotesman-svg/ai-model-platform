@@ -208,5 +208,7 @@
   "cost.retry": "Retry",
   "cost.emptyHint": "Select a model and enter token counts to estimate cost.",
   "cost.currency": "USD",
-  "cost.perMillion": "per 1M tokens"
+  "cost.perMillion": "per 1M tokens",
+  "models.filterAll": "All providers",
+  "models.filterLabel": "Provider"
 }

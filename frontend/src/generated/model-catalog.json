@@ -7,8 +7,8 @@
     "providerName": "Alibaba",
     "lastVerifiedAt": null,
     "dataStatus": "active",
-    "inputPrice": 0.4,
-    "outputPrice": 1.2,
+    "inputPrice": 0.2,
+    "outputPrice": 0.6,
     "currency": "USD",
     "unit": "per_1M_tokens",
     "languages": [
@@ -70,8 +70,8 @@
     "pricingHistory": [
       {
         "effectiveDate": "2026-08-05",
-        "inputPrice": 0.4,
-        "outputPrice": 1.2
+        "inputPrice": 0.2,
+        "outputPrice": 0.6
       }
     ],
     "benchmarks": [],
@@ -92,7 +92,7 @@
     "releaseDate": "2024-06-20",
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -178,7 +178,7 @@
     "releaseDate": "2025-02-24",
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -264,7 +264,7 @@
     "releaseDate": "2024-11-04",
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 0.8,
     "outputPrice": 4,
     "currency": "USD",
@@ -298,7 +298,7 @@
     "capabilities": [],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 0.8,
         "outputPrice": 4
       }
@@ -311,27 +311,8 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 10,
-        "score": 30
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 10,
-        "score": 30
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 10,
-        "score": 30
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "anthropic/claude-opus-4": {
     "slug": "anthropic/claude-opus-4",
@@ -340,7 +321,7 @@
     "releaseDate": "2025-05-21",
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 15,
     "outputPrice": 75,
     "currency": "USD",
@@ -403,7 +384,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 15,
         "outputPrice": 75
       }
@@ -447,27 +428,8 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 2,
-        "score": 93.6
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 2,
-        "score": 93.6
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 2,
-        "score": 93.6
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "anthropic/claude-sonnet-4": {
     "slug": "anthropic/claude-sonnet-4",
@@ -476,7 +438,7 @@
     "releaseDate": "2025-05-21",
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -539,7 +501,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 3,
         "outputPrice": 15
       }
@@ -583,32 +545,13 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 5,
-        "score": 92.1
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 5,
-        "score": 92.1
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 5,
-        "score": 92.1
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "deepseek/deepseek-chat": {
     "slug": "deepseek/deepseek-chat",
     "modelType": "chat",
-    "contextWindow": 65536,
+    "contextWindow": 128000,
     "releaseDate": "2025-05-21",
     "providerName": "DeepSeek",
     "lastVerifiedAt": null,
@@ -675,7 +618,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 0.27,
         "outputPrice": 1.1
       }
@@ -713,38 +656,19 @@
       }
     ],
     "ranking": {
-      "overall": 74.3,
+      "overall": 77.5,
       "benchmark": 85,
       "capability": 42.9,
       "price": 100,
-      "context": 32.8
+      "context": 64
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 9,
-        "score": 74.3
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 9,
-        "score": 74.3
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 9,
-        "score": 74.3
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "deepseek/deepseek-reasoner": {
     "slug": "deepseek/deepseek-reasoner",
     "modelType": "reasoning",
-    "contextWindow": 65536,
+    "contextWindow": 128000,
     "releaseDate": "2025-03-24",
     "providerName": "DeepSeek",
     "lastVerifiedAt": null,
@@ -811,7 +735,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 0.55,
         "outputPrice": 2.19
       }
@@ -849,33 +773,14 @@
       }
     ],
     "ranking": {
-      "overall": 76.5,
+      "overall": 79.6,
       "benchmark": 89.3,
       "capability": 42.9,
       "price": 100,
-      "context": 32.8
+      "context": 64
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 8,
-        "score": 76.5
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 8,
-        "score": 76.5
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 8,
-        "score": 76.5
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "google/gemini-1.5-pro": {
     "slug": "google/gemini-1.5-pro",
@@ -884,7 +789,7 @@
     "releaseDate": "2024-02-15",
     "providerName": "Google",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 1.25,
     "outputPrice": 5,
     "currency": "USD",
@@ -970,7 +875,7 @@
     "releaseDate": "2025-02-05",
     "providerName": "Google",
     "lastVerifiedAt": null,
-    "dataStatus": "active",
+    "dataStatus": "deprecated",
     "inputPrice": 0.1,
     "outputPrice": 0.4,
     "currency": "USD",
@@ -1119,7 +1024,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 0.3,
         "outputPrice": 2.5
       }
@@ -1163,27 +1068,8 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 3,
-        "score": 93.3
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 3,
-        "score": 93.3
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 3,
-        "score": 93.3
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "google/gemini-2.5-pro": {
     "slug": "google/gemini-2.5-pro",
@@ -1255,7 +1141,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 1.25,
         "outputPrice": 10
       }
@@ -1309,27 +1195,8 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 1,
-        "score": 96.1
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 1,
-        "score": 96.1
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 1,
-        "score": 96.1
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "meta/llama-4-maverick": {
     "slug": "meta/llama-4-maverick",
@@ -1659,7 +1526,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 2,
         "outputPrice": 8
       }
@@ -1703,27 +1570,8 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 4,
-        "score": 92.5
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 4,
-        "score": 92.5
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 4,
-        "score": 92.5
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "openai/gpt-4.1-mini": {
     "slug": "openai/gpt-4.1-mini",
@@ -1881,7 +1729,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 2.5,
         "outputPrice": 10
       }
@@ -1925,27 +1773,8 @@
       "price": 100,
       "context": 64
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 6,
-        "score": 88.5
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 6,
-        "score": 88.5
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 6,
-        "score": 88.5
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "openai/gpt-4o-mini": {
     "slug": "openai/gpt-4o-mini",
@@ -1988,7 +1817,7 @@
     "capabilities": [],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 0.15,
         "outputPrice": 0.6
       }
@@ -2001,27 +1830,8 @@
       "price": 100,
       "context": 64
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 11,
-        "score": 26.4
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 11,
-        "score": 26.4
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 11,
-        "score": 26.4
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "openai/o3": {
     "slug": "openai/o3",
@@ -2093,7 +1903,7 @@
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-03",
+        "effectiveDate": "2026-08-05",
         "inputPrice": 2,
         "outputPrice": 8
       }
@@ -2137,27 +1947,8 @@
       "price": 100,
       "context": 100
     },
-    "trend": {
-      "rankChange": 0,
-      "scoreChange": 0
-    },
-    "rankingHistory": [
-      {
-        "date": "2026-08-02",
-        "rank": 7,
-        "score": 87.9
-      },
-      {
-        "date": "2026-08-03",
-        "rank": 7,
-        "score": 87.9
-      },
-      {
-        "date": "2026-08-04",
-        "rank": 7,
-        "score": 87.9
-      }
-    ]
+    "trend": null,
+    "rankingHistory": []
   },
   "zhipu/glm-4.5": {
     "slug": "zhipu/glm-4.5",
@@ -2167,8 +1958,8 @@
     "providerName": "Zhipu",
     "lastVerifiedAt": null,
     "dataStatus": "active",
-    "inputPrice": 0.8,
-    "outputPrice": 4,
+    "inputPrice": 0.6,
+    "outputPrice": 2.2,
     "currency": "USD",
     "unit": "per_1M_tokens",
     "languages": [
@@ -2230,8 +2021,8 @@
     "pricingHistory": [
       {
         "effectiveDate": "2026-08-05",
-        "inputPrice": 0.8,
-        "outputPrice": 4
+        "inputPrice": 0.6,
+        "outputPrice": 2.2
       }
     ],
     "benchmarks": [],
