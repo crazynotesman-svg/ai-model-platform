@@ -1,6 +1,15 @@
 # AI Model Platform — v1.0 发布报告（Launch Report）
 
-> 生成时间：2026-08-04 ｜ 阶段：Phase 9.7（v1.0 收尾）
+> 生成时间：2026-08-04 ｜ 阶段：Phase 9.7（v1.0 收尾）｜ **已于 2026-08-05 正式上线（tag v1.0.0）**
+
+## 上线结果（2026-08-05，Phase 10）
+
+- **前端**：https://ai-model-platform-my5.pages.dev（Cloudflare Pages 原生集成，596 HTML，12/12 冒烟通过）
+- **API**：https://ai-model-platform-api.crazynotesman.workers.dev（11/11 接口通过，含 /api/v1/*）
+- **数据库**：生产 D1 `ai-model-platform-db`（9 迁移 + seed-production：11 模型/63 能力/11 价格历史；benchmark/news 均为 0，demo 不导入）
+- **CI/CD**：GitHub Actions `deploy-worker.yml` 全链路成功（migrations→seed→typecheck→deploy→smoke），secrets：CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID
+- **发布**：commit `12db5cf` + tag `v1.0.0` + CHANGELOG.md
+- **CI 适配**：export-models.mjs CI 回退模式（无本地 D1 时用已提交 catalog）；generated/ 提交进仓库
 
 ## Architecture
 
