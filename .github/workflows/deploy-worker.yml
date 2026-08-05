@@ -3,11 +3,6 @@ name: Deploy Worker + D1
 on:
   push:
     branches: [main]
-    paths:
-      - 'worker/**'
-      - 'database/**'
-      - 'pnpm-lock.yaml'
-      - '.github/workflows/deploy-worker.yml'
   workflow_dispatch: {}
 
 jobs:
