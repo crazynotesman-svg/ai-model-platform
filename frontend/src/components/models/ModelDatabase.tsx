@@ -28,7 +28,6 @@ export interface ModelDatabaseUi {
   detailContextWindow: string;
   detailInputPrice: string;
   detailOutputPrice: string;
-  detailLanguages: string;
   filterAll: string;
   filterLabel: string;
 }
@@ -90,7 +89,6 @@ export default function ModelDatabase({ lang, ui }: Props) {
   const formatNumber = (n: number | null): string =>
     n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang);
   const formatPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
-  const languageName = (code: string): string => LOCALE_LABELS[code as Locale] ?? code;
 
   // 供应商维度：从已加载模型提取去重供应商列表（按名称排序）
   const providers = models
@@ -232,12 +230,6 @@ export default function ModelDatabase({ lang, ui }: Props) {
                   <dd className="text-slate-200">
                     {formatPrice(m.outputPrice)}
                     <span className="text-xs text-slate-500">{ui.unitLabel}</span>
-                  </dd>
-                </div>
-                <div className="flex justify-between gap-2">
-                  <dt className="text-slate-500">{ui.detailLanguages}</dt>
-                  <dd className="text-right text-xs text-slate-400">
-                    {m.languages.map(languageName).join(', ')}
                   </dd>
                 </div>
               </dl>

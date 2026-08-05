@@ -70,7 +70,6 @@ const tr = data.translations[lang] ?? data.translations.en ?? {};
 const name = tr.name ?? data.slug;
 const description = tr.description ?? '';
 const useCases = tr.useCases ?? [];
-const languageNames = data.languages.map((code) => LOCALE_LABELS[code as Locale] ?? code);
 
 // SVG 折线数据（Ranking History，Phase 9.6）
 const history = data.rankingHistory ?? [];
@@ -120,7 +119,6 @@ const detailRows: { label: string; value: string }[] = [
     value: `${fmtPrice(data.outputPrice)}${data.outputPrice != null ? t('models.unitLabel') : ''}`,
   },
   { label: t('models.detailReleaseDate'), value: data.releaseDate ?? '—' },
-  { label: t('models.detailLanguages'), value: languageNames.join(', ') },
 ];
 ---
 

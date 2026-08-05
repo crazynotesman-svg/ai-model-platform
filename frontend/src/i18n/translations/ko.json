@@ -32,7 +32,6 @@
   "models.detailInputPrice": "입력 가격",
   "models.detailOutputPrice": "출력 가격",
   "models.detailReleaseDate": "출시일",
-  "models.detailLanguages": "지원 언어",
   "models.detailDescription": "설명",
   "models.detailUseCases": "사용 사례",
   "models.backToList": "모든 모델로 돌아가기",

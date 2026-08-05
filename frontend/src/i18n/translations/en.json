@@ -32,7 +32,6 @@
   "models.detailInputPrice": "Input Price",
   "models.detailOutputPrice": "Output Price",
   "models.detailReleaseDate": "Release Date",
-  "models.detailLanguages": "Supported Languages",
   "models.detailDescription": "Description",
   "models.detailUseCases": "Use Cases",
   "models.backToList": "Back to all models",

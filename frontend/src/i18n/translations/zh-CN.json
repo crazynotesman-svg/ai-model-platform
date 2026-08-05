@@ -32,7 +32,6 @@
   "models.detailInputPrice": "输入价格",
   "models.detailOutputPrice": "输出价格",
   "models.detailReleaseDate": "发布日期",
-  "models.detailLanguages": "支持语言",
   "models.detailDescription": "简介",
   "models.detailUseCases": "典型用途",
   "models.backToList": "返回全部模型",

@@ -32,7 +32,6 @@
   "models.detailInputPrice": "入力価格",
   "models.detailOutputPrice": "出力価格",
   "models.detailReleaseDate": "公開日",
-  "models.detailLanguages": "対応言語",
   "models.detailDescription": "説明",
   "models.detailUseCases": "用途",
   "models.backToList": "モデル一覧へ戻る",
