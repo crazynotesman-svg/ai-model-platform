@@ -29,12 +29,12 @@ const { title, description, image, jsonLd, noindex } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useI18n(lang);
 
-// 导航项：目标页面在后续阶段实现（Phase 3 模型目录等）
+// 导航项（token 计数器与成本估算共用 /calculator/token/ 页面：计数 + 成本对比一体）
 const navItems: { key: UiKey; href: string }[] = [
   { key: 'nav.models', href: `/${lang}/models/` },
   { key: 'nav.compare', href: `/${lang}/compare/` },
-  { key: 'nav.tokenCounter', href: `/${lang}/tools/token-counter/` },
-  { key: 'nav.costEstimator', href: `/${lang}/tools/cost-estimator/` },
+  { key: 'nav.tokenCounter', href: `/${lang}/calculator/token/` },
+  { key: 'nav.costEstimator', href: `/${lang}/calculator/token/` },
   { key: 'nav.news', href: `/${lang}/news/` },
 ];
 ---

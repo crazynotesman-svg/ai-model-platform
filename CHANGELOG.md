@@ -9,7 +9,7 @@ All notable changes to the AI Model Intelligence Platform.
 
 ### Added（Phase 1-9.7 全量）
 
-- **模型库**：11 个模型 × 7 语言（en/zh-CN/ja/ko/es/de/fr），SSG 双层数据（content collections + Workers/D1）
+- **模型库**：21 个模型 × 7 语言（en/zh-CN/ja/ko/es/de/fr），SSG 双层数据（content collections + Workers/D1）
 - **定价对比**：价格、价格历史（pricing_history）、成本估算、Token 计算器（tiktoken WASM）
 - **能力矩阵**：7 类能力（vision/reasoning/coding/audio/function_calling/multimodal/long_context）
 - **Benchmark**：4 分类 × 28 结果（demo 数据，unverified 标记）；Leaderboard + 分类 SEO 页
@@ -19,7 +19,7 @@ All notable changes to the AI Model Intelligence Platform.
 - **资讯**：每日采集（Cron 01:00 UTC）+ RSS
 - **数据透明**：`/data-policy/`（7 语言）、Data Status Card、verification_status 体系
 - **API v1**：`/api/v1/*`（models/ranking/news/trend/recommendations，旧 `/api/*` 保留）
-- **生产就绪**：GitHub Actions（Worker+D1 自动部署）、Cloudflare Pages（前端）、D1 生产库、安全头、SEO（595+ 页、sitemap、JSON-LD）
+- **生产就绪**：GitHub Actions（Worker+D1 自动部署）、Cloudflare Pages（前端）、D1 生产库、安全头、SEO（1751 页、sitemap、JSON-LD）
 
 ### Known Limitations
 
