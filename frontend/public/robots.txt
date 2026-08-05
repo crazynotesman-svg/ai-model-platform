@@ -1,10 +1,6 @@
 # robots.txt —— AI Model Intelligence Platform
-# 正式域名确定后替换下面的 sitemap 地址（与 astro.config.ts 的 SITE_URL 一致）。
 
 User-agent: *
 Allow: /
 
-# 禁止索引内部路径（如有）
-# Disallow: /api/
-
-Sitemap: https://ai-model-platform.example.com/sitemap-index.xml
+Sitemap: https://ai-model-platform-my5.pages.dev/sitemap-index.xml

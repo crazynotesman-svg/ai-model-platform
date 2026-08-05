@@ -1,7 +1,7 @@
 {
   "name": "@amp/worker",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Cloudflare Workers API backend for the AI Model Intelligence Platform.",
   "engines": {

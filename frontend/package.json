@@ -1,7 +1,7 @@
 {
   "name": "@amp/frontend",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Astro frontend for the AI Model Intelligence Platform (7 locales).",
   "engines": {

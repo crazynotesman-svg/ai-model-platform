@@ -6,9 +6,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { LOCALES, DEFAULT_LOCALE, FALLBACK_LOCALE } from './src/i18n/locales';
 
 /**
- * 站点根 URL（占位）。正式域名确定后更新，用于 canonical / sitemap / OG 等 SEO 能力。
+ * 站点根 URL。canonical / sitemap / OG 等 SEO 能力以此为基准。
+ * 注意：绑定自定义域名后需同步更新此处（canonical 随之切换）。
  */
-const SITE_URL = 'https://ai-model-platform.example.com';
+const SITE_URL = 'https://ai-model-platform-my5.pages.dev';
 
 // https://astro.build/config
 export default defineConfig({
