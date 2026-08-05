@@ -1,0 +1,51 @@
+---
+/**
+ * Cost Estimator 页面：/{lang}/calculator/cost/
+ *
+ * 独立成本估算器：选择模型 + 输入/输出 token 数 → 实时估算成本（USD）。
+ * 静态壳 + CostEstimator 岛组件（数据来自 Worker API → D1 定价）。
+ */
+import { LOCALES } from '../../../../i18n/locales';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CostEstimator from '../../../../components/cost/CostEstimator';
+import { getLangFromUrl, useI18n } from '../../../../i18n/ui';
+
+// Astro 7 要求动态段显式声明参数列表
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+// 提取岛组件所需文案（全部来自 i18n 字典）
+const ui = {
+  modelLabel: t('cost.modelLabel'),
+  inputTokensLabel: t('cost.inputTokensLabel'),
+  outputTokensLabel: t('cost.outputTokensLabel'),
+  tokensPlaceholder: t('cost.tokensPlaceholder'),
+  resultTitle: t('cost.resultTitle'),
+  inputCostLabel: t('cost.inputCostLabel'),
+  outputCostLabel: t('cost.outputCostLabel'),
+  totalCostLabel: t('cost.totalCostLabel'),
+  priceUnavailable: t('cost.priceUnavailable'),
+  costNote: t('cost.costNote'),
+  costLoading: t('cost.costLoading'),
+  error: t('cost.error'),
+  retry: t('cost.retry'),
+  emptyHint: t('cost.emptyHint'),
+  currency: t('cost.currency'),
+  perMillion: t('cost.perMillion'),
+};
+---
+
+<BaseLayout title={t('cost.pageTitle')} description={t('cost.description')}>
+  <div class="mx-auto max-w-3xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('cost.pageTitle')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('cost.description')}</p>
+
+    <div class="mt-8">
+      <CostEstimator client:load lang={lang} ui={ui} />
+    </div>
+  </div>
+</BaseLayout>

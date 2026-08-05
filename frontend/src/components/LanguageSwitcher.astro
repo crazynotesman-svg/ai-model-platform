@@ -1,10 +1,11 @@
 ---
 /**
- * 语言切换器（升级版）：
- * - 链接形式（对 SEO/无 JS 环境友好），基于当前页面路径翻译目标语言 URL；
- * - 当前语言高亮 + aria-current；
- * - 无障碍：aria-label 来自字典，sr-only 提示当前语言；
- * - 点击时记录手动语言偏好到 localStorage，自动语言识别将尊重该选择。
+ * 语言切换器（下拉模式）：
+ * - 原生 <select> 固定宽度单行，不改变页面顶部布局（7 语言缩写选项）；
+ * - 每个选项值为完整目标 URL（服务器生成，非 JS 拼接），SEO/hreflang 不受影响
+ *   （hreflang/canonical 由 head 中 SEO 组件生成，与 UI 形式无关）；
+ * - 切换时记录语言偏好到 localStorage，自动语言识别将尊重该选择；
+ * - 无 JS 场景：select 不可交互但页面其余功能正常（可选 onchange 跳转）。
  */
 import { LOCALE_LABELS, type Locale } from '../i18n/locales';
 import { translateUrl, useI18n } from '../i18n/ui';
@@ -16,34 +17,40 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useI18n(lang);
+const options = Object.entries(LOCALE_LABELS).map(([code, label]) => {
+  const targetLang = code as Locale;
+  return {
+    code: targetLang,
+    label,
+    href: translateUrl(Astro.url, targetLang),
+    isCurrent: targetLang === lang,
+  };
+});
 ---
 
-<nav aria-label={t('lang.switcherLabel')} class="shrink-0">
-  <ul class="flex flex-wrap items-center justify-end gap-1 rounded-full border border-slate-700 bg-slate-800/60 px-1.5 py-1">
+<div class="relative shrink-0">
+  <select
+    aria-label={t('lang.switcherLabel')}
+    title={t('lang.switcherLabel')}
+    class="cursor-pointer appearance-none rounded-full border border-slate-700 bg-slate-800/60 py-1 pl-3 pr-8 text-xs font-medium text-slate-200 outline-none transition-colors hover:border-slate-500 focus:border-sky-500"
+    onchange={`const v = this.value; if (v) { localStorage.setItem('${LANG_STORAGE_KEY}', this.options[this.selectedIndex].dataset.lang || ''); window.location.href = v; }`}
+  >
     {
-      LOCALE_LABELS && Object.entries(LOCALE_LABELS).map(([code, label]) => {
-        const targetLang = code as Locale;
-        const isCurrent = targetLang === lang;
-        return (
-          <li>
-            <a
-              href={translateUrl(Astro.url, targetLang)}
-              aria-current={isCurrent ? 'true' : undefined}
-              onclick={`localStorage.setItem('${LANG_STORAGE_KEY}', '${targetLang}')`}
-              title={label}
-              class:list={[
-                'rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
-                isCurrent
-                  ? 'bg-sky-500 text-white'
-                  : 'text-slate-300 hover:bg-slate-700 hover:text-white',
-              ]}
-            >
-              {label}
-            </a>
-          </li>
-        );
-      })
+      options.map((o) => (
+        <option value={o.href} data-lang={o.code} selected={o.isCurrent}>
+          {o.label}
+        </option>
+      ))
     }
-  </ul>
-  <span class="sr-only">{t('lang.current', { lang: LOCALE_LABELS[lang] })}</span>
-</nav>
+  </select>
+  {/* 自定义箭头（替代 appearance-none 的原生箭头） */}
+  <svg
+    class="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-slate-400"
+    viewBox="0 0 12 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</div>

@@ -20,29 +20,38 @@ export interface ListNewsParams {
   category?: string | null;
 }
 
-/** 新闻列表（语言/分类可空筛选，发布时间倒序，最多 100 条） */
+/** 新闻列表（语言/分类可空筛选，发布时间倒序，最多 100 条）
+ *  多语言策略：指定语言无内容时回退英文（采集源目前仅 en，其他语言页面显示英文资讯）。 */
 export async function listNews(db: D1Database, { lang, category }: ListNewsParams): Promise<NewsRecord[]> {
-  const sql = `
-    SELECT id, title, content, language, source, link, category, published_at, created_at
-    FROM news
-    WHERE (? IS NULL OR language = ?)
-      AND (? IS NULL OR category = ?)
-    ORDER BY published_at DESC
-    LIMIT 100
-  `;
-  const { results } = await db
-    .prepare(sql)
-    .bind(lang ?? null, lang ?? null, category ?? null, category ?? null)
-    .all();
-  return (results ?? []).map((row) => ({
-    id: row.id as number,
-    title: row.title as string,
-    content: (row.content as string | null) ?? null,
-    language: row.language as string,
-    source: row.source as string,
-    link: (row.link as string | null) ?? null,
-    category: row.category as string,
-    publishedAt: (row.published_at as string | null) ?? null,
-    createdAt: (row.created_at as string | null) ?? null,
-  }));
+  const query = async (l: string | null): Promise<NewsRecord[]> => {
+    const sql = `
+      SELECT id, title, content, language, source, link, category, published_at, created_at
+      FROM news
+      WHERE (? IS NULL OR language = ?)
+        AND (? IS NULL OR category = ?)
+      ORDER BY published_at DESC
+      LIMIT 100
+    `;
+    const { results } = await db
+      .prepare(sql)
+      .bind(l ?? null, l ?? null, category ?? null, category ?? null)
+      .all();
+    return (results ?? []).map((row) => ({
+      id: row.id as number,
+      title: row.title as string,
+      content: (row.content as string | null) ?? null,
+      language: row.language as string,
+      source: row.source as string,
+      link: (row.link as string | null) ?? null,
+      category: row.category as string,
+      publishedAt: (row.published_at as string | null) ?? null,
+      createdAt: (row.created_at as string | null) ?? null,
+    }));
+  };
+
+  const rows = await query(lang ?? null);
+  if (rows.length === 0 && lang && lang !== 'en') {
+    return query('en');
+  }
+  return rows;
 }
