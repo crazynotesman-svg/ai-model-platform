@@ -239,5 +239,15 @@
   "home.howThree": "估算你的 Token 预算与成本",
   "home.howFour": "关注排行榜与每日 AI 资讯",
   "home.readyTitle": "准备好开始探索了吗？",
-  "home.readyDesc": "平台免费开放。从模型库开始，或直接使用工具。"
+  "home.readyDesc": "平台免费开放。从模型库开始，或直接使用工具。",
+  "home.rankingTitle": "模型排行 TOP 榜",
+  "home.rankingSubtitle": "基于公开 Benchmark、能力、价格与上下文的透明评分。",
+  "home.rankingDaily": "每日更新",
+  "home.rankingScore": "评分",
+  "home.rankingSource": "数据来源：公开基准（MMLU、GPQA、HumanEval、AIME）与官方定价。查看完整排行榜了解详情。",
+  "home.rankingViewAll": "查看完整排行榜",
+  "home.rankingLoading": "排行榜加载中…",
+  "home.rankingError": "排行榜加载失败。",
+  "home.rankingRetry": "重试",
+  "home.rankingProvider": "厂商"
 }

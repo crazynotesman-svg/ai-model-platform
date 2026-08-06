@@ -239,5 +239,15 @@
   "home.howThree": "Estimate your token budget and costs",
   "home.howFour": "Follow the leaderboard and daily AI news",
   "home.readyTitle": "Ready to explore?",
-  "home.readyDesc": "The platform is free and open. Start with the model database or jump straight into the tools."
+  "home.readyDesc": "The platform is free and open. Start with the model database or jump straight into the tools.",
+  "home.rankingTitle": "Top Models Leaderboard",
+  "home.rankingSubtitle": "Transparent scores from public benchmarks, capability, price, and context.",
+  "home.rankingDaily": "Updated daily",
+  "home.rankingScore": "Score",
+  "home.rankingSource": "Based on public benchmarks (MMLU, GPQA, HumanEval, AIME) and official pricing. See the full leaderboard for details.",
+  "home.rankingViewAll": "View full leaderboard",
+  "home.rankingLoading": "Loading leaderboard…",
+  "home.rankingError": "Failed to load leaderboard.",
+  "home.rankingRetry": "Retry",
+  "home.rankingProvider": "Provider"
 }
