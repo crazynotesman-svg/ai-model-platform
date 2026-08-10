@@ -1,3 +1,14 @@
+# SEO 规范化重定向（301）：/recommendations/ → /<lang>/ranking/recommendations/
+# 精确路径必须置于 catch-all（404）规则之前，避免被通配匹配
+/recommendations/ https://aimodel.100ideas.net/en/ranking/recommendations/ 301
+/en/recommendations/ https://aimodel.100ideas.net/en/ranking/recommendations/ 301
+/zh-CN/recommendations/ https://aimodel.100ideas.net/zh-CN/ranking/recommendations/ 301
+/ja/recommendations/ https://aimodel.100ideas.net/ja/ranking/recommendations/ 301
+/ko/recommendations/ https://aimodel.100ideas.net/ko/ranking/recommendations/ 301
+/es/recommendations/ https://aimodel.100ideas.net/es/ranking/recommendations/ 301
+/de/recommendations/ https://aimodel.100ideas.net/de/ranking/recommendations/ 301
+/fr/recommendations/ https://aimodel.100ideas.net/fr/ranking/recommendations/ 301
+
 # Google 收录优化：无效路径返回 404（修复 Pages SPA fallback 软 404）
 # 规则仅在"无静态文件匹配"时生效（存在文件优先），合法页面不受影响。
 # 404 状态码 + 根 404 页（noindex），避免无效 URL 被搜索引擎收录。

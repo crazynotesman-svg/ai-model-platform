@@ -44,8 +44,11 @@ export default defineConfig({
   },
 
   redirects: {
-    // 根路径 301 到默认语言
+    // 根路径 301 到默认语言（生成 meta refresh 重定向页；Pages 平台行为）
     '/': '/en',
+    // /recommendations/ → /<lang>/ranking/recommendations/ 的 301 重定向
+    // 实际由 public/_redirects（CF Pages 原生 301）实现，配置在 SSG meta-refresh 之前不生效；
+    // 此处保留以兼容本地 Astro dev；生产由 public/_redirects 主导
   },
 
   vite: {

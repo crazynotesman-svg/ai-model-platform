@@ -48,6 +48,10 @@ const t = useTranslations(lang);
 // 站点绝对基址（site 已在 astro.config 配置；缺省回退 localhost 保证构建不崩）
 const site = Astro.site ?? new URL('http://localhost:4321');
 
+// 默认 OG 图片（全站统一社交分享图；页面可经 image prop 覆盖）
+const ogImage = image ?? '/og-default.png';
+const ogImageUrl = new URL(ogImage, site).href;
+
 // canonical 与各语言版本的绝对 URL
 const currentPath = canonicalPath ?? Astro.url.pathname;
 const canonicalUrl = new URL(currentPath, site).href;
@@ -85,13 +89,13 @@ const OG_LOCALES: Record<Locale, string> = {
 <meta property="og:site_name" content={t('site.title')} />
 <meta property="og:title" content={title ?? t('site.title')} />
 <meta property="og:description" content={description ?? t('site.tagline')} />
-{image && <meta property="og:image" content={new URL(image, site).href} />}
+<meta property="og:image" content={ogImageUrl} />
 
-{/* Twitter Card 基础 */}
-<meta name="twitter:card" content="summary" />
+{/* Twitter Card 基础（large image 卡片） */}
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title ?? t('site.title')} />
 <meta name="twitter:description" content={description ?? t('site.tagline')} />
-{image && <meta name="twitter:image" content={new URL(image, site).href} />}
+<meta name="twitter:image" content={ogImageUrl} />
 
 {/* 结构化数据（可选）：模型详情、Article 等类型在此扩展 */}
 {jsonLd && (

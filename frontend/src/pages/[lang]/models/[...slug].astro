@@ -91,13 +91,15 @@ const fmtNumber = (n: number | null): string =>
   n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang);
 const fmtPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
 
-// 结构化数据（JSON-LD）：模型作为 Product，价格来自 D1
+// 结构化数据（JSON-LD）：模型作为 SoftwareApplication（含应用类别/操作系统/厂商/价格）
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Product',
+  '@type': 'SoftwareApplication',
   name,
   description,
-  brand: { '@type': 'Organization', name: data.providerName },
+  applicationCategory: 'AI Model',
+  operatingSystem: 'Cloud API',
+  provider: { '@type': 'Organization', name: data.providerName },
   offers: {
     '@type': 'Offer',
     price: data.inputPrice ?? undefined,
