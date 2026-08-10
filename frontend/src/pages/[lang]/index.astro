@@ -35,14 +35,14 @@ const stats = {
 };
 const fmt = (n: number): string => n.toLocaleString('en-US');
 
-// 功能入口（链接 = 现有路由，不改动导航结构）
+// 功能入口（链接 = 现有路由，不改动导航结构；覆盖 6 大 SEO 入口）
 const features: { href: string; title: string; desc: string }[] = [
-  { href: `/${lang}/models/`, title: t('home.featureModelsTitle'), desc: t('home.featureModelsDesc') },
-  { href: `/${lang}/compare/`, title: t('home.featureCompareTitle'), desc: t('home.featureCompareDesc') },
-  { href: `/${lang}/calculator/token/`, title: t('home.featureTokensTitle'), desc: t('home.featureTokensDesc') },
-  { href: `/${lang}/calculator/cost/`, title: t('home.featureCostTitle'), desc: t('home.featureCostDesc') },
-  { href: `/${lang}/ranking/`, title: t('home.featureRankingTitle'), desc: t('home.featureRankingDesc') },
-  { href: `/${lang}/news/`, title: t('home.featureNewsTitle'), desc: t('home.featureNewsDesc') },
+  { href: `/${lang}/models/`, title: t('internalLinks.models'), desc: t('home.featureModelsDesc') },
+  { href: `/${lang}/compare/`, title: t('internalLinks.compare'), desc: t('home.featureCompareDesc') },
+  { href: `/${lang}/ranking/`, title: t('internalLinks.leaderboard'), desc: t('home.featureRankingDesc') },
+  { href: `/${lang}/benchmarks/`, title: t('internalLinks.benchmarks'), desc: t('home.featureRankingDesc') },
+  { href: `/${lang}/ranking/recommendations/`, title: t('internalLinks.recommendations'), desc: t('home.featureRankingDesc') },
+  { href: `/${lang}/news/`, title: t('internalLinks.news'), desc: t('home.featureNewsDesc') },
 ];
 
 const steps: { title: string }[] = [
@@ -67,9 +67,24 @@ const rankBadge = (r: number): string => {
   if (r === 3) return 'bg-orange-700/80 text-white';
   return 'bg-slate-800 text-slate-400';
 };
+
+// 首页 BreadcrumbList（Home；与已有 JSON-LD 不重复）
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: t('site.title'),
+      item: new URL(`/${lang}/`, siteUrl).href,
+    },
+  ],
+};
 ---
 
-<BaseLayout title={t('site.title')} description={t('site.tagline')}>
+<BaseLayout title={t('site.title')} description={t('site.tagline')} jsonLd={homeJsonLd}>
   {/* Hero */}
   <section class="mx-auto max-w-4xl pt-8 text-center">
     <h1 class="text-3xl font-bold tracking-tight text-white sm:text-5xl">{t('home.welcome')}</h1>

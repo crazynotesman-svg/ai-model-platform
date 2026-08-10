@@ -249,5 +249,21 @@
   "home.rankingLoading": "排行榜加载中…",
   "home.rankingError": "排行榜加载失败。",
   "home.rankingRetry": "重试",
-  "home.rankingProvider": "厂商"
+  "home.rankingProvider": "厂商",
+  "internalLinks.explore": "探索平台",
+  "internalLinks.models": "AI 模型",
+  "internalLinks.compare": "模型对比",
+  "internalLinks.leaderboard": "排行榜",
+  "internalLinks.benchmarks": "基准评测",
+  "internalLinks.news": "AI 资讯",
+  "internalLinks.recommendations": "模型推荐",
+  "internalLinks.relatedResources": "相关资源",
+  "internalLinks.relatedRanking": "相关排行榜",
+  "internalLinks.relatedBenchmarks": "相关基准评测",
+  "internalLinks.featuredModels": "精选模型",
+  "internalLinks.compareTop": "与头部模型对比",
+  "internalLinks.similarModels": "相似模型",
+  "internalLinks.breadcrumbModels": "模型",
+  "internalLinks.breadcrumbBenchmarks": "基准评测",
+  "internalLinks.breadcrumbRanking": "排行榜"
 }

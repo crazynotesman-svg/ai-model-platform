@@ -249,5 +249,21 @@
   "home.rankingLoading": "Loading leaderboard…",
   "home.rankingError": "Failed to load leaderboard.",
   "home.rankingRetry": "Retry",
-  "home.rankingProvider": "Provider"
+  "home.rankingProvider": "Provider",
+  "internalLinks.explore": "Explore the platform",
+  "internalLinks.models": "AI Models",
+  "internalLinks.compare": "Compare Models",
+  "internalLinks.leaderboard": "Leaderboard",
+  "internalLinks.benchmarks": "Benchmarks",
+  "internalLinks.news": "AI News",
+  "internalLinks.recommendations": "Recommendations",
+  "internalLinks.relatedResources": "Related Resources",
+  "internalLinks.relatedRanking": "Related Ranking",
+  "internalLinks.relatedBenchmarks": "Related Benchmarks",
+  "internalLinks.featuredModels": "Featured Models",
+  "internalLinks.compareTop": "Compare with top models",
+  "internalLinks.similarModels": "Similar Models",
+  "internalLinks.breadcrumbModels": "Models",
+  "internalLinks.breadcrumbBenchmarks": "Benchmarks",
+  "internalLinks.breadcrumbRanking": "Ranking"
 }
