@@ -59,6 +59,19 @@ const navItems: { key: UiKey; href: string }[] = [
 
     {/* 自动语言识别（内联，构建期生成，避免 FOUC） */}
     <script is:inline set:html={buildAutoLocaleScript()} />
+
+    {/* Cloudflare Web Analytics（可选）：无 cookie / GDPR 友好 / 异步加载不影响 CWV。
+        由 PUBLIC_ANALYTICS_ENABLED=true + PUBLIC_ANALYTICS_TOKEN 控制（默认关闭）。 */}
+    {
+      import.meta.env.PUBLIC_ANALYTICS_ENABLED === 'true' &&
+        import.meta.env.PUBLIC_ANALYTICS_TOKEN && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${import.meta.env.PUBLIC_ANALYTICS_TOKEN}"}`}
+          />
+        )
+    }
   </head>
   <body class="flex min-h-screen flex-col bg-slate-950 text-slate-100 antialiased">
     <header class="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
