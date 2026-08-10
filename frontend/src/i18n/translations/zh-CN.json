@@ -348,5 +348,20 @@
   "intent.best-coding-model.desc": "按编码基准分数，代码生成与软件工程任务的最佳模型。",
   "landing.intent.target": "首选：",
   "landing.intent.compareNow": "对比 {a} 与 {b}",
-  "landing.useCasesDesc": "按场景精选模型：编码、推理、数学、视觉、写作、聊天机器人、长上下文与低价 API。"
+  "landing.useCasesDesc": "按场景精选模型：编码、推理、数学、视觉、写作、聊天机器人、长上下文与低价 API。",
+  "seoReport.title": "SEO 与数据报告",
+  "seoReport.desc": "透明展示本平台背后的数据：模型库、基准测试覆盖、更新节奏与数据来源。",
+  "seoReport.models": "AI 模型",
+  "seoReport.benchmarks": "基准测试结果",
+  "seoReport.pages": "收录页面",
+  "seoReport.lastUpdate": "最近更新",
+  "seoReport.dataSources": "数据来源",
+  "seoReport.sourceModels": "官方模型信息与定价（来自各厂商文档）",
+  "seoReport.sourceBenchmarks": "公开基准测试结果（MMLU、GPQA、HumanEval、AIME 等），标注数据集、版本与测试日期",
+  "seoReport.sourceRanking": "透明评分公式（基准 50%、能力 20%、价格 20%、上下文 10%），每日快照",
+  "seoReport.sourceNews": "来自公开渠道的 AI 行业资讯",
+  "seoReport.transparency": "透明度声明",
+  "seoReport.transparencyDesc": "本平台所有数据免费开放。评分基于公开公式计算；社区提交的未核验数据会明确标注。无广告、无付费墙、无跟踪 Cookie。",
+  "qualityBadge.models": "基于 {n} 个 AI 模型",
+  "qualityBadge.updated": "更新于 {year}"
 }

@@ -348,5 +348,20 @@
   "intent.best-coding-model.desc": "The top model for code generation and software engineering tasks, by coding benchmark score.",
   "landing.intent.target": "Top pick:",
   "landing.intent.compareNow": "Compare {a} vs {b}",
-  "landing.useCasesDesc": "Scenario-based model picks for coding, reasoning, math, vision, writing, chatbots, long context, and budget APIs."
+  "landing.useCasesDesc": "Scenario-based model picks for coding, reasoning, math, vision, writing, chatbots, long context, and budget APIs.",
+  "seoReport.title": "SEO & Data Report",
+  "seoReport.desc": "A transparent look at the data behind this platform: model inventory, benchmark coverage, update schedule, and data sources.",
+  "seoReport.models": "AI Models",
+  "seoReport.benchmarks": "Benchmark Results",
+  "seoReport.pages": "Indexed Pages",
+  "seoReport.lastUpdate": "Last Update",
+  "seoReport.dataSources": "Data Sources",
+  "seoReport.sourceModels": "Official model information and pricing from provider documentation",
+  "seoReport.sourceBenchmarks": "Public benchmark results (MMLU, GPQA, HumanEval, AIME, etc.) with dataset, version, and test date attribution",
+  "seoReport.sourceRanking": "Transparent scoring formula (benchmark 50%, capability 20%, price 20%, context 10%), snapshotted daily",
+  "seoReport.sourceNews": "AI industry news collected from public sources",
+  "seoReport.transparency": "Transparency Statement",
+  "seoReport.transparencyDesc": "All data on this platform is free and open. Scores are computed from a published formula; unverified community submissions are clearly marked. No ads, no paywalls, no tracking cookies.",
+  "qualityBadge.models": "Based on {n} AI models",
+  "qualityBadge.updated": "Updated {year}"
 }

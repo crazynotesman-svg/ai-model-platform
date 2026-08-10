@@ -13,6 +13,8 @@ import FAQSchema from '../../../components/seo/FAQSchema.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { CAPABILITY_ROWS } from '../../../lib/compare';
 import { USE_CASE_SLUGS, getUseCaseModels, type LandingModel } from '../../../lib/seoLanding';
+import { CATEGORY_SLUGS, INTENT_SLUGS } from '../../../lib/seoLanding';
+import { qualityBadge } from '../../../lib/seoQuality';
 import catalogJson from '../../../generated/model-catalog.json';
 
 // SSG：7 语言 × 8 场景
@@ -105,6 +107,14 @@ const capNames = (m: LandingModel): string =>
   CAPABILITY_ROWS.filter((r) => (m.capabilities ?? []).find((c) => c.capability === r.capability)?.supported)
     .map((r) => t(`compare.${r.labelKey}` as keyof typeof t))
     .join(', ');
+
+// QualityBadge（数据覆盖：模型数 + 最近核验年份；不暴露内部 score）
+const latestVerified = Object.values(catalog as Record<string, { lastVerifiedAt: string | null }>)
+  .map((m) => m.lastVerifiedAt)
+  .filter((d): d is string => Boolean(d))
+  .sort()
+  .reverse()[0] ?? null;
+const badge = qualityBadge({ modelCount: models.length, lastVerifiedAt: latestVerified });
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
@@ -114,6 +124,18 @@ const capNames = (m: LandingModel): string =>
     {/* Hero */}
     <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{pageTitle}</h1>
     <p class="mt-2 text-sm text-slate-400">{caseDesc}</p>
+
+    {/* QualityBadge（数据覆盖，友好文案） */}
+    <p class="mt-3 flex flex-wrap gap-2">
+      <span class="rounded-full bg-sky-500/15 px-2.5 py-1 text-[11px] font-semibold text-sky-300">
+        {t('qualityBadge.models', { n: String(badge.modelCount) })}
+      </span>
+      {badge.updatedYear != null && (
+        <span class="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-semibold text-emerald-400">
+          {t('qualityBadge.updated', { year: String(badge.updatedYear) })}
+        </span>
+      )}
+    </p>
 
     {/* Recommended Models */}
     <section class="mt-8">
@@ -194,7 +216,7 @@ const capNames = (m: LandingModel): string =>
       </div>
     </section>
 
-    {/* 相关场景（内部链接） */}
+    {/* 相关场景 + 分类 + 对比意图（Phase 11.4：landing 互链 ≥5） */}
     <section class="mt-8 border-t border-slate-800 pt-6">
       <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('landing.useCases')}</h2>
       <div class="mt-3 flex flex-wrap gap-2">
@@ -204,6 +226,28 @@ const capNames = (m: LandingModel): string =>
             class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
           >
             {t(`useCase.${s}.title` as keyof typeof t)} →
+          </a>
+        ))}
+      </div>
+      <h3 class="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">{t('landing.categories')}</h3>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {CATEGORY_SLUGS.map((s) => (
+          <a
+            href={`/${lang}/categories/${s}/`}
+            class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+          >
+            {t(`category.${s}.title` as keyof typeof t)} →
+          </a>
+        ))}
+      </div>
+      <h3 class="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">{t('landing.intents')}</h3>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {INTENT_SLUGS.map((s) => (
+          <a
+            href={`/${lang}/compare-intent/${s}/`}
+            class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+          >
+            {t(`intent.${s}.title` as keyof typeof t)} →
           </a>
         ))}
       </div>

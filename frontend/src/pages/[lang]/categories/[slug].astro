@@ -11,6 +11,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import FAQSchema from '../../../components/seo/FAQSchema.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { CATEGORY_SLUGS, getCategoryModels } from '../../../lib/seoLanding';
+import { USE_CASE_SLUGS, INTENT_SLUGS } from '../../../lib/seoLanding';
+import { qualityBadge } from '../../../lib/seoQuality';
 import catalogJson from '../../../generated/model-catalog.json';
 
 // SSG：7 语言 × 4 分类
@@ -89,6 +91,14 @@ const faqQuestions = [
 
 // 空数据提示
 const empty = models.length === 0;
+
+// QualityBadge（数据覆盖）
+const latestVerified = Object.values(catalog as Record<string, { lastVerifiedAt: string | null }>)
+  .map((m) => m.lastVerifiedAt)
+  .filter((d): d is string => Boolean(d))
+  .sort()
+  .reverse()[0] ?? null;
+const badge = qualityBadge({ modelCount: models.length, lastVerifiedAt: latestVerified });
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
@@ -97,6 +107,18 @@ const empty = models.length === 0;
   <div class="mx-auto max-w-4xl">
     <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{pageTitle}</h1>
     <p class="mt-2 text-sm text-slate-400">{catDesc}</p>
+
+    {/* QualityBadge */}
+    <p class="mt-3 flex flex-wrap gap-2">
+      <span class="rounded-full bg-sky-500/15 px-2.5 py-1 text-[11px] font-semibold text-sky-300">
+        {t('qualityBadge.models', { n: String(badge.modelCount) })}
+      </span>
+      {badge.updatedYear != null && (
+        <span class="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-semibold text-emerald-400">
+          {t('qualityBadge.updated', { year: String(badge.updatedYear) })}
+        </span>
+      )}
+    </p>
 
     {empty ? (
       <p class="mt-6 rounded-xl border border-slate-800 bg-slate-900/60 p-6 text-sm text-slate-400">
@@ -148,7 +170,7 @@ const empty = models.length === 0;
       </div>
     </section>
 
-    {/* 相关分类（内部链接） */}
+    {/* 相关分类 + 场景 + Ranking（Phase 11.4：landing 互链 ≥5） */}
     <section class="mt-8 border-t border-slate-800 pt-6">
       <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('landing.categories')}</h2>
       <div class="mt-3 flex flex-wrap gap-2">
@@ -158,6 +180,34 @@ const empty = models.length === 0;
             class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
           >
             {t(`category.${s}.title` as keyof typeof t)} →
+          </a>
+        ))}
+        <a
+          href={`/${lang}/ranking/`}
+          class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+        >
+          {t('internalLinks.leaderboard')} →
+        </a>
+      </div>
+      <h3 class="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">{t('landing.useCases')}</h3>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {USE_CASE_SLUGS.map((s) => (
+          <a
+            href={`/${lang}/use-cases/${s}/`}
+            class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+          >
+            {t(`useCase.${s}.title` as keyof typeof t)} →
+          </a>
+        ))}
+      </div>
+      <h3 class="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">{t('landing.intents')}</h3>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {INTENT_SLUGS.map((s) => (
+          <a
+            href={`/${lang}/compare-intent/${s}/`}
+            class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+          >
+            {t(`intent.${s}.title` as keyof typeof t)} →
           </a>
         ))}
       </div>

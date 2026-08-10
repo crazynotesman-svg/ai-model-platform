@@ -1,0 +1,103 @@
+---
+/**
+ * SEO & Data Report 页：/{lang}/seo-report/
+ *
+ * 公开透明页面（E-E-A-T）：模型库/基准覆盖/收录页数/最近更新/数据来源。
+ * JSON-LD：WebPage（简单类型，避免与 FAQ 等冲突）。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { allComparePairs } from '../../../lib/compare';
+import { MODEL_SLUGS } from '../../../generated/model-slugs';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// SSG：7 语言
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+// 统计（构建期从 catalog 计算）
+const catalog = catalogJson as Record<
+  string,
+  {
+    providerName: string;
+    lastVerifiedAt: string | null;
+    benchmarks?: unknown[];
+  }
+>;
+const entries = Object.values(catalog);
+const modelCount = entries.length;
+const providerCount = new Set(entries.map((e) => e.providerName)).size;
+const benchmarkCount = entries.reduce((n, e) => n + (e.benchmarks?.length ?? 0), 0);
+const indexedPages = allComparePairs(MODEL_SLUGS).length * LOCALES.length + 7 * (MODEL_SLUGS.length + 8 + 4 + 3 + 1) + 7; // compare + (详情+landing+report) + 首页
+const lastVerified = entries
+  .map((e) => e.lastVerifiedAt)
+  .filter((d): d is string => Boolean(d))
+  .sort()
+  .reverse()[0];
+const lastUpdate = lastVerified ? lastVerified.slice(0, 10) : '—';
+
+// JSON-LD：WebPage
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: t('seoReport.title'),
+  description: t('seoReport.desc'),
+  url: pageUrl,
+  dateModified: lastVerified ?? undefined,
+  publisher: { '@type': 'Organization', name: 'AI Model Platform' },
+};
+---
+
+<BaseLayout title={t('seoReport.title')} description={t('seoReport.desc')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('seoReport.title')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('seoReport.desc')}</p>
+
+    {/* 统计卡 */}
+    <dl class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {[
+        { value: modelCount, label: t('seoReport.models') },
+        { value: benchmarkCount, label: t('seoReport.benchmarks') },
+        { value: providerCount, label: 'Providers' },
+        { value: indexedPages.toLocaleString('en-US'), label: t('seoReport.pages') },
+      ].map((s) => (
+        <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+          <dd class="text-2xl font-bold text-sky-400 sm:text-3xl">{s.value}</dd>
+          <dt class="mt-1 text-xs uppercase tracking-wide text-slate-500">{s.label}</dt>
+        </div>
+      ))}
+    </dl>
+
+    <p class="mt-4 text-center text-xs text-slate-500">
+      {t('seoReport.lastUpdate')}: {lastUpdate}
+    </p>
+
+    {/* 数据来源 */}
+    <section class="mt-8">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('seoReport.dataSources')}</h2>
+      <ul class="mt-3 space-y-2">
+        {[
+          t('seoReport.sourceModels'),
+          t('seoReport.sourceBenchmarks'),
+          t('seoReport.sourceRanking'),
+          t('seoReport.sourceNews'),
+        ].map((s) => (
+          <li class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-300">{s}</li>
+        ))}
+      </ul>
+    </section>
+
+    {/* 透明度声明 */}
+    <section class="mt-8 rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('seoReport.transparency')}</h2>
+      <p class="mt-2 text-sm leading-relaxed text-slate-400">{t('seoReport.transparencyDesc')}</p>
+    </section>
+  </div>
+</BaseLayout>
