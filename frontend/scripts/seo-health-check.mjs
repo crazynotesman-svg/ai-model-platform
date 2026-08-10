@@ -66,8 +66,8 @@ const main = async () => {
   console.log(`SEO HEALTH CHECK — ${domain} — ${fmt(start)}`);
   console.log('='.repeat(60));
 
-  // 1. robots.txt
-  const robots = await get(`${domain}/robots.txt`);
+  // 1. robots.txt（?v= 绕过 Cloudflare 边缘缓存 max-age=86400——检查源文件而非缓存）
+  const robots = await get(`${domain}/robots.txt?v=${Date.now()}`);
   const robotsOk =
     robots.status === 200 &&
     robots.text.includes('sitemap-index.xml') &&
