@@ -68,17 +68,43 @@ const rankBadge = (r: number): string => {
   return 'bg-slate-800 text-slate-400';
 };
 
-// 首页 BreadcrumbList（Home；与已有 JSON-LD 不重复）
+// 首页 JSON-LD：BreadcrumbList + Organization + WebSite（SearchAction 预留，@graph 单一脚本）
 const siteUrl = Astro.site ?? new URL('http://localhost:4321');
 const homeJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
+  '@graph': [
     {
-      '@type': 'ListItem',
-      position: 1,
-      name: t('site.title'),
-      item: new URL(`/${lang}/`, siteUrl).href,
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: t('site.title'),
+          item: new URL(`/${lang}/`, siteUrl).href,
+        },
+      ],
+    },
+    {
+      '@type': 'Organization',
+      name: 'AI Model Platform',
+      url: new URL(`/${lang}/`, siteUrl).href,
+      logo: new URL('/og-default.png', siteUrl).href,
+      sameAs: [],
+    },
+    {
+      '@type': 'WebSite',
+      name: 'AI Model Platform',
+      url: new URL(`/${lang}/`, siteUrl).href,
+      // Google Sitelinks Searchbox：站内搜索待实现（见 docs/seo-phase-10.6-report.md TODO），
+      // 暂指向 /search?q={query}（返回 404 前会重定向到 /en）
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: new URL(`/${lang}/search?q={search_term_string}`, siteUrl).href,
+        },
+        'query-input': 'required name=search_term_string',
+      },
     },
   ],
 };

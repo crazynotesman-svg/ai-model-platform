@@ -28,6 +28,9 @@ export default defineConfig({
       },
       // 排除不参与 SEO 的路径（如有）
       filter: (page) => !page.includes('/404'),
+      // lastmod：构建时间戳（fallback；页面级 updatedAt/publishedAt 等数据源
+      // 优先级后续可扩展——见 docs/seo-phase-10.6-report.md）
+      lastmod: new Date(),
     }),
   ],
 
