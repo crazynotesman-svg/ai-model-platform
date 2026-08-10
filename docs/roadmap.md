@@ -25,6 +25,12 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 9.7 | 评测平台收尾（数据源接入、合规、v1.0） | ✅ 已完成 |
 | v1.0 | **AI Model Platform v1.0 已上线**（2026-08-05，tag v1.0.0） | 🎉 **已上线** |
 | v2 | 用户体系 / 社区 / 商业化 / 自动 benchmark pipeline | ⬜ 规划中 |
+| 10.1 | SEO 生产审计（aimodel.100ideas.net 域名） | ✅ 已完成 |
+| 10.2 | 生产域名迁移 P0 修复（canonical/sitemap/robots → 生产域名） | ✅ 已完成 |
+| 10.3 | SEO P1 增强（og:image / SoftwareApplication / recommendations 301） | ✅ 已完成 |
+| 10.4 | Google Search Console & Indexing 策略（setup/audit/priority URLs） | ✅ 已完成 |
+| 10.5 | 内部链接 SEO 增强（Related Resources/BreadcrumbList/导航补齐） | ✅ 已完成 |
+| 10.6 | 收录后优化（P2：sitemap lastmod、404 状态、首页 Organization JSON-LD） | ⬜ 待开发 |
 
 ## Phase 10 — Production Launch ✅ 已完成（git: release: v1.0.0，tag v1.0.0）
 
