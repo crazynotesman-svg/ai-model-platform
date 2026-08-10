@@ -1,0 +1,43 @@
+---
+/**
+ * FAQSchema：FAQPage JSON-LD 结构化数据组件（GEO：提升 AI 搜索引擎问答引用概率）。
+ *
+ * 用法（页面中）：
+ *   <BaseLayout ...>
+ *     <FAQSchema slot="head" questions={[{ question, answer }]} />
+ *   </BaseLayout>
+ *
+ * 说明：
+ * - 独立输出 FAQPage JSON-LD <script>（与页面主 jsonLd @graph 并存，类型不冲突）；
+ * - questions 由页面从真实数据/i18n 生成（禁止 mock）；
+ * - 与已有 BreadcrumbList / SoftwareApplication / Organization 等类型互不重复。
+ */
+interface Props {
+  questions: { question: string; answer: string }[];
+}
+
+const { questions } = Astro.props;
+
+const valid = (questions ?? []).filter((q) => q.question && q.answer);
+
+// 无有效问答时不输出（避免空 JSON-LD）
+if (valid.length === 0) {
+  return null;
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: valid.map((q) => ({
+    '@type': 'Question',
+    name: q.question,
+    acceptedAnswer: { '@type': 'Answer', text: q.answer },
+  })),
+};
+---
+
+{
+  valid.length > 0 && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )
+}

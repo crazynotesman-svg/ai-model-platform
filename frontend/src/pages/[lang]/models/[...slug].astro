@@ -9,8 +9,9 @@
  */
 import { LOCALES, LOCALE_LABELS, type Locale } from '../../../i18n/locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FAQSchema from '../../../components/seo/FAQSchema.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
-import { comparePairKey } from '../../../lib/compare';
+import { comparePairKey, CAPABILITY_ROWS } from '../../../lib/compare';
 import { MODEL_SLUGS } from '../../../generated/model-slugs';
 import catalogJson from '../../../generated/model-catalog.json';
 
@@ -29,6 +30,7 @@ interface ModelCatalogEntry {
   translations: Partial<
     Record<string, { name?: string; description?: string | null; useCases?: string[] | null }>
   >;
+  capabilities?: { capability: string; supported: boolean }[];
   benchmarks?: {
     category: string;
     categoryName: string;
@@ -160,6 +162,40 @@ const compareVsTop = topRanked.map((m) => ({
   name: m.name,
 }));
 
+// ---- FAQ（GEO：数据驱动，禁止 mock）----
+// 支持的能力标签（用 compare.* 键本地化，7 语言）
+const supportedCaps = CAPABILITY_ROWS.filter(
+  (row) => (data.capabilities ?? []).find((c) => c.capability === row.capability)?.supported,
+).map((row) => t(`compare.${row.labelKey}` as keyof typeof t));
+const fmtCtx = (n: number | null): string => (n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang));
+const fmtUsd = (n: number | null): string => (n == null ? '—' : n.toFixed(2));
+const faqQuestions = [
+  {
+    question: t('faq.modelWhat.q', { name }),
+    answer: t('faq.modelWhat.a', { name, provider: data.providerName, description: description || data.providerName }),
+  },
+  {
+    question: t('faq.modelContext.q', { name }),
+    answer: t('faq.modelContext.a', { name, context: fmtCtx(data.contextWindow) }),
+  },
+  {
+    question: t('faq.modelCost.q', { name }),
+    answer: t('faq.modelCost.a', {
+      name,
+      in: fmtUsd(data.inputPrice),
+      out: fmtUsd(data.outputPrice),
+    }),
+  },
+  ...(supportedCaps.length > 0
+    ? [
+        {
+          question: t('faq.modelCapabilities.q', { name }),
+          answer: t('faq.modelCapabilities.a', { name, caps: supportedCaps.join(', ') }),
+        },
+      ]
+    : []),
+];
+
 const detailRows: { label: string; value: string }[] = [
   { label: t('models.detailProvider'), value: data.providerName },
   { label: t('models.detailModelType'), value: data.modelType },
@@ -177,6 +213,8 @@ const detailRows: { label: string; value: string }[] = [
 ---
 
 <BaseLayout title={`${name} | ${t('site.title')}`} description={description} jsonLd={jsonLd}>
+  {/* FAQPage JSON-LD（独立 block，与主 @graph 不冲突） */}
+  <FAQSchema slot="head" questions={faqQuestions} />
   <article class="mx-auto max-w-3xl">
     <a href={`/${lang}/models/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
       ← {t('models.backToList')}
@@ -342,6 +380,21 @@ const detailRows: { label: string; value: string }[] = [
         </div>
       </section>
     )}
+    {/* FAQ（GEO：数据驱动问答区块，与 FAQPage JSON-LD 一致） */}
+    <section class="mt-10 border-t border-slate-800 pt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('faq.title')}</h2>
+      <div class="mt-4 space-y-3">
+        {faqQuestions.map((q) => (
+          <details class="group rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-white transition-colors group-hover:text-sky-300">
+              {q.question}
+            </summary>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
     {/* Related Resources（Phase 10.5：内部链接增强，SSG 静态生成） */}
     <section class="mt-10 border-t border-slate-800 pt-6">
       <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('internalLinks.relatedResources')}</h2>

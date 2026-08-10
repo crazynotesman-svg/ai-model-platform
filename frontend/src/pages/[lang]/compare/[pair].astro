@@ -10,6 +10,7 @@
  */
 import { LOCALES, type Locale } from '../../../i18n/locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FAQSchema from '../../../components/seo/FAQSchema.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { allComparePairs, capabilityMap, CAPABILITY_ROWS, parseComparePair } from '../../../lib/compare';
 import { BENCHMARK_CATEGORIES } from '../../../lib/benchmark';
@@ -170,6 +171,47 @@ const jsonLd = {
   '@graph': [softwareLd(A), softwareLd(B), breadcrumbLd],
 };
 
+// ---- FAQ（GEO：数据驱动——综合评分/价格/能力差异，禁止 mock）----
+const faqCapLabel = (row: (typeof CAPABILITY_ROWS)[number]) => t(`compare.${row.labelKey}` as keyof typeof t);
+const faqCapsA = new Set((A.capabilities ?? []).filter((c) => c.supported).map((c) => c.capability));
+const faqCapsB = new Set((B.capabilities ?? []).filter((c) => c.supported).map((c) => c.capability));
+const faqOnlyA = CAPABILITY_ROWS.filter((r) => faqCapsA.has(r.capability) && !faqCapsB.has(r.capability)).map(faqCapLabel);
+const faqOnlyB = CAPABILITY_ROWS.filter((r) => faqCapsB.has(r.capability) && !faqCapsA.has(r.capability)).map(faqCapLabel);
+const faqDiffParts: string[] = [];
+if (faqOnlyA.length > 0) faqDiffParts.push(`${A.name}: ${faqOnlyA.join(', ')}`);
+if (faqOnlyB.length > 0) faqDiffParts.push(`${B.name}: ${faqOnlyB.join(', ')}`);
+const faqDiffText =
+  faqDiffParts.length > 0 ? faqDiffParts.join('; ') : t('faq.compareCapability.aNone', { a: A.name, b: B.name });
+
+const faqQuestions = [
+  {
+    question: t('faq.compareBetter.q', { a: A.name, b: B.name }),
+    answer:
+      A.ranking?.overall != null && B.ranking?.overall != null
+        ? t('faq.compareBetter.a', {
+            winner: A.ranking.overall >= B.ranking.overall ? A.name : B.name,
+            sa: String(Math.max(A.ranking.overall, B.ranking.overall)),
+            sb: String(Math.min(A.ranking.overall, B.ranking.overall)),
+          })
+        : t('faq.compareBetter.aNone', { a: A.name, b: B.name }),
+  },
+  {
+    question: t('faq.compareCheaper.q', { a: A.name, b: B.name }),
+    answer:
+      A.inputPrice != null && B.inputPrice != null
+        ? t('faq.compareCheaper.a', {
+            cheaper: A.inputPrice <= B.inputPrice ? A.name : B.name,
+            pa: String(Math.min(A.inputPrice, B.inputPrice)),
+            pb: String(Math.max(A.inputPrice, B.inputPrice)),
+          })
+        : t('faq.compareCheaper.aNone', { a: A.name, b: B.name }),
+  },
+  {
+    question: t('faq.compareCapability.q', { a: A.name, b: B.name }),
+    answer: faqDiffText,
+  },
+];
+
 // ---- 能力矩阵（Phase 9.3）：数据来自 D1 model_capabilities；function_calling 展示为 Tools ----
 const capsA = capabilityMap(A.capabilities);
 const capsB = capabilityMap(B.capabilities);
@@ -194,6 +236,8 @@ const rows: { label: string; a: string; b: string }[] = [
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
+  {/* FAQPage JSON-LD（独立 block，与主 @graph 不冲突） */}
+  <FAQSchema slot="head" questions={faqQuestions} />
   <article class="mx-auto max-w-4xl">
     <a href={`/${lang}/compare/`} class="text-sm text-sky-400 transition-colors hover:text-sky-300">
       ← {t('compare.backToCompare')}
@@ -443,5 +487,20 @@ const rows: { label: string; a: string; b: string }[] = [
         )}
       </div>
     )}
+
+    {/* FAQ（GEO：数据驱动问答区块，与 FAQPage JSON-LD 一致） */}
+    <section class="mt-10 border-t border-slate-800 pt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('faq.title')}</h2>
+      <div class="mt-4 space-y-3">
+        {faqQuestions.map((q) => (
+          <details class="group rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-white transition-colors group-hover:text-sky-300">
+              {q.question}
+            </summary>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
   </article>
 </BaseLayout>

@@ -60,6 +60,9 @@ const navItems: { key: UiKey; href: string }[] = [
     {/* 自动语言识别（内联，构建期生成，避免 FOUC） */}
     <script is:inline set:html={buildAutoLocaleScript()} />
 
+    {/* 页面级额外 head 内容（如 FAQSchema 的 FAQPage JSON-LD） */}
+    <slot name="head" />
+
     {/* Cloudflare Web Analytics（可选）：无 cookie / GDPR 友好 / 异步加载不影响 CWV。
         由 PUBLIC_ANALYTICS_ENABLED=true + PUBLIC_ANALYTICS_TOKEN 控制（默认关闭）。 */}
     {
