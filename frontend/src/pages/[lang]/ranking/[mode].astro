@@ -172,6 +172,13 @@ const relatedBenchmarkHref =
         >
           {mode === 'best-value' ? t('internalLinks.benchmarks') : modeLabel} Benchmark →
         </a>
+        {/* Related Use Case（Phase 11.3） */}
+        <a
+          href={mode === 'best-value' ? `/${lang}/use-cases/cheap-api/` : `/${lang}/use-cases/${mode}/`}
+          class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+        >
+          {mode === 'best-value' ? t('useCase.cheap-api.title') : t(`useCase.${mode}.title` as keyof typeof t)} →
+        </a>
       </div>
     </section>
   </div>

@@ -162,6 +162,12 @@ const compareVsTop = topRanked.map((m) => ({
   name: m.name,
 }));
 
+// ---- Related Use Cases（Phase 11.3：该模型出现在哪些场景 Top5）----
+import { USE_CASE_SLUGS, getUseCaseModels } from '../../../lib/seoLanding';
+const relatedUseCases = USE_CASE_SLUGS.filter((uc) =>
+  getUseCaseModels(uc, lang, catalogJson as unknown as Record<string, never>).some((m) => m.slug === data.slug),
+).map((uc) => ({ slug: uc, title: t(`useCase.${uc}.title` as keyof typeof t) }));
+
 // ---- FAQ（GEO：数据驱动，禁止 mock）----
 // 支持的能力标签（用 compare.* 键本地化，7 语言）
 const supportedCaps = CAPABILITY_ROWS.filter(
@@ -439,6 +445,21 @@ const detailRows: { label: string; value: string }[] = [
             ))}
           </div>
         </div>
+        {relatedUseCases.length > 0 && (
+          <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:col-span-2">
+            <span class="text-sm font-semibold text-white">{t('landing.useCases')}</span>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {relatedUseCases.map((uc) => (
+                <a
+                  href={`/${lang}/use-cases/${uc.slug}/`}
+                  class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+                >
+                  {uc.title} →
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   </article>

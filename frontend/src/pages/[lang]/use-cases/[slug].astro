@@ -1,0 +1,212 @@
+---
+/**
+ * Use Case Landing 页：/{lang}/use-cases/[slug]/
+ *
+ * SSG：7 语言 × 8 场景 = 56 页。数据来自 model-catalog.json（构建期 D1 导出），
+ * 排序口径见 docs/programmatic-seo-design.md（seoLanding.getUseCaseModels）。
+ * 结构：Hero → Recommended Models → Ranking Table → Benchmark Evidence → Price → FAQ。
+ * JSON-LD：CollectionPage + ItemList（主 @graph）+ FAQPage（FAQSchema 组件）。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FAQSchema from '../../../components/seo/FAQSchema.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { CAPABILITY_ROWS } from '../../../lib/compare';
+import { USE_CASE_SLUGS, getUseCaseModels, type LandingModel } from '../../../lib/seoLanding';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// SSG：7 语言 × 8 场景
+export function getStaticPaths() {
+  const paths: { params: { lang: string; slug: string } }[] = [];
+  for (const lang of LOCALES) {
+    for (const slug of USE_CASE_SLUGS) {
+      paths.push({ params: { lang, slug } });
+    }
+  }
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+const slug = Astro.params.slug as string;
+
+// 非法场景 → 404
+if (!(USE_CASE_SLUGS as readonly string[]).includes(slug)) {
+  return Astro.redirect('/404');
+}
+
+const catalog = catalogJson as unknown as Record<string, never>;
+const models = getUseCaseModels(slug, lang, catalog);
+
+const caseLabel = t(`useCase.${slug}.title` as keyof typeof t);
+const caseDesc = t(`useCase.${slug}.desc` as keyof typeof t);
+const pageTitle = t('landing.bestTitle', { case: caseLabel });
+const pageDescription = caseDesc;
+
+// 表头与行数据
+const fmtNum = (n: number | null): string => (n == null ? '—' : n.toLocaleString(lang === 'en' ? 'en-US' : lang));
+const fmtPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
+const scoreLabel: Record<string, string> = {
+  coding: 'Coding',
+  reasoning: 'Reasoning',
+  math: 'Math',
+  vision: 'Vision',
+  writing: 'Overall',
+  chatbot: 'Overall',
+  'long-context': 'Context',
+  'cheap-api': 'Price↓',
+};
+const scoreHeader = scoreLabel[slug] ?? 'Score';
+
+// JSON-LD：CollectionPage + ItemList（主 block @graph）
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'CollectionPage', name: pageTitle, description: pageDescription, url: pageUrl },
+    {
+      '@type': 'ItemList',
+      name: pageTitle,
+      itemListElement: models.map((m, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: m.name,
+        item: new URL(`/${lang}/models/${m.slug}/`, siteUrl).href,
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t('site.title'), item: new URL(`/${lang}/`, siteUrl).href },
+        { '@type': 'ListItem', position: 2, name: t('landing.useCases'), item: pageUrl },
+      ],
+    },
+  ],
+};
+
+// FAQ（数据驱动：Top1 模型）
+const top = models[0];
+const faqQuestions = [
+  {
+    question: t('landing.faq.bestFor.q', { case: caseLabel }),
+    answer: t('landing.faq.bestFor.a', {
+      name: top?.name ?? '—',
+      case: caseLabel,
+      score: top ? String(Math.round(top.score)) : '—',
+    }),
+  },
+  { question: t('landing.faq.howSelected.q'), answer: t('landing.faq.howSelected.a') },
+  { question: t('landing.faq.dataFresh.q'), answer: t('landing.faq.dataFresh.a') },
+];
+
+// 能力标签
+const capNames = (m: LandingModel): string =>
+  CAPABILITY_ROWS.filter((r) => (m.capabilities ?? []).find((c) => c.capability === r.capability)?.supported)
+    .map((r) => t(`compare.${r.labelKey}` as keyof typeof t))
+    .join(', ');
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
+  <FAQSchema slot="head" questions={faqQuestions} />
+
+  <div class="mx-auto max-w-4xl">
+    {/* Hero */}
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{pageTitle}</h1>
+    <p class="mt-2 text-sm text-slate-400">{caseDesc}</p>
+
+    {/* Recommended Models */}
+    <section class="mt-8">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('landing.recommended')}</h2>
+      <ol class="mt-3 space-y-2">
+        {models.map((m, i) => (
+          <li>
+            <a
+              href={`/${lang}/models/${m.slug}/`}
+              class="flex items-center gap-4 rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 transition-colors hover:border-sky-500/60 hover:bg-slate-900"
+            >
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-800 text-sm font-bold text-slate-300">
+                {i + 1}
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block truncate text-sm font-semibold text-white">{m.name}</span>
+                <span class="block text-xs uppercase tracking-wide text-sky-400">{m.providerName}</span>
+              </span>
+              <span class="w-20 shrink-0 text-right">
+                <span class="block text-sm font-bold text-slate-100">{m.score.toLocaleString('en-US')}</span>
+                <span class="block text-[10px] uppercase text-slate-500">{scoreHeader}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* Ranking Table + Benchmark + Price（数据表） */}
+    <section class="mt-8 overflow-x-auto rounded-xl border border-slate-800">
+      <table class="w-full min-w-[640px] text-left text-sm">
+        <thead class="bg-slate-900 text-[11px] uppercase tracking-wide text-slate-500">
+          <tr class="border-b border-slate-800">
+            <th scope="col" class="px-4 py-3 font-medium">{t('landing.rankingTable')}</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('landing.model')}</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('landing.provider')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{scoreHeader}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('landing.benchmarkEvidence')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('landing.price')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('landing.context')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {models.map((m, i) => (
+            <tr class="border-b border-slate-800/60 last:border-b-0">
+              <td class="px-4 py-3 tabular-nums text-slate-400">{i + 1}</td>
+              <td class="px-4 py-3">
+                <a href={`/${lang}/models/${m.slug}/`} class="font-medium text-slate-100 hover:text-sky-300">
+                  {m.name}
+                </a>
+                <p class="text-[11px] text-slate-500">{capNames(m)}</p>
+              </td>
+              <td class="px-4 py-3 text-slate-400">{m.providerName}</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums text-sky-300">
+                {m.score.toLocaleString('en-US')}
+              </td>
+              <td class="px-4 py-3 text-right tabular-nums text-slate-200">{m.benchmark ?? '—'}</td>
+              <td class="px-4 py-3 text-right tabular-nums text-slate-200">{fmtPrice(m.inputPrice)}</td>
+              <td class="px-4 py-3 text-right tabular-nums text-slate-400">{fmtNum(m.contextWindow)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    {/* FAQ（可见区块，与 FAQPage JSON-LD 一致） */}
+    <section class="mt-8 border-t border-slate-800 pt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('faq.title')}</h2>
+      <div class="mt-4 space-y-3">
+        {faqQuestions.map((q) => (
+          <details class="group rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-white transition-colors group-hover:text-sky-300">
+              {q.question}
+            </summary>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    {/* 相关场景（内部链接） */}
+    <section class="mt-8 border-t border-slate-800 pt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('landing.useCases')}</h2>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {USE_CASE_SLUGS.filter((s) => s !== slug).map((s) => (
+          <a
+            href={`/${lang}/use-cases/${s}/`}
+            class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+          >
+            {t(`useCase.${s}.title` as keyof typeof t)} →
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,165 @@
+---
+/**
+ * Comparison Intent Landing 页：/{lang}/compare-intent/[slug]/
+ *
+ * SSG：7 语言 × 3 意图 = 21 页。复用 catalog 数据（seoLanding.getComparisonIntent），
+ * 不复制 compare 算法；gpt-4o-vs-claude-sonnet-4 直接链接现有 compare/[pair] 页。
+ * 结构：Hero → 目标模型 → 完整对比链接 → FAQ。
+ * JSON-LD：CollectionPage + ItemList + BreadcrumbList（主 @graph）+ FAQPage（FAQSchema）。
+ */
+import { LOCALES } from '../../../i18n/locales';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FAQSchema from '../../../components/seo/FAQSchema.astro';
+import { getLangFromUrl, useI18n } from '../../../i18n/ui';
+import { INTENT_SLUGS, getComparisonIntent } from '../../../lib/seoLanding';
+import { comparePairKey } from '../../../lib/compare';
+import catalogJson from '../../../generated/model-catalog.json';
+
+// SSG：7 语言 × 3 意图
+export function getStaticPaths() {
+  const paths: { params: { lang: string; slug: string } }[] = [];
+  for (const lang of LOCALES) {
+    for (const slug of INTENT_SLUGS) {
+      paths.push({ params: { lang, slug } });
+    }
+  }
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+const slug = Astro.params.slug as string;
+
+// 非法意图 → 404
+if (!(INTENT_SLUGS as readonly string[]).includes(slug)) {
+  return Astro.redirect('/404');
+}
+
+const catalog = catalogJson as unknown as Record<string, never>;
+const intent = getComparisonIntent(slug, lang, catalog);
+
+const intentLabel = t(`intent.${slug}.title` as keyof typeof t);
+const intentDesc = t(`intent.${slug}.desc` as keyof typeof t);
+const pageTitle = t('landing.intentTitle', { intent: intentLabel });
+const pageDescription = intentDesc;
+
+const fmtPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixed(2)}`);
+
+// 完整对比链接（仅 pair 意图；复用 comparePairKey 规范 URL）
+const compareHref =
+  intent.pairSlugs && intent.models.length === 2
+    ? `/${lang}/compare/${comparePairKey(intent.pairSlugs[0], intent.pairSlugs[1])}/`
+    : intent.targetSlug
+      ? `/${lang}/models/${intent.targetSlug}/`
+      : null;
+
+// JSON-LD
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'CollectionPage', name: pageTitle, description: pageDescription, url: pageUrl },
+    {
+      '@type': 'ItemList',
+      name: pageTitle,
+      itemListElement: intent.models.map((m, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: m.name,
+        item: new URL(`/${lang}/models/${m.slug}/`, siteUrl).href,
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t('site.title'), item: new URL(`/${lang}/`, siteUrl).href },
+        { '@type': 'ListItem', position: 2, name: t('landing.intents'), item: pageUrl },
+      ],
+    },
+  ],
+};
+
+// FAQ
+const top = intent.models[0];
+const faqQuestions = [
+  {
+    question: t('landing.faq.bestFor.q', { case: intentLabel }),
+    answer: t('landing.faq.bestFor.a', {
+      name: top?.name ?? '—',
+      case: intentLabel,
+      score: top?.overall != null ? String(Math.round(top.overall)) : '—',
+    }),
+  },
+  { question: t('landing.faq.howSelected.q'), answer: t('landing.faq.howSelected.a') },
+  { question: t('landing.faq.dataFresh.q'), answer: t('landing.faq.dataFresh.a') },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} jsonLd={jsonLd}>
+  <FAQSchema slot="head" questions={faqQuestions} />
+
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{pageTitle}</h1>
+    <p class="mt-2 text-sm text-slate-400">{intentDesc}</p>
+
+    {/* 目标模型 */}
+    <div class="mt-6 grid gap-3 sm:grid-cols-2">
+      {intent.models.map((m) => (
+        <a
+          href={`/${lang}/models/${m.slug}/`}
+          class="rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-colors hover:border-sky-500/60 hover:bg-slate-900"
+        >
+          <span class="text-base font-semibold text-white">{m.name}</span>
+          <span class="mt-0.5 block text-xs uppercase tracking-wide text-sky-400">{m.providerName}</span>
+          <dl class="mt-3 grid grid-cols-3 gap-2 text-center">
+            <div class="rounded-lg bg-slate-950 px-2 py-1.5">
+              <dt class="text-[10px] text-slate-500">{t('landing.score')}</dt>
+              <dd class="text-xs font-medium tabular-nums text-slate-200">{m.overall ?? '—'}</dd>
+            </div>
+            <div class="rounded-lg bg-slate-950 px-2 py-1.5">
+              <dt class="text-[10px] text-slate-500">{t('landing.price')}</dt>
+              <dd class="text-xs font-medium tabular-nums text-slate-200">{fmtPrice(m.inputPrice)}</dd>
+            </div>
+            <div class="rounded-lg bg-slate-950 px-2 py-1.5">
+              <dt class="text-[10px] text-slate-500">{t('landing.context')}</dt>
+              <dd class="text-xs font-medium tabular-nums text-slate-200">
+                {m.contextWindow != null ? m.contextWindow.toLocaleString('en-US') : '—'}
+              </dd>
+            </div>
+          </dl>
+        </a>
+      ))}
+    </div>
+
+    {/* 完整对比/详情链接 */}
+    {compareHref && (
+      <p class="mt-6 text-center">
+        <a
+          href={compareHref}
+          class="rounded-full bg-sky-500 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sky-400"
+        >
+          {intent.pairSlugs
+            ? t('landing.intent.compareNow', { a: intent.models[0]?.name ?? 'A', b: intent.models[1]?.name ?? 'B' })
+            : t('landing.viewCompare')}
+          →
+        </a>
+      </p>
+    )}
+
+    {/* FAQ */}
+    <section class="mt-8 border-t border-slate-800 pt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('faq.title')}</h2>
+      <div class="mt-4 space-y-3">
+        {faqQuestions.map((q) => (
+          <details class="group rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <summary class="cursor-pointer text-sm font-semibold text-white transition-colors group-hover:text-sky-300">
+              {q.question}
+            </summary>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">{q.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
