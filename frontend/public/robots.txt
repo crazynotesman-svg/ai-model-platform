@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-model-platform-my5.pages.dev/sitemap-index.xml
+Sitemap: https://aimodel.100ideas.net/sitemap-index.xml

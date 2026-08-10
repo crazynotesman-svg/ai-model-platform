@@ -7,9 +7,10 @@ import { LOCALES, DEFAULT_LOCALE, FALLBACK_LOCALE } from './src/i18n/locales';
 
 /**
  * 站点根 URL。canonical / sitemap / OG 等 SEO 能力以此为基准。
- * 注意：绑定自定义域名后需同步更新此处（canonical 随之切换）。
+ * 生产/预览通过环境变量 PUBLIC_SITE_URL 注入（Pages env_vars）；
+ * 本地开发默认 http://localhost:4321，不污染生产 SEO 信号。
  */
-const SITE_URL = 'https://ai-model-platform-my5.pages.dev';
+const SITE_URL = process.env.PUBLIC_SITE_URL ?? 'http://localhost:4321';
 
 // https://astro.build/config
 export default defineConfig({
