@@ -10,6 +10,7 @@
 import { LOCALES, LOCALE_LABELS, type Locale } from '../../../i18n/locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import FAQSchema from '../../../components/seo/FAQSchema.astro';
+import DataTrustBadge from '../../../components/data/DataTrustBadge.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { comparePairKey, CAPABILITY_ROWS } from '../../../lib/compare';
 import { MODEL_SLUGS } from '../../../generated/model-slugs';
@@ -30,7 +31,7 @@ interface ModelCatalogEntry {
   translations: Partial<
     Record<string, { name?: string; description?: string | null; useCases?: string[] | null }>
   >;
-  capabilities?: { capability: string; supported: boolean }[];
+  capabilities?: { capability: string; supported: boolean; confidence?: number | null }[];
   benchmarks?: {
     category: string;
     categoryName: string;
@@ -39,12 +40,24 @@ interface ModelCatalogEntry {
     dataset: string;
     version: string;
     testedAt: string | null;
+    confidence?: number | null;
+    sourceUrl?: string | null;
+    verificationStatus?: string;
+  }[];
+  pricingHistory?: {
+    effectiveDate: string;
+    inputPrice: number;
+    outputPrice: number;
+    confidence?: number | null;
+    sourceUrl?: string | null;
   }[];
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
   trend?: { rankChange: number | null; scoreChange: number | null } | null;
   rankingHistory?: { date: string; rank: number; score: number }[];
   lastVerifiedAt: string | null;
   dataStatus: string;
+  verifiedStatus?: string;
+  confidenceScore?: number | null;
 }
 const catalog = catalogJson as Record<string, ModelCatalogEntry>;
 
@@ -162,6 +175,23 @@ const compareVsTop = topRanked.map((m) => ({
   name: m.name,
 }));
 
+// ---- Data Trust（Phase 11.5A：来源 + 验证 + 新鲜度 + 置信度）----
+const modelVerified = data.verifiedStatus === 'verified';
+const benchConfs = (data.benchmarks ?? []).map((b) => b.confidence).filter((c): c is number => c != null);
+const pricingConfs = (data.pricingHistory ?? []).map((p) => p.confidence).filter((c): c is number => c != null);
+const benchConf = benchConfs.length > 0 ? Math.round(benchConfs.reduce((a, b) => a + b, 0) / benchConfs.length) : null;
+const pricingConf = pricingConfs.length > 0 ? Math.round(pricingConfs.reduce((a, b) => a + b, 0) / pricingConfs.length) : null;
+const overallConf = data.confidenceScore ?? benchConf ?? pricingConf ?? null;
+const trustRows = [
+  { label: t('trust.modelVerified'), conf: modelVerified ? 95 : (data.confidenceScore ?? null), status: modelVerified ? 'verified' : data.dataStatus === 'deprecated' ? 'unverified' : 'experimental' },
+  { label: t('trust.pricingVerified'), conf: pricingConf, status: pricingConf != null && pricingConf >= 90 ? 'verified' : 'experimental' },
+  { label: t('trust.benchmarkVerified'), conf: benchConf, status: benchConf != null && benchConf >= 90 ? 'verified' : benchConf != null && benchConf >= 70 ? 'trusted' : 'experimental' },
+];
+const trustSource =
+  (data.benchmarks ?? []).find((b) => b.sourceUrl)?.sourceUrl ??
+  (data.pricingHistory ?? []).find((p) => p.sourceUrl)?.sourceUrl ??
+  null;
+
 // ---- Related Use Cases（Phase 11.3：该模型出现在哪些场景 Top5）----
 import { USE_CASE_SLUGS, getUseCaseModels } from '../../../lib/seoLanding';
 const relatedUseCases = USE_CASE_SLUGS.filter((uc) =>
@@ -241,6 +271,29 @@ const detailRows: { label: string; value: string }[] = [
         </div>
       ))}
     </dl>
+
+    {/* Data Trust Card（Phase 11.5A） */}
+    <section class="mt-6 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('trust.dataTrustCard')}</h2>
+      <ul class="mt-3 space-y-2">
+        {trustRows.map((row) => (
+          <li class="flex items-center justify-between gap-3 text-sm">
+            <span class="text-slate-300">{row.label}</span>
+            <DataTrustBadge confidence={row.conf} status={row.status} />
+          </li>
+        ))}
+      </ul>
+      {overallConf != null && (
+        <p class="mt-3 border-t border-slate-800 pt-3 text-xs text-slate-400">
+          {t('trust.confidence')}: <span class="font-semibold text-slate-200">{overallConf}%</span>
+        </p>
+      )}
+      {trustSource && (
+        <p class="mt-1 text-xs text-slate-500">
+          {t('trust.verifiedBy', { source: trustSource })}
+        </p>
+      )}
+    </section>
 
     {description && (
       <section class="mt-6">

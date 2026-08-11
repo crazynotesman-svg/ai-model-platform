@@ -57,10 +57,10 @@ const steps: { title: string }[] = [
 // 首页排行榜：静态服务端渲染（数据来自 catalog 透明评分，构建期计算，SEO 可索引）
 const catalogAll = catalogJson as Record<
   string,
-  { slug: string; providerName: string; ranking?: { overall: number }; translations?: Record<string, { name?: string }> }
+  { slug: string; providerName: string; ranking?: { overall: number; confidence?: number }; translations?: Record<string, { name?: string }> }
 >;
 const ranked = Object.entries(catalogAll)
-  .map(([slug, m]) => ({ slug, name: m.translations?.[lang]?.name ?? m.translations?.en?.name ?? slug, provider: m.providerName, score: m.ranking?.overall ?? 0 }))
+  .map(([slug, m]) => ({ slug, name: m.translations?.[lang]?.name ?? m.translations?.en?.name ?? slug, provider: m.providerName, score: m.ranking?.overall ?? 0, confidence: m.ranking?.confidence ?? null }))
   .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
   .slice(0, 8);
 const rankBadge = (r: number): string => {
@@ -173,8 +173,7 @@ const homeJsonLd = {
             class="flex items-center gap-4 rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 transition-colors hover:border-sky-500/60 hover:bg-slate-900"
           >
             <span class={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold ${rankBadge(i + 1)}`}>
-              {i + 1}
-            </span>
+              {i + 1}            </span>
             <span class="min-w-0 flex-1">
               <span class="block truncate text-sm font-semibold text-white">{e.name}</span>
               <span class="block text-xs uppercase tracking-wide text-sky-400">{e.provider}</span>
@@ -191,6 +190,12 @@ const homeJsonLd = {
               <span class="block text-sm font-bold text-slate-100">{e.score.toFixed(1)}</span>
               <span class="block text-[10px] uppercase text-slate-500">{t('home.rankingScore')}</span>
             </span>
+            {e.confidence != null && (
+              <span class="w-16 shrink-0 text-right text-[10px] font-semibold text-emerald-400/90">
+                {Math.round(e.confidence * 100)}%
+                <span class="block text-[9px] font-normal uppercase text-slate-600">{t('trust.dataConfidence')}</span>
+              </span>
+            )}
           </a>
         </li>
       ))}
@@ -201,6 +206,29 @@ const homeJsonLd = {
       </span>
       {t('home.rankingSource')}
     </p>
+
+    {/* Ranking Methodology（Phase 11.5A：评分/来源/更新透明度） */}
+    <div class="mt-5 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+      <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-400">{t('trust.methodology')}</h3>
+      <dl class="mt-3 grid gap-2 text-xs sm:grid-cols-2">
+        <div>
+          <dt class="text-slate-500">{t('trust.scoreCalculation')}</dt>
+          <dd class="mt-0.5 text-slate-300">Benchmark 50% · Capability 20% · Price 20% · Context 10%</dd>
+        </div>
+        <div>
+          <dt class="text-slate-500">{t('trust.benchmarkSources')}</dt>
+          <dd class="mt-0.5 text-slate-300">HumanEval · MMLU · GPQA · AIME · LMSYS Arena</dd>
+        </div>
+        <div>
+          <dt class="text-slate-500">{t('trust.pricingSources')}</dt>
+          <dd class="mt-0.5 text-slate-300">OpenAI · Anthropic · Google 官方定价</dd>
+        </div>
+        <div>
+          <dt class="text-slate-500">{t('trust.lastUpdate')}</dt>
+          <dd class="mt-0.5 text-slate-300">每日快照（UTC 02:00）</dd>
+        </div>
+      </dl>
+    </div>
   </section>
 
   {/* 功能入口 */}

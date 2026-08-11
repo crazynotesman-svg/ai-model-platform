@@ -7,6 +7,8 @@
     "providerName": "Alibaba",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.2,
     "outputPrice": 0.6,
     "currency": "USD",
@@ -40,47 +42,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.2,
-        "outputPrice": 0.6
+        "outputPrice": 0.6,
+        "confidence": null,
+        "sourceUrl": "https://www.alibabacloud.com/en/product/modelstudio"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 38,
+      "overall": 19,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 65.5
+      "context": 65.5,
+      "rawScore": 38,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -93,6 +106,8 @@
     "providerName": "Alibaba",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.1,
     "outputPrice": 0.44,
     "currency": "USD",
@@ -126,47 +141,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.1,
-        "outputPrice": 0.44
+        "outputPrice": 0.44,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 38,
+      "overall": 19,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 65.5
+      "context": 65.5,
+      "rawScore": 38,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -179,6 +205,8 @@
     "providerName": "Alibaba",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.3,
     "outputPrice": 1,
     "currency": "USD",
@@ -212,47 +240,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.3,
-        "outputPrice": 1
+        "outputPrice": 1,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -265,6 +304,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -298,47 +339,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 3,
-        "outputPrice": 15
+        "outputPrice": 15,
+        "confidence": 95,
+        "sourceUrl": "https://docs.anthropic.com/en/docs/about-claude/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -351,6 +403,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -384,47 +438,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 3,
-        "outputPrice": 15
+        "outputPrice": 15,
+        "confidence": 95,
+        "sourceUrl": "https://docs.anthropic.com/en/docs/about-claude/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -437,6 +502,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.8,
     "outputPrice": 4,
     "currency": "USD",
@@ -470,18 +537,22 @@
     "capabilities": [],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.8,
-        "outputPrice": 4
+        "outputPrice": 4,
+        "confidence": 95,
+        "sourceUrl": "https://docs.anthropic.com/en/docs/about-claude/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 30,
+      "overall": 28.5,
       "benchmark": 0,
       "capability": 0,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -494,6 +565,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 1,
     "outputPrice": 5,
     "currency": "USD",
@@ -527,47 +600,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 1,
-        "outputPrice": 5
+        "outputPrice": 5,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -580,6 +664,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 15,
     "outputPrice": 75,
     "currency": "USD",
@@ -613,78 +699,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 15,
-        "outputPrice": 75
+        "outputPrice": 75,
+        "confidence": 95,
+        "sourceUrl": "https://docs.anthropic.com/en/docs/about-claude/pricing"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 93,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "math",
-        "categoryName": "Math",
-        "score": 91,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 95,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 93.6,
-      "benchmark": 93,
+      "overall": 44.8,
+      "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -697,6 +763,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 5,
     "outputPrice": 25,
     "currency": "USD",
@@ -730,47 +798,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 5,
-        "outputPrice": 25
+        "outputPrice": 25,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -783,6 +862,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 5,
     "outputPrice": 25,
     "currency": "USD",
@@ -816,47 +897,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 5,
-        "outputPrice": 25
+        "outputPrice": 25,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -869,6 +961,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -902,78 +996,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 3,
-        "outputPrice": 15
+        "outputPrice": 15,
+        "confidence": 95,
+        "sourceUrl": "https://docs.anthropic.com/en/docs/about-claude/pricing"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 90,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 92,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "vision",
-        "categoryName": "Vision",
-        "score": 88,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 92.1,
-      "benchmark": 90,
+      "overall": 44.8,
+      "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -986,6 +1060,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 3,
     "outputPrice": 15,
     "currency": "USD",
@@ -1019,47 +1095,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 3,
-        "outputPrice": 15
+        "outputPrice": 15,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -1072,6 +1159,8 @@
     "providerName": "Anthropic",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 2,
     "outputPrice": 10,
     "currency": "USD",
@@ -1105,47 +1194,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2,
-        "outputPrice": 10
+        "outputPrice": 10,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -1158,6 +1258,8 @@
     "providerName": "Baidu",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.42,
     "outputPrice": 1.25,
     "currency": "USD",
@@ -1191,47 +1293,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.42,
-        "outputPrice": 1.25
+        "outputPrice": 1.25,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 43.3,
+      "overall": 21.6,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 61.5
+      "context": 61.5,
+      "rawScore": 43.3,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -1244,6 +1357,8 @@
     "providerName": "ByteDance",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.12,
     "outputPrice": 0.3,
     "currency": "USD",
@@ -1277,47 +1392,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.12,
-        "outputPrice": 0.3
+        "outputPrice": 0.3,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -1330,6 +1456,8 @@
     "providerName": "DeepSeek",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.27,
     "outputPrice": 1.1,
     "currency": "USD",
@@ -1363,78 +1491,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.27,
-        "outputPrice": 1.1
+        "outputPrice": 1.1,
+        "confidence": null,
+        "sourceUrl": "https://api-docs.deepseek.com/"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 87,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "math",
-        "categoryName": "Math",
-        "score": 83,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 85,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 77.5,
-      "benchmark": 85,
+      "overall": 17.5,
+      "benchmark": 0,
       "capability": 42.9,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 35,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -1447,6 +1555,8 @@
     "providerName": "DeepSeek",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.55,
     "outputPrice": 2.19,
     "currency": "USD",
@@ -1480,78 +1590,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.55,
-        "outputPrice": 2.19
+        "outputPrice": 2.19,
+        "confidence": null,
+        "sourceUrl": "https://api-docs.deepseek.com/"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 85,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "math",
-        "categoryName": "Math",
-        "score": 90,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 93,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 79.6,
-      "benchmark": 89.3,
+      "overall": 17.5,
+      "benchmark": 0,
       "capability": 42.9,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 35,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -1564,6 +1654,8 @@
     "providerName": "DeepSeek",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.14,
     "outputPrice": 0.28,
     "currency": "USD",
@@ -1597,47 +1689,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.14,
-        "outputPrice": 0.28
+        "outputPrice": 0.28,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -1650,6 +1753,8 @@
     "providerName": "DeepSeek",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.43,
     "outputPrice": 0.87,
     "currency": "USD",
@@ -1683,47 +1788,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.43,
-        "outputPrice": 0.87
+        "outputPrice": 0.87,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -1736,6 +1852,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 1.25,
     "outputPrice": 5,
     "currency": "USD",
@@ -1769,47 +1887,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 1.25,
-        "outputPrice": 5
+        "outputPrice": 5,
+        "confidence": 95,
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 50,
+      "overall": 47.5,
       "benchmark": 0,
       "capability": 100,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 50,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -1822,6 +1951,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "deprecated",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.1,
     "outputPrice": 0.4,
     "currency": "USD",
@@ -1855,47 +1986,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.1,
-        "outputPrice": 0.4
+        "outputPrice": 0.4,
+        "confidence": 95,
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 50,
+      "overall": 47.5,
       "benchmark": 0,
       "capability": 100,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 50,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -1908,6 +2050,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.3,
     "outputPrice": 2.5,
     "currency": "USD",
@@ -1941,78 +2085,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.3,
-        "outputPrice": 2.5
+        "outputPrice": 2.5,
+        "confidence": 95,
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 84,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 86,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "vision",
-        "categoryName": "Vision",
-        "score": 90,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 93.3,
-      "benchmark": 86.7,
+      "overall": 47.5,
+      "benchmark": 0,
       "capability": 100,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 50,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2025,6 +2149,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.1,
     "outputPrice": 0.4,
     "currency": "USD",
@@ -2058,47 +2184,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.1,
-        "outputPrice": 0.4
+        "outputPrice": 0.4,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2111,6 +2248,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 1.25,
     "outputPrice": 10,
     "currency": "USD",
@@ -2144,88 +2283,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 1.25,
-        "outputPrice": 10
+        "outputPrice": 10,
+        "confidence": 95,
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 90,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "math",
-        "categoryName": "Math",
-        "score": 92,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 93,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "vision",
-        "categoryName": "Vision",
-        "score": 94,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 96.1,
-      "benchmark": 92.3,
+      "overall": 47.5,
+      "benchmark": 0,
       "capability": 100,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 50,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2238,6 +2347,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.5,
     "outputPrice": 3,
     "currency": "USD",
@@ -2271,47 +2382,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.5,
-        "outputPrice": 3
+        "outputPrice": 3,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 50,
+      "overall": 47.5,
       "benchmark": 0,
       "capability": 100,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 50,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2324,6 +2446,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.25,
     "outputPrice": 1.5,
     "currency": "USD",
@@ -2357,47 +2481,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.25,
-        "outputPrice": 1.5
+        "outputPrice": 1.5,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2410,6 +2545,8 @@
     "providerName": "Google",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 2,
     "outputPrice": 12,
     "currency": "USD",
@@ -2443,47 +2580,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2,
-        "outputPrice": 12
+        "outputPrice": 12,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 50,
+      "overall": 47.5,
       "benchmark": 0,
       "capability": 100,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 50,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2496,6 +2644,8 @@
     "providerName": "Meta",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.25,
     "outputPrice": 0.75,
     "currency": "USD",
@@ -2529,47 +2679,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 90
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.25,
-        "outputPrice": 0.75
+        "outputPrice": 0.75,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2582,6 +2743,8 @@
     "providerName": "Meta",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.1,
     "outputPrice": 0.5,
     "currency": "USD",
@@ -2615,47 +2778,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 90
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 90
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.1,
-        "outputPrice": 0.5
+        "outputPrice": 0.5,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -2668,6 +2842,8 @@
     "providerName": "MiniMax",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.3,
     "outputPrice": 1.2,
     "currency": "USD",
@@ -2701,47 +2877,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.3,
-        "outputPrice": 1.2
+        "outputPrice": 1.2,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 23.6,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -2754,6 +2941,8 @@
     "providerName": "Mistral",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 2,
     "outputPrice": 6,
     "currency": "USD",
@@ -2787,47 +2976,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2,
-        "outputPrice": 6
+        "outputPrice": 6,
+        "confidence": null,
+        "sourceUrl": "https://mistral.ai/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 37.8,
+      "overall": 18.9,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 37.8,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -2840,6 +3040,8 @@
     "providerName": "Mistral",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.5,
     "outputPrice": 1.5,
     "currency": "USD",
@@ -2873,47 +3075,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.5,
-        "outputPrice": 1.5
+        "outputPrice": 1.5,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 37.8,
+      "overall": 18.9,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 37.8,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -2926,6 +3139,8 @@
     "providerName": "Mistral",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.15,
     "outputPrice": 0.6,
     "currency": "USD",
@@ -2959,47 +3174,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.15,
-        "outputPrice": 0.6
+        "outputPrice": 0.6,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 37.8,
+      "overall": 18.9,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 37.8,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -3012,6 +3238,8 @@
     "providerName": "Moonshot",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.6,
     "outputPrice": 2.5,
     "currency": "USD",
@@ -3045,47 +3273,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.6,
-        "outputPrice": 2.5
+        "outputPrice": 2.5,
+        "confidence": null,
+        "sourceUrl": "https://platform.moonshot.cn/docs/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 38,
+      "overall": 19,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 65.5
+      "context": 65.5,
+      "rawScore": 38,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -3098,6 +3337,8 @@
     "providerName": "Moonshot",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.5,
     "outputPrice": 2.8,
     "currency": "USD",
@@ -3131,47 +3372,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.5,
-        "outputPrice": 2.8
+        "outputPrice": 2.8,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -3184,6 +3436,8 @@
     "providerName": "Moonshot",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.96,
     "outputPrice": 3.99,
     "currency": "USD",
@@ -3217,47 +3471,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.96,
-        "outputPrice": 3.99
+        "outputPrice": 3.99,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -3270,6 +3535,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 2,
     "outputPrice": 8,
     "currency": "USD",
@@ -3303,78 +3570,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2,
-        "outputPrice": 8
+        "outputPrice": 8,
+        "confidence": 95,
+        "sourceUrl": "https://platform.openai.com/docs/models/gpt-4.1"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 92,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "math",
-        "categoryName": "Math",
-        "score": 89,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 91,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 92.5,
-      "benchmark": 90.7,
+      "overall": 44.8,
+      "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3387,6 +3634,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.4,
     "outputPrice": 1.6,
     "currency": "USD",
@@ -3420,47 +3669,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.4,
-        "outputPrice": 1.6
+        "outputPrice": 1.6,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3473,6 +3733,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.2,
     "outputPrice": 0.8,
     "currency": "USD",
@@ -3506,47 +3768,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.2,
-        "outputPrice": 0.8
+        "outputPrice": 0.8,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3559,6 +3832,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 2.5,
     "outputPrice": 10,
     "currency": "USD",
@@ -3592,78 +3867,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2.5,
-        "outputPrice": 10
+        "outputPrice": 10,
+        "confidence": 95,
+        "sourceUrl": "https://openai.com/api/pricing/"
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 88,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 90,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "vision",
-        "categoryName": "Vision",
-        "score": 92,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 88.5,
-      "benchmark": 90,
+      "overall": 41.4,
+      "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 43.5,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3676,6 +3931,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 0.15,
     "outputPrice": 0.6,
     "currency": "USD",
@@ -3709,18 +3966,22 @@
     "capabilities": [],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.15,
-        "outputPrice": 0.6
+        "outputPrice": 0.6,
+        "confidence": 95,
+        "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-4o"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 26.4,
+      "overall": 25.1,
       "benchmark": 0,
       "capability": 0,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3733,6 +3994,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 2.5,
     "outputPrice": 15,
     "currency": "USD",
@@ -3766,47 +4029,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2.5,
-        "outputPrice": 15
+        "outputPrice": 15,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3819,6 +4093,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 5,
     "outputPrice": 30,
     "currency": "USD",
@@ -3852,47 +4128,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 5,
-        "outputPrice": 30
+        "outputPrice": 30,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 44.8,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -3905,6 +4192,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 2,
     "outputPrice": 8,
     "currency": "USD",
@@ -3938,78 +4227,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 2,
-        "outputPrice": 8
+        "outputPrice": 8,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
-    "benchmarks": [
-      {
-        "category": "coding",
-        "categoryName": "Coding",
-        "score": 89,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "math",
-        "categoryName": "Math",
-        "score": 94,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      },
-      {
-        "category": "reasoning",
-        "categoryName": "Reasoning",
-        "score": 96,
-        "rank": null,
-        "dataset": "internal-demo",
-        "version": "v1",
-        "source": "manual",
-        "testedAt": "2026-07-01"
-      }
-    ],
+    "benchmarks": [],
     "ranking": {
-      "overall": 87.9,
-      "benchmark": 93,
+      "overall": 39.4,
+      "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -4022,6 +4291,8 @@
     "providerName": "OpenAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "verified",
+    "confidenceScore": 95,
     "inputPrice": 1.1,
     "outputPrice": 4.4,
     "currency": "USD",
@@ -4055,47 +4326,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 95
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 95
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 1.1,
-        "outputPrice": 4.4
+        "outputPrice": 4.4,
+        "confidence": 95,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 39.4,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.95
     },
     "trend": null,
     "rankingHistory": []
@@ -4108,6 +4390,8 @@
     "providerName": "Tencent",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.12,
     "outputPrice": 0.3,
     "currency": "USD",
@@ -4141,47 +4425,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.12,
-        "outputPrice": 0.3
+        "outputPrice": 0.3,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 41.4,
+      "overall": 20.7,
       "benchmark": 0,
       "capability": 57.1,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 41.4,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -4194,6 +4489,8 @@
     "providerName": "xAI",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 1.25,
     "outputPrice": 2.5,
     "currency": "USD",
@@ -4227,47 +4524,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 1.25,
-        "outputPrice": 2.5
+        "outputPrice": 2.5,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 23.6,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -4280,6 +4588,8 @@
     "providerName": "Zhipu",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.6,
     "outputPrice": 2.2,
     "currency": "USD",
@@ -4313,47 +4623,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.6,
-        "outputPrice": 2.2
+        "outputPrice": 2.2,
+        "confidence": null,
+        "sourceUrl": "https://open.bigmodel.cn/pricing"
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 40.7,
+      "overall": 20.3,
       "benchmark": 0,
       "capability": 71.4,
       "price": 100,
-      "context": 64
+      "context": 64,
+      "rawScore": 40.7,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []
@@ -4366,6 +4687,8 @@
     "providerName": "Zhipu",
     "lastVerifiedAt": null,
     "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 50,
     "inputPrice": 0.6,
     "outputPrice": 2.2,
     "currency": "USD",
@@ -4399,47 +4722,58 @@
     "capabilities": [
       {
         "capability": "audio",
-        "supported": false
+        "supported": false,
+        "confidence": 40
       },
       {
         "capability": "coding",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "function_calling",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "long_context",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "multimodal",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "reasoning",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       },
       {
         "capability": "vision",
-        "supported": true
+        "supported": true,
+        "confidence": 40
       }
     ],
     "pricingHistory": [
       {
-        "effectiveDate": "2026-08-05",
+        "effectiveDate": "2026-08-11",
         "inputPrice": 0.6,
-        "outputPrice": 2.2
+        "outputPrice": 2.2,
+        "confidence": null,
+        "sourceUrl": null
       }
     ],
     "benchmarks": [],
     "ranking": {
-      "overall": 47.1,
+      "overall": 23.6,
       "benchmark": 0,
       "capability": 85.7,
       "price": 100,
-      "context": 100
+      "context": 100,
+      "rawScore": 47.1,
+      "confidence": 0.5
     },
     "trend": null,
     "rankingHistory": []

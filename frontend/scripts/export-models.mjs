@@ -51,7 +51,8 @@ const db = new DatabaseSync(join(D1_STATE_DIR, candidates[0].name), { readOnly: 
 const models = db
   .prepare(
     `SELECT m.id, m.slug, m.model_type, m.context_window, m.release_date,
-            m.last_verified_at, m.data_status, p.name AS provider_name
+            m.last_verified_at, m.data_status, m.verified_status, m.confidence_score,
+            p.name AS provider_name
      FROM models m JOIN providers p ON p.id = m.provider ORDER BY m.slug`,
   )
   .all();
@@ -66,12 +67,12 @@ const pricing = db
   .all();
 // Phase 9.1：模型能力（vision/reasoning/...）
 const capabilities = db
-  .prepare(`SELECT model_id, capability, supported FROM model_capabilities`)
+  .prepare(`SELECT model_id, capability, supported, confidence FROM model_capabilities`)
   .all();
 // Phase 9.2：价格历史（按生效日期升序）
 const pricingHistory = db
   .prepare(
-    `SELECT model_id, input_price, output_price, effective_date
+    `SELECT model_id, input_price, output_price, effective_date, confidence, source_url
      FROM pricing_history
      WHERE currency = 'USD' AND unit = 'per_1M_tokens'
      ORDER BY effective_date ASC`,
@@ -81,6 +82,7 @@ const pricingHistory = db
 const benchmarks = db
   .prepare(
     `SELECT br.model_id, br.score, br.rank, br.dataset, br.version, br.source, br.tested_at,
+            br.confidence, br.official_score, br.source_url, br.verification_status,
             bc.slug AS category, bc.name AS category_name
      FROM benchmark_results br
      JOIN benchmark_categories bc ON br.category_id = bc.id
@@ -108,15 +110,17 @@ for (const m of models) {
     providerName: m.provider_name,
     lastVerifiedAt: m.last_verified_at, // Phase 9.7
     dataStatus: m.data_status ?? 'active', // Phase 9.7
+    verifiedStatus: m.verified_status ?? 'unverified', // Phase 11.5A
+    confidenceScore: m.confidence_score ?? null, // Phase 11.5A
     inputPrice: null,
     outputPrice: null,
     currency: 'USD',
     unit: 'per_1M_tokens',
     languages: [],
     translations: {},
-    capabilities: [], // [{ capability, supported }]
-    pricingHistory: [], // [{ effectiveDate, inputPrice, outputPrice }]
-    benchmarks: [], // [{ category, categoryName, score, rank, dataset, version, source, testedAt }]
+    capabilities: [], // [{ capability, supported, confidence }]
+    pricingHistory: [], // [{ effectiveDate, inputPrice, outputPrice, confidence, sourceUrl }]
+    benchmarks: [], // [{ category, categoryName, score, rank, dataset, version, source, testedAt, confidence, officialScore, sourceUrl, verificationStatus }]
   };
 }
 for (const t of translations) {
@@ -143,6 +147,7 @@ for (const cap of capabilities) {
   entry.capabilities.push({
     capability: cap.capability,
     supported: cap.supported === 1,
+    confidence: cap.confidence ?? null,
   });
 }
 for (const ph of pricingHistory) {
@@ -152,6 +157,8 @@ for (const ph of pricingHistory) {
     effectiveDate: ph.effective_date,
     inputPrice: ph.input_price,
     outputPrice: ph.output_price,
+    confidence: ph.confidence ?? null,
+    sourceUrl: ph.source_url ?? null,
   });
 }
 for (const bm of benchmarks) {
@@ -166,6 +173,10 @@ for (const bm of benchmarks) {
     version: bm.version,
     source: bm.source,
     testedAt: bm.tested_at,
+    confidence: bm.confidence ?? null,
+    officialScore: bm.official_score ?? null,
+    sourceUrl: bm.source_url ?? null,
+    verificationStatus: bm.verification_status ?? 'unverified',
   });
 }
 for (const entry of Object.values(catalog)) {
@@ -173,7 +184,8 @@ for (const entry of Object.values(catalog)) {
   entry.capabilities.sort((a, b) => a.capability.localeCompare(b.capability));
 }
 
-// ---- Phase 9.5：Ranking 计算（公式与 worker/src/services/ranking.ts 保持一致，权威定义见 docs/ranking-design.md）----
+// ---- Phase 9.5 + 11.5A：Ranking 计算（公式与 worker/src/services/ranking.ts 保持一致，权威定义见 docs/ranking-design.md）----
+// v2：Overall = Raw × DataConfidence（benchmark confidence 平均；无 benchmark 用模型 confidenceScore/100）
 const TOTAL_CAPABILITIES = 7;
 const CONTEXT_FULL_SCORE = 200_000;
 const round1 = (n) => Math.round(n * 10) / 10;
@@ -189,13 +201,20 @@ for (const entry of Object.values(catalog)) {
       : 0;
   const context =
     entry.contextWindow != null ? Math.min(entry.contextWindow / CONTEXT_FULL_SCORE, 1) * 100 : 0;
-  const overall = benchmark * 0.5 + capability * 0.2 + priceEfficiency * 0.2 + context * 0.1;
+  const raw = benchmark * 0.5 + capability * 0.2 + priceEfficiency * 0.2 + context * 0.1;
+  // Data confidence：benchmark confidence 平均（0-100 → 0-1）；无 benchmark 用模型 confidenceScore
+  const benchConf = entry.benchmarks.map((b) => b.confidence).filter((c) => c != null);
+  const dataConfidence = benchConf.length > 0
+    ? benchConf.reduce((a, b) => a + b, 0) / benchConf.length / 100
+    : (entry.confidenceScore ?? 50) / 100;
   entry.ranking = {
-    overall: round1(overall),
+    overall: round1(raw * dataConfidence),
     benchmark: round1(benchmark),
     capability: round1(capability),
     price: round1(priceEfficiency),
     context: round1(context),
+    rawScore: round1(raw),
+    confidence: Math.round(dataConfidence * 100) / 100,
   };
 }
 

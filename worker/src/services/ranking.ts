@@ -1,7 +1,8 @@
 /**
- * AI Model Ranking Engine（v1）—— 透明、可解释的综合评分。
+ * AI Model Ranking Engine（v2）—— 透明、可解释的综合评分（Phase 11.5A：Data Trust）。
  * 公式权威定义见 docs/ranking-design.md：
- *   Overall = Benchmark×50% + Capability×20% + PriceEfficiency×20% + Context×10%
+ *   Raw     = Benchmark×50% + Capability×20% + PriceEfficiency×20% + Context×10%
+ *   Overall = Raw × DataConfidence（0-1，来自数据可信度，避免低可信数据进入最高排名）
  *
  * 注意：frontend/scripts/export-models.mjs 内置相同公式用于 SSG 导出
  * （与本文 calculateFromData 保持一致，改动时两处同步）。
@@ -14,6 +15,10 @@ export interface ScoreBreakdown {
   capability: number;
   priceEfficiency: number;
   context: number;
+  /** 原始分（未乘置信度） */
+  rawScore: number;
+  /** 数据可信度 0-1（= 平均 benchmark confidence / 100） */
+  confidence: number;
   overall: number;
 }
 
@@ -43,6 +48,7 @@ export function calculateFromData(input: {
   inputPrice: number | null; // USD / per_1M_tokens
   maxInputPrice: number; // 全库最大输入价（参照）
   contextWindow: number | null; // tokens
+  dataConfidence?: number; // 0-1（默认 1，兼容旧调用；来自 benchmark confidence 平均）
 }): ScoreBreakdown {
   const benchmark = input.benchmarkScores.length > 0 ? avg(input.benchmarkScores) : 0;
   const capability = (input.supportedCapabilities / TOTAL_CAPABILITIES) * 100;
@@ -51,12 +57,17 @@ export function calculateFromData(input: {
       ? Math.min((input.maxInputPrice / input.inputPrice) * 100, 100)
       : 0;
   const context = input.contextWindow != null ? Math.min(input.contextWindow / CONTEXT_FULL_SCORE, 1) * 100 : 0;
-  const overall = benchmark * 0.5 + capability * 0.2 + priceEfficiency * 0.2 + context * 0.1;
+  const raw = benchmark * 0.5 + capability * 0.2 + priceEfficiency * 0.2 + context * 0.1;
+  // Data Trust adjustment（Phase 11.5A）：Final = Raw × Confidence
+  const confidence = input.dataConfidence ?? 1;
+  const overall = raw * confidence;
   return {
     benchmark: round1(benchmark),
     capability: round1(capability),
     priceEfficiency: round1(priceEfficiency),
     context: round1(context),
+    rawScore: round1(raw),
+    confidence: Math.round(confidence * 100) / 100,
     overall: round1(overall),
   };
 }
@@ -68,20 +79,26 @@ export async function calculateModelScore(
   maxInputPrice: number,
 ): Promise<ScoreBreakdown> {
   const [model, caps, bench] = await Promise.all([
-    db.prepare('SELECT context_window FROM models WHERE id = ?').bind(modelId).first<{ context_window: number | null }>(),
+    db.prepare('SELECT context_window, confidence_score FROM models WHERE id = ?').bind(modelId).first<{ context_window: number | null; confidence_score: number | null }>(),
     db.prepare('SELECT COUNT(*) AS n FROM model_capabilities WHERE model_id = ? AND supported = 1').bind(modelId).first<{ n: number }>(),
-    db.prepare('SELECT score FROM benchmark_results WHERE model_id = ?').bind(modelId).all<{ score: number }>(),
+    db.prepare('SELECT score, confidence FROM benchmark_results WHERE model_id = ?').bind(modelId).all<{ score: number; confidence: number | null }>(),
   ]);
   const price = await db
     .prepare("SELECT input_price FROM pricing WHERE model_id = ? AND currency = 'USD' AND unit = 'per_1M_tokens' LIMIT 1")
     .bind(modelId)
     .first<{ input_price: number }>();
+  // Data confidence：benchmark confidence 平均值（0-100 → 0-1）；无 benchmark 时用模型级 confidence_score
+  const benchConf = (bench.results ?? []).map((r) => r.confidence).filter((c): c is number => c != null);
+  const dataConfidence = benchConf.length > 0
+    ? benchConf.reduce((a, b) => a + b, 0) / benchConf.length / 100
+    : (model?.confidence_score ?? 50) / 100;
   return calculateFromData({
     benchmarkScores: (bench.results ?? []).map((r) => r.score),
     supportedCapabilities: caps?.n ?? 0,
     inputPrice: price?.input_price ?? null,
     maxInputPrice,
     contextWindow: model?.context_window ?? null,
+    dataConfidence,
   });
 }
 
