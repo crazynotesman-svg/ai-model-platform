@@ -20,6 +20,7 @@ import { buildNewsRss } from './routes/rss';
 import { collectNews } from './collector';
 import { rankModels } from './services/ranking';
 import { createDailySnapshot } from './services/rankingSnapshot';
+import { runDataTrustAudit } from './services/dataTrustAudit';
 import { getRecommendations } from './services/recommendation';
 import { getRankingTrend } from './routes/ranking';
 
@@ -244,6 +245,15 @@ export default {
         );
       } catch (err) {
         console.error('[cron] ranking snapshot failed:', err);
+      }
+    }
+
+    // 03:00 Data Trust 审计（Phase 11.5B）
+    if (controller.cron === '0 3 * * *') {
+      try {
+        await runDataTrustAudit(env.DB);
+      } catch (err) {
+        console.error('[cron] data trust audit failed:', err);
       }
     }
   },

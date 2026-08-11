@@ -37,6 +37,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 11.4 | SEO Growth 系统（quality score / seo-report / inventory / 索引策略） | ✅ 已完成 |
 | 11.5 | SEO Growth & Index Intelligence（opportunity engine / dashboard / 内链检测 / Health Score 93） | ✅ 已完成 |
 | 11.5A | AI Model Data Trust（data_sources/verifications + Ranking v2 confidence + Trust Card） | ✅ 已完成 |
+| 11.5B | Production Data Trust Activation（生产迁移 + seed-trust + 审计 cron 每日报告） | ✅ 已完成 |
 
 ## Phase 10 — Production Launch ✅ 已完成（git: release: v1.0.0，tag v1.0.0）
 

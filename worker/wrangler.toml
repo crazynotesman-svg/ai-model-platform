@@ -21,7 +21,7 @@ database_id = "94d5cd6c-4ed4-4d1f-b19a-26335b7df37a"
 migrations_dir = "../database/migrations"
 
 # ---- 定时任务 ----
-# 01:00 UTC 新闻采集；02:00 UTC 排名快照（Phase 9.6，幂等）
+# 01:00 UTC 新闻采集；02:00 UTC 排名快照（Phase 9.6，幂等）；03:00 UTC Data Trust 审计（Phase 11.5B）
 # 本地测试：npx wrangler dev --test-scheduled（发送 POST /__scheduled 触发）
 [triggers]
-crons = ["0 1 * * *", "0 2 * * *"]
+crons = ["0 1 * * *", "0 2 * * *", "0 3 * * *"]

@@ -43,6 +43,14 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
+      # Data Trust seed（Phase 11.5A/11.5B）：data_sources 注册 + 来源映射（幂等）
+      - name: Seed data trust sources
+        working-directory: worker
+        run: pnpm exec wrangler d1 execute ai-model-platform-db --remote --file=../database/seed/seed-trust.sql
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Typecheck
         working-directory: worker
         run: pnpm exec tsc --noEmit -p tsconfig.json
