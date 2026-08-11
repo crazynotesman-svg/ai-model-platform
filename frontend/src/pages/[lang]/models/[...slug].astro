@@ -11,6 +11,7 @@ import { LOCALES, LOCALE_LABELS, type Locale } from '../../../i18n/locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import FAQSchema from '../../../components/seo/FAQSchema.astro';
 import DataTrustBadge from '../../../components/data/DataTrustBadge.astro';
+import DataFreshnessBadge from '../../../components/data/DataFreshnessBadge.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { comparePairKey, CAPABILITY_ROWS } from '../../../lib/compare';
 import { MODEL_SLUGS } from '../../../generated/model-slugs';
@@ -119,6 +120,7 @@ const jsonLd = {
       description,
       applicationCategory: 'AI Model',
       operatingSystem: 'Cloud API',
+      dateModified: data.lastVerifiedAt ?? undefined, // Phase 11.6：SEO freshness
       provider: { '@type': 'Organization', name: data.providerName },
       offers: {
         '@type': 'Offer',
@@ -283,6 +285,10 @@ const detailRows: { label: string; value: string }[] = [
           </li>
         ))}
       </ul>
+      <p class="mt-3 flex items-center justify-between border-t border-slate-800 pt-3 text-sm">
+        <span class="text-slate-300">{t('trust.freshness')}</span>
+        <DataFreshnessBadge lastVerifiedAt={data.lastVerifiedAt} />
+      </p>
       {overallConf != null && (
         <p class="mt-3 border-t border-slate-800 pt-3 text-xs text-slate-400">
           {t('trust.confidence')}: <span class="font-semibold text-slate-200">{overallConf}%</span>

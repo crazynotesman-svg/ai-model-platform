@@ -432,5 +432,10 @@
   "source.official": "官方",
   "source.community": "社区",
   "source.manual": "人工录入",
-  "source.benchmark": "基准"
+  "source.benchmark": "基准",
+  "trust.freshToday": "今日更新",
+  "trust.freshDays": "{n} 天前更新",
+  "trust.freshMonth": "{n} 个月前更新",
+  "trust.needsVerification": "待核验",
+  "trust.freshness": "新鲜度"
 }

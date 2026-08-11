@@ -81,4 +81,32 @@ for (const m of entries) {
 console.log('='.repeat(60));
 console.log(`HIGH: ${high}  |  MEDIUM: ${medium}`);
 console.log(`VERDICT: ${high === 0 ? 'PASS' : 'FAIL'}${medium ? `（${medium} 项 MEDIUM 待处理）` : ''}`);
+
+// ---- Data Intelligence Report（Phase 11.6：事件队列 + 新鲜度统计；读本地 D1）----
+const REPO = path.resolve(import.meta.dirname, '../../..');
+const D1_STATE = path.join(REPO, 'worker', '.wrangler', 'state', 'v3', 'd1', 'miniflare-D1DatabaseObject');
+if (fs.existsSync(D1_STATE)) {
+  try {
+    const files = fs.readdirSync(D1_STATE).filter((f) => f.endsWith('.sqlite') && f !== 'metadata.sqlite');
+    if (files.length > 0) {
+      const { DatabaseSync } = await import('node:sqlite');
+      const db = new DatabaseSync(path.join(D1_STATE, files.sort((a, b) => fs.statSync(path.join(D1_STATE, b)).mtimeMs - fs.statSync(path.join(D1_STATE, a)).mtimeMs)[0]));
+      const events = db.prepare('SELECT status, COUNT(*) AS n FROM data_events GROUP BY status').all();
+      const stale = db.prepare("SELECT COUNT(*) AS n FROM models WHERE last_verified_at IS NOT NULL AND julianday('now') - julianday(last_verified_at) > 180").get();
+      const byStatus = Object.fromEntries((events ?? []).map((r) => [r.status, r.n]));
+      const pending = byStatus.pending ?? 0;
+      const failed = byStatus.failed ?? 0;
+      const processed = byStatus.processed ?? 0;
+      console.log('\nDATA INTELLIGENCE REPORT');
+      console.log('='.repeat(60));
+      console.log(`Data events: pending=${pending} processed=${processed} failed=${failed}`);
+      console.log(`Stale models (>180d): ${stale?.n ?? 0}`);
+      console.log(`VERDICT: ${failed > 0 ? 'REVIEW' : pending > 0 ? 'PENDING-APPROVAL' : 'PASS'}`);
+      db.close();
+    }
+  } catch (e) {
+    console.log('\nDATA INTELLIGENCE REPORT: D1 读取失败（' + e.message + '）');
+  }
+}
+
 process.exit(high === 0 ? 0 : 1);

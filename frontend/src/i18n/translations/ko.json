@@ -432,5 +432,10 @@
   "source.official": "Official",
   "source.community": "Community",
   "source.manual": "Manual",
-  "source.benchmark": "Benchmark"
+  "source.benchmark": "Benchmark",
+  "trust.freshToday": "Updated today",
+  "trust.freshDays": "Updated {n} days ago",
+  "trust.freshMonth": "Updated {n} month(s) ago",
+  "trust.needsVerification": "Needs verification",
+  "trust.freshness": "Freshness"
 }

@@ -21,6 +21,8 @@ import { collectNews } from './collector';
 import { rankModels } from './services/ranking';
 import { createDailySnapshot } from './services/rankingSnapshot';
 import { runDataTrustAudit } from './services/dataTrustAudit';
+import { listPendingEvents, applyEvent } from './services/eventProcessor';
+import { runDataDiscovery } from './services/dataDiscovery';
 import { getRecommendations } from './services/recommendation';
 import { getRankingTrend } from './routes/ranking';
 
@@ -65,14 +67,47 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
-    if (request.method !== 'GET') {
-      return json({ error: 'Method Not Allowed' }, 405);
-    }
 
     // API 版本化（Phase 9.7）：/api/v1/* 与 /api/* 等价（复用同一套 handler，旧 API 保留）
     const pathname = url.pathname.startsWith('/api/v1/')
       ? url.pathname.replace(/^\/api\/v1/, '/api')
       : url.pathname;
+
+    // Data Events（Phase 11.6）：GET 列表（pending 审核队列）POST approve（应用事件）
+    if (pathname === '/api/data-events' && request.method === 'GET') {
+      try {
+        const events = await listPendingEvents(env.DB);
+        return json({ events });
+      } catch (err) {
+        return json({ error: String((err as Error).message) }, 500);
+      }
+    }
+    const approveMatch = pathname.match(/^\/api\/data-events\/(\d+)\/approve$/);
+    if (approveMatch && request.method === 'POST') {
+      try {
+        const id = Number(approveMatch[1]);
+        const row = await env.DB.prepare('SELECT * FROM data_events WHERE id = ?').bind(id).first();
+        if (!row) return json({ error: 'event not found' }, 404);
+        if (row.status !== 'pending') return json({ error: `event already ${row.status}` }, 409);
+        await applyEvent(env.DB, row as unknown as { event_type: string; entity_type: string; entity_id: string; payload: string; source_id: number | null; confidence: number });
+        await env.DB.prepare("UPDATE data_events SET status = 'processed', processed_at = datetime('now') WHERE id = ?").bind(id).run();
+        // Ranking 刷新（Phase 11.6 Step 10）：PRICE_CHANGED / BENCHMARK_UPDATED → 重算当日快照
+        if (row.event_type === 'PRICE_CHANGED' || row.event_type === 'BENCHMARK_UPDATED') {
+          const snap = await createDailySnapshot(env.DB);
+          console.log(`[data-events] approve=${id} ranking refreshed: date=${snap.date}, inserted=${snap.inserted}`);
+        }
+        return json({ ok: true, id, status: 'processed' });
+      } catch (err) {
+        const e = err as Error;
+        await env.DB.prepare("UPDATE data_events SET status = 'failed', error = ?, processed_at = datetime('now') WHERE id = ?")
+          .bind(e.message, Number(approveMatch[1]))
+          .run();
+        return json({ error: e.message }, 500);
+      }
+    }
+    if (request.method !== 'GET') {
+      return json({ error: 'Method Not Allowed' }, 405);
+    }
 
     // 健康检查
     if (pathname === '/' || pathname === '/api/health') {
@@ -254,6 +289,18 @@ export default {
         await runDataTrustAudit(env.DB);
       } catch (err) {
         console.error('[cron] data trust audit failed:', err);
+      }
+    }
+
+    // 每 6 小时 Data Discovery（Phase 11.6）：connectors → pending events（不自动发布）
+    if (controller.cron === '0 */6 * * *') {
+      try {
+        const result = await runDataDiscovery(env.DB);
+        console.log(
+          `[cron ${controller.cron}] data discovery: connectors=${result.connectors}, events=${result.eventsInserted}, errors=${JSON.stringify(result.errors)}`,
+        );
+      } catch (err) {
+        console.error('[cron] data discovery failed:', err);
       }
     }
   },
