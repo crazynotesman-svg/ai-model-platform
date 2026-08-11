@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Anthropic Model Docs",
+    "type": "official",
+    "url": "https://docs.anthropic.com/en/docs/about-claude/models",
+    "description": "Anthropic 模型文档",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "Anthropic Pricing",
+    "type": "official",
+    "url": "https://www.anthropic.com/pricing",
+    "description": "Anthropic 官方定价",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "Google Gemini Docs",
+    "type": "official",
+    "url": "https://ai.google.dev/gemini-api/docs/models",
+    "description": "Google Gemini 模型文档",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "Google Gemini Pricing",
+    "type": "official",
+    "url": "https://ai.google.dev/pricing",
+    "description": "Google Gemini 官方定价",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "Meta Llama Docs",
+    "type": "official",
+    "url": "https://www.llama.com/docs/models-overview/",
+    "description": "Meta Llama 模型文档",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "OpenAI Model Docs",
+    "type": "official",
+    "url": "https://platform.openai.com/docs/models",
+    "description": "OpenAI 模型文档（能力/上下文/元数据）",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "OpenAI Pricing",
+    "type": "official",
+    "url": "https://openai.com/api/pricing/",
+    "description": "OpenAI 官方 API 定价",
+    "trustLevel": 100,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "AIME",
+    "type": "benchmark",
+    "url": "https://artofproblemsolving.com/community/c13_contests",
+    "description": "AIME 美国数学邀请赛（公开题目）",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "GPQA",
+    "type": "benchmark",
+    "url": "https://doi.org/10.48550/arXiv.2311.12022",
+    "description": "GPQA 研究生级问答基准",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "HumanEval",
+    "type": "benchmark",
+    "url": "https://github.com/openai/human-eval",
+    "description": "OpenAI HumanEval 代码生成基准（公开权威）",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "LMSYS Chatbot Arena",
+    "type": "benchmark",
+    "url": "https://chat.lmsys.org/",
+    "description": "LMSYS 真实用户偏好评测（Elo，含 methodology 记录）",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "MMLU",
+    "type": "benchmark",
+    "url": "https://doi.org/10.48550/arXiv.2009.03300",
+    "description": "MMLU 多任务语言理解基准（论文）",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "MMMU",
+    "type": "benchmark",
+    "url": "https://mmmu-benchmark.github.io/",
+    "description": "MMMU 多模态多学科理解基准",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "SWE-bench",
+    "type": "benchmark",
+    "url": "https://www.swebench.com/",
+    "description": "SWE-bench 软件工程基准",
+    "trustLevel": 90,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "HuggingFace Open LLM Leaderboard",
+    "type": "community",
+    "url": "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard",
+    "description": "HuggingFace 社区开源模型排行榜",
+    "trustLevel": 70,
+    "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "Internal Demo",
+    "type": "manual",
+    "url": null,
+    "description": "人工录入演示数据（未核验，Experimental）",
+    "trustLevel": 40,
+    "createdAt": "2026-08-11 05:11:09"
+  }
+]

@@ -1,0 +1,101 @@
+---
+/**
+ * Data Sources 页：/{lang}/data/sources/
+ *
+ * 公开数据来源透明页（E-E-A-T）：来源列表 + Tier + trust + last checked。
+ * JSON-LD：DataCatalog（Dataset / DatasetSeries / DataDownload）——让 AI 搜索引擎
+ * 识别为可信数据平台（Phase 11.7 Step 12）。
+ */
+import { LOCALES } from '../../../../i18n/locales';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../../i18n/ui';
+import DataTrustBadge from '../../../../components/data/DataTrustBadge.astro';
+import sourcesJson from '../../../../generated/data-sources.json';
+
+// SSG：7 语言
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+const sources = sourcesJson as { name: string; type: string; url: string | null; description: string | null; trustLevel: number; createdAt: string }[];
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+// DataCatalog JSON-LD（Dataset + DataDownload → API）
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DataCatalog',
+  name: 'AI Model Platform Data',
+  description: t('data.sources.desc'),
+  url: pageUrl,
+  publisher: { '@type': 'Organization', name: 'AI Model Platform' },
+  dataset: [
+    {
+      '@type': 'Dataset',
+      name: 'AI Model Catalog',
+      description: 'Model metadata, capabilities, and context windows.',
+      url: new URL(`/${lang}/models/`, siteUrl).href,
+      distribution: { '@type': 'DataDownload', contentUrl: 'https://ai-model-platform-api.crazynotesman.workers.dev/api/v1/models', encodingFormat: 'application/json' },
+    },
+    {
+      '@type': 'Dataset',
+      name: 'Model Pricing',
+      description: 'Official and verified pricing history.',
+      url: new URL(`/${lang}/data/sources/`, siteUrl).href,
+      distribution: { '@type': 'DataDownload', contentUrl: 'https://ai-model-platform-api.crazynotesman.workers.dev/api/v1/models', encodingFormat: 'application/json' },
+    },
+    {
+      '@type': 'Dataset',
+      name: 'Benchmark Results',
+      description: 'Benchmark scores with dataset, version, and source attribution.',
+      url: new URL(`/${lang}/benchmarks/`, siteUrl).href,
+      distribution: { '@type': 'DataDownload', contentUrl: 'https://ai-model-platform-api.crazynotesman.workers.dev/api/v1/benchmarks', encodingFormat: 'application/json' },
+    },
+  ],
+};
+---
+
+<BaseLayout title={t('data.sources.title')} description={t('data.sources.desc')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('data.sources.title')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('data.sources.desc')}</p>
+
+    <div class="mt-6 overflow-x-auto rounded-xl border border-slate-800">
+      <table class="w-full min-w-[560px] text-left text-sm">
+        <thead class="bg-slate-900 text-[11px] uppercase tracking-wide text-slate-500">
+          <tr class="border-b border-slate-800">
+            <th scope="col" class="px-4 py-3 font-medium">Source</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('data.sources.tableType')}</th>
+            <th scope="col" class="px-4 py-3 font-medium">{t('data.sources.tableTier')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('data.sources.tableTrust')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sources.map((s) => (
+            <tr class="border-b border-slate-800/60 last:border-b-0">
+              <td class="px-4 py-3">
+                {s.url ? (
+                  <a href={s.url} target="_blank" rel="noopener" class="font-medium text-slate-100 hover:text-sky-300">
+                    {s.name} ↗
+                  </a>
+                ) : (
+                  <span class="font-medium text-slate-100">{s.name}</span>
+                )}
+                {s.description && <p class="mt-0.5 text-[11px] text-slate-500">{s.description}</p>}
+              </td>
+              <td class="px-4 py-3 text-slate-400">{s.type}</td>
+              <td class="px-4 py-3">
+                <DataTrustBadge confidence={s.trustLevel} status={s.trustLevel >= 90 ? 'verified' : s.trustLevel >= 70 ? 'trusted' : 'experimental'} />
+              </td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums text-sky-300">{s.trustLevel}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</BaseLayout>

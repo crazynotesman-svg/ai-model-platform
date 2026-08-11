@@ -54,6 +54,7 @@ interface CatalogEntry {
   }[];
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
   rankingHistory?: { date: string; rank: number; score: number }[];
+  confidenceScore?: number | null;
 }
 const catalog = catalogJson as Record<string, CatalogEntry>;
 
@@ -193,6 +194,9 @@ const reliOf = (m: typeof A) => {
 };
 const relA = reliOf(A);
 const relB = reliOf(B);
+// Phase 11.7：整体数据置信度（模型 confidenceScore，用于 Confidence Difference 展示）
+const confA = (A as { confidenceScore?: number | null }).confidenceScore ?? (relA.benchConf ?? relA.pricingConf ?? 50);
+const confB = (B as { confidenceScore?: number | null }).confidenceScore ?? (relB.benchConf ?? relB.pricingConf ?? 50);
 
 // ---- FAQ（GEO：数据驱动——综合评分/价格/能力差异，禁止 mock）----
 const faqCapLabel = (row: (typeof CAPABILITY_ROWS)[number]) => t(`compare.${row.labelKey}` as keyof typeof t);
@@ -510,9 +514,12 @@ const rows: { label: string; a: string; b: string }[] = [
       </div>
     )}
 
-    {/* Data Reliability（Phase 11.5A） */}
+    {/* Data Reliability（Phase 11.5A）+ Confidence Difference（Phase 11.7） */}
     <section class="mt-6 grid gap-3 sm:grid-cols-2">
-      {[relA, relB].map((r) => (
+      {[
+        { r: relA, conf: confA },
+        { r: relB, conf: confB },
+      ].map(({ r, conf }) => (
         <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
           <h2 class="text-sm font-semibold text-sky-300">{r.name}</h2>
           <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{t('trust.reliability')}</p>
@@ -520,6 +527,9 @@ const rows: { label: string; a: string; b: string }[] = [
             <DataTrustBadge confidence={r.benchConf} status={r.bStatus} label={`${t('source.benchmark')} · ${r.bStatus === 'verified' ? t('verification.verified') : r.bStatus === 'trusted' ? t('confidence.trusted') : t('verification.experimental')}`} />
             <DataTrustBadge confidence={r.pricingConf} status={r.pStatus} label={`${t('source.official')} · ${r.pStatus === 'verified' ? t('verification.verified') : r.pStatus === 'trusted' ? t('confidence.trusted') : t('verification.experimental')}`} />
           </div>
+          <p class="mt-3 border-t border-slate-800 pt-2 text-xs text-slate-400">
+            {t('trust.confidenceDiff')}: <span class="font-semibold text-slate-200">{conf}%</span>
+          </p>
         </div>
       ))}
     </section>

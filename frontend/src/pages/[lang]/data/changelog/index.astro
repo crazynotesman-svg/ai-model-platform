@@ -1,0 +1,78 @@
+---
+/**
+ * Data Changelog 页：/{lang}/data/changelog/
+ *
+ * 公开变更日志：最近 price/benchmark/model 更新（来源可追踪 + 时间戳）。
+ * 数据来自 data-changes.json（构建期导出，真实数据；无变更时诚实显示空态）。
+ */
+import { LOCALES } from '../../../../i18n/locales';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../../i18n/ui';
+import changesJson from '../../../../generated/data-changes.json';
+
+// SSG：7 语言
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+const changes = changesJson as {
+  entityType: string;
+  entityId: string;
+  changeType: string;
+  before: Record<string, unknown> | null;
+  after: Record<string, unknown>;
+  confidence: number;
+  createdAt: string;
+}[];
+
+const typeLabel: Record<string, string> = {
+  price_changed: t('data.changelog.priceChanged'),
+  benchmark_updated: t('data.changelog.benchmarkUpdated'),
+  model_updated: t('data.changelog.modelUpdated'),
+};
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: t('data.changelog.title'),
+  description: t('data.changelog.desc'),
+  url: pageUrl,
+  publisher: { '@type': 'Organization', name: 'AI Model Platform' },
+};
+---
+
+<BaseLayout title={t('data.changelog.title')} description={t('data.changelog.desc')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('data.changelog.title')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('data.changelog.desc')}</p>
+
+    {changes.length === 0 ? (
+      <p class="mt-6 rounded-xl border border-slate-800 bg-slate-900/60 p-6 text-sm text-slate-400">
+        {t('data.changelog.empty')}
+      </p>
+    ) : (
+      <ol class="mt-6 space-y-3">
+        {changes.map((c) => (
+          <li class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-sm font-semibold text-white">{typeLabel[c.changeType] ?? c.changeType}</span>
+              <span class="text-xs tabular-nums text-slate-500">{c.createdAt}</span>
+            </div>
+            <p class="mt-1 text-xs text-slate-400">
+              {c.entityId} · {t('trust.confidence')}: {c.confidence}%
+            </p>
+            {c.before && (
+              <pre class="mt-2 overflow-x-auto rounded-lg bg-slate-950 p-2 text-[11px] text-slate-400">{JSON.stringify(c.before)}</pre>
+            )}
+            <pre class="mt-1 overflow-x-auto rounded-lg bg-slate-950 p-2 text-[11px] text-slate-300">{JSON.stringify(c.after)}</pre>
+          </li>
+        ))}
+      </ol>
+    )}
+  </div>
+</BaseLayout>

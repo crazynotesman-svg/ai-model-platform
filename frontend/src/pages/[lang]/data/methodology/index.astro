@@ -1,0 +1,53 @@
+---
+/**
+ * Data Methodology 页：/{lang}/data/methodology/
+ *
+ * 公开方法论：ranking formula / trust score v3 / validation rules / source policy。
+ * JSON-LD：WebPage。内容全部来自 i18n（7 语言），透明无黑盒。
+ */
+import { LOCALES } from '../../../../i18n/locales';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../../i18n/ui';
+
+// SSG：7 语言
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+const sections = [
+  { title: t('data.methodology.rankingFormula'), desc: t('data.methodology.rankingFormulaDesc') },
+  { title: t('data.methodology.trustScore'), desc: t('data.methodology.trustScoreDesc') },
+  { title: t('data.methodology.validation'), desc: t('data.methodology.validationDesc') },
+  { title: t('data.methodology.sources'), desc: t('data.methodology.sourcesDesc') },
+];
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: t('data.methodology.title'),
+  description: t('data.methodology.desc'),
+  url: pageUrl,
+  publisher: { '@type': 'Organization', name: 'AI Model Platform' },
+};
+---
+
+<BaseLayout title={t('data.methodology.title')} description={t('data.methodology.desc')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('data.methodology.title')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('data.methodology.desc')}</p>
+
+    <div class="mt-6 space-y-4">
+      {sections.map((s) => (
+        <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{s.title}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">{s.desc}</p>
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

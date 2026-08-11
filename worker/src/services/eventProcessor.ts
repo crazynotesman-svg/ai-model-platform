@@ -54,6 +54,11 @@ export async function applyEvent(db: D1Database, row: Row): Promise<void> {
       const model = await db.prepare('SELECT id FROM models WHERE slug = ?').bind(row.entity_id).first<{ id: number }>();
       if (!model) throw new Error(`model not found: ${row.entity_id}`);
       const now = new Date().toISOString().slice(0, 10);
+      // Phase 11.7：记录变更前价格（data_changes before）
+      const before = await db
+        .prepare("SELECT input_price, output_price FROM pricing WHERE model_id = ? AND currency = 'USD' AND unit = 'per_1M_tokens' LIMIT 1")
+        .bind(model.id)
+        .first<{ input_price: number; output_price: number }>();
       await db
         .prepare(
           `INSERT INTO pricing_history (model_id, input_price, output_price, currency, unit, effective_date, source_id, confidence, verified_at)
@@ -68,6 +73,20 @@ export async function applyEvent(db: D1Database, row: Row): Promise<void> {
            ON CONFLICT(model_id, currency, unit) DO UPDATE SET input_price = excluded.input_price, output_price = excluded.output_price`,
         )
         .bind(model.id, payload.inputPrice as number, payload.outputPrice as number)
+        .run();
+      // Phase 11.7：写入 data_changes（before/after + source + confidence）
+      await db
+        .prepare(
+          `INSERT INTO data_changes (entity_type, entity_id, change_type, before_json, after_json, source_id, confidence)
+           VALUES ('pricing', ?, 'price_changed', ?, ?, ?, ?)`,
+        )
+        .bind(
+          row.entity_id,
+          before ? JSON.stringify({ inputPrice: before.input_price, outputPrice: before.output_price }) : null,
+          JSON.stringify({ inputPrice: payload.inputPrice, outputPrice: payload.outputPrice, effectiveDate: now }),
+          row.source_id,
+          row.confidence,
+        )
         .run();
       break;
     }

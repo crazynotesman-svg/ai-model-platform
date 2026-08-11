@@ -39,6 +39,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 11.5A | AI Model Data Trust（data_sources/verifications + Ranking v2 confidence + Trust Card） | ✅ 已完成 |
 | 11.5B | Production Data Trust Activation（生产迁移 + seed-trust + 审计 cron 每日报告） | ✅ 已完成 |
 | 11.6 | AI Data Intelligence Pipeline（connectors / data_events / 审核 API / 每 6h 发现 cron） | ✅ 已完成 |
+| 11.7 | 数据可信基础设施升级（model_aliases / data_changes / 交叉验证 / Trust v3 / 数据透明页 / DataCatalog） | ✅ 已完成 |
 
 ## Phase 10 — Production Launch ✅ 已完成（git: release: v1.0.0，tag v1.0.0）
 

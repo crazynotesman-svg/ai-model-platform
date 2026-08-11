@@ -247,6 +247,26 @@ for (const entry of Object.values(catalog)) {
   entry.rankingHistory = history.slice(-30); // [{ date, rank, score }]
 }
 
+// ---- Phase 11.7：每个模型补充 dataTrust（overall/sources/lastVerified/warnings）----
+for (const entry of Object.values(catalog)) {
+  const sources = new Set();
+  const warnings = [];
+  for (const b of entry.benchmarks ?? []) {
+    if (b.sourceUrl) sources.add(b.sourceUrl);
+    if (b.source === 'manual' && b.verificationStatus === 'verified') warnings.push(`benchmark ${b.dataset}: manual 标记为 verified`);
+    if (b.confidence == null) warnings.push(`benchmark ${b.dataset}: 无 confidence`);
+  }
+  for (const p of entry.pricingHistory ?? []) {
+    if (p.sourceUrl) sources.add(p.sourceUrl);
+  }
+  entry.dataTrust = {
+    overall: entry.confidenceScore ?? (entry.ranking?.confidence != null ? Math.round((entry.ranking.confidence ?? 1) * 100) : null),
+    sources: [...sources],
+    lastVerified: entry.lastVerifiedAt ?? null,
+    warnings,
+  };
+}
+
 // ---- 4. 写出生成文件 ----
 mkdirSync(GENERATED_DIR, { recursive: true });
 writeFileSync(join(GENERATED_DIR, 'model-catalog.json'), JSON.stringify(catalog, null, 2) + '\n', 'utf-8');
@@ -257,6 +277,33 @@ writeFileSync(
     `export const MODEL_SLUGS = ${JSON.stringify(slugs)} as const;\n`,
   'utf-8',
 );
+
+// ---- Phase 11.7：数据来源与变更日志导出（公开页面用）----
+const sourcesRows = db
+  .prepare(`SELECT name, type, url, description, trust_level, created_at FROM data_sources ORDER BY trust_level DESC, name`)
+  .all();
+writeFileSync(
+  join(GENERATED_DIR, 'data-sources.json'),
+  JSON.stringify(
+    (sourcesRows ?? []).map((s) => ({ name: s.name, type: s.type, url: s.url, description: s.description, trustLevel: s.trust_level, createdAt: s.created_at })),
+    null,
+    2,
+  ) + '\n',
+  'utf-8',
+);
+const changesRows = db
+  .prepare(`SELECT entity_type, entity_id, change_type, before_json, after_json, confidence, created_at FROM data_changes ORDER BY created_at DESC LIMIT 50`)
+  .all();
+writeFileSync(
+  join(GENERATED_DIR, 'data-changes.json'),
+  JSON.stringify(
+    (changesRows ?? []).map((c) => ({ entityType: c.entity_type, entityId: c.entity_id, changeType: c.change_type, before: c.before_json ? JSON.parse(c.before_json) : null, after: JSON.parse(c.after_json), confidence: c.confidence, createdAt: c.created_at })),
+    null,
+    2,
+  ) + '\n',
+  'utf-8',
+);
+console.log('[export-models] 导出 data-sources.json + data-changes.json');
 
 console.log(
   `[export-models] 完成：${slugs.length} 个模型 → src/generated/（数据源：${candidates[0].name}）`,
