@@ -56,6 +56,11 @@ for (const slug of MODEL_SLUGS) {
 rows.sort((a, b) => b.ranking.overall - a.ranking.overall);
 rows.forEach((r, i) => (r.rank = i + 1));
 
+// Phase 11.8：Knowledge Graph —— Top 模型的 Similar choices（来自 catalog.relationships）
+const topModelEntry = rows[0];
+const topRelationships = topModelEntry ? (catalog[topModelEntry.slug] as { relationships?: { type: string; model: string; name: string; confidence: number }[] }).relationships ?? [] : [];
+const topSimilar = topRelationships.filter((r) => r.type === 'similar_to').slice(0, 3);
+
 // 趋势符号：正 = 上升 ↑（emerald）；负 = 下降 ↓（amber）；无/不变 = 稳定 →（slate）
 const trendSymbol = (change: number | null | undefined): string => {
   if (change == null) return '→';
@@ -144,6 +149,27 @@ const jsonLd = {
         </tbody>
       </table>
     </div>
+
+    {/* Phase 11.8：Related Models（Knowledge Graph Similar choices） */}
+    {topModelEntry && topSimilar.length > 0 && (
+      <section class="mt-6 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('graph.relatedModels')}</h2>
+        <p class="mt-2 text-sm text-slate-300">
+          {t('graph.similarChoices')}: <span class="font-semibold text-sky-300">{topModelEntry.name}</span>
+        </p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {topSimilar.map((r) => (
+            <a
+              href={`/${lang}/models/${r.model}/`}
+              class="rounded-full border border-slate-700 bg-slate-950 px-3 py-1 text-xs font-medium text-slate-200 transition-colors hover:border-sky-500/60 hover:text-white"
+            >
+              {r.name}
+              <span class="ml-1 text-[10px] text-sky-400">{r.confidence}%</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
 
     {/* 卡片模式（移动端） */}
     <ul class="mt-6 space-y-3 md:hidden">

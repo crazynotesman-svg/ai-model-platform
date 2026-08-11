@@ -267,6 +267,84 @@ for (const entry of Object.values(catalog)) {
   };
 }
 
+// ---- Phase 11.8：Knowledge Graph 关系计算（公式与 worker/src/services/modelGraph.ts 同步）----
+// Similarity = 0.35×Capability Jaccard + 0.25×Benchmark 距离 + 0.15×Context + 0.15×Price + 0.10×Use Case
+const relWeight = { cap: 0.45, bench: 0.2, context: 0.1, price: 0.15, uc: 0.1 };
+const relJaccard = (a, b) => {
+  const setA = new Set(a);
+  const inter = b.filter((x) => setA.has(x)).length;
+  const union = new Set([...a, ...b]).size;
+  return union === 0 ? 0 : inter / union;
+};
+const relBenchSim = (a, b) => {
+  const mapB = new Map(b.benchmarks.map((x) => [x.category, x.score]));
+  const diffs = [];
+  for (const x of a.benchmarks) {
+    if (mapB.has(x.category)) diffs.push(Math.abs(x.score - mapB.get(x.category)));
+  }
+  if (diffs.length === 0) return 0;
+  return Math.max(0, 100 - (diffs.reduce((s, d) => s + d, 0) / diffs.length) * 5);
+};
+const relPriceSim = (a, b) => {
+  if (a.inputPrice == null || b.inputPrice == null) return 0;
+  const max = Math.max(a.inputPrice, b.inputPrice, 0.01);
+  return Math.max(0, 100 - (Math.abs(a.inputPrice - b.inputPrice) / max) * 200);
+};
+const relCtxSim = (a, b) => {
+  if (a.contextWindow == null || b.contextWindow == null) return 0;
+  const max = Math.max(a.contextWindow, b.contextWindow, 1);
+  return Math.min(100, (Math.min(a.contextWindow, b.contextWindow) / max) * 100);
+};
+const relSim = (a, b) =>
+  Math.round(
+    (relWeight.cap * relJaccard(a.capabilities, b.capabilities) * 100 +
+      relWeight.bench * relBenchSim(a, b) +
+      relWeight.context * relCtxSim(a, b) +
+      relWeight.price * relPriceSim(a, b) +
+      relWeight.uc * relJaccard(a.useCases, b.useCases) * 100) *
+      10,
+  ) / 10;
+const relTrust = (evidence, fresh = 90) => Math.round(0.5 * 40 + 0.3 * evidence + 0.2 * fresh);
+
+// 构建画像：从 catalog（capabilities/benchmarks/use cases 已导出）
+const profiles = Object.values(catalog).map((e) => ({
+  slug: e.slug,
+  name: e.translations?.en?.name ?? e.slug,
+  capabilities: (e.capabilities ?? []).filter((c) => c.supported).map((c) => c.capability),
+  benchmarks: (e.benchmarks ?? []).map((b) => ({ category: b.category, score: b.score })),
+  contextWindow: e.contextWindow,
+  inputPrice: e.inputPrice,
+  useCases: Object.values(e.translations ?? {})[0]?.useCases ?? [],
+}));
+for (const me of profiles) {
+  const rels = [];
+  for (const o of profiles) {
+    if (o.slug === me.slug) continue;
+    const sim = relSim(me, o);
+    const sharedCaps = me.capabilities.filter((c) => o.capabilities.includes(c));
+    const benchOverlap = me.benchmarks.some((x) => o.benchmarks.some((y) => y.category === x.category));
+    if (sim >= 45 && (benchOverlap || sharedCaps.length >= 4)) {
+      const trust = relTrust(sim);
+      if (trust >= 50) {
+        rels.push({ type: 'similar_to', model: o.slug, name: o.name, confidence: trust, reason: `Similar ${sharedCaps.slice(0, 3).join(', ') || 'capability profile'} with comparable pricing (sim ${sim}%)` });
+      }
+    }
+    if (sharedCaps.length >= 2 && me.inputPrice != null && o.inputPrice != null && o.inputPrice > me.inputPrice * 1.2) {
+      const trust = relTrust(90);
+      if (trust >= 50) {
+        rels.push({ type: 'cheaper_than', model: o.slug, name: o.name, confidence: trust, reason: `Lower input price ($${me.inputPrice}/1M vs $${o.inputPrice}/1M) with ${sharedCaps.slice(0, 2).join(', ') || 'overlapping'} capabilities` });
+      }
+    }
+    if (sim >= 40 && sim < 45) {
+      const trust = relTrust(sim);
+      if (trust >= 50) {
+        rels.push({ type: 'alternative_to', model: o.slug, name: o.name, confidence: trust, reason: `Alternative choice with similar benchmark performance and ${sharedCaps.slice(0, 2).join(', ') || 'shared'} capabilities` });
+      }
+    }
+  }
+  catalog[me.slug].relationships = rels.sort((a, b) => b.confidence - a.confidence);
+}
+
 // ---- 4. 写出生成文件 ----
 mkdirSync(GENERATED_DIR, { recursive: true });
 writeFileSync(join(GENERATED_DIR, 'model-catalog.json'), JSON.stringify(catalog, null, 2) + '\n', 'utf-8');

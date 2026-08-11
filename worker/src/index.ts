@@ -23,6 +23,8 @@ import { createDailySnapshot } from './services/rankingSnapshot';
 import { runDataTrustAudit } from './services/dataTrustAudit';
 import { listPendingEvents, applyEvent } from './services/eventProcessor';
 import { runDataDiscovery } from './services/dataDiscovery';
+import { loadModelProfiles } from './services/relationshipGenerator';
+import { buildRelationships } from './services/modelGraph';
 import { getRecommendations } from './services/recommendation';
 import { getRankingTrend } from './routes/ranking';
 
@@ -218,6 +220,27 @@ export default {
         return json(result);
       } catch (err) {
         console.error('getBenchmarks failed:', err);
+        return json({ error: 'Internal Server Error' }, 500);
+      }
+    }
+
+    // 模型关系（Phase 11.8 Knowledge Graph API）：/api/models/:slug/relationships
+    const relMatch = pathname.match(/^\/api\/models\/(.+)\/relationships$/);
+    if (relMatch) {
+      try {
+        const slug = decodeURIComponent(relMatch[1]);
+        const profiles = await loadModelProfiles(env.DB);
+        const me = profiles.find((p) => p.slug === slug);
+        if (!me) return json({ error: 'Model not found' }, 404);
+        const rels = buildRelationships(me, profiles);
+        return json({
+          slug,
+          similar: rels.filter((r) => r.type === 'similar_to').map((r) => ({ model: r.targetSlug, name: r.targetName, confidence: r.confidence, reason: r.reason })),
+          alternatives: rels.filter((r) => r.type === 'alternative_to' || r.type === 'cheaper_than').map((r) => ({ model: r.targetSlug, name: r.targetName, type: r.type, confidence: r.confidence, reason: r.reason })),
+          competitors: rels.filter((r) => r.type === 'similar_to' && r.confidence >= 75).map((r) => ({ model: r.targetSlug, name: r.targetName, confidence: r.confidence, reason: r.reason })),
+        });
+      } catch (err) {
+        console.error('getRelationships failed:', err);
         return json({ error: 'Internal Server Error' }, 500);
       }
     }

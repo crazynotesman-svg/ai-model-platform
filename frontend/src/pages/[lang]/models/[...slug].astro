@@ -59,6 +59,7 @@ interface ModelCatalogEntry {
   dataStatus: string;
   verifiedStatus?: string;
   confidenceScore?: number | null;
+  relationships?: { type: string; model: string; name: string; confidence: number; reason: string }[];
 }
 const catalog = catalogJson as Record<string, ModelCatalogEntry>;
 
@@ -111,6 +112,12 @@ const fmtPrice = (n: number | null): string => (n == null ? '—' : `$${n.toFixe
 // 结构化数据（JSON-LD）：模型作为 SoftwareApplication（含应用类别/操作系统/厂商/价格）
 // 结构化数据（JSON-LD）：SoftwareApplication + BreadcrumbList（@graph，避免重复）
 const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+// ---- Related Models（Phase 11.8 Knowledge Graph：catalog.relationships）----
+const rels = data.relationships ?? [];
+const similarRels = rels.filter((r) => r.type === 'similar_to');
+const lowerCostRels = rels.filter((r) => r.type === 'cheaper_than');
+const perfAltRels = rels.filter((r) => r.type === 'alternative_to');
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -128,6 +135,12 @@ const jsonLd = {
         priceCurrency: data.currency,
         description: 'Input price per 1M tokens',
       },
+      // Phase 11.8：isRelatedTo（指向相似模型页——有可靠 URL 才生成）
+      isRelatedTo: similarRels.slice(0, 3).map((r) => ({
+        '@type': 'SoftwareApplication',
+        name: r.name,
+        url: new URL(`/${lang}/models/${r.model}/`, siteUrl).href,
+      })),
     },
     {
       '@type': 'BreadcrumbList',
@@ -333,6 +346,62 @@ const detailRows: { label: string; value: string }[] = [
             </div>
           )}
         </dl>
+      </section>
+    )}
+
+    {/* Related Models（Phase 11.8 Knowledge Graph：Similar + Alternatives，reason+confidence） */}
+    {(similarRels.length > 0 || lowerCostRels.length > 0 || perfAltRels.length > 0) && (
+      <section class="mt-6 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('graph.relatedModels')}</h2>
+        {similarRels.length > 0 && (
+          <div class="mt-3">
+            <h3 class="text-xs font-semibold uppercase tracking-wide text-sky-400">{t('graph.similarModels')}</h3>
+            <ul class="mt-2 space-y-2">
+              {similarRels.slice(0, 4).map((r) => (
+                <li class="rounded-lg border border-slate-800 bg-slate-950/60 p-3">
+                  <a href={`/${lang}/models/${r.model}/`} class="text-sm font-semibold text-slate-100 hover:text-sky-300">
+                    {r.name}
+                  </a>
+                  <span class="ml-2 rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] font-semibold text-sky-300">
+                    {t('graph.confidence')} {r.confidence}%
+                  </span>
+                  <p class="mt-1 text-[11px] text-slate-500">{r.reason}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {(lowerCostRels.length > 0 || perfAltRels.length > 0) && (
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            {lowerCostRels.length > 0 && (
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wide text-emerald-400">{t('graph.lowerCost')}</h3>
+                <ul class="mt-2 space-y-1.5">
+                  {lowerCostRels.slice(0, 3).map((r) => (
+                    <li>
+                      <a href={`/${lang}/models/${r.model}/`} class="text-xs font-medium text-slate-200 hover:text-sky-300">{r.name}</a>
+                      <p class="text-[10px] text-slate-500">{r.reason}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {perfAltRels.length > 0 && (
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wide text-sky-400">{t('graph.higherPerf')}</h3>
+                <ul class="mt-2 space-y-1.5">
+                  {perfAltRels.slice(0, 3).map((r) => (
+                    <li>
+                      <a href={`/${lang}/models/${r.model}/`} class="text-xs font-medium text-slate-200 hover:text-sky-300">{r.name}</a>
+                      <p class="text-[10px] text-slate-500">{r.reason}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+        <p class="mt-3 border-t border-slate-800 pt-2 text-[10px] text-slate-600">{t('graph.engineComputed')}</p>
       </section>
     )}
 
