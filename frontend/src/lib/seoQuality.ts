@@ -23,6 +23,8 @@ export interface QualityInput {
   internalLinks: number;
   /** 数据最近核验日期（ISO 或 null） */
   lastVerifiedAt: string | null;
+  /** 最近 90 天内数据更新事件数（benchmark/pricing 更新），用于 freshness 加分 */
+  recentDataUpdates?: number;
 }
 
 export interface QualityScore {
@@ -53,31 +55,48 @@ function seoScore(i: QualityInput): number {
   return clamp(Math.round(s));
 }
 
-/** 新鲜度分（0-100）：lastVerified 距今天数 */
-function freshnessScore(lastVerifiedAt: string | null): number {
-  if (!lastVerifiedAt) return 50;
-  const days = Math.max(0, (Date.now() - new Date(lastVerifiedAt).getTime()) / 86_400_000);
-  if (days <= 7) return 100;
-  if (days <= 30) return 80;
-  if (days <= 90) return 60;
-  if (days <= 180) return 40;
-  return 20;
+/**
+ * 新鲜度分（0-100）：
+ * - lastVerifiedAt 距今天数（基础分）；
+ * - 最近 90 天内的数据更新事件（benchmark/pricing update）额外加分（每件 +10，上限 +30），
+ *   反映数据仍在流动。
+ */
+function freshnessScore(lastVerifiedAt: string | null, recentDataUpdates = 0): number {
+  let base: number;
+  if (!lastVerifiedAt) {
+    base = 40;
+  } else {
+    const days = Math.max(0, (Date.now() - new Date(lastVerifiedAt).getTime()) / 86_400_000);
+    if (days <= 7) base = 100;
+    else if (days <= 30) base = 80;
+    else if (days <= 90) base = 60;
+    else if (days <= 180) base = 40;
+    else base = 20;
+  }
+  // 数据更新信号加分（仅最近 90 天内的更新计数）
+  return clamp(base + clamp(recentDataUpdates, 0, 3) * 10);
 }
 
 /** 页面质量评分：content 50% + seo 30% + freshness 20% */
 export function pageQualityScore(input: QualityInput): QualityScore {
   const content = contentScore(input);
   const seo = seoScore(input);
-  const freshness = freshnessScore(input.lastVerifiedAt);
+  const freshness = freshnessScore(input.lastVerifiedAt, input.recentDataUpdates);
   const score = clamp(Math.round(content * 0.5 + seo * 0.3 + freshness * 0.2));
   return { score, content, seo, freshness };
 }
 
-/** QualityBadge 友好数据（页面展示，不暴露内部 score） */
-export function qualityBadge(input: Pick<QualityInput, 'modelCount' | 'lastVerifiedAt'>): {
+export interface QualityBadge {
   modelCount: number;
   updatedYear: number | null;
-} {
+  /** 最近 30 天内核验过（仅真实数据） */
+  verifiedRecently: boolean;
+}
+
+/** QualityBadge 友好数据（页面展示，不暴露内部 score；仅真实数据） */
+export function qualityBadge(input: Pick<QualityInput, 'modelCount' | 'lastVerifiedAt'>): QualityBadge {
   const year = input.lastVerifiedAt ? new Date(input.lastVerifiedAt).getFullYear() : null;
-  return { modelCount: input.modelCount, updatedYear: year };
+  const verifiedRecently =
+    input.lastVerifiedAt != null && Date.now() - new Date(input.lastVerifiedAt).getTime() <= 30 * 86_400_000;
+  return { modelCount: input.modelCount, updatedYear: year, verifiedRecently };
 }

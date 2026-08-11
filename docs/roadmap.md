@@ -31,6 +31,11 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 10.4 | Google Search Console & Indexing 策略（setup/audit/priority URLs） | ✅ 已完成 |
 | 10.5 | 内部链接 SEO 增强（Related Resources/BreadcrumbList/导航补齐） | ✅ 已完成 |
 | 10.6 | 收录后优化（P2：sitemap lastmod、404 状态、首页 Organization JSON-LD） | ⬜ 待开发 |
+| 11.1 | Google 收录监控与 SEO 数据闭环（analytics opt-in / health script / monitoring plan） | ✅ 已完成 |
+| 11.2 | GEO/AI Search 优化（FAQPage schema / crawler policy / citation audit 8.6/10） | ✅ 已完成 |
+| 11.3 | Programmatic SEO 规模化（use-cases/categories/compare-intent，+105 页） | ✅ 已完成 |
+| 11.4 | SEO Growth 系统（quality score / seo-report / inventory / 索引策略） | ✅ 已完成 |
+| 11.5 | SEO Growth & Index Intelligence（opportunity engine / dashboard / 内链检测 / Health Score 93） | ✅ 已完成 |
 
 ## Phase 10 — Production Launch ✅ 已完成（git: release: v1.0.0，tag v1.0.0）
 

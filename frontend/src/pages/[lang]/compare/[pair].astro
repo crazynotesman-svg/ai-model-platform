@@ -501,6 +501,21 @@ const rows: { label: string; a: string; b: string }[] = [
           </details>
         ))}
       </div>
+      {/* Related links（Phase 11.5：补齐 ranking 内链） */}
+      <div class="mt-4 flex flex-wrap gap-2">
+        <a
+          href={`/${lang}/ranking/`}
+          class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+        >
+          {t('internalLinks.leaderboard')} →
+        </a>
+        <a
+          href={`/${lang}/benchmarks/`}
+          class="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-sky-500/60 hover:text-white"
+        >
+          {t('internalLinks.benchmarks')} →
+        </a>
+      </div>
     </section>
   </article>
 </BaseLayout>
