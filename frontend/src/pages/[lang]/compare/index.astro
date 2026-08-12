@@ -4,11 +4,13 @@
  *
  * 双下拉选择 Model A / Model B（选项来自 D1 导出的 catalog，静态渲染，无 API 依赖），
  * 选择后跳转到规范比较 URL /{lang}/compare/{a}-vs-{b}/（SEO 静态页）。
+ * Phase 12.1 修复：仅允许选择会被 SSG 生成的组合（避免 404 跳回主页）。
  */
 import { LOCALES } from '../../../i18n/locales';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import catalogJson from '../../../generated/model-catalog.json';
+import { buildComparePairSet } from '../../../lib/comparePairsGen';
 
 // Astro 7 要求动态段显式声明参数列表
 export function getStaticPaths() {
@@ -32,6 +34,14 @@ const options = Object.values(catalog)
     name: m.translations[lang]?.name ?? m.slug,
   }))
   .sort((x, y) => x.name.localeCompare(y.name, lang));
+
+// 可用组合（与 getStaticPaths 同逻辑，注入页面供跳转前校验）
+const pairSet = buildComparePairSet({
+  catalog: catalogJson as Record<string, { slug: string; ranking?: { overall?: number }; relationships?: { type: string; model: string; confidence?: number }[] }>,
+  slugs: Object.keys(catalog),
+  topN: 10,
+});
+const availablePairsJson = JSON.stringify([...pairSet]);
 ---
 
 <BaseLayout title={t('compare.pageTitle')} description={t('compare.subtitle')}>
@@ -68,6 +78,7 @@ const options = Object.values(catalog)
             </select>
           </label>
         </div>
+        <p id="cmp-hint" class="mt-3 hidden text-xs text-slate-500"></p>
       </fieldset>
 
       <button
@@ -82,13 +93,44 @@ const options = Object.values(catalog)
 </BaseLayout>
 
 <script is:inline>
-  // 选择两个模型 → 跳转规范比较 URL（与服务端 compare.ts 编码规则一致）
+  // 可用组合集合（与 SSG 生成一致；格式：'a_vs_b'）
+  const available = new Set({availablePairsJson});
+  const enc = (s) => s.replaceAll('/', '_');
+  const keyOf = (a, b) => [enc(a), enc(b)].sort().join('-vs-');
+  const hint = document.getElementById('cmp-hint');
+
+  // A 变化 → 动态过滤 B 的可用选项
+  const selA = document.getElementById('cmp-a');
+  const selB = document.getElementById('cmp-b');
+  const allBOptions = Array.from(selB.options).filter((o) => o.value !== '');
+
+  function refreshB() {
+    const a = selA.value;
+    for (const o of allBOptions) {
+      const ok = a && o.value !== a && available.has(keyOf(a, o.value));
+      o.disabled = !ok;
+    }
+    if (selB.value && (!a || selB.value === a || !available.has(keyOf(a, selB.value)))) {
+      selB.value = '';
+    }
+  }
+  selA.addEventListener('change', () => {
+    refreshB();
+    hint.classList.add('hidden');
+  });
+  selB.addEventListener('change', () => hint.classList.add('hidden'));
+
+  // 选择两个模型 → 校验组合存在 → 跳转规范比较 URL（与 SSG 集合一致）
   function goCompare(lang) {
-    const a = document.getElementById('cmp-a').value;
-    const b = document.getElementById('cmp-b').value;
+    const a = selA.value;
+    const b = selB.value;
     if (!a || !b || a === b) return;
-    const enc = (s) => s.replaceAll('/', '_');
-    const key = [enc(a), enc(b)].sort().join('-vs-');
-    window.location.href = '/' + lang + '/compare/' + key + '/';
+    if (!available.has(keyOf(a, b))) {
+      hint.textContent = 'This comparison page is not available. Please pick another pair.';
+      hint.classList.remove('hidden');
+      return;
+    }
+    window.location.href = '/' + lang + '/compare/' + keyOf(a, b) + '/';
   }
 </script>
+

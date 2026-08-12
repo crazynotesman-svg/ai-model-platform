@@ -14,6 +14,7 @@ import DataTrustBadge from '../../../components/data/DataTrustBadge.astro';
 import DataFreshnessBadge from '../../../components/data/DataFreshnessBadge.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
 import { comparePairKey, CAPABILITY_ROWS } from '../../../lib/compare';
+import { buildComparePairSet } from '../../../lib/comparePairsGen';
 import { MODEL_SLUGS } from '../../../generated/model-slugs';
 import catalogJson from '../../../generated/model-catalog.json';
 
@@ -185,11 +186,14 @@ const similar = Object.entries(catalogAll)
   .sort((a, b) => Number(b.sameProvider) - Number(a.sameProvider) || Number(b.close) - Number(a.close))
   .slice(0, 4);
 
-// 对比链接（comparePairKey 自动规范化 URL）
-const compareVsTop = topRanked.map((m) => ({
-  href: `/${lang}/compare/${comparePairKey(data.slug, m.slug)}/`,
-  name: m.name,
-}));
+// 对比链接（comparePairKey 自动规范化 URL；Phase 12.1 修复：只显示会被 SSG 生成的组合，避免 404 跳主页）
+const comparePairSet = buildComparePairSet({ catalog: catalogJson as Record<string, { slug: string; ranking?: { overall?: number }; relationships?: { type: string; model: string; confidence?: number }[] }>, slugs: MODEL_SLUGS, topN: 10 });
+const compareVsTop = topRanked
+  .filter((m) => comparePairSet.has(comparePairKey(data.slug, m.slug)))
+  .map((m) => ({
+    href: `/${lang}/compare/${comparePairKey(data.slug, m.slug)}/`,
+    name: m.name,
+  }));
 
 // ---- Data Trust（Phase 11.5A：来源 + 验证 + 新鲜度 + 置信度）----
 const modelVerified = data.verifiedStatus === 'verified';
