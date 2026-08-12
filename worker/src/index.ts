@@ -25,6 +25,7 @@ import { listPendingEvents, applyEvent } from './services/eventProcessor';
 import { runDataDiscovery } from './services/dataDiscovery';
 import { loadModelProfiles } from './services/relationshipGenerator';
 import { buildRelationships } from './services/modelGraph';
+import { getDataQuality } from './services/dataQuality';
 import { getRecommendations } from './services/recommendation';
 import { getRankingTrend } from './routes/ranking';
 
@@ -114,6 +115,15 @@ export default {
     // 健康检查
     if (pathname === '/' || pathname === '/api/health') {
       return json({ status: 'ok', service: 'ai-model-platform-api', version: '0.3.0' });
+    }
+
+    // Data Quality（Phase 11.9）：/api/data-quality
+    if (pathname === '/api/data-quality') {
+      try {
+        return json(await getDataQuality(env.DB));
+      } catch (err) {
+        return json({ error: String((err as Error).message) }, 500);
+      }
     }
 
     // 新闻列表：/api/news?lang=&category=

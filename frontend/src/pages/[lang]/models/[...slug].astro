@@ -60,6 +60,7 @@ interface ModelCatalogEntry {
   verifiedStatus?: string;
   confidenceScore?: number | null;
   relationships?: { type: string; model: string; name: string; confidence: number; reason: string }[];
+  dataTrust?: { overall: number | null; sources: string[]; lastVerified: string | null; warnings: string[] };
 }
 const catalog = catalogJson as Record<string, ModelCatalogEntry>;
 
@@ -317,7 +318,7 @@ const detailRows: { label: string; value: string }[] = [
     {/* Data History（Phase 11.7：价格/基准更新时间 + 来源） */}
     {((data.pricingHistory?.length ?? 0) > 0 || (data.benchmarks?.length ?? 0) > 0) && (
       <section class="mt-4 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
-        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('trust.history')}</h2>
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('models.evidenceTimeline')}</h2>
         <dl class="mt-3 space-y-2 text-sm">
           {(data.pricingHistory ?? []).length > 0 && (
             <div class="flex items-center justify-between gap-3">
@@ -343,6 +344,14 @@ const detailRows: { label: string; value: string }[] = [
             <div class="flex items-center justify-between gap-3">
               <dt class="text-slate-400">{t('trust.source')}</dt>
               <dd class="max-w-[60%] truncate text-right text-xs text-slate-300">{trustSource}</dd>
+            </div>
+          )}
+          {(data.dataTrust?.sources?.length ?? 0) > 0 && (
+            <div class="flex items-center justify-between gap-3">
+              <dt class="text-slate-400">{t('models.evidenceSources', { n: String((data.dataTrust?.sources ?? []).length) })}</dt>
+              <dd class="text-xs text-slate-300">
+                {data.dataTrust?.overall != null ? `${t('trust.confidence')}: ${data.dataTrust.overall}%` : '—'}
+              </dd>
             </div>
           )}
         </dl>

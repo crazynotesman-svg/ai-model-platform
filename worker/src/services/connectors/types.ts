@@ -31,6 +31,8 @@ export interface DataConnector {
   normalize(raw: unknown): Promise<DataEventInput[]>;
   /** 校验事件（必填字段/数值范围/来源匹配） */
   validate(events: DataEventInput[]): DataEventInput[];
+  /** Phase 11.9：normalized 行 → 事件（含 source/confidence 注入；禁止直接写库） */
+  createEvent?(row: Record<string, unknown>): DataEventInput;
 }
 
 /** 运行一个 connector 的完整流程：fetch → normalize → validate（不写库） */

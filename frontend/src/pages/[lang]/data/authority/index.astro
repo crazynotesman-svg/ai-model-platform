@@ -1,0 +1,92 @@
+---
+/**
+ * AI Model Data Authority 页：/{lang}/data/authority/
+ *
+ * 公开数据权威性页（Google E-E-A-T + AI citation readiness）：
+ * 数据来源数量 / 更新时间 / 验证流程 / Benchmark 方法 / Ranking 算法。
+ * JSON-LD：Dataset + Organization + WebPage。
+ */
+import { LOCALES } from '../../../../i18n/locales';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../../i18n/ui';
+import sourcesJson from '../../../../generated/data-sources.json';
+
+// SSG：7 语言
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+const sources = sourcesJson as { name: string; type: string; trustLevel: number; category?: string }[];
+const verifiedCount = sources.filter((s) => s.trustLevel >= 90).length;
+const lastUpdated = new Date().toISOString().slice(0, 10);
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: t('data.authority.title'),
+      description: t('data.authority.desc'),
+      url: pageUrl,
+      dateModified: lastUpdated,
+      publisher: { '@type': 'Organization', name: 'AI Model Platform', url: new URL(`/${lang}/`, siteUrl).href },
+    },
+    {
+      '@type': 'Dataset',
+      name: 'AI Model Intelligence Dataset',
+      description: t('data.authority.desc'),
+      url: pageUrl,
+      dateModified: lastUpdated,
+      publisher: { '@type': 'Organization', name: 'AI Model Platform' },
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      variableMeasured: ['model pricing', 'benchmark scores', 'capabilities', 'context windows'],
+    },
+  ],
+};
+
+const sections = [
+  { title: t('data.authority.sources'), desc: t('data.authority.sourcesDesc') },
+  { title: t('data.authority.validation'), desc: t('data.authority.validationDesc') },
+  { title: t('data.authority.benchmark'), desc: t('data.authority.benchmarkDesc') },
+  { title: t('data.authority.ranking'), desc: t('data.authority.rankingDesc') },
+];
+---
+
+<BaseLayout title={t('data.authority.title')} description={t('data.authority.desc')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('data.authority.title')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('data.authority.desc')}</p>
+
+    {/* 关键统计 */}
+    <div class="mt-6 grid grid-cols-3 gap-3">
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-sky-300">{sources.length}</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.authority.statSources')}</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-emerald-400">{verifiedCount}</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.authority.statVerified')}</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-slate-200">{lastUpdated}</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.authority.updated')}</p>
+      </div>
+    </div>
+
+    {/* 方法区块 */}
+    <div class="mt-6 space-y-4">
+      {sections.map((s) => (
+        <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{s.title}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">{s.desc}</p>
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

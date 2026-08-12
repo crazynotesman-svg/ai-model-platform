@@ -28,6 +28,27 @@ INSERT OR IGNORE INTO data_sources (name, type, url, description, trust_level) V
   ('HuggingFace Open LLM Leaderboard', 'community', 'https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard', 'HuggingFace 社区开源模型排行榜', 70),
   ('Internal Demo', 'manual', NULL, '人工录入演示数据（未核验，Experimental）', 40);
 
+-- 1b. Phase 11.9：扩展外部来源（category / update_frequency / api_available / license_type）
+-- ---------------------------------------------------------------------------
+INSERT OR IGNORE INTO data_sources (name, type, url, description, trust_level, category, update_frequency, api_available, license_type) VALUES
+  ('OpenAI Release Notes', 'official', 'https://platform.openai.com/docs/changelog', 'OpenAI 官方发布说明（Release Tracking）', 100, 'official_docs', 'weekly', 0, 'open'),
+  ('Anthropic Release Notes', 'official', 'https://docs.anthropic.com/en/release-notes', 'Anthropic 官方发布说明', 100, 'official_docs', 'weekly', 0, 'open'),
+  ('Google Gemini Technical Reports', 'official', 'https://ai.google.dev/research', 'Google DeepMind 技术报告（模型能力依据）', 100, 'research_paper', 'monthly', 0, 'open'),
+  ('Meta Llama Papers', 'official', 'https://arxiv.org/list/cs.CL/recent', 'Meta Llama 研究论文（arXiv）', 100, 'research_paper', 'monthly', 0, 'open'),
+  ('Papers with Code', 'benchmark', 'https://paperswithcode.com/llms', 'Papers with Code 论文-指标-分数数据库', 90, 'research_paper', 'weekly', 1, 'open'),
+  ('MLCommons MLPerf', 'benchmark', 'https://mlcommons.org/benchmarks/inference-datacenter/', 'MLPerf 数据中心推理基准（官方榜单）', 90, 'benchmark', 'monthly', 1, 'open'),
+  ('SWE-bench Verified', 'benchmark', 'https://www.swebench.com/verified', 'SWE-bench Verified（官方人工核验子集）', 90, 'benchmark', 'monthly', 0, 'open'),
+  ('OpenAI Technical Report', 'official', 'https://openai.com/research/', 'OpenAI 技术报告（模型能力/评测方法）', 100, 'research_paper', 'monthly', 0, 'open');
+
+-- 1c. 为既有官方来源补充扩展字段（category 等）
+-- ---------------------------------------------------------------------------
+UPDATE data_sources SET category = 'pricing',    update_frequency = 'weekly', api_available = 0, license_type = 'open'       WHERE name IN ('OpenAI Pricing', 'Anthropic Pricing', 'Google Gemini Pricing');
+UPDATE data_sources SET category = 'official_docs', update_frequency = 'weekly', api_available = 0, license_type = 'open'   WHERE name IN ('OpenAI Model Docs', 'Anthropic Model Docs', 'Google Gemini Docs', 'Meta Llama Docs');
+UPDATE data_sources SET category = 'benchmark',   update_frequency = 'monthly', api_available = 0, license_type = 'open'    WHERE name IN ('HumanEval', 'MMLU', 'GPQA', 'AIME', 'SWE-bench', 'MMMU');
+UPDATE data_sources SET category = 'leaderboard', update_frequency = 'weekly', api_available = 1, license_type = 'open'     WHERE name = 'LMSYS Chatbot Arena';
+UPDATE data_sources SET category = 'leaderboard', update_frequency = 'weekly', api_available = 1, license_type = 'open'     WHERE name = 'HuggingFace Open LLM Leaderboard';
+UPDATE data_sources SET category = 'community',   update_frequency = 'monthly', api_available = 0, license_type = 'unknown' WHERE name = 'Internal Demo';
+
 -- 2. benchmark_results：demo 数据诚实标注 Internal Demo（Experimental）
 -- ---------------------------------------------------------------------------
 UPDATE benchmark_results

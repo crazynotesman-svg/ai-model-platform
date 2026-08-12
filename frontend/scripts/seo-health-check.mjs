@@ -136,6 +136,23 @@ const main = async () => {
     if (lds.length > 0 && valid) jsonldOk++;
     else if (lds.length === 0) add('WARN', `${p} 无 JSON-LD`);
     else add('FAIL', `${p} JSON-LD 非法`);
+
+    // Phase 11.9：Data Authority 检查（E-E-A-T + AI citation readiness）
+    // dateModified：JSON-LD 或 meta 中存在 ISO 日期
+    const dateModified = /dateModified|lastReviewed/.test(html);
+    if (p.includes('/models/')) {
+      if (!dateModified) add('WARN', `${p} 无 dateModified`);
+      // source links：Data Trust Card / 来源链接
+      if (!/trust\.|sourceUrl|https:\/\/[^"']*(openai|anthropic|google|meta|huggingface|arxiv|swebench|mlcommons|lmsys)/i.test(html)) {
+        add('WARN', `${p} 无外部来源链接`);
+      }
+      // trust badge：Data Trust Card 区块
+      if (!/Data Trust Card|trust\.dataTrustCard/.test(html)) add('WARN', `${p} 无 Data Trust Card`);
+    }
+    // Dataset schema（/data/ 页面应有 DataCatalog / Dataset）
+    if (p.includes('/data/') && !/DataCatalog|"@type":"Dataset"/.test(html)) add('WARN', `${p} 无 Dataset/DataCatalog schema`);
+    // publisher / author 信号
+    if (!/publisher|Organization/.test(html)) add('WARN', `${p} 无 publisher/Organization 信号`);
   }
   add('INFO', `抽查 ${pages.length} 页：canonical ${canonicalOk} / hreflang ${hreflangOk} / og:image ${ogImageOk} / jsonld ${jsonldOk}`);
 

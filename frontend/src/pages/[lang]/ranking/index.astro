@@ -121,6 +121,7 @@ const jsonLd = {
             <th scope="col" class="px-4 py-3 font-medium">{t('ranking.rank')}</th>
             <th scope="col" class="px-4 py-3 font-medium">{t('ranking.model')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.score')}</th>
+            <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.dataConfidence')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('trend.rankChange')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.benchmark')}</th>
             <th scope="col" class="px-4 py-3 text-right font-medium">{t('ranking.efficiency')}</th>
@@ -137,6 +138,15 @@ const jsonLd = {
                 </a>
               </td>
               <td class="px-4 py-3 text-right font-semibold tabular-nums text-sky-300">{r.ranking.overall}</td>
+              {/* Phase 11.9：Confidence Layer（Data Confidence + Evidence sources） */}
+              <td class="px-4 py-3 text-right">
+                <span class="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+                  {t('ranking.dataConfidence')} {(catalog[r.slug] as { dataTrust?: { overall: number | null; sources: string[] } }).dataTrust?.overall ?? '—'}%
+                </span>
+                <p class="mt-0.5 text-[10px] text-slate-600">
+                  {t('ranking.sourcesCount', { n: String((catalog[r.slug] as { dataTrust?: { sources: string[] } }).dataTrust?.sources?.length ?? 0) })}
+                </p>
+              </td>
               <td class={'px-4 py-3 text-right font-semibold tabular-nums ' + trendClass(r.trend?.rankChange)}>
                 <span title={t('trend.rankChange')}>{trendSymbol(r.trend?.rankChange)}</span>
                 {r.trend?.rankChange != null && r.trend.rankChange !== 0 ? Math.abs(r.trend.rankChange) : ''}
