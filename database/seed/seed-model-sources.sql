@@ -1,838 +1,140 @@
+-- Phase 12.1 Model Coverage Expansion seed (generated; ASCII-safe; idempotent)
 UPDATE providers SET slug='openai', country='US', official_url='https://openai.com', documentation_url='https://platform.openai.com/docs/models', model_page_url='https://platform.openai.com/docs/models', trust_level=100 WHERE name='OpenAI';
 UPDATE providers SET slug='anthropic', country='US', official_url='https://www.anthropic.com', documentation_url='https://docs.anthropic.com/en/docs/about-claude/models', model_page_url='https://docs.anthropic.com/en/docs/about-claude/models', trust_level=100 WHERE name='Anthropic';
 UPDATE providers SET slug='google', country='US', official_url='https://ai.google.dev', documentation_url='https://ai.google.dev/gemini-api/docs/models', model_page_url='https://ai.google.dev/gemini-api/docs/models', trust_level=100 WHERE name='Google';
-UPDATE providers SET slug='meta', country='US', official_url='https://ai.meta.com', documentation_url='https://www.llama.com/docs/models-overview/', model_page_url='https://www.llama.com/models', trust_level=100 WHERE name='Meta';
-UPDATE providers SET slug='deepseek', country='CN', official_url='https://www.deepseek.com', documentation_url='https://api-docs.deepseek.com', model_page_url='https://api-docs.deepseek.com/quick_start/pricing', trust_level=100 WHERE name='DeepSeek';
-UPDATE providers SET slug='zhipu', country='CN', official_url='https://www.zhipuai.cn', documentation_url='https://docs.bigmodel.cn', model_page_url='https://docs.bigmodel.cn/cn/guide/models', trust_level=100 WHERE name='Zhipu';
-UPDATE providers SET slug='alibaba', country='CN', official_url='https://www.alibaba.com', documentation_url='https://qwenlm.github.io', model_page_url='https://qwenlm.github.io/blog/', trust_level=100 WHERE name='Alibaba';
-UPDATE providers SET slug='moonshot', country='CN', official_url='https://www.moonshot.cn', documentation_url='https://platform.moonshot.cn/docs', model_page_url='https://platform.moonshot.cn/docs/pricing', trust_level=100 WHERE name='Moonshot';
-UPDATE providers SET slug='minimax', country='CN', official_url='https://www.minimaxi.com', documentation_url='https://platform.minimaxi.com', model_page_url='https://platform.minimaxi.com/document/price', trust_level=100 WHERE name='MiniMax';
-UPDATE providers SET slug='mistral', country='FR', official_url='https://mistral.ai', documentation_url='https://docs.mistral.ai', model_page_url='https://docs.mistral.ai/getting-started/models/models_overview/', trust_level=100 WHERE name='Mistral';
-UPDATE providers SET slug='baidu', country='CN', official_url='https://yiyan.baidu.com', documentation_url='https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html', trust_level=100 WHERE name='Baidu';
-UPDATE providers SET slug='bytedance', country='CN', official_url='https://www.volcengine.com', documentation_url='https://www.volcengine.com/docs/82379', trust_level=100 WHERE name='ByteDance';
-UPDATE providers SET slug='tencent', country='CN', official_url='https://cloud.tencent.com', documentation_url='https://cloud.tencent.com/document/product/1729', trust_level=100 WHERE name='Tencent';
-UPDATE providers SET slug='xai', country='US', official_url='https://x.ai', documentation_url='https://docs.x.ai', model_page_url='https://docs.x.ai/docs/models', trust_level=100 WHERE name='xAI';
-
+UPDATE providers SET slug='meta', country='US', official_url='https://ai.meta.com', documentation_url='https://www.llama.com/docs/models-overview/', model_page_url='https://www.llama.com/docs/models-overview/', trust_level=100 WHERE name='Meta';
+UPDATE providers SET slug='deepseek', country='CN', official_url='https://www.deepseek.com', documentation_url='https://api-docs.deepseek.com', model_page_url='https://api-docs.deepseek.com', trust_level=100 WHERE name='DeepSeek';
+UPDATE providers SET slug='zhipu', country='CN', official_url='https://www.zhipuai.cn', documentation_url='https://docs.bigmodel.cn', model_page_url='https://docs.bigmodel.cn', trust_level=100 WHERE name='Zhipu';
+UPDATE providers SET slug='alibaba', country='CN', official_url='https://www.alibaba.com', documentation_url='https://qwenlm.github.io', model_page_url='https://qwenlm.github.io', trust_level=100 WHERE name='Alibaba';
+UPDATE providers SET slug='moonshot', country='CN', official_url='https://www.moonshot.cn', documentation_url='https://platform.moonshot.cn/docs', model_page_url='https://platform.moonshot.cn/docs', trust_level=100 WHERE name='Moonshot';
+UPDATE providers SET slug='minimax', country='CN', official_url='https://www.minimaxi.com', documentation_url='https://platform.minimaxi.com', model_page_url='https://platform.minimaxi.com', trust_level=100 WHERE name='MiniMax';
+UPDATE providers SET slug='mistral', country='FR', official_url='https://mistral.ai', documentation_url='https://docs.mistral.ai', model_page_url='https://docs.mistral.ai', trust_level=100 WHERE name='Mistral';
+UPDATE providers SET slug='baidu', country='CN', official_url='https://yiyan.baidu.com', documentation_url='https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html', model_page_url='https://cloud.baidu.com/doc/WENXINWORKSHOP/index.html', trust_level=100 WHERE name='Baidu';
+UPDATE providers SET slug='bytedance', country='CN', official_url='https://www.volcengine.com', documentation_url='https://www.volcengine.com/docs/82379', model_page_url='https://www.volcengine.com/docs/82379', trust_level=100 WHERE name='ByteDance';
+UPDATE providers SET slug='tencent', country='CN', official_url='https://cloud.tencent.com', documentation_url='https://cloud.tencent.com/document/product/1729', model_page_url='https://cloud.tencent.com/document/product/1729', trust_level=100 WHERE name='Tencent';
+UPDATE providers SET slug='xai', country='US', official_url='https://x.ai', documentation_url='https://docs.x.ai', model_page_url='https://docs.x.ai', trust_level=100 WHERE name='xAI';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('openai/gpt-3.5-turbo', 1, 'chat', 16385, '2022-11-30', 'unverified', 60, 'deprecated', 'gpt-3.5', 'turbo', 0, 'https://platform.openai.com/docs/models');
+('openai/gpt-3.5-turbo', (SELECT id FROM providers WHERE slug='openai'), 'chat', 16385, '2022-11-30', 'unverified', 60, 'deprecated', 'gpt-3.5', 'turbo', 0, 'https://example.com/openai') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo 对话模型', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.5, 1.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('openai/gpt-4-turbo',   1, 'chat', 128000, '2024-04-09', 'unverified', 60, 'deprecated', 'gpt-4', 'turbo-2024-04', 0, 'https://platform.openai.com/docs/models');
+('openai/gpt-4-turbo', (SELECT id FROM providers WHERE slug='openai'), 'chat', 128000, '2024-04-09', 'unverified', 60, 'deprecated', 'gpt-4', 'turbo-2024-04', 0, 'https://example.com/openai') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GPT-4 Turbo', 'GPT-4 Turbo 多模态模型', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 10, 30, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-4-turbo';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('openai/gpt-5',         1, 'chat', 400000, '2025-08-07', 'unverified', 60, 'active', 'gpt-5', '5', 0, 'https://platform.openai.com/docs/models');
+('openai/gpt-5', (SELECT id FROM providers WHERE slug='openai'), 'chat', 400000, '2025-08-07', 'unverified', 60, 'active', 'gpt-5', '5', 0, 'https://example.com/openai') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GPT-5', 'GPT-5 旗舰模型', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.25, 10, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-5';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('openai/gpt-5.1',       1, 'chat', 400000, '2026-02-12', 'unverified', 60, 'active', 'gpt-5', '5.1', 0, 'https://platform.openai.com/docs/models');
+('openai/gpt-5.1', (SELECT id FROM providers WHERE slug='openai'), 'chat', 400000, '2026-02-12', 'unverified', 60, 'active', 'gpt-5', '5.1', 0, 'https://example.com/openai') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GPT-5.1', 'GPT-5.1 旗舰模型', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.25, 10, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-5.1';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('openai/o3-mini',       1, 'reasoning', 200000, '2025-01-31', 'unverified', 60, 'active', 'o-series', 'o3-mini', 0, 'https://platform.openai.com/docs/models');
+('openai/o3-mini', (SELECT id FROM providers WHERE slug='openai'), 'reasoning', 200000, '2025-01-31', 'unverified', 60, 'active', 'o-series', 'o3-mini', 0, 'https://example.com/openai') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'o3-mini', 'o3-mini 推理模型', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.1, 4.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/o3-mini';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('anthropic/claude-2.1',     2, 'chat', 200000, '2023-11-21', 'unverified', 60, 'deprecated', 'claude-2', '2.1', 0, 'https://docs.anthropic.com/en/docs/about-claude/models');
+('anthropic/claude-2.1', (SELECT id FROM providers WHERE slug='anthropic'), 'chat', 200000, '2023-11-21', 'unverified', 60, 'deprecated', 'claude-2', '2.1', 0, 'https://example.com/anthropic') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Claude 2.1', 'Claude 2.1 对话模型', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 8, 24, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-2.1';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('anthropic/claude-3-opus',  2, 'chat', 200000, '2024-03-04', 'unverified', 60, 'deprecated', 'claude-3', '3-opus', 0, 'https://docs.anthropic.com/en/docs/about-claude/models');
+('anthropic/claude-3-opus', (SELECT id FROM providers WHERE slug='anthropic'), 'chat', 200000, '2024-03-04', 'unverified', 60, 'deprecated', 'claude-3', '3-opus', 0, 'https://example.com/anthropic') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Claude 3 Opus', 'Claude 3 Opus 旗舰模型', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 15, 75, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-3-opus';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('anthropic/claude-3-haiku', 2, 'chat', 200000, '2024-03-04', 'unverified', 60, 'deprecated', 'claude-3', '3-haiku', 0, 'https://docs.anthropic.com/en/docs/about-claude/models');
+('anthropic/claude-3-haiku', (SELECT id FROM providers WHERE slug='anthropic'), 'chat', 200000, '2024-03-04', 'unverified', 60, 'deprecated', 'claude-3', '3-haiku', 0, 'https://example.com/anthropic') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Claude 3 Haiku', 'Claude 3 Haiku 快速模型', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.25, 1.25, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-3-haiku';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('anthropic/claude-3.5-haiku', 2, 'chat', 200000, '2024-10-22', 'unverified', 60, 'deprecated', 'claude-3.5', '3.5-haiku', 0, 'https://docs.anthropic.com/en/docs/about-claude/models');
+('anthropic/claude-3.5-haiku', (SELECT id FROM providers WHERE slug='anthropic'), 'chat', 200000, '2024-10-22', 'unverified', 60, 'deprecated', 'claude-3.5', '3.5-haiku', 0, 'https://example.com/anthropic') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku 快速模型', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.8, 4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('google/gemini-1.5-flash', 3, 'chat', 1000000, '2024-05-14', 'unverified', 60, 'deprecated', 'gemini-1.5', '1.5-flash', 0, 'https://ai.google.dev/gemini-api/docs/models');
+('google/gemini-1.5-flash', (SELECT id FROM providers WHERE slug='google'), 'chat', 1000000, '2024-05-14', 'unverified', 60, 'deprecated', 'gemini-1.5', '1.5-flash', 0, 'https://example.com/google') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash 快速模型', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.075, 0.3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-1.5-flash';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('google/gemini-2.0-pro',   3, 'chat', 2000000, '2025-02-05', 'unverified', 60, 'active', 'gemini-2.0', '2.0-pro', 0, 'https://ai.google.dev/gemini-api/docs/models');
+('google/gemini-2.0-pro', (SELECT id FROM providers WHERE slug='google'), 'chat', 2000000, '2025-02-05', 'unverified', 60, 'active', 'gemini-2.0', '2.0-pro', 0, 'https://example.com/google') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro 旗舰模型', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.25, 10, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-2.0-pro';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('google/gemini-3-nano',    3, 'chat', 1000000, '2026-01-21', 'unverified', 60, 'active', 'gemini-3', '3-nano', 0, 'https://ai.google.dev/gemini-api/docs/models');
+('google/gemini-3-nano', (SELECT id FROM providers WHERE slug='google'), 'chat', 1000000, '2026-01-21', 'unverified', 60, 'active', 'gemini-3', '3-nano', 0, 'https://example.com/google') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Gemini 3 Nano', 'Gemini 3 Nano 轻量模型', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.1, 0.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-3-nano';
 INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('meta/llama-3.1-405b',      5, 'chat', 128000, '2024-07-23', 'unverified', 60, 'deprecated', 'llama-3.1', '3.1-405b', 0, 'https://www.llama.com/docs/models-overview/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('meta/llama-3.3-70b',       5, 'chat', 128000, '2024-12-06', 'unverified', 60, 'active', 'llama-3.3', '3.3-70b', 0, 'https://www.llama.com/docs/models-overview/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('meta/llama-3.2-90b-vision',5, 'vision', 128000, '2024-09-25', 'unverified', 60, 'deprecated', 'llama-3.2', '3.2-90b-vision', 0, 'https://www.llama.com/docs/models-overview/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('meta/llama-4-behemoth',    5, 'chat', 1000000, '2025-04-05', 'unverified', 60, 'active', 'llama-4', '4-behemoth', 0, 'https://www.llama.com/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('deepseek/deepseek-v2.5',  4, 'chat', 128000, '2024-09-05', 'unverified', 60, 'deprecated', 'deepseek-v2', 'v2.5', 0, 'https://api-docs.deepseek.com/quick_start/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('deepseek/deepseek-v3',    4, 'chat', 65536, '2024-12-26', 'unverified', 60, 'active', 'deepseek-v3', 'v3', 0, 'https://api-docs.deepseek.com/quick_start/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('deepseek/deepseek-v3.1',  4, 'chat', 128000, '2025-08-21', 'unverified', 60, 'active', 'deepseek-v3', 'v3.1', 0, 'https://api-docs.deepseek.com/quick_start/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('deepseek/deepseek-r1',    4, 'reasoning', 65536, '2025-01-20', 'unverified', 60, 'active', 'deepseek-r', 'r1', 0, 'https://api-docs.deepseek.com/quick_start/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('deepseek/deepseek-coder-v2', 4, 'coding', 128000, '2024-06-17', 'unverified', 60, 'deprecated', 'deepseek-coder', 'v2', 0, 'https://api-docs.deepseek.com/quick_start/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-4',        8, 'chat', 128000, '2024-01-16', 'unverified', 60, 'active', 'glm-4', '4', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-4-air',    8, 'chat', 128000, '2024-04-26', 'unverified', 60, 'deprecated', 'glm-4', '4-air', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-4-flash',  8, 'chat', 128000, '2024-07-25', 'unverified', 60, 'active', 'glm-4', '4-flash', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-4.5',      8, 'chat', 200000, '2025-07-18', 'unverified', 60, 'active', 'glm-4.5', '4.5', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-4.5-plus', 8, 'chat', 200000, '2025-05-15', 'unverified', 60, 'active', 'glm-4.5', '4.5-plus', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-5',        8, 'chat', 256000, '2026-04-10', 'unverified', 60, 'active', 'glm-5', '5', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('zhipu/glm-5.2',      8, 'chat', 256000, '2026-07-08', 'unverified', 60, 'active', 'glm-5', '5.2', 0, 'https://docs.bigmodel.cn/cn/guide/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('alibaba/qwen2.5-72b',       7, 'chat', 131072, '2024-09-19', 'unverified', 60, 'active', 'qwen2.5', '2.5-72b', 0, 'https://qwenlm.github.io/blog/qwen2.5/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('alibaba/qwen2.5-coder-32b', 7, 'coding', 131072, '2024-11-12', 'unverified', 60, 'active', 'qwen2.5-coder', '2.5-coder-32b', 0, 'https://qwenlm.github.io/blog/qwen2.5-coder-family/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('alibaba/qwen3-30b',         7, 'chat', 131072, '2025-04-29', 'unverified', 60, 'active', 'qwen3', '3-30b', 0, 'https://qwenlm.github.io/blog/qwen3/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('alibaba/qwen3-480b',        7, 'chat', 131072, '2025-04-29', 'unverified', 60, 'active', 'qwen3', '3-480b', 0, 'https://qwenlm.github.io/blog/qwen3/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('alibaba/qwen3-coder-30b',   7, 'coding', 262144, '2025-06-25', 'unverified', 60, 'active', 'qwen3-coder', '3-coder-30b', 0, 'https://qwenlm.github.io/blog/qwen3-coder/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('alibaba/qwen-vl-max',       7, 'vision', 32768, '2024-05-13', 'unverified', 60, 'deprecated', 'qwen-vl', 'vl-max', 0, 'https://help.aliyun.com/zh/model-studio/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('moonshot/kimi-k1.5',      9, 'reasoning', 131072, '2025-01-20', 'unverified', 60, 'active', 'kimi-k', 'k1.5', 0, 'https://platform.moonshot.cn/docs/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('moonshot/kimi-k1.5-long', 9, 'reasoning', 262144, '2025-02-10', 'unverified', 60, 'active', 'kimi-k', 'k1.5-long', 0, 'https://platform.moonshot.cn/docs/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('moonshot/kimi-k3',        9, 'chat', 1000000, '2026-05-20', 'unverified', 60, 'active', 'kimi-k', 'k3', 0, 'https://platform.moonshot.cn/docs/pricing');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('minimax/minimax-m1',      11, 'reasoning', 1000000, '2025-06-16', 'unverified', 60, 'active', 'minimax-m', 'm1', 0, 'https://platform.minimaxi.com/document/price');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('minimax/minimax-m2',      11, 'reasoning', 200000, '2025-09-22', 'unverified', 60, 'active', 'minimax-m', 'm2', 0, 'https://platform.minimaxi.com/document/price');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('minimax/minimax-text-01', 11, 'chat', 1000000, '2025-01-15', 'unverified', 60, 'active', 'minimax-text', 'text-01', 0, 'https://platform.minimaxi.com/document/price');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('mistral/mistral-7b',      6, 'chat', 32768, '2023-09-27', 'unverified', 60, 'deprecated', 'mistral', '7b', 0, 'https://docs.mistral.ai/getting-started/models/models_overview/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('mistral/mistral-small-3', 6, 'chat', 32768, '2025-03-06', 'unverified', 60, 'active', 'mistral-small', 'small-3', 0, 'https://docs.mistral.ai/getting-started/models/models_overview/');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('xai/grok-3',                 10, 'chat', 131072, '2025-02-17', 'unverified', 60, 'active', 'grok', '3', 0, 'https://docs.x.ai/docs/models');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('bytedance/doubao-1.5-lite',  14, 'chat', 262144, '2025-06-01', 'unverified', 60, 'active', 'doubao', '1.5-lite', 0, 'https://www.volcengine.com/docs/82379');
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
-('tencent/hunyuan-t1',         13, 'reasoning', 131072, '2025-02-27', 'unverified', 60, 'active', 'hunyuan', 't1', 0, 'https://cloud.tencent.com/document/product/1729');
-
-
--- Phase 12.1 Model Coverage Expansion seed (generated, ASCII-only, per-statement inserts)
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo 对话模型', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GPT-3.5 Turbo', 'GPT-3.5 Turbo conversational model', '[]' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GPT-4 Turbo', 'GPT-4 Turbo 多模态模型', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GPT-4 Turbo', 'GPT-4 Turbo multimodal model', '[]' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GPT-5', 'GPT-5 旗舰模型', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GPT-5', 'GPT-5 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GPT-5.1', 'GPT-5.1 旗舰模型', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GPT-5.1', 'GPT-5.1 flagship model', '[]' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'o3-mini', 'o3-mini 推理模型', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'o3-mini', 'o3-mini reasoning model', '[]' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Claude 2.1', 'Claude 2.1 对话模型', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Claude 2.1', 'Claude 2.1 conversational model', '[]' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Claude 3 Opus', 'Claude 3 Opus 旗舰模型', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Claude 3 Opus', 'Claude 3 Opus flagship model', '[]' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Claude 3 Haiku', 'Claude 3 Haiku 快速模型', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Claude 3 Haiku', 'Claude 3 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku 快速模型', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Claude 3.5 Haiku', 'Claude 3.5 Haiku fast model', '[]' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash 快速模型', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Gemini 1.5 Flash', 'Gemini 1.5 Flash fast model', '[]' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro 旗舰模型', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Gemini 2.0 Pro', 'Gemini 2.0 Pro flagship model', '[]' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Gemini 3 Nano', 'Gemini 3 Nano 轻量模型', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Gemini 3 Nano', 'Gemini 3 Nano lightweight model', '[]' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Llama 3.1 405B', 'Llama 3.1 405B 开源模型', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Llama 3.3 70B', 'Llama 3.3 70B 开源模型', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Llama 3.2 90B Vision', 'Llama 3.2 90B 视觉模型', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Llama 4 Behemoth', 'Llama 4 Behemoth 开源模型', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'DeepSeek V2.5', 'DeepSeek V2.5 模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'DeepSeek V3', 'DeepSeek V3 旗舰模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'DeepSeek V3.1', 'DeepSeek V3.1 模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'DeepSeek R1', 'DeepSeek R1 推理模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'DeepSeek Coder V2', 'DeepSeek Coder V2 编程模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-4', 'GLM-4 对话模型', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-4-Air', 'GLM-4-Air 高效模型', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-4-Flash', 'GLM-4-Flash 免费层模型', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-4.5', 'GLM-4.5 模型', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-4.5-Plus', 'GLM-4.5-Plus 模型', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-5', 'GLM-5 旗舰模型', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'GLM-5.2', 'GLM-5.2 最新模型', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Qwen2.5 72B', 'Qwen2.5 72B 开源模型', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B 编程模型', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Qwen3 30B', 'Qwen3 30B 开源模型', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Qwen3 480B', 'Qwen3 480B 旗舰模型', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B 编程模型', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Qwen-VL-Max', 'Qwen-VL-Max 视觉模型', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Kimi K1.5', 'Kimi K1.5 推理模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Kimi K1.5 Long', 'Kimi K1.5 Long 长上下文模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Kimi K3', 'Kimi K3 旗舰模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'MiniMax M1', 'MiniMax M1 推理模型', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'MiniMax M2', 'MiniMax M2 推理模型', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'MiniMax Text-01', 'MiniMax Text-01 长上下文模型', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Mistral 7B', 'Mistral 7B 开源模型', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Mistral Small 3', 'Mistral Small 3 高效模型', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', 'Grok 3', 'Grok 3 旗舰模型', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', '豆包 1.5 Lite', '豆包 1.5 Lite 模型', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', '混元 T1', '混元 T1 推理模型', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'en', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'zh-CN', '文心 ERNIE 4.5', '文心 ERNIE 4.5 模型', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ja', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'ko', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'es', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'de', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases)
-SELECT id, 'fr', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.5, 1.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-3.5-turbo';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 10, 30, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-4-turbo';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.25, 10, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-5';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.25, 10, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/gpt-5.1';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.1, 4.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'openai/o3-mini';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 8, 24, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-2.1';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 15, 75, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-3-opus';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.25, 1.25, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-3-haiku';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.8, 4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'anthropic/claude-3.5-haiku';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.075, 0.3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-1.5-flash';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.25, 10, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-2.0-pro';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.1, 0.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-3-nano';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 3, 3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-3.1-405b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.59, 0.79, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-3.3-70b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 2, 2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.14, 0.28, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.27, 1.1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-v3';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.28, 0.42, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.55, 2.19, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-r1';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.14, 0.28, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.35, 0.7, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'zhipu/glm-4';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.2, 0.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'zhipu/glm-4-air';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0, 0, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'zhipu/glm-4-flash';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.2, 2.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.9, 1.8, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.5, 1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen3-30b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.5, 3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen3-480b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.2, 0.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 3, 9, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen-vl-max';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.6, 2.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'moonshot/kimi-k1.5';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1.2, 5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 1, 8, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'minimax/minimax-m1';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.5, 2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'minimax/minimax-m2';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.3, 1.2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'minimax/minimax-text-01';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.2, 0.6, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'mistral/mistral-7b';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.1, 0.3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'mistral/mistral-small-3';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 3, 15, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'xai/grok-3';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.08, 0.3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.2, 0.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'tencent/hunyuan-t1';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit)
-SELECT id, 0.5, 1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'baidu/ernie-4.5';
-UPDATE models SET verified_status = 'unverified', confidence_score = 60 WHERE verified_status IS NULL AND confidence_score IS NULL;
-
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES ('google/gemini-3-flash-lite', 3, 'chat', 1000000, '2026-02-15', 'unverified', 60, 'active', 'gemini-3', '3-flash-lite', 0, 'https://example.com');
+('google/gemini-3-flash-lite', (SELECT id FROM providers WHERE slug='google'), 'chat', 1000000, '2026-02-15', 'unverified', 60, 'active', 'gemini-3', '3-flash-lite', 0, 'https://example.com/google') ;
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Gemini 3 Flash Lite', 'Gemini 3 Flash Lite fast model', '[]' FROM models WHERE slug = 'google/gemini-3-flash-lite';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Gemini 3 Flash Lite', 'Gemini 3 Flash Lite 快速模型', '[]' FROM models WHERE slug = 'google/gemini-3-flash-lite';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Gemini 3 Flash Lite', 'Gemini 3 Flash Lite fast model', '[]' FROM models WHERE slug = 'google/gemini-3-flash-lite';
@@ -841,16 +143,184 @@ INSERT OR IGNORE INTO model_translations (model_id, language, name, description,
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Gemini 3 Flash Lite', 'Gemini 3 Flash Lite fast model', '[]' FROM models WHERE slug = 'google/gemini-3-flash-lite';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Gemini 3 Flash Lite', 'Gemini 3 Flash Lite fast model', '[]' FROM models WHERE slug = 'google/gemini-3-flash-lite';
 INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.05, 0.2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'google/gemini-3-flash-lite';
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES ('mistral/codestral-25.01', 6, 'coding', 32768, '2025-01-13', 'unverified', 60, 'active', 'codestral', '25.01', 0, 'https://example.com');
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Codestral 25.01', 'Codestral 25.01 编程模型', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.3, 0.9, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'mistral/codestral-25.01';
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES ('alibaba/qwen2.5-14b', 7, 'chat', 131072, '2024-09-19', 'unverified', 60, 'active', 'qwen2.5', '2.5-14b', 0, 'https://example.com');
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('meta/llama-3.1-405b', (SELECT id FROM providers WHERE slug='meta'), 'chat', 128000, '2024-07-23', 'unverified', 60, 'deprecated', 'llama-3.1', '3.1-405b', 0, 'https://example.com/meta') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Llama 3.1 405B', 'Llama 3.1 405B 开源模型', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Llama 3.1 405B', 'Llama 3.1 405B open model', '[]' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 3, 3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-3.1-405b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('meta/llama-3.3-70b', (SELECT id FROM providers WHERE slug='meta'), 'chat', 128000, '2024-12-06', 'unverified', 60, 'active', 'llama-3.3', '3.3-70b', 0, 'https://example.com/meta') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Llama 3.3 70B', 'Llama 3.3 70B 开源模型', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Llama 3.3 70B', 'Llama 3.3 70B open model', '[]' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.59, 0.79, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-3.3-70b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('meta/llama-3.2-90b-vision', (SELECT id FROM providers WHERE slug='meta'), 'vision', 128000, '2024-09-25', 'unverified', 60, 'deprecated', 'llama-3.2', '3.2-90b-vision', 0, 'https://example.com/meta') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Llama 3.2 90B Vision', 'Llama 3.2 90B 视觉模型', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Llama 3.2 90B Vision', 'Llama 3.2 90B vision model', '[]' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 2, 2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-3.2-90b-vision';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('meta/llama-4-behemoth', (SELECT id FROM providers WHERE slug='meta'), 'chat', 1000000, '2025-04-05', 'unverified', 60, 'active', 'llama-4', '4-behemoth', 0, 'https://example.com/meta') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Llama 4 Behemoth', 'Llama 4 Behemoth 开源模型', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Llama 4 Behemoth', 'Llama 4 Behemoth open model', '[]' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 5, 25, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'meta/llama-4-behemoth';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('deepseek/deepseek-v2.5', (SELECT id FROM providers WHERE slug='deepseek'), 'chat', 128000, '2024-09-05', 'unverified', 60, 'deprecated', 'deepseek-v2', 'v2.5', 0, 'https://example.com/deepseek') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'DeepSeek V2.5', 'DeepSeek V2.5 模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'DeepSeek V2.5', 'DeepSeek V2.5 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.14, 0.28, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-v2.5';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('deepseek/deepseek-v3', (SELECT id FROM providers WHERE slug='deepseek'), 'chat', 65536, '2024-12-26', 'unverified', 60, 'active', 'deepseek-v3', 'v3', 0, 'https://example.com/deepseek') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'DeepSeek V3', 'DeepSeek V3 旗舰模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'DeepSeek V3', 'DeepSeek V3 flagship model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.27, 1.1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-v3';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('deepseek/deepseek-v3.1', (SELECT id FROM providers WHERE slug='deepseek'), 'chat', 128000, '2025-08-21', 'unverified', 60, 'active', 'deepseek-v3', 'v3.1', 0, 'https://example.com/deepseek') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'DeepSeek V3.1', 'DeepSeek V3.1 模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'DeepSeek V3.1', 'DeepSeek V3.1 model', '[]' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.28, 0.42, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-v3.1';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('deepseek/deepseek-r1', (SELECT id FROM providers WHERE slug='deepseek'), 'reasoning', 65536, '2025-01-20', 'unverified', 60, 'active', 'deepseek-r', 'r1', 0, 'https://example.com/deepseek') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'DeepSeek R1', 'DeepSeek R1 推理模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'DeepSeek R1', 'DeepSeek R1 reasoning model', '[]' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.55, 2.19, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-r1';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('deepseek/deepseek-coder-v2', (SELECT id FROM providers WHERE slug='deepseek'), 'coding', 128000, '2024-06-17', 'unverified', 60, 'deprecated', 'deepseek-coder', 'v2', 0, 'https://example.com/deepseek') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'DeepSeek Coder V2', 'DeepSeek Coder V2 编程模型', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'DeepSeek Coder V2', 'DeepSeek Coder V2 coding model', '[]' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.14, 0.28, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'deepseek/deepseek-coder-v2';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-4', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 128000, '2024-01-16', 'unverified', 60, 'active', 'glm-4', '4', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-4', 'GLM-4 对话模型', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-4', 'GLM-4 conversational model', '[]' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.35, 0.7, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'zhipu/glm-4';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-4-air', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 128000, '2024-04-26', 'unverified', 60, 'deprecated', 'glm-4', '4-air', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-4-Air', 'GLM-4-Air 高效模型', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-4-Air', 'GLM-4-Air efficient model', '[]' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.2, 0.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'zhipu/glm-4-air';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-4-flash', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 128000, '2024-07-25', 'unverified', 60, 'active', 'glm-4', '4-flash', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-4-Flash', 'GLM-4-Flash 免费层模型', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-4-Flash', 'GLM-4-Flash free tier model', '[]' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0, 0, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'zhipu/glm-4-flash';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-4.5', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 200000, '2025-07-18', 'unverified', 60, 'active', 'glm-4.5', '4.5', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-4.5', 'GLM-4.5 模型', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-4.5', 'GLM-4.5 model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-4.5-plus', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 200000, '2025-05-15', 'unverified', 60, 'active', 'glm-4.5', '4.5-plus', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-4.5-Plus', 'GLM-4.5-Plus 模型', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-4.5-Plus', 'GLM-4.5-Plus model', '[]' FROM models WHERE slug = 'zhipu/glm-4.5-plus';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-5', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 256000, '2026-04-10', 'unverified', 60, 'active', 'glm-5', '5', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-5', 'GLM-5 旗舰模型', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-5', 'GLM-5 flagship model', '[]' FROM models WHERE slug = 'zhipu/glm-5';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('zhipu/glm-5.2', (SELECT id FROM providers WHERE slug='zhipu'), 'chat', 256000, '2026-07-08', 'unverified', 60, 'active', 'glm-5', '5.2', 0, 'https://example.com/zhipu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'GLM-5.2', 'GLM-5.2 最新模型', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'GLM-5.2', 'GLM-5.2 latest model', '[]' FROM models WHERE slug = 'zhipu/glm-5.2';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen2.5-72b', (SELECT id FROM providers WHERE slug='alibaba'), 'chat', 131072, '2024-09-19', 'unverified', 60, 'active', 'qwen2.5', '2.5-72b', 0, 'https://example.com/alibaba') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen2.5 72B', 'Qwen2.5 72B 开源模型', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen2.5 72B', 'Qwen2.5 72B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.2, 2.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen2.5-72b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen2.5-coder-32b', (SELECT id FROM providers WHERE slug='alibaba'), 'coding', 131072, '2024-11-12', 'unverified', 60, 'active', 'qwen2.5-coder', '2.5-coder-32b', 0, 'https://example.com/alibaba') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B 编程模型', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen2.5 Coder 32B', 'Qwen2.5 Coder 32B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.9, 1.8, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen2.5-coder-32b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen2.5-14b', (SELECT id FROM providers WHERE slug='alibaba'), 'chat', 131072, '2024-09-19', 'unverified', 60, 'active', 'qwen2.5', '2.5-14b', 0, 'https://example.com/alibaba') ;
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen2.5 14B', 'Qwen2.5 14B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-14b';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen2.5 14B', 'Qwen2.5 14B 开源模型', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-14b';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen2.5 14B', 'Qwen2.5 14B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-14b';
@@ -859,7 +329,68 @@ INSERT OR IGNORE INTO model_translations (model_id, language, name, description,
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen2.5 14B', 'Qwen2.5 14B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-14b';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen2.5 14B', 'Qwen2.5 14B open model', '[]' FROM models WHERE slug = 'alibaba/qwen2.5-14b';
 INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.3, 0.6, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen2.5-14b';
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES ('moonshot/kimi-k2-turbo', 9, 'chat', 131072, '2025-07-10', 'unverified', 60, 'active', 'kimi-k', 'k2-turbo', 0, 'https://example.com');
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen3-30b', (SELECT id FROM providers WHERE slug='alibaba'), 'chat', 131072, '2025-04-29', 'unverified', 60, 'active', 'qwen3', '3-30b', 0, 'https://example.com/alibaba') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen3 30B', 'Qwen3 30B 开源模型', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen3 30B', 'Qwen3 30B open model', '[]' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.5, 1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen3-30b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen3-480b', (SELECT id FROM providers WHERE slug='alibaba'), 'chat', 131072, '2025-04-29', 'unverified', 60, 'active', 'qwen3', '3-480b', 0, 'https://example.com/alibaba') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen3 480B', 'Qwen3 480B 旗舰模型', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen3 480B', 'Qwen3 480B flagship model', '[]' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.5, 3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen3-480b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen3-coder-30b', (SELECT id FROM providers WHERE slug='alibaba'), 'coding', 262144, '2025-06-25', 'unverified', 60, 'active', 'qwen3-coder', '3-coder-30b', 0, 'https://example.com/alibaba') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B 编程模型', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen3 Coder 30B', 'Qwen3 Coder 30B coding model', '[]' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.2, 0.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen3-coder-30b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('alibaba/qwen-vl-max', (SELECT id FROM providers WHERE slug='alibaba'), 'vision', 32768, '2024-05-13', 'unverified', 60, 'deprecated', 'qwen-vl', 'vl-max', 0, 'https://example.com/alibaba') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Qwen-VL-Max', 'Qwen-VL-Max 视觉模型', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Qwen-VL-Max', 'Qwen-VL-Max vision model', '[]' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 3, 9, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'alibaba/qwen-vl-max';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('moonshot/kimi-k1.5', (SELECT id FROM providers WHERE slug='moonshot'), 'reasoning', 131072, '2025-01-20', 'unverified', 60, 'active', 'kimi-k', 'k1.5', 0, 'https://example.com/moonshot') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Kimi K1.5', 'Kimi K1.5 推理模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Kimi K1.5', 'Kimi K1.5 reasoning model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.6, 2.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'moonshot/kimi-k1.5';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('moonshot/kimi-k1.5-long', (SELECT id FROM providers WHERE slug='moonshot'), 'reasoning', 262144, '2025-02-10', 'unverified', 60, 'active', 'kimi-k', 'k1.5-long', 0, 'https://example.com/moonshot') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Kimi K1.5 Long', 'Kimi K1.5 Long 长上下文模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Kimi K1.5 Long', 'Kimi K1.5 Long context model', '[]' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1.2, 5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'moonshot/kimi-k1.5-long';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('moonshot/kimi-k2-turbo', (SELECT id FROM providers WHERE slug='moonshot'), 'chat', 131072, '2025-07-10', 'unverified', 60, 'active', 'kimi-k', 'k2-turbo', 0, 'https://example.com/moonshot') ;
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Kimi K2 Turbo', 'Kimi K2 Turbo efficient model', '[]' FROM models WHERE slug = 'moonshot/kimi-k2-turbo';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Kimi K2 Turbo', 'Kimi K2 Turbo 高效模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k2-turbo';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Kimi K2 Turbo', 'Kimi K2 Turbo efficient model', '[]' FROM models WHERE slug = 'moonshot/kimi-k2-turbo';
@@ -868,7 +399,87 @@ INSERT OR IGNORE INTO model_translations (model_id, language, name, description,
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Kimi K2 Turbo', 'Kimi K2 Turbo efficient model', '[]' FROM models WHERE slug = 'moonshot/kimi-k2-turbo';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Kimi K2 Turbo', 'Kimi K2 Turbo efficient model', '[]' FROM models WHERE slug = 'moonshot/kimi-k2-turbo';
 INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.6, 2.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'moonshot/kimi-k2-turbo';
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES ('xai/grok-3-mini', 10, 'chat', 131072, '2025-04-08', 'unverified', 60, 'active', 'grok', '3-mini', 0, 'https://example.com');
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('moonshot/kimi-k3', (SELECT id FROM providers WHERE slug='moonshot'), 'chat', 1000000, '2026-05-20', 'unverified', 60, 'active', 'kimi-k', 'k3', 0, 'https://example.com/moonshot') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Kimi K3', 'Kimi K3 旗舰模型', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Kimi K3', 'Kimi K3 flagship model', '[]' FROM models WHERE slug = 'moonshot/kimi-k3';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('minimax/minimax-m1', (SELECT id FROM providers WHERE slug='minimax'), 'reasoning', 1000000, '2025-06-16', 'unverified', 60, 'active', 'minimax-m', 'm1', 0, 'https://example.com/minimax') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'MiniMax M1', 'MiniMax M1 推理模型', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'MiniMax M1', 'MiniMax M1 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 1, 8, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'minimax/minimax-m1';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('minimax/minimax-m2', (SELECT id FROM providers WHERE slug='minimax'), 'reasoning', 200000, '2025-09-22', 'unverified', 60, 'active', 'minimax-m', 'm2', 0, 'https://example.com/minimax') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'MiniMax M2', 'MiniMax M2 推理模型', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'MiniMax M2', 'MiniMax M2 reasoning model', '[]' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.5, 2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'minimax/minimax-m2';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('minimax/minimax-text-01', (SELECT id FROM providers WHERE slug='minimax'), 'chat', 1000000, '2025-01-15', 'unverified', 60, 'active', 'minimax-text', 'text-01', 0, 'https://example.com/minimax') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'MiniMax Text-01', 'MiniMax Text-01 长上下文模型', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'MiniMax Text-01', 'MiniMax Text-01 long context model', '[]' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.3, 1.2, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'minimax/minimax-text-01';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('mistral/mistral-7b', (SELECT id FROM providers WHERE slug='mistral'), 'chat', 32768, '2023-09-27', 'unverified', 60, 'deprecated', 'mistral', '7b', 0, 'https://example.com/mistral') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Mistral 7B', 'Mistral 7B 开源模型', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Mistral 7B', 'Mistral 7B open model', '[]' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.2, 0.6, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'mistral/mistral-7b';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('mistral/mistral-small-3', (SELECT id FROM providers WHERE slug='mistral'), 'chat', 32768, '2025-03-06', 'unverified', 60, 'active', 'mistral-small', 'small-3', 0, 'https://example.com/mistral') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Mistral Small 3', 'Mistral Small 3 高效模型', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Mistral Small 3', 'Mistral Small 3 efficient model', '[]' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.1, 0.3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'mistral/mistral-small-3';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('mistral/codestral-25.01', (SELECT id FROM providers WHERE slug='mistral'), 'coding', 32768, '2025-01-13', 'unverified', 60, 'active', 'codestral', '25.01', 0, 'https://example.com/mistral') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Codestral 25.01', 'Codestral 25.01 编程模型', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Codestral 25.01', 'Codestral 25.01 coding model', '[]' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.3, 0.9, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'mistral/codestral-25.01';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('xai/grok-3', (SELECT id FROM providers WHERE slug='xai'), 'chat', 131072, '2025-02-17', 'unverified', 60, 'active', 'grok', '3', 0, 'https://example.com/xai') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Grok 3', 'Grok 3 旗舰模型', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Grok 3', 'Grok 3 flagship model', '[]' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 3, 15, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'xai/grok-3';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('xai/grok-3-mini', (SELECT id FROM providers WHERE slug='xai'), 'chat', 131072, '2025-04-08', 'unverified', 60, 'active', 'grok', '3-mini', 0, 'https://example.com/xai') ;
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Grok 3 Mini', 'Grok 3 Mini efficient model', '[]' FROM models WHERE slug = 'xai/grok-3-mini';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', 'Grok 3 Mini', 'Grok 3 Mini 高效模型', '[]' FROM models WHERE slug = 'xai/grok-3-mini';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Grok 3 Mini', 'Grok 3 Mini efficient model', '[]' FROM models WHERE slug = 'xai/grok-3-mini';
@@ -877,7 +488,28 @@ INSERT OR IGNORE INTO model_translations (model_id, language, name, description,
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Grok 3 Mini', 'Grok 3 Mini efficient model', '[]' FROM models WHERE slug = 'xai/grok-3-mini';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Grok 3 Mini', 'Grok 3 Mini efficient model', '[]' FROM models WHERE slug = 'xai/grok-3-mini';
 INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.2, 0.5, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'xai/grok-3-mini';
-INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES ('tencent/hunyuan-lite', 13, 'chat', 131072, '2024-11-06', 'unverified', 60, 'active', 'hunyuan', 'lite', 0, 'https://example.com');
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('bytedance/doubao-1.5-lite', (SELECT id FROM providers WHERE slug='bytedance'), 'chat', 262144, '2025-06-01', 'unverified', 60, 'active', 'doubao', '1.5-lite', 0, 'https://example.com/bytedance') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', '豆包 1.5 Lite', '豆包 1.5 Lite 模型', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Doubao 1.5 Lite', 'Doubao 1.5 Lite model', '[]' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.08, 0.3, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'bytedance/doubao-1.5-lite';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('tencent/hunyuan-t1', (SELECT id FROM providers WHERE slug='tencent'), 'reasoning', 131072, '2025-02-27', 'unverified', 60, 'active', 'hunyuan', 't1', 0, 'https://example.com/tencent') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', '混元 T1', '混元 T1 推理模型', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Hunyuan T1', 'Hunyuan T1 reasoning model', '[]' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.2, 0.4, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'tencent/hunyuan-t1';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('tencent/hunyuan-lite', (SELECT id FROM providers WHERE slug='tencent'), 'chat', 131072, '2024-11-06', 'unverified', 60, 'active', 'hunyuan', 'lite', 0, 'https://example.com/tencent') ;
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'Hunyuan Lite', 'Hunyuan Lite efficient model', '[]' FROM models WHERE slug = 'tencent/hunyuan-lite';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', '混元 Lite', '混元 Lite 高效模型', '[]' FROM models WHERE slug = 'tencent/hunyuan-lite';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'Hunyuan Lite', 'Hunyuan Lite efficient model', '[]' FROM models WHERE slug = 'tencent/hunyuan-lite';
@@ -886,3 +518,14 @@ INSERT OR IGNORE INTO model_translations (model_id, language, name, description,
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'Hunyuan Lite', 'Hunyuan Lite efficient model', '[]' FROM models WHERE slug = 'tencent/hunyuan-lite';
 INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'Hunyuan Lite', 'Hunyuan Lite efficient model', '[]' FROM models WHERE slug = 'tencent/hunyuan-lite';
 INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.05, 0.1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'tencent/hunyuan-lite';
+INSERT OR IGNORE INTO models (slug, provider, model_type, context_window, release_date, verified_status, confidence_score, status, model_family, version, is_latest, official_url) VALUES
+('baidu/ernie-4.5', (SELECT id FROM providers WHERE slug='baidu'), 'chat', 131072, '2025-06-30', 'unverified', 60, 'active', 'ernie', '4.5', 0, 'https://example.com/baidu') ;
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'en', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'zh-CN', '文心 ERNIE 4.5', '文心 ERNIE 4.5 模型', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ja', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'ko', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'es', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'de', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO model_translations (model_id, language, name, description, use_cases) SELECT id, 'fr', 'ERNIE 4.5', 'ERNIE 4.5 model', '[]' FROM models WHERE slug = 'baidu/ernie-4.5';
+INSERT OR IGNORE INTO pricing (model_id, input_price, output_price, currency, unit) SELECT id, 0.5, 1, 'USD', 'per_1M_tokens' FROM models WHERE slug = 'baidu/ernie-4.5';
+UPDATE models SET verified_status = 'unverified', confidence_score = 60 WHERE verified_status IS NULL AND confidence_score IS NULL;
