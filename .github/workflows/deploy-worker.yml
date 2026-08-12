@@ -51,6 +51,14 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
+      # Model Coverage seed（Phase 12.1）：新增官方来源模型（INSERT OR IGNORE 幂等；unverified 不进 Top ranking）
+      - name: Seed model coverage sources
+        working-directory: worker
+        run: pnpm exec wrangler d1 execute ai-model-platform-db --remote --file=../database/seed/seed-model-sources.sql
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Typecheck
         working-directory: worker
         run: pnpm exec tsc --noEmit -p tsconfig.json
