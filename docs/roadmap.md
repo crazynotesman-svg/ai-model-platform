@@ -42,6 +42,7 @@ AI Model Intelligence Platform 的阶段化开发路线图。每个阶段完成�
 | 11.7 | 数据可信基础设施升级（model_aliases / data_changes / 交叉验证 / Trust v3 / 数据透明页 / DataCatalog） | ✅ 已完成 |
 | 11.8 | AI Model Knowledge Graph + Recommendation v2（model_relationships / 相似度引擎 / 替代推荐 / 关系 API） | ✅ 已完成 |
 | 11.9 | AI Model Data Authority（来源扩展 24 / Benchmark Trust v4 / data-quality API / authority 页 / Release Tracking） | ✅ 已完成 |
+| 12.1 | Model Coverage Expansion（49→100 模型 / provider registry / Model Discovery pipeline / coverage dashboard） | ✅ 已完成 |
 
 ## Phase 10 — Production Launch ✅ 已完成（git: release: v1.0.0，tag v1.0.0）
 

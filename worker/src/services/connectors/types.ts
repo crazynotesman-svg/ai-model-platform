@@ -6,8 +6,10 @@
  */
 
 /** 数据事件（与 migration 0011 data_events 对应） */
+export type DataEventType = 'MODEL_CREATED' | 'MODEL_UPDATED' | 'PRICE_CHANGED' | 'BENCHMARK_UPDATED' | 'MODEL_DEPRECATED' | 'MODEL_DISCOVERED';
+
 export interface DataEventInput {
-  eventType: 'MODEL_CREATED' | 'MODEL_UPDATED' | 'PRICE_CHANGED' | 'BENCHMARK_UPDATED' | 'MODEL_DEPRECATED';
+  eventType: DataEventType;
   entityType: 'model' | 'pricing' | 'benchmark';
   entityId: string; // 模型 slug 等
   payload: Record<string, unknown>; // 变更内容（JSON）

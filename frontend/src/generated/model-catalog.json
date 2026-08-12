@@ -1,4 +1,332 @@
 {
+  "alibaba/qwen-vl-max": {
+    "slug": "alibaba/qwen-vl-max",
+    "modelType": "vision",
+    "contextWindow": 32768,
+    "releaseDate": "2024-05-13",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 3,
+    "outputPrice": 9,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max vision model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max 视觉模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max vision model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max vision model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max vision model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max vision model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen-VL-Max",
+        "description": "Qwen-VL-Max vision model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 13,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 16.4,
+      "rawScore": 21.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "alibaba/qwen2.5-14b": {
+    "slug": "alibaba/qwen2.5-14b",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2024-09-19",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.3,
+    "outputPrice": 0.6,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen2.5 14B",
+        "description": "Qwen2.5 14B open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "alibaba/qwen2.5-72b": {
+    "slug": "alibaba/qwen2.5-72b",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2024-09-19",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.2,
+    "outputPrice": 2.4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen2.5 72B",
+        "description": "Qwen2.5 72B open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "alibaba/qwen2.5-coder-32b": {
+    "slug": "alibaba/qwen2.5-coder-32b",
+    "modelType": "coding",
+    "contextWindow": 131072,
+    "releaseDate": "2024-11-12",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.9,
+    "outputPrice": 1.8,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B coding model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B 编程模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B coding model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B coding model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B coding model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B coding model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen2.5 Coder 32B",
+        "description": "Qwen2.5 Coder 32B coding model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "alibaba/qwen3-235b": {
     "slug": "alibaba/qwen3-235b",
     "modelType": "chat",
@@ -499,6 +827,88 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "alibaba/qwen3-30b": {
+    "slug": "alibaba/qwen3-30b",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2025-04-29",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.5,
+    "outputPrice": 1,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen3 30B",
+        "description": "Qwen3 30B open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "alibaba/qwen3-32b": {
     "slug": "alibaba/qwen3-32b",
@@ -1034,6 +1444,170 @@
       }
     ]
   },
+  "alibaba/qwen3-480b": {
+    "slug": "alibaba/qwen3-480b",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2025-04-29",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.5,
+    "outputPrice": 3,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen3 480B",
+        "description": "Qwen3 480B flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "alibaba/qwen3-coder-30b": {
+    "slug": "alibaba/qwen3-coder-30b",
+    "modelType": "coding",
+    "contextWindow": 262144,
+    "releaseDate": "2025-06-25",
+    "providerName": "Alibaba",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.2,
+    "outputPrice": 0.5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B coding model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B 编程模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B coding model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B coding model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B coding model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B coding model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Qwen3 Coder 30B",
+        "description": "Qwen3 Coder 30B coding model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "alibaba/qwen3-coder-480b": {
     "slug": "alibaba/qwen3-coder-480b",
     "modelType": "chat",
@@ -1504,6 +2078,334 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "anthropic/claude-2.1": {
+    "slug": "anthropic/claude-2.1",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2023-11-21",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 8,
+    "outputPrice": 24,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 conversational model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 对话模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 conversational model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 conversational model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 conversational model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 conversational model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Claude 2.1",
+        "description": "Claude 2.1 conversational model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "anthropic/claude-3-haiku": {
+    "slug": "anthropic/claude-3-haiku",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2024-03-04",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.25,
+    "outputPrice": 1.25,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku fast model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku 快速模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku fast model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku fast model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku fast model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku fast model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Claude 3 Haiku",
+        "description": "Claude 3 Haiku fast model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "anthropic/claude-3-opus": {
+    "slug": "anthropic/claude-3-opus",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2024-03-04",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 15,
+    "outputPrice": 75,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Claude 3 Opus",
+        "description": "Claude 3 Opus flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "anthropic/claude-3.5-haiku": {
+    "slug": "anthropic/claude-3.5-haiku",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2024-10-22",
+    "providerName": "Anthropic",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.8,
+    "outputPrice": 4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku fast model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku 快速模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku fast model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku fast model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku fast model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku fast model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Claude 3.5 Haiku",
+        "description": "Claude 3.5 Haiku fast model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "anthropic/claude-3.5-sonnet": {
     "slug": "anthropic/claude-3.5-sonnet",
@@ -4739,6 +5641,88 @@
       }
     ]
   },
+  "baidu/ernie-4.5": {
+    "slug": "baidu/ernie-4.5",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2025-06-30",
+    "providerName": "Baidu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.5,
+    "outputPrice": 1,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "ERNIE 4.5",
+        "description": "ERNIE 4.5 model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "文心 ERNIE 4.5",
+        "description": "文心 ERNIE 4.5 模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "ERNIE 4.5",
+        "description": "ERNIE 4.5 model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "ERNIE 4.5",
+        "description": "ERNIE 4.5 model",
+        "useCases": []
+      },
+      "es": {
+        "name": "ERNIE 4.5",
+        "description": "ERNIE 4.5 model",
+        "useCases": []
+      },
+      "de": {
+        "name": "ERNIE 4.5",
+        "description": "ERNIE 4.5 model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "ERNIE 4.5",
+        "description": "ERNIE 4.5 model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "baidu/ernie-4.5-vl-424b": {
     "slug": "baidu/ernie-4.5-vl-424b",
     "modelType": "chat",
@@ -5279,6 +6263,88 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "bytedance/doubao-1.5-lite": {
+    "slug": "bytedance/doubao-1.5-lite",
+    "modelType": "chat",
+    "contextWindow": 262144,
+    "releaseDate": "2025-06-01",
+    "providerName": "ByteDance",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.08,
+    "outputPrice": 0.3,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Doubao 1.5 Lite",
+        "description": "Doubao 1.5 Lite model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "豆包 1.5 Lite",
+        "description": "豆包 1.5 Lite 模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Doubao 1.5 Lite",
+        "description": "Doubao 1.5 Lite model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Doubao 1.5 Lite",
+        "description": "Doubao 1.5 Lite model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Doubao 1.5 Lite",
+        "description": "Doubao 1.5 Lite model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Doubao 1.5 Lite",
+        "description": "Doubao 1.5 Lite model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Doubao 1.5 Lite",
+        "description": "Doubao 1.5 Lite model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "bytedance/doubao-1.5-pro": {
     "slug": "bytedance/doubao-1.5-pro",
@@ -6210,6 +7276,170 @@
       }
     ]
   },
+  "deepseek/deepseek-coder-v2": {
+    "slug": "deepseek/deepseek-coder-v2",
+    "modelType": "coding",
+    "contextWindow": 128000,
+    "releaseDate": "2024-06-17",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.14,
+    "outputPrice": 0.28,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 coding model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 编程模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 coding model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 coding model",
+        "useCases": []
+      },
+      "es": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 coding model",
+        "useCases": []
+      },
+      "de": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 coding model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "DeepSeek Coder V2",
+        "description": "DeepSeek Coder V2 coding model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "deepseek/deepseek-r1": {
+    "slug": "deepseek/deepseek-r1",
+    "modelType": "reasoning",
+    "contextWindow": 65536,
+    "releaseDate": "2025-01-20",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.55,
+    "outputPrice": 2.19,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 reasoning model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 推理模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 reasoning model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 reasoning model",
+        "useCases": []
+      },
+      "es": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 reasoning model",
+        "useCases": []
+      },
+      "de": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 reasoning model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "DeepSeek R1",
+        "description": "DeepSeek R1 reasoning model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 14,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 32.8,
+      "rawScore": 23.3,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "deepseek/deepseek-reasoner": {
     "slug": "deepseek/deepseek-reasoner",
     "modelType": "reasoning",
@@ -6542,6 +7772,252 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "deepseek/deepseek-v2.5": {
+    "slug": "deepseek/deepseek-v2.5",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-09-05",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.14,
+    "outputPrice": 0.28,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 model",
+        "useCases": []
+      },
+      "es": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 model",
+        "useCases": []
+      },
+      "de": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "DeepSeek V2.5",
+        "description": "DeepSeek V2.5 model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "deepseek/deepseek-v3": {
+    "slug": "deepseek/deepseek-v3",
+    "modelType": "chat",
+    "contextWindow": 65536,
+    "releaseDate": "2024-12-26",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.27,
+    "outputPrice": 1.1,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "DeepSeek V3",
+        "description": "DeepSeek V3 flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 14,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 32.8,
+      "rawScore": 23.3,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "deepseek/deepseek-v3.1": {
+    "slug": "deepseek/deepseek-v3.1",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2025-08-21",
+    "providerName": "DeepSeek",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.28,
+    "outputPrice": 0.42,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 model",
+        "useCases": []
+      },
+      "es": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 model",
+        "useCases": []
+      },
+      "de": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "DeepSeek V3.1",
+        "description": "DeepSeek V3.1 model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "deepseek/deepseek-v4-flash": {
     "slug": "deepseek/deepseek-v4-flash",
@@ -7541,6 +9017,88 @@
       }
     ]
   },
+  "google/gemini-1.5-flash": {
+    "slug": "google/gemini-1.5-flash",
+    "modelType": "chat",
+    "contextWindow": 1000000,
+    "releaseDate": "2024-05-14",
+    "providerName": "Google",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.075,
+    "outputPrice": 0.3,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash fast model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash 快速模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash fast model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash fast model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash fast model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash fast model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Gemini 1.5 Flash",
+        "description": "Gemini 1.5 Flash fast model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "google/gemini-1.5-pro": {
     "slug": "google/gemini-1.5-pro",
     "modelType": "chat",
@@ -8528,6 +10086,88 @@
         "reason": "Alternative choice with similar benchmark performance and audio, coding capabilities"
       }
     ]
+  },
+  "google/gemini-2.0-pro": {
+    "slug": "google/gemini-2.0-pro",
+    "modelType": "chat",
+    "contextWindow": 2000000,
+    "releaseDate": "2025-02-05",
+    "providerName": "Google",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.25,
+    "outputPrice": 10,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Gemini 2.0 Pro",
+        "description": "Gemini 2.0 Pro flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "google/gemini-2.5-flash": {
     "slug": "google/gemini-2.5-flash",
@@ -10431,6 +12071,170 @@
       }
     ]
   },
+  "google/gemini-3-flash-lite": {
+    "slug": "google/gemini-3-flash-lite",
+    "modelType": "chat",
+    "contextWindow": 1000000,
+    "releaseDate": "2026-02-15",
+    "providerName": "Google",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.05,
+    "outputPrice": 0.2,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite fast model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite 快速模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite fast model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite fast model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite fast model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite fast model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Gemini 3 Flash Lite",
+        "description": "Gemini 3 Flash Lite fast model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "google/gemini-3-nano": {
+    "slug": "google/gemini-3-nano",
+    "modelType": "chat",
+    "contextWindow": 1000000,
+    "releaseDate": "2026-01-21",
+    "providerName": "Google",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.1,
+    "outputPrice": 0.4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano lightweight model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano 轻量模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano lightweight model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano lightweight model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano lightweight model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano lightweight model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Gemini 3 Nano",
+        "description": "Gemini 3 Nano lightweight model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "google/gemini-3.1-flash-lite": {
     "slug": "google/gemini-3.1-flash-lite",
     "modelType": "chat",
@@ -11225,6 +13029,334 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "meta/llama-3.1-405b": {
+    "slug": "meta/llama-3.1-405b",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-07-23",
+    "providerName": "Meta",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 3,
+    "outputPrice": 3,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Llama 3.1 405B",
+        "description": "Llama 3.1 405B open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "meta/llama-3.2-90b-vision": {
+    "slug": "meta/llama-3.2-90b-vision",
+    "modelType": "vision",
+    "contextWindow": 128000,
+    "releaseDate": "2024-09-25",
+    "providerName": "Meta",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 2,
+    "outputPrice": 2,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B vision model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B 视觉模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B vision model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B vision model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B vision model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B vision model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Llama 3.2 90B Vision",
+        "description": "Llama 3.2 90B vision model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "meta/llama-3.3-70b": {
+    "slug": "meta/llama-3.3-70b",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-12-06",
+    "providerName": "Meta",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.59,
+    "outputPrice": 0.79,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Llama 3.3 70B",
+        "description": "Llama 3.3 70B open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "meta/llama-4-behemoth": {
+    "slug": "meta/llama-4-behemoth",
+    "modelType": "chat",
+    "contextWindow": 1000000,
+    "releaseDate": "2025-04-05",
+    "providerName": "Meta",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": null,
+    "outputPrice": null,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Llama 4 Behemoth",
+        "description": "Llama 4 Behemoth open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 6,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 0,
+      "context": 100,
+      "rawScore": 10,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "meta/llama-4-maverick": {
     "slug": "meta/llama-4-maverick",
@@ -12357,6 +14489,170 @@
       }
     ]
   },
+  "minimax/minimax-m1": {
+    "slug": "minimax/minimax-m1",
+    "modelType": "reasoning",
+    "contextWindow": 1000000,
+    "releaseDate": "2025-06-16",
+    "providerName": "MiniMax",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1,
+    "outputPrice": 8,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 reasoning model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 推理模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 reasoning model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 reasoning model",
+        "useCases": []
+      },
+      "es": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 reasoning model",
+        "useCases": []
+      },
+      "de": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 reasoning model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "MiniMax M1",
+        "description": "MiniMax M1 reasoning model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "minimax/minimax-m2": {
+    "slug": "minimax/minimax-m2",
+    "modelType": "reasoning",
+    "contextWindow": 200000,
+    "releaseDate": "2025-09-22",
+    "providerName": "MiniMax",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.5,
+    "outputPrice": 2,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 reasoning model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 推理模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 reasoning model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 reasoning model",
+        "useCases": []
+      },
+      "es": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 reasoning model",
+        "useCases": []
+      },
+      "de": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 reasoning model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "MiniMax M2",
+        "description": "MiniMax M2 reasoning model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "minimax/minimax-m3": {
     "slug": "minimax/minimax-m3",
     "modelType": "chat",
@@ -12897,6 +15193,252 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "minimax/minimax-text-01": {
+    "slug": "minimax/minimax-text-01",
+    "modelType": "chat",
+    "contextWindow": 1000000,
+    "releaseDate": "2025-01-15",
+    "providerName": "MiniMax",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.3,
+    "outputPrice": 1.2,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 long context model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 长上下文模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 long context model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 long context model",
+        "useCases": []
+      },
+      "es": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 long context model",
+        "useCases": []
+      },
+      "de": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 long context model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "MiniMax Text-01",
+        "description": "MiniMax Text-01 long context model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "mistral/codestral-25.01": {
+    "slug": "mistral/codestral-25.01",
+    "modelType": "coding",
+    "contextWindow": 32768,
+    "releaseDate": "2025-01-13",
+    "providerName": "Mistral",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.3,
+    "outputPrice": 0.9,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 coding model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 编程模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 coding model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 coding model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 coding model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 coding model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Codestral 25.01",
+        "description": "Codestral 25.01 coding model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 13,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 16.4,
+      "rawScore": 21.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "mistral/mistral-7b": {
+    "slug": "mistral/mistral-7b",
+    "modelType": "chat",
+    "contextWindow": 32768,
+    "releaseDate": "2023-09-27",
+    "providerName": "Mistral",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.2,
+    "outputPrice": 0.6,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B open model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B 开源模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B open model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B open model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B open model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B open model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Mistral 7B",
+        "description": "Mistral 7B open model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 13,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 16.4,
+      "rawScore": 21.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "mistral/mistral-large-2": {
     "slug": "mistral/mistral-large-2",
@@ -13639,6 +16181,88 @@
       }
     ]
   },
+  "mistral/mistral-small-3": {
+    "slug": "mistral/mistral-small-3",
+    "modelType": "chat",
+    "contextWindow": 32768,
+    "releaseDate": "2025-03-06",
+    "providerName": "Mistral",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.1,
+    "outputPrice": 0.3,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 efficient model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 高效模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 efficient model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 efficient model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 efficient model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 efficient model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Mistral Small 3",
+        "description": "Mistral Small 3 efficient model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 13,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 16.4,
+      "rawScore": 21.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "mistral/mistral-small-4": {
     "slug": "mistral/mistral-small-4",
     "modelType": "chat",
@@ -14145,6 +16769,170 @@
       }
     ]
   },
+  "moonshot/kimi-k1.5": {
+    "slug": "moonshot/kimi-k1.5",
+    "modelType": "reasoning",
+    "contextWindow": 131072,
+    "releaseDate": "2025-01-20",
+    "providerName": "Moonshot",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.6,
+    "outputPrice": 2.5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 reasoning model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 推理模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 reasoning model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 reasoning model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 reasoning model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 reasoning model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Kimi K1.5",
+        "description": "Kimi K1.5 reasoning model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "moonshot/kimi-k1.5-long": {
+    "slug": "moonshot/kimi-k1.5-long",
+    "modelType": "reasoning",
+    "contextWindow": 262144,
+    "releaseDate": "2025-02-10",
+    "providerName": "Moonshot",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.2,
+    "outputPrice": 5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long context model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long 长上下文模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long context model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long context model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long context model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long context model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Kimi K1.5 Long",
+        "description": "Kimi K1.5 Long context model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "moonshot/kimi-k2": {
     "slug": "moonshot/kimi-k2",
     "modelType": "chat",
@@ -14540,6 +17328,88 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "moonshot/kimi-k2-turbo": {
+    "slug": "moonshot/kimi-k2-turbo",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2025-07-10",
+    "providerName": "Moonshot",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.6,
+    "outputPrice": 2.5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo efficient model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo 高效模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo efficient model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo efficient model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo efficient model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo efficient model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Kimi K2 Turbo",
+        "description": "Kimi K2 Turbo efficient model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "moonshot/kimi-k2.5": {
     "slug": "moonshot/kimi-k2.5",
@@ -15342,6 +18212,252 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "moonshot/kimi-k3": {
+    "slug": "moonshot/kimi-k3",
+    "modelType": "chat",
+    "contextWindow": 1000000,
+    "releaseDate": "2026-05-20",
+    "providerName": "Moonshot",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": null,
+    "outputPrice": null,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Kimi K3",
+        "description": "Kimi K3 flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 6,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 0,
+      "context": 100,
+      "rawScore": 10,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "openai/gpt-3.5-turbo": {
+    "slug": "openai/gpt-3.5-turbo",
+    "modelType": "chat",
+    "contextWindow": 16385,
+    "releaseDate": "2022-11-30",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.5,
+    "outputPrice": 1.5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo conversational model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo 对话模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo conversational model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo conversational model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo conversational model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo conversational model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GPT-3.5 Turbo",
+        "description": "GPT-3.5 Turbo conversational model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 12.5,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 8.2,
+      "rawScore": 20.8,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "openai/gpt-4-turbo": {
+    "slug": "openai/gpt-4-turbo",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-04-09",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 10,
+    "outputPrice": 30,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo multimodal model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo 多模态模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo multimodal model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo multimodal model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo multimodal model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo multimodal model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GPT-4 Turbo",
+        "description": "GPT-4 Turbo multimodal model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "openai/gpt-4.1": {
     "slug": "openai/gpt-4.1",
@@ -17156,6 +20272,170 @@
     },
     "relationships": []
   },
+  "openai/gpt-5": {
+    "slug": "openai/gpt-5",
+    "modelType": "chat",
+    "contextWindow": 400000,
+    "releaseDate": "2025-08-07",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.25,
+    "outputPrice": 10,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-5",
+        "description": "GPT-5 flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GPT-5",
+        "description": "GPT-5 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GPT-5",
+        "description": "GPT-5 flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GPT-5",
+        "description": "GPT-5 flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GPT-5",
+        "description": "GPT-5 flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GPT-5",
+        "description": "GPT-5 flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GPT-5",
+        "description": "GPT-5 flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "openai/gpt-5.1": {
+    "slug": "openai/gpt-5.1",
+    "modelType": "chat",
+    "contextWindow": 400000,
+    "releaseDate": "2026-02-12",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.25,
+    "outputPrice": 10,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GPT-5.1",
+        "description": "GPT-5.1 flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "openai/gpt-5.4": {
     "slug": "openai/gpt-5.4",
     "modelType": "chat",
@@ -18163,6 +21443,88 @@
       }
     ]
   },
+  "openai/o3-mini": {
+    "slug": "openai/o3-mini",
+    "modelType": "reasoning",
+    "contextWindow": 200000,
+    "releaseDate": "2025-01-31",
+    "providerName": "OpenAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 1.1,
+    "outputPrice": 4.4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "o3-mini",
+        "description": "o3-mini reasoning model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "o3-mini",
+        "description": "o3-mini 推理模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "o3-mini",
+        "description": "o3-mini reasoning model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "o3-mini",
+        "description": "o3-mini reasoning model",
+        "useCases": []
+      },
+      "es": {
+        "name": "o3-mini",
+        "description": "o3-mini reasoning model",
+        "useCases": []
+      },
+      "de": {
+        "name": "o3-mini",
+        "description": "o3-mini reasoning model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "o3-mini",
+        "description": "o3-mini reasoning model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 18,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 100,
+      "rawScore": 30,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "openai/o4-mini": {
     "slug": "openai/o4-mini",
     "modelType": "reasoning",
@@ -18570,6 +21932,170 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "tencent/hunyuan-lite": {
+    "slug": "tencent/hunyuan-lite",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2024-11-06",
+    "providerName": "Tencent",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.05,
+    "outputPrice": 0.1,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Hunyuan Lite",
+        "description": "Hunyuan Lite efficient model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "混元 Lite",
+        "description": "混元 Lite 高效模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Hunyuan Lite",
+        "description": "Hunyuan Lite efficient model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Hunyuan Lite",
+        "description": "Hunyuan Lite efficient model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Hunyuan Lite",
+        "description": "Hunyuan Lite efficient model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Hunyuan Lite",
+        "description": "Hunyuan Lite efficient model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Hunyuan Lite",
+        "description": "Hunyuan Lite efficient model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "tencent/hunyuan-t1": {
+    "slug": "tencent/hunyuan-t1",
+    "modelType": "reasoning",
+    "contextWindow": 131072,
+    "releaseDate": "2025-02-27",
+    "providerName": "Tencent",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.2,
+    "outputPrice": 0.4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Hunyuan T1",
+        "description": "Hunyuan T1 reasoning model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "混元 T1",
+        "description": "混元 T1 推理模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Hunyuan T1",
+        "description": "Hunyuan T1 reasoning model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Hunyuan T1",
+        "description": "Hunyuan T1 reasoning model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Hunyuan T1",
+        "description": "Hunyuan T1 reasoning model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Hunyuan T1",
+        "description": "Hunyuan T1 reasoning model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Hunyuan T1",
+        "description": "Hunyuan T1 reasoning model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "tencent/hunyuan-turbos": {
     "slug": "tencent/hunyuan-turbos",
@@ -19077,6 +22603,170 @@
       }
     ]
   },
+  "xai/grok-3": {
+    "slug": "xai/grok-3",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2025-02-17",
+    "providerName": "xAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 3,
+    "outputPrice": 15,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Grok 3",
+        "description": "Grok 3 flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Grok 3",
+        "description": "Grok 3 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Grok 3",
+        "description": "Grok 3 flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Grok 3",
+        "description": "Grok 3 flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Grok 3",
+        "description": "Grok 3 flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Grok 3",
+        "description": "Grok 3 flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Grok 3",
+        "description": "Grok 3 flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "xai/grok-3-mini": {
+    "slug": "xai/grok-3-mini",
+    "modelType": "chat",
+    "contextWindow": 131072,
+    "releaseDate": "2025-04-08",
+    "providerName": "xAI",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.2,
+    "outputPrice": 0.5,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini efficient model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini 高效模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini efficient model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini efficient model",
+        "useCases": []
+      },
+      "es": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini efficient model",
+        "useCases": []
+      },
+      "de": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini efficient model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "Grok 3 Mini",
+        "description": "Grok 3 Mini efficient model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.9,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 65.5,
+      "rawScore": 26.6,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "xai/grok-4": {
     "slug": "xai/grok-4",
     "modelType": "chat",
@@ -19520,6 +23210,252 @@
       }
     ]
   },
+  "zhipu/glm-4": {
+    "slug": "zhipu/glm-4",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-01-16",
+    "providerName": "Zhipu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.35,
+    "outputPrice": 0.7,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GLM-4",
+        "description": "GLM-4 conversational model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GLM-4",
+        "description": "GLM-4 对话模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GLM-4",
+        "description": "GLM-4 conversational model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-4",
+        "description": "GLM-4 conversational model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-4",
+        "description": "GLM-4 conversational model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-4",
+        "description": "GLM-4 conversational model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-4",
+        "description": "GLM-4 conversational model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "zhipu/glm-4-air": {
+    "slug": "zhipu/glm-4-air",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-04-26",
+    "providerName": "Zhipu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0.2,
+    "outputPrice": 0.4,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air efficient model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air 高效模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air efficient model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air efficient model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air efficient model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air efficient model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-4-Air",
+        "description": "GLM-4-Air efficient model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 15.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 100,
+      "context": 64,
+      "rawScore": 26.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "zhipu/glm-4-flash": {
+    "slug": "zhipu/glm-4-flash",
+    "modelType": "chat",
+    "contextWindow": 128000,
+    "releaseDate": "2024-07-25",
+    "providerName": "Zhipu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": 0,
+    "outputPrice": 0,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash free tier model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash 免费层模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash free tier model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash free tier model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash free tier model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash free tier model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-4-Flash",
+        "description": "GLM-4-Flash free tier model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 3.8,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 0,
+      "context": 64,
+      "rawScore": 6.4,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
   "zhipu/glm-4.5": {
     "slug": "zhipu/glm-4.5",
     "modelType": "chat",
@@ -19535,7 +23471,12 @@
     "currency": "USD",
     "unit": "per_1M_tokens",
     "languages": [
+      "de",
       "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
       "zh-CN"
     ],
     "translations": {
@@ -19558,6 +23499,31 @@
           "reasoning",
           "agentic workflows"
         ]
+      },
+      "ja": {
+        "name": "GLM-4.5",
+        "description": "GLM-4.5 model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-4.5",
+        "description": "GLM-4.5 model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-4.5",
+        "description": "GLM-4.5 model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-4.5",
+        "description": "GLM-4.5 model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-4.5",
+        "description": "GLM-4.5 model",
+        "useCases": []
       }
     },
     "capabilities": [
@@ -19992,6 +23958,88 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "zhipu/glm-4.5-plus": {
+    "slug": "zhipu/glm-4.5-plus",
+    "modelType": "chat",
+    "contextWindow": 200000,
+    "releaseDate": "2025-05-15",
+    "providerName": "Zhipu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": null,
+    "outputPrice": null,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus 模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-4.5-Plus",
+        "description": "GLM-4.5-Plus model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 6,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 0,
+      "context": 100,
+      "rawScore": 10,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   },
   "zhipu/glm-4.6": {
     "slug": "zhipu/glm-4.6",
@@ -20463,5 +24511,169 @@
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       }
     ]
+  },
+  "zhipu/glm-5": {
+    "slug": "zhipu/glm-5",
+    "modelType": "chat",
+    "contextWindow": 256000,
+    "releaseDate": "2026-04-10",
+    "providerName": "Zhipu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": null,
+    "outputPrice": null,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GLM-5",
+        "description": "GLM-5 flagship model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GLM-5",
+        "description": "GLM-5 旗舰模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GLM-5",
+        "description": "GLM-5 flagship model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-5",
+        "description": "GLM-5 flagship model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-5",
+        "description": "GLM-5 flagship model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-5",
+        "description": "GLM-5 flagship model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-5",
+        "description": "GLM-5 flagship model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 6,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 0,
+      "context": 100,
+      "rawScore": 10,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
+  },
+  "zhipu/glm-5.2": {
+    "slug": "zhipu/glm-5.2",
+    "modelType": "chat",
+    "contextWindow": 256000,
+    "releaseDate": "2026-07-08",
+    "providerName": "Zhipu",
+    "lastVerifiedAt": null,
+    "dataStatus": "active",
+    "verifiedStatus": "unverified",
+    "confidenceScore": 60,
+    "inputPrice": null,
+    "outputPrice": null,
+    "currency": "USD",
+    "unit": "per_1M_tokens",
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "ja",
+      "ko",
+      "zh-CN"
+    ],
+    "translations": {
+      "en": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 latest model",
+        "useCases": []
+      },
+      "zh-CN": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 最新模型",
+        "useCases": []
+      },
+      "ja": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 latest model",
+        "useCases": []
+      },
+      "ko": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 latest model",
+        "useCases": []
+      },
+      "es": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 latest model",
+        "useCases": []
+      },
+      "de": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 latest model",
+        "useCases": []
+      },
+      "fr": {
+        "name": "GLM-5.2",
+        "description": "GLM-5.2 latest model",
+        "useCases": []
+      }
+    },
+    "capabilities": [],
+    "pricingHistory": [],
+    "benchmarks": [],
+    "ranking": {
+      "overall": 6,
+      "benchmark": 0,
+      "capability": 0,
+      "price": 0,
+      "context": 100,
+      "rawScore": 10,
+      "confidence": 0.6
+    },
+    "trend": null,
+    "rankingHistory": [],
+    "dataTrust": {
+      "overall": 60,
+      "sources": [],
+      "lastVerified": null,
+      "warnings": []
+    },
+    "relationships": []
   }
 }

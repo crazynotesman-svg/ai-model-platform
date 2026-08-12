@@ -512,5 +512,17 @@
   "models.evidenceSources": "{n} 个来源",
   "ranking.dataConfidence": "数据置信度",
   "ranking.evidence": "证据",
-  "ranking.sourcesCount": "{n} 个来源"
+  "ranking.sourcesCount": "{n} 个来源",
+  "home.lastVerified": "最后核验",
+  "home.sources": "来源",
+  "home.needsVerification": "待核验",
+  "data.coverage.title": "模型覆盖",
+  "data.coverage.desc": "我们追踪多少 AI 模型、来自哪些厂商、核验状态如何。",
+  "data.coverage.models": "追踪模型数",
+  "data.coverage.providers": "厂商数",
+  "data.coverage.verified": "已核验",
+  "data.coverage.lastSync": "最后同步",
+  "data.coverage.newest": "最新模型",
+  "data.coverage.missingVerification": "待核验",
+  "data.coverage.providerList": "覆盖厂商"
 }

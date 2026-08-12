@@ -381,6 +381,25 @@ writeFileSync(
   ) + '\n',
   'utf-8',
 );
+// ---- Phase 12.1：Coverage 统计导出 ----
+const covModels = db.prepare('SELECT COUNT(*) AS n FROM models').get();
+const covProviders = db.prepare('SELECT COUNT(DISTINCT provider) AS n FROM models').get();
+const covVerified = db.prepare("SELECT COUNT(*) AS n FROM models WHERE verified_status = 'verified'").get();
+const covNewest = db.prepare('SELECT slug FROM models ORDER BY release_date DESC LIMIT 6').all();
+const covMissing = db.prepare("SELECT COUNT(*) AS n FROM models WHERE verified_status != 'verified' OR verified_status IS NULL").get();
+writeFileSync(
+  join(GENERATED_DIR, 'data-coverage.json'),
+  JSON.stringify({
+    totalModels: covModels?.n ?? 0,
+    providers: covProviders?.n ?? 0,
+    verified: covVerified?.n ?? 0,
+    missingVerification: covMissing?.n ?? 0,
+    lastSync: new Date().toISOString().slice(0, 10),
+    newestModels: (covNewest ?? []).map((x) => x.slug),
+  }, null, 2) + '\n',
+  'utf-8',
+);
+console.log('[export-models] 导出 data-coverage.json');
 console.log('[export-models] 导出 data-sources.json + data-changes.json');
 
 console.log(

@@ -57,10 +57,25 @@ const steps: { title: string }[] = [
 // 首页排行榜：静态服务端渲染（数据来自 catalog 透明评分，构建期计算，SEO 可索引）
 const catalogAll = catalogJson as Record<
   string,
-  { slug: string; providerName: string; ranking?: { overall: number; confidence?: number }; translations?: Record<string, { name?: string }> }
+  {
+    slug: string;
+    providerName: string;
+    ranking?: { overall: number; confidence?: number };
+    translations?: Record<string, { name?: string }>;
+    lastVerifiedAt?: string | null;
+    dataTrust?: { overall: number | null; sources: string[] };
+  }
 >;
 const ranked = Object.entries(catalogAll)
-  .map(([slug, m]) => ({ slug, name: m.translations?.[lang]?.name ?? m.translations?.en?.name ?? slug, provider: m.providerName, score: m.ranking?.overall ?? 0, confidence: m.ranking?.confidence ?? null }))
+  .map(([slug, m]) => ({
+    slug,
+    name: m.translations?.[lang]?.name ?? m.translations?.en?.name ?? slug,
+    provider: m.providerName,
+    score: m.ranking?.overall ?? 0,
+    confidence: m.ranking?.confidence ?? null,
+    lastVerified: m.lastVerifiedAt ?? null,
+    sources: (m.dataTrust?.sources ?? []).length,
+  }))
   .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
   .slice(0, 8);
 const rankBadge = (r: number): string => {
@@ -196,6 +211,15 @@ const homeJsonLd = {
                 <span class="block text-[9px] font-normal uppercase text-slate-600">{t('trust.dataConfidence')}</span>
               </span>
             )}
+            {/* Phase 12.1：Last verified + Sources（真实数据，无假日期） */}
+            <span class="hidden w-20 shrink-0 text-right text-[10px] text-slate-500 md:block">
+              {e.lastVerified ? e.lastVerified : t('home.needsVerification')}
+              <span class="block text-[9px] uppercase text-slate-600">{t('home.lastVerified')}</span>
+            </span>
+            <span class="hidden w-12 shrink-0 text-right text-[10px] font-semibold text-sky-400/80 md:block">
+              {e.sources}
+              <span class="block text-[9px] font-normal uppercase text-slate-600">{t('home.sources')}</span>
+            </span>
           </a>
         </li>
       ))}

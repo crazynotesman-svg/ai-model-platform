@@ -512,5 +512,17 @@
   "models.evidenceSources": "{n} sources",
   "ranking.dataConfidence": "Data Confidence",
   "ranking.evidence": "Evidence",
-  "ranking.sourcesCount": "{n} sources"
+  "ranking.sourcesCount": "{n} sources",
+  "home.lastVerified": "Last verified",
+  "home.sources": "Sources",
+  "home.needsVerification": "Needs verification",
+  "data.coverage.title": "Model Coverage",
+  "data.coverage.desc": "How many AI models we track, from which providers, and their verification status.",
+  "data.coverage.models": "Models tracked",
+  "data.coverage.providers": "Providers",
+  "data.coverage.verified": "Verified",
+  "data.coverage.lastSync": "Last sync",
+  "data.coverage.newest": "Newest models",
+  "data.coverage.missingVerification": "Missing verification",
+  "data.coverage.providerList": "Providers covered"
 }

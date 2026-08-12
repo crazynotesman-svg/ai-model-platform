@@ -16,6 +16,14 @@
     "createdAt": "2026-08-11 05:11:09"
   },
   {
+    "name": "Anthropic Release Notes",
+    "type": "official",
+    "url": "https://docs.anthropic.com/en/release-notes",
+    "description": "Anthropic 官方发布说明",
+    "trustLevel": 100,
+    "createdAt": "2026-08-12 03:14:37"
+  },
+  {
     "name": "Google Gemini Docs",
     "type": "official",
     "url": "https://ai.google.dev/gemini-api/docs/models",
@@ -32,12 +40,28 @@
     "createdAt": "2026-08-11 05:11:09"
   },
   {
+    "name": "Google Gemini Technical Reports",
+    "type": "official",
+    "url": "https://ai.google.dev/research",
+    "description": "Google DeepMind 技术报告（模型能力依据）",
+    "trustLevel": 100,
+    "createdAt": "2026-08-12 03:14:37"
+  },
+  {
     "name": "Meta Llama Docs",
     "type": "official",
     "url": "https://www.llama.com/docs/models-overview/",
     "description": "Meta Llama 模型文档",
     "trustLevel": 100,
     "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "Meta Llama Papers",
+    "type": "official",
+    "url": "https://arxiv.org/list/cs.CL/recent",
+    "description": "Meta Llama 研究论文（arXiv）",
+    "trustLevel": 100,
+    "createdAt": "2026-08-12 03:14:37"
   },
   {
     "name": "OpenAI Model Docs",
@@ -54,6 +78,22 @@
     "description": "OpenAI 官方 API 定价",
     "trustLevel": 100,
     "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "OpenAI Release Notes",
+    "type": "official",
+    "url": "https://platform.openai.com/docs/changelog",
+    "description": "OpenAI 官方发布说明（Release Tracking）",
+    "trustLevel": 100,
+    "createdAt": "2026-08-12 03:14:37"
+  },
+  {
+    "name": "OpenAI Technical Report",
+    "type": "official",
+    "url": "https://openai.com/research/",
+    "description": "OpenAI 技术报告（模型能力/评测方法）",
+    "trustLevel": 100,
+    "createdAt": "2026-08-12 03:14:37"
   },
   {
     "name": "AIME",
@@ -88,6 +128,14 @@
     "createdAt": "2026-08-11 05:11:09"
   },
   {
+    "name": "MLCommons MLPerf",
+    "type": "benchmark",
+    "url": "https://mlcommons.org/benchmarks/inference-datacenter/",
+    "description": "MLPerf 数据中心推理基准（官方榜单）",
+    "trustLevel": 90,
+    "createdAt": "2026-08-12 03:14:37"
+  },
+  {
     "name": "MMLU",
     "type": "benchmark",
     "url": "https://doi.org/10.48550/arXiv.2009.03300",
@@ -104,12 +152,28 @@
     "createdAt": "2026-08-11 05:11:09"
   },
   {
+    "name": "Papers with Code",
+    "type": "benchmark",
+    "url": "https://paperswithcode.com/llms",
+    "description": "Papers with Code 论文-指标-分数数据库",
+    "trustLevel": 90,
+    "createdAt": "2026-08-12 03:14:37"
+  },
+  {
     "name": "SWE-bench",
     "type": "benchmark",
     "url": "https://www.swebench.com/",
     "description": "SWE-bench 软件工程基准",
     "trustLevel": 90,
     "createdAt": "2026-08-11 05:11:09"
+  },
+  {
+    "name": "SWE-bench Verified",
+    "type": "benchmark",
+    "url": "https://www.swebench.com/verified",
+    "description": "SWE-bench Verified（官方人工核验子集）",
+    "trustLevel": 90,
+    "createdAt": "2026-08-12 03:14:37"
   },
   {
     "name": "HuggingFace Open LLM Leaderboard",

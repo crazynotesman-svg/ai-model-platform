@@ -23,6 +23,7 @@ import { createDailySnapshot } from './services/rankingSnapshot';
 import { runDataTrustAudit } from './services/dataTrustAudit';
 import { listPendingEvents, applyEvent } from './services/eventProcessor';
 import { runDataDiscovery } from './services/dataDiscovery';
+import { runModelDiscovery } from './connectors/modelDiscovery/runner';
 import { loadModelProfiles } from './services/relationshipGenerator';
 import { buildRelationships } from './services/modelGraph';
 import { getDataQuality } from './services/dataQuality';
@@ -334,6 +335,15 @@ export default {
         );
       } catch (err) {
         console.error('[cron] data discovery failed:', err);
+      }
+    }
+    // 每日 04:00 Model Discovery（Phase 12.1）：官方来源发现新模型/新版本 → pending
+    if (controller.cron === '0 4 * * *') {
+      try {
+        const result = await runModelDiscovery(env.DB);
+        console.log('[cron 0 4 * * *] model discovery: connectors=' + result.connectors + ', events=' + result.events + ', errors=' + JSON.stringify(result.errors));
+      } catch (err) {
+        console.error('[cron] model discovery failed:', err);
       }
     }
   },

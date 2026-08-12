@@ -1,0 +1,15 @@
+{
+  "totalModels": 100,
+  "providers": 14,
+  "verified": 29,
+  "missingVerification": 71,
+  "lastSync": "2026-08-12",
+  "newestModels": [
+    "zhipu/glm-5.2",
+    "minimax/minimax-m3",
+    "moonshot/kimi-k3",
+    "zhipu/glm-5",
+    "mistral/mistral-small-4",
+    "google/gemini-3-flash-lite"
+  ]
+}

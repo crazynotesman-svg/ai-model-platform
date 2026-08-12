@@ -24,4 +24,4 @@ migrations_dir = "../database/migrations"
 # 01:00 新闻采集；02:00 排名快照；03:00 Data Trust 审计（11.5B）；每 6 小时 Data Discovery（11.6）
 # 本地测试：npx wrangler dev --test-scheduled（发送 POST /__scheduled 触发）
 [triggers]
-crons = ["0 1 * * *", "0 2 * * *", "0 3 * * *", "0 */6 * * *"]
+crons = ["0 1 * * *", "0 2 * * *", "0 3 * * *", "0 */6 * * *", "0 4 * * *"]

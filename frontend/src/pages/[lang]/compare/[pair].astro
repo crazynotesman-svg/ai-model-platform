@@ -13,7 +13,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import DataTrustBadge from '../../../components/data/DataTrustBadge.astro';
 import FAQSchema from '../../../components/seo/FAQSchema.astro';
 import { getLangFromUrl, useI18n } from '../../../i18n/ui';
-import { allComparePairs, capabilityMap, CAPABILITY_ROWS, parseComparePair } from '../../../lib/compare';
+import { allComparePairs, comparePairKey, capabilityMap, CAPABILITY_ROWS, parseComparePair } from '../../../lib/compare';
 import { BENCHMARK_CATEGORIES } from '../../../lib/benchmark';
 import { MODEL_SLUGS } from '../../../generated/model-slugs';
 import catalogJson from '../../../generated/model-catalog.json';
@@ -55,12 +55,43 @@ interface CatalogEntry {
   ranking?: { overall: number; benchmark: number; capability: number; price: number; context: number };
   rankingHistory?: { date: string; rank: number; score: number }[];
   confidenceScore?: number | null;
+  relationships?: { type: string; model: string; name: string; confidence: number; reason: string }[];
 }
 const catalog = catalogJson as Record<string, CatalogEntry>;
 
-// 组合 lang × 全部比较对
+// 组合 lang × 高质量比较对（Phase 12.1：限制组合——Top 15 两两 + 各 provider 前 3 两两 + 知识图谱关系对；
+// 避免 100 模型全量 C(100,2)×7 页爆炸与 Astro 大页数挂起）
 export function getStaticPaths() {
-  const pairs = allComparePairs(MODEL_SLUGS);
+  const catalogLocal = catalogJson as Record<string, CatalogEntry>;
+  // Top 15（ranking.overall 降序）
+  const ranked = Object.entries(catalogLocal)
+    .map(([slug, m]) => ({ slug, score: m.ranking?.overall ?? 0 }))
+    .sort((a, b) => b.score - a.score)
+    .map((x) => x.slug)
+    .slice(0, 15);
+  const pairSet = new Set<string>();
+  const addAll = (list: readonly string[]) => {
+    for (const p of allComparePairs(list)) pairSet.add(p);
+  };
+  addAll(ranked); // Top 15 两两
+  // 各 provider 前 3 模型两两（provider 内对比，控制规模）
+  const byProvider = new Map<string, string[]>();
+  for (const slug of MODEL_SLUGS) {
+    const prov = slug.split('/')[0] ?? 'other';
+    const arr = byProvider.get(prov) ?? [];
+    arr.push(slug);
+    byProvider.set(prov, arr);
+  }
+  for (const list of byProvider.values()) addAll(list.slice(0, 3));
+  // 知识图谱关系对（similar_to / cheaper_than；每模型仅取 confidence 前 2，控制规模）
+  for (const m of Object.values(catalogLocal)) {
+    const rels = (m.relationships ?? [])
+      .filter((r) => r.type === 'similar_to' || r.type === 'cheaper_than')
+      .sort((a, b) => b.confidence - a.confidence)
+      .slice(0, 2);
+    for (const r of rels) pairSet.add(comparePairKey(m.slug, r.model));
+  }
+  const pairs = [...pairSet];
   const paths: { params: { lang: string; pair: string } }[] = [];
   for (const lang of LOCALES) {
     for (const pair of pairs) {

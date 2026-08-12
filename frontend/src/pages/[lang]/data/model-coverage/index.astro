@@ -1,0 +1,107 @@
+---
+/**
+ * Model Coverage Dashboard：/{lang}/data/model-coverage/
+ *
+ * 展示：Models tracked / Providers / Verified % / Last sync / Newest models / Missing verification。
+ * JSON-LD：Dataset + DatasetDistribution + WebPage（AI crawler 可理解数据规模）。
+ */
+import { LOCALES } from '../../../../i18n/locales';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useI18n } from '../../../../i18n/ui';
+import coverageJson from '../../../../generated/data-coverage.json';
+import catalogJson from '../../../../generated/model-catalog.json';
+
+// SSG：7 语言
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useI18n(lang);
+
+const coverage = coverageJson as { totalModels: number; providers: number; verified: number; missingVerification: number; lastSync: string; newestModels: string[] };
+const catalog = catalogJson as Record<string, { providerName?: string; dataStatus?: string }>;
+const verifiedPct = coverage.totalModels > 0 ? Math.round((coverage.verified / coverage.totalModels) * 100) : 0;
+
+// Provider 覆盖列表（从 catalog providerName 去重）
+const providerNames = [...new Set<string>(Object.values(catalog).map((m) => m.providerName ?? ''))].filter(Boolean).sort();
+
+const siteUrl = Astro.site ?? new URL('http://localhost:4321');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: t('data.coverage.title'),
+      description: t('data.coverage.desc'),
+      url: pageUrl,
+      dateModified: coverage.lastSync,
+      publisher: { '@type': 'Organization', name: 'AI Model Platform' },
+    },
+    {
+      '@type': 'Dataset',
+      name: 'AI Model Coverage Dataset',
+      description: `${coverage.totalModels} models across ${coverage.providers} providers`,
+      url: pageUrl,
+      dateModified: coverage.lastSync,
+      distribution: {
+        '@type': 'DataDownload',
+        contentUrl: 'https://ai-model-platform-api.crazynotesman.workers.dev/api/v1/models',
+        encodingFormat: 'application/json',
+      },
+      variableMeasured: ['model inventory', 'provider coverage', 'verification status'],
+    },
+  ],
+};
+---
+
+<BaseLayout title={t('data.coverage.title')} description={t('data.coverage.desc')} jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{t('data.coverage.title')}</h1>
+    <p class="mt-2 text-sm text-slate-400">{t('data.coverage.desc')}</p>
+
+    <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-sky-300">{coverage.totalModels}</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.coverage.models')}</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-sky-300">{coverage.providers}</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.coverage.providers')}</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-emerald-400">{verifiedPct}%</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.coverage.verified')}</p>
+      </div>
+      <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center">
+        <p class="text-2xl font-bold tabular-nums text-slate-200">{coverage.lastSync}</p>
+        <p class="mt-1 text-xs text-slate-500">{t('data.coverage.lastSync')}</p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('data.coverage.newest')}</h2>
+        <ul class="mt-3 space-y-1.5">
+          {coverage.newestModels.map((slug) => (
+            <li>
+              <a href={`/${lang}/models/${slug}/`} class="text-sm text-slate-200 hover:text-sky-300">{slug}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('data.coverage.providerList')}</h2>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {providerNames.map((p) => (
+            <span class="rounded-full border border-slate-700 bg-slate-950 px-2.5 py-0.5 text-xs text-slate-300">{p}</span>
+          ))}
+        </div>
+        <p class="mt-4 text-xs text-slate-500">
+          {t('data.coverage.missingVerification')}: <span class="font-semibold text-amber-400">{coverage.missingVerification}</span>
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
