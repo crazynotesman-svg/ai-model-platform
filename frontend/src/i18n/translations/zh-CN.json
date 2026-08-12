@@ -524,5 +524,7 @@
   "data.coverage.lastSync": "最后同步",
   "data.coverage.newest": "最新模型",
   "data.coverage.missingVerification": "待核验",
-  "data.coverage.providerList": "覆盖厂商"
+  "data.coverage.providerList": "覆盖厂商",
+  "home.snapshotTime": "每日快照（UTC 02:00）",
+  "home.pricingSourcesValue": "OpenAI · Anthropic · Google 官方定价"
 }

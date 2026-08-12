@@ -524,5 +524,7 @@
   "data.coverage.lastSync": "Last sync",
   "data.coverage.newest": "Newest models",
   "data.coverage.missingVerification": "Missing verification",
-  "data.coverage.providerList": "Providers covered"
+  "data.coverage.providerList": "Providers covered",
+  "home.snapshotTime": "Daily snapshot (UTC 02:00)",
+  "home.pricingSourcesValue": "OpenAI · Anthropic · Google official pricing"
 }

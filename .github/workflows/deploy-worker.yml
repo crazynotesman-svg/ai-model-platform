@@ -59,6 +59,14 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
+      # Official benchmark seed（Phase 11.9 补充）：官方公开基准（verified + 来源可追踪）
+      - name: Seed official benchmarks
+        working-directory: worker
+        run: pnpm exec wrangler d1 execute ai-model-platform-db --remote --file=../database/seed/seed-benchmarks.sql
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Typecheck
         working-directory: worker
         run: pnpm exec tsc --noEmit -p tsconfig.json

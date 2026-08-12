@@ -225,21 +225,52 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 85.9,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-09-19",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://qwenlm.github.io/blog/qwen2.5/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 86.1,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-09-19",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://qwenlm.github.io/blog/qwen2.5/",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 15.9,
-      "benchmark": 0,
+      "overall": 62.6,
+      "benchmark": 86,
       "capability": 0,
       "price": 100,
       "context": 65.5,
-      "rawScore": 26.6,
-      "confidence": 0.6
+      "rawScore": 69.6,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://qwenlm.github.io/blog/qwen2.5/"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -2223,21 +2254,66 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 75.9,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-03-04",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 75.1,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-03-04",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 33.3,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-03-04",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 18,
-      "benchmark": 0,
+      "overall": 54.6,
+      "benchmark": 61.4,
       "capability": 0,
       "price": 100,
       "context": 100,
-      "rawScore": 30,
-      "confidence": 0.6
+      "rawScore": 60.7,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://www.anthropic.com/research"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -2305,21 +2381,66 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 84.9,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-03-04",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 86.8,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-03-04",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 50.4,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-03-04",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 18,
-      "benchmark": 0,
+      "overall": 60.3,
+      "benchmark": 74,
       "capability": 0,
       "price": 100,
       "context": 100,
-      "rawScore": 30,
-      "confidence": 0.6
+      "rawScore": 67,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://www.anthropic.com/research"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -2493,21 +2614,65 @@
         "sourceUrl": "https://docs.anthropic.com/en/docs/about-claude/pricing"
       }
     ],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 92,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-06-20",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 88.7,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-06-20",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 59.4,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-06-20",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.anthropic.com/research",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 44.8,
-      "benchmark": 0,
+      "overall": 78.4,
+      "benchmark": 80,
       "capability": 85.7,
       "price": 100,
       "context": 100,
-      "rawScore": 47.1,
-      "confidence": 0.95
+      "rawScore": 87.2,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 95,
       "sources": [
+        "https://www.anthropic.com/research",
         "https://docs.anthropic.com/en/docs/about-claude/pricing"
       ],
       "lastVerified": null,
@@ -2572,10 +2737,24 @@
       },
       {
         "type": "similar_to",
+        "model": "openai/gpt-4o",
+        "name": "GPT-4o",
+        "confidence": 58,
+        "reason": "Similar coding, function_calling, multimodal with comparable pricing (sim 67.4%)"
+      },
+      {
+        "type": "similar_to",
         "model": "openai/gpt-5.4",
         "name": "GPT-5.4",
         "confidence": 58,
         "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 66%)"
+      },
+      {
+        "type": "similar_to",
+        "model": "mistral/mistral-large-2",
+        "name": "Mistral Large 2",
+        "confidence": 57,
+        "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 62.4%)"
       },
       {
         "type": "similar_to",
@@ -2614,6 +2793,13 @@
       },
       {
         "type": "similar_to",
+        "model": "google/gemini-1.5-pro",
+        "name": "Gemini 1.5 Pro",
+        "confidence": 54,
+        "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 51.8%)"
+      },
+      {
+        "type": "similar_to",
         "model": "openai/gpt-4.1",
         "name": "GPT-4.1",
         "confidence": 54,
@@ -2646,13 +2832,6 @@
         "name": "MiniMax M3",
         "confidence": 53,
         "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 48.4%)"
-      },
-      {
-        "type": "similar_to",
-        "model": "openai/gpt-4o",
-        "name": "GPT-4o",
-        "confidence": 53,
-        "reason": "Similar coding, function_calling, multimodal with comparable pricing (sim 50%)"
       },
       {
         "type": "similar_to",
@@ -2719,22 +2898,8 @@
       },
       {
         "type": "alternative_to",
-        "model": "mistral/mistral-large-2",
-        "name": "Mistral Large 2",
-        "confidence": 51,
-        "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
-      },
-      {
-        "type": "alternative_to",
         "model": "bytedance/doubao-1.5-pro",
         "name": "Doubao 1.5 Pro",
-        "confidence": 50,
-        "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
-      },
-      {
-        "type": "alternative_to",
-        "model": "google/gemini-1.5-pro",
-        "name": "Gemini 1.5 Pro",
         "confidence": 50,
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       },
@@ -7420,21 +7585,52 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 79.8,
+        "rank": null,
+        "dataset": "aime",
+        "version": "paper-2025",
+        "source": "official",
+        "testedAt": "2025-01-20",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://arxiv.org/abs/2501.12948",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 71.5,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "paper-2025",
+        "source": "official",
+        "testedAt": "2025-01-20",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://arxiv.org/abs/2501.12948",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 14,
-      "benchmark": 0,
+      "overall": 55,
+      "benchmark": 75.7,
       "capability": 0,
       "price": 100,
       "context": 32.8,
-      "rawScore": 23.3,
-      "confidence": 0.6
+      "rawScore": 61.1,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://arxiv.org/abs/2501.12948"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -7917,21 +8113,52 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 82.6,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "paper-2024",
+        "source": "official",
+        "testedAt": "2024-12-26",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://arxiv.org/abs/2412.19437",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 88.5,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "paper-2024",
+        "source": "official",
+        "testedAt": "2024-12-26",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://arxiv.org/abs/2412.19437",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 14,
-      "benchmark": 0,
+      "overall": 59.4,
+      "benchmark": 85.6,
       "capability": 0,
       "price": 100,
       "context": 32.8,
-      "rawScore": 23.3,
-      "confidence": 0.6
+      "rawScore": 66.1,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://arxiv.org/abs/2412.19437"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -9079,21 +9306,52 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 71.7,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "techreport-2024",
+        "source": "official",
+        "testedAt": "2024-05-14",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://ai.google.dev/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 78.9,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "techreport-2024",
+        "source": "official",
+        "testedAt": "2024-05-14",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://ai.google.dev/research",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 18,
-      "benchmark": 0,
+      "overall": 60.9,
+      "benchmark": 75.3,
       "capability": 0,
       "price": 100,
       "context": 100,
-      "rawScore": 30,
-      "confidence": 0.6
+      "rawScore": 67.7,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://ai.google.dev/research"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -9185,21 +9443,65 @@
         "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
       }
     ],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 84.1,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "techreport-2024",
+        "source": "official",
+        "testedAt": "2024-05-14",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://ai.google.dev/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 81.9,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "techreport-2024",
+        "source": "official",
+        "testedAt": "2024-05-14",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://ai.google.dev/research",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 46.5,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "techreport-2024",
+        "source": "official",
+        "testedAt": "2024-05-14",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://ai.google.dev/research",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 47.5,
-      "benchmark": 0,
+      "overall": 76.9,
+      "benchmark": 70.8,
       "capability": 100,
       "price": 100,
       "context": 100,
-      "rawScore": 50,
-      "confidence": 0.95
+      "rawScore": 85.4,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 95,
       "sources": [
+        "https://ai.google.dev/research",
         "https://ai.google.dev/gemini-api/docs/pricing"
       ],
       "lastVerified": null,
@@ -9334,6 +9636,13 @@
       },
       {
         "type": "similar_to",
+        "model": "anthropic/claude-3.5-sonnet",
+        "name": "Claude 3.5 Sonnet",
+        "confidence": 54,
+        "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 51.8%)"
+      },
+      {
+        "type": "similar_to",
         "model": "google/gemini-2.0-flash",
         "name": "Gemini 2.0 Flash",
         "confidence": 54,
@@ -9352,6 +9661,13 @@
         "name": "Gemini 3 Flash",
         "confidence": 54,
         "reason": "Similar audio, coding, function_calling with comparable pricing (sim 53.6%)"
+      },
+      {
+        "type": "similar_to",
+        "model": "openai/gpt-4o",
+        "name": "GPT-4o",
+        "confidence": 54,
+        "reason": "Similar audio, coding, function_calling with comparable pricing (sim 54%)"
       },
       {
         "type": "similar_to",
@@ -9380,6 +9696,13 @@
         "name": "MiniMax M3",
         "confidence": 52,
         "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 45%)"
+      },
+      {
+        "type": "similar_to",
+        "model": "mistral/mistral-large-2",
+        "name": "Mistral Large 2",
+        "confidence": 52,
+        "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 46.5%)"
       },
       {
         "type": "similar_to",
@@ -9446,24 +9769,10 @@
       },
       {
         "type": "alternative_to",
-        "model": "anthropic/claude-3.5-sonnet",
-        "name": "Claude 3.5 Sonnet",
-        "confidence": 50,
-        "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
-      },
-      {
-        "type": "alternative_to",
         "model": "anthropic/claude-3.7-sonnet",
         "name": "Claude 3.7 Sonnet",
         "confidence": 50,
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
-      },
-      {
-        "type": "alternative_to",
-        "model": "openai/gpt-4o",
-        "name": "GPT-4o",
-        "confidence": 50,
-        "reason": "Alternative choice with similar benchmark performance and audio, coding capabilities"
       },
       {
         "type": "alternative_to",
@@ -13092,21 +13401,66 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 89,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-23",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.llama.com/docs/models-overview/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 88.6,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-23",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.llama.com/docs/models-overview/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 51.1,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-23",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.llama.com/docs/models-overview/",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 15.8,
-      "benchmark": 0,
+      "overall": 58.1,
+      "benchmark": 76.2,
       "capability": 0,
       "price": 100,
       "context": 64,
-      "rawScore": 26.4,
-      "confidence": 0.6
+      "rawScore": 64.5,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://www.llama.com/docs/models-overview/"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -13256,21 +13610,52 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 88.4,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-12-06",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.llama.com/docs/models-overview/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 86,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-12-06",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://www.llama.com/docs/models-overview/",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 15.8,
-      "benchmark": 0,
+      "overall": 63,
+      "benchmark": 87.2,
       "capability": 0,
       "price": 100,
       "context": 64,
-      "rawScore": 26.4,
-      "confidence": 0.6
+      "rawScore": 70,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://www.llama.com/docs/models-overview/"
+      ],
       "lastVerified": null,
       "warnings": []
     },
@@ -13286,8 +13671,8 @@
     "dataStatus": "active",
     "verifiedStatus": "unverified",
     "confidenceScore": 60,
-    "inputPrice": null,
-    "outputPrice": null,
+    "inputPrice": 5,
+    "outputPrice": 25,
     "currency": "USD",
     "unit": "per_1M_tokens",
     "languages": [
@@ -13340,12 +13725,12 @@
     "pricingHistory": [],
     "benchmarks": [],
     "ranking": {
-      "overall": 6,
+      "overall": 18,
       "benchmark": 0,
       "capability": 0,
-      "price": 0,
+      "price": 100,
       "context": 100,
-      "rawScore": 10,
+      "rawScore": 30,
       "confidence": 0.6
     },
     "trend": null,
@@ -15526,21 +15911,51 @@
         "sourceUrl": "https://mistral.ai/pricing"
       }
     ],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 92,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-24",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://mistral.ai/news/mistral-large-2407/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 84,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-24",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://mistral.ai/news/mistral-large-2407/",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 18.9,
-      "benchmark": 0,
+      "overall": 73.6,
+      "benchmark": 88,
       "capability": 57.1,
       "price": 100,
       "context": 64,
-      "rawScore": 37.8,
-      "confidence": 0.5
+      "rawScore": 81.8,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 50,
       "sources": [
+        "https://mistral.ai/news/mistral-large-2407/",
         "https://mistral.ai/pricing"
       ],
       "lastVerified": null,
@@ -15647,6 +16062,13 @@
       },
       {
         "type": "similar_to",
+        "model": "anthropic/claude-3.5-sonnet",
+        "name": "Claude 3.5 Sonnet",
+        "confidence": 57,
+        "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 62.4%)"
+      },
+      {
+        "type": "similar_to",
         "model": "mistral/mistral-small-4",
         "name": "Mistral Small 4",
         "confidence": 55,
@@ -15658,6 +16080,13 @@
         "name": "Kimi K2",
         "confidence": 55,
         "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 58.1%)"
+      },
+      {
+        "type": "similar_to",
+        "model": "openai/gpt-4o",
+        "name": "GPT-4o",
+        "confidence": 55,
+        "reason": "Similar coding, function_calling, reasoning with comparable pricing (sim 56.5%)"
       },
       {
         "type": "similar_to",
@@ -15731,6 +16160,13 @@
       },
       {
         "type": "similar_to",
+        "model": "google/gemini-1.5-pro",
+        "name": "Gemini 1.5 Pro",
+        "confidence": 52,
+        "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 46.5%)"
+      },
+      {
+        "type": "similar_to",
         "model": "openai/gpt-4.1",
         "name": "GPT-4.1",
         "confidence": 52,
@@ -15742,13 +16178,6 @@
         "name": "GPT-5.4",
         "confidence": 52,
         "reason": "Similar coding, function_calling, long_context with comparable pricing (sim 45.5%)"
-      },
-      {
-        "type": "alternative_to",
-        "model": "anthropic/claude-3.5-sonnet",
-        "name": "Claude 3.5 Sonnet",
-        "confidence": 51,
-        "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
       },
       {
         "type": "alternative_to",
@@ -20065,21 +20494,79 @@
         "sourceUrl": "https://openai.com/api/pricing/"
       }
     ],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 90.2,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-05-13",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 88.7,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-05-13",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 53.6,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-05-13",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "vision",
+        "categoryName": "Vision",
+        "score": 69.1,
+        "rank": null,
+        "dataset": "mmmu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-05-13",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 41.4,
-      "benchmark": 0,
+      "overall": 73.1,
+      "benchmark": 75.4,
       "capability": 85.7,
       "price": 100,
       "context": 64,
-      "rawScore": 43.5,
-      "confidence": 0.95
+      "rawScore": 81.2,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 95,
       "sources": [
+        "https://openai.com/research/",
         "https://openai.com/api/pricing/"
       ],
       "lastVerified": null,
@@ -20116,17 +20603,31 @@
       },
       {
         "type": "similar_to",
+        "model": "anthropic/claude-3.5-sonnet",
+        "name": "Claude 3.5 Sonnet",
+        "confidence": 58,
+        "reason": "Similar coding, function_calling, multimodal with comparable pricing (sim 67.4%)"
+      },
+      {
+        "type": "similar_to",
+        "model": "mistral/mistral-large-2",
+        "name": "Mistral Large 2",
+        "confidence": 55,
+        "reason": "Similar coding, function_calling, reasoning with comparable pricing (sim 56.5%)"
+      },
+      {
+        "type": "similar_to",
+        "model": "google/gemini-1.5-pro",
+        "name": "Gemini 1.5 Pro",
+        "confidence": 54,
+        "reason": "Similar audio, coding, function_calling with comparable pricing (sim 54%)"
+      },
+      {
+        "type": "similar_to",
         "model": "openai/gpt-5.4",
         "name": "GPT-5.4",
         "confidence": 54,
         "reason": "Similar coding, function_calling, multimodal with comparable pricing (sim 51.8%)"
-      },
-      {
-        "type": "similar_to",
-        "model": "anthropic/claude-3.5-sonnet",
-        "name": "Claude 3.5 Sonnet",
-        "confidence": 53,
-        "reason": "Similar coding, function_calling, multimodal with comparable pricing (sim 50%)"
       },
       {
         "type": "similar_to",
@@ -20176,13 +20677,6 @@
         "name": "GPT-4.1",
         "confidence": 51,
         "reason": "Alternative choice with similar benchmark performance and coding, function_calling capabilities"
-      },
-      {
-        "type": "alternative_to",
-        "model": "google/gemini-1.5-pro",
-        "name": "Gemini 1.5 Pro",
-        "confidence": 50,
-        "reason": "Alternative choice with similar benchmark performance and audio, coding capabilities"
       },
       {
         "type": "alternative_to",
@@ -20250,21 +20744,65 @@
         "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-4o"
       }
     ],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 87,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-18",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 82,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-18",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "reasoning",
+        "categoryName": "Reasoning",
+        "score": 40.2,
+        "rank": null,
+        "dataset": "gpqa",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-07-18",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://openai.com/research/",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 25.1,
-      "benchmark": 0,
+      "overall": 55.1,
+      "benchmark": 69.7,
       "capability": 0,
       "price": 100,
       "context": 64,
-      "rawScore": 26.4,
-      "confidence": 0.95
+      "rawScore": 61.3,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 95,
       "sources": [
+        "https://openai.com/research/",
         "https://developers.openai.com/api/docs/models/gpt-4o"
       ],
       "lastVerified": null,
@@ -23272,21 +23810,52 @@
     },
     "capabilities": [],
     "pricingHistory": [],
-    "benchmarks": [],
+    "benchmarks": [
+      {
+        "category": "coding",
+        "categoryName": "Coding",
+        "score": 80.1,
+        "rank": null,
+        "dataset": "humaneval",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-01-16",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://docs.bigmodel.cn/cn/guide/models",
+        "verificationStatus": "verified"
+      },
+      {
+        "category": "math",
+        "categoryName": "Math",
+        "score": 81.5,
+        "rank": null,
+        "dataset": "mmlu",
+        "version": "official-2024",
+        "source": "official",
+        "testedAt": "2024-01-16",
+        "confidence": 90,
+        "officialScore": null,
+        "sourceUrl": "https://docs.bigmodel.cn/cn/guide/models",
+        "verificationStatus": "verified"
+      }
+    ],
     "ranking": {
-      "overall": 15.8,
-      "benchmark": 0,
+      "overall": 60.1,
+      "benchmark": 80.8,
       "capability": 0,
       "price": 100,
       "context": 64,
-      "rawScore": 26.4,
-      "confidence": 0.6
+      "rawScore": 66.8,
+      "confidence": 0.9
     },
     "trend": null,
     "rankingHistory": [],
     "dataTrust": {
       "overall": 60,
-      "sources": [],
+      "sources": [
+        "https://docs.bigmodel.cn/cn/guide/models"
+      ],
       "lastVerified": null,
       "warnings": []
     },
