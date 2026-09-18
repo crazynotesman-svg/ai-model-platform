@@ -56,12 +56,12 @@ Trust = Source Authority × Freshness × Completeness × Cross Validation × Ver
 | Database 0001-0013 | ✅ 本地应用 |
 | Worker typecheck | ✅ 0 errors |
 | astro check | ✅ 0 errors（待构建确认） |
-| astro build | ✅（待构建确认） |
+| astro build | ✅ 8856 html / sitemap 8855（+21 页）；Windows EPERM 仅为 dist/.prerender 清理告警，产物完整 |
 | API | data-events 沿用；PRICE_CHANGED → data_changes 接线 |
 
 ## 9. Git Commit
 
-- push 后补充 hash
+- **1a78f56** feat: upgrade data trust infrastructure（已推送 e4e277b..1a78f56，CI 自动部署）
 
 ## 限制遵守
 

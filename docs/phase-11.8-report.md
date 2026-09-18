@@ -48,13 +48,13 @@ GPT-4o cheaper: anthropic/claude-opus-4 (conf 65) "Lower input price ($2.5/1M vs
 | --- | --- |
 | Database 0001-0014 | ✅ 本地应用 |
 | Worker typecheck | ✅ 0 errors |
-| astro check | ✅ 0 errors（待确认） |
-| astro build | ✅（待确认） |
-| API relationships | ✅（部署后验证） |
+| astro check | ✅ 0 errors |
+| astro build | ✅ 8856 html（页数不变） |
+| API relationships | ✅ 线上 gpt-4o similar: gpt-5.4 + claude-sonnet-4（conf 53-54，reason 数据驱动） |
 
 ## 9. Git Commit
 
-- push 后补充 hash
+- **340d108** feat: add model knowledge graph and recommendation v2（已推送 1a78f56..340d108，CI 自动部署）
 
 ## 限制遵守
 

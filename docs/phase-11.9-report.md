@@ -58,11 +58,15 @@ Trust = Source Authority × Dataset Transparency × Reproducibility × Freshness
 | --- | --- |
 | Database 0001-0017 | ✅ |
 | Worker typecheck | ✅ 0 errors |
-| astro check | ✅（待确认） |
-| astro build | ✅（待确认） |
+| astro check | ✅ 0 errors |
+| astro build | ✅ 8863 html / sitemap 8862（+7 authority 页；全量重建修复增量缺失） |
 | seo-health-check | ✅ 升级（Dataset/dateModified/source/trust badge 检查） |
 
-## 9. 下一阶段建议
+## 9. Git Commit
+
+- **6dee190** feat: upgrade ai data authority system（已推送 340d108..6dee190，CI 自动部署）
+
+## 10. 下一阶段建议
 
 - 生产 benchmark 数据逐条补 dataset_version/evaluation_method（人工核验映射）
 - Release Tracking 数据填充（官方 changelog 解析）

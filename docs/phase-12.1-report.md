@@ -61,12 +61,12 @@ OpenAI / Anthropic / Google / Meta / DeepSeek / **Zhipu** / Alibaba / Moonshot /
 | --- | --- |
 | Database 0001-0019 + seed | ✅ 100 模型 |
 | Worker typecheck | ✅ 0 errors |
-| astro check / build | ✅（待确认） |
+| astro check / build | ✅ check 0 / build 0（2451 html；compare 组合限制 Top15+provider前3+关系对——避免 100 模型全量组合爆炸与 Astro 挂起） |
 | SEO（canonical/hreflang/JSON-LD/sitemap） | ✅（待确认） |
 
 ## 9. Git Commit
 
-- push 后补充 hash
+- **6647334** fix: seed model sources with provider subqueries（主功能在 **ecb6a5c**；CI 修复 788fc6c→6647334，生产 100 模型已部署）
 
 ## 10. 下一阶段建议
 
