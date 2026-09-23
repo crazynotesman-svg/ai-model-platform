@@ -7,9 +7,11 @@
  * - BaseLayout 内联的自动语言识别脚本（buildAutoLocaleScript）会按当前路径做软重定向，
  *   在错误路径上可能触发重定向循环。
  *
- * 平台行为：静态资源未命中时，Cloudflare Pages 返回本文件。状态码取决于项目的
- * Not found behavior 设置（需为 "404 page" 才会返回 HTTP 404，默认 SPA fallback 会
- * 返回 index.html + 200）。同时输出 noindex 作为双保险。详见 docs/404-platform-limit.md。
+ * 平台行为：本文件存在即让 Cloudflare Pages 用「404 页」模式取代 SPA fallback ——
+ * 官方文档明确：缺少顶层 404.html 时平台才按 SPA 处理，把所有路径映射到 / 并返回 200；
+ * 存在 404.html 时则按最近优先查找并返回真 HTTP 404。2026-09-23 线上实测已确认
+ * (/totally-fake-path-9999/ 等均返回 404)，无需任何 Dashboard 配置。
+ * 另输出 noindex 作为双保险。详见 docs/404-platform-limit.md。
  *
  * 零客户端 JS：语言入口以静态链接提供（各语言用其本地名称标注）。
  */

@@ -159,11 +159,11 @@ const main = async () => {
   }
   add('INFO', `抽查 ${pages.length} 页：canonical ${canonicalOk} / hreflang ${hreflangOk} / og:image ${ogImageOk} / jsonld ${jsonldOk}`);
 
-  // 4. 404 状态（已知平台限制 → WARN）
+  // 4. 404 状态：dist/404.html 存在时 Cloudflare Pages 返回真 404（见 docs/404-platform-limit.md）
   const nf = await fetch(`${domain}/__seo_health_404_probe__/`, { redirect: 'manual' });
   const nfStatus = nf.status;
   if (nfStatus === 404) add('PASS', `无效路径 HTTP 404 ✓`);
-  else add('WARN', `无效路径 HTTP ${nfStatus}（Cloudflare Pages SPA fallback 限制，见 docs/404-platform-limit.md）`);
+  else add('WARN', `无效路径 HTTP ${nfStatus}（回归为软 404：检查 dist/404.html 是否产出，或平台是否忽略它）`);
 
   // 5. 汇总
   const elapsed = since(start);
