@@ -526,5 +526,8 @@
   "data.coverage.missingVerification": "Missing verification",
   "data.coverage.providerList": "Providers covered",
   "home.snapshotTime": "Daily snapshot (UTC 02:00)",
-  "home.pricingSourcesValue": "OpenAI · Anthropic · Google official pricing"
+  "home.pricingSourcesValue": "OpenAI · Anthropic · Google official pricing",
+  "notFound.title": "Page not found",
+  "notFound.text": "The page you requested does not exist or has been moved.",
+  "notFound.home": "Go to homepage"
 }

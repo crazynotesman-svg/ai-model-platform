@@ -1,0 +1,61 @@
+---
+/**
+ * 404 页面（根级 → 构建产物 dist/404.html）。
+ *
+ * 为什么刻意不复用 BaseLayout：
+ * - 404 页不应输出 canonical / hreflang，否则会被搜索引擎误读为「软 404 的替代页」信号；
+ * - BaseLayout 内联的自动语言识别脚本（buildAutoLocaleScript）会按当前路径做软重定向，
+ *   在错误路径上可能触发重定向循环。
+ *
+ * 平台行为：静态资源未命中时，Cloudflare Pages 返回本文件。状态码取决于项目的
+ * Not found behavior 设置（需为 "404 page" 才会返回 HTTP 404，默认 SPA fallback 会
+ * 返回 index.html + 200）。同时输出 noindex 作为双保险。详见 docs/404-platform-limit.md。
+ *
+ * 零客户端 JS：语言入口以静态链接提供（各语言用其本地名称标注）。
+ */
+import { LOCALES, LOCALE_LABELS, DEFAULT_LOCALE } from '../i18n/locales';
+import { useI18n } from '../i18n/ui';
+import '../styles/global.css';
+
+const t = useI18n(DEFAULT_LOCALE);
+---
+
+<!doctype html>
+<html lang={DEFAULT_LOCALE}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t('notFound.title')} — {t('site.title')}</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body
+    class="flex min-h-screen flex-col items-center justify-center bg-slate-950 px-4 text-slate-100 antialiased"
+  >
+    <main class="w-full max-w-xl text-center">
+      <p class="text-sm font-medium tracking-widest text-slate-500">404</p>
+      <h1 class="mt-3 text-2xl font-semibold text-white">{t('notFound.title')}</h1>
+      <p class="mt-3 text-sm leading-relaxed text-slate-400">{t('notFound.text')}</p>
+
+      <a
+        href={`/${DEFAULT_LOCALE}/`}
+        class="mt-8 inline-block rounded-md border border-slate-700 px-5 py-2.5 text-sm text-slate-100 transition-colors hover:border-slate-500 hover:text-white"
+      >
+        {t('notFound.home')}
+      </a>
+
+      <nav
+        aria-label="languages"
+        class="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-500"
+      >
+        {
+          LOCALES.map((l) => (
+            <a href={`/${l}/`} class="transition-colors hover:text-slate-300">
+              {LOCALE_LABELS[l]}
+            </a>
+          ))
+        }
+      </nav>
+    </main>
+  </body>
+</html>

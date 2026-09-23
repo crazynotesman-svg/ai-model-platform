@@ -1,5 +1,28 @@
-# SEO 规范化重定向（301）：/recommendations/ → /<lang>/ranking/recommendations/
-# 精确路径必须置于 catch-all（404）规则之前，避免被通配匹配
+# Cloudflare Pages 重定向配置
+# 语法：/source /destination [code]
+#
+# 重要（两条平台事实，决定了本文件的写法）：
+#   1. 301/302 等重定向「始终生效」，不受同路径静态文件影响。
+#      原文："Redirects are always followed, regardless of whether or not an asset
+#      matches the incoming request."
+#      https://developers.cloudflare.com/pages/configuration/redirects/
+#      因此下面的 `/ /en/ 301` 会覆盖构建产物 dist/index.html 中那份
+#      「200 + meta refresh + noindex」的 Astro 语言重定向页。
+#   2. _redirects 不支持 404 等状态码的 rewrite（Rewrite 仅支持 200 proxying；
+#      官方支持矩阵中 `/blog/* /blog/404.html 404` 明确标注为不支持）。
+#      所以 404 不在此处配置，交由构建产物 dist/404.html + 平台
+#      Not found behavior 处理。详见 docs/404-platform-limit.md。
+
+# ── 1) 根路径 → 默认语言（真 301）────────────────────────────────
+# 历史问题：根路径曾返回 HTTP 200 + <meta name="robots" content="noindex"> 的
+# 语言重定向页，导致 Google Search Console 网址检查报
+# 「否：系统在元标记 robots 中检测到了 noindex」，裸域名权重也无法传递。
+# 改为真 301 后，信号正常传递至 /en/。
+/ /en/ 301
+
+# ── 2) SEO 规范化重定向（301）────────────────────────────────────
+# /recommendations/ → /<lang>/ranking/recommendations/
+# 精确路径必须置于通配规则之前
 /recommendations/ https://aimodel.100ideas.net/en/ranking/recommendations/ 301
 /en/recommendations/ https://aimodel.100ideas.net/en/ranking/recommendations/ 301
 /zh-CN/recommendations/ https://aimodel.100ideas.net/zh-CN/ranking/recommendations/ 301
@@ -8,15 +31,3 @@
 /es/recommendations/ https://aimodel.100ideas.net/es/ranking/recommendations/ 301
 /de/recommendations/ https://aimodel.100ideas.net/de/ranking/recommendations/ 301
 /fr/recommendations/ https://aimodel.100ideas.net/fr/ranking/recommendations/ 301
-
-# Google 收录优化：无效路径返回 404（修复 Pages SPA fallback 软 404）
-# 规则仅在"无静态文件匹配"时生效（存在文件优先），合法页面不受影响。
-# 404 状态码 + 根 404 页（noindex），避免无效 URL 被搜索引擎收录。
-/en/* /404 404
-/zh-CN/* /404 404
-/ja/* /404 404
-/ko/* /404 404
-/es/* /404 404
-/de/* /404 404
-/fr/* /404 404
-/* /404 404

@@ -526,5 +526,8 @@
   "data.coverage.missingVerification": "待核验",
   "data.coverage.providerList": "覆盖厂商",
   "home.snapshotTime": "每日快照（UTC 02:00）",
-  "home.pricingSourcesValue": "OpenAI · Anthropic · Google 官方定价"
+  "home.pricingSourcesValue": "OpenAI · Anthropic · Google 官方定价",
+  "notFound.title": "页面不存在",
+  "notFound.text": "你访问的页面不存在或已被移动。",
+  "notFound.home": "返回首页"
 }

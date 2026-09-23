@@ -40,8 +40,9 @@ const get = async (u) => {
 };
 
 // 抽查页面池（Tier 1/2 混合 + 随机模型页）
+// 注：根路径 '/' 不在本池中 — 它由第 2.5 步单独检查（应为 301 → /en/）。
 const TIER_PAGES = [
-  '/', '/en/', '/zh-CN/', '/en/models/', '/en/compare/', '/en/ranking/',
+  '/en/', '/zh-CN/', '/en/models/', '/en/compare/', '/en/ranking/',
   '/en/benchmarks/', '/en/news/', '/en/data-policy/',
   '/en/models/openai/gpt-4o/', '/en/models/anthropic/claude-sonnet-4/',
   '/en/models/google/gemini-2.5-pro/',
@@ -88,6 +89,18 @@ const main = async () => {
     add('FAIL', `sitemap-index.xml: status=${si.status} xml=${/<\?xml/.test(si.text)}`);
   }
 
+  // 2.5 根路径：应为真 301 → /en/
+  // 历史问题：根路径曾返回 HTTP 200 + <meta name="robots" content="noindex"> 的
+  // Astro 语言重定向页，导致 GSC 网址检查报「否：检测到 noindex」，裸域名权重无法传递。
+  // 现由 _redirects 的 `/ /en/ 301` 覆盖（Cloudflare 的重定向优先于静态文件）。
+  const root = await fetch(`${domain}/`, { redirect: 'manual' });
+  const rootLoc = root.headers.get('location') ?? '';
+  if (root.status === 301 && /\/en\/?$/.test(rootLoc)) {
+    add('PASS', `根路径 301 → ${rootLoc}（权重传递正常，无 noindex）`);
+  } else {
+    add('FAIL', `根路径 status=${root.status} location="${rootLoc}"（期望 301 → /en/）`);
+  }
+
   // 3. 抽查页面
   const pages = pick(pageCount, TIER_PAGES);
   let canonicalOk = 0;
@@ -102,16 +115,6 @@ const main = async () => {
     }
     const html = r.text;
     const host = new URL(domain).host;
-
-    // 根路径 '/'：语言重定向页（noindex + meta refresh），无 hreflang/og/jsonld 属正常
-    if (p === '/') {
-      if (/<meta http-equiv="refresh"/.test(html)) {
-        add('INFO', `/ 语言重定向页（meta refresh → /en/，noindex）✓`);
-      } else {
-        add('WARN', `/ 非重定向页`);
-      }
-      continue;
-    }
 
     // canonical
     const canon = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1] ?? null;
